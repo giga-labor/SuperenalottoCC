@@ -1,0 +1,14 @@
+{
+  "id": "geneticThree",
+  "title": "GeneticSE Three",
+  "subtitle": "Ensemble di sottoreti addestrate",
+  "image": "img.png",
+  "lastUpdated": "",
+  "hasNews": false,
+  "statusTag": "Pagina in allestimento",
+  "narrativeSummary": "Ensemble di sottoreti addestrate.",
+  "page": "pages/algoritmi/geneticThree/",
+  "macroGroup": "neurale",
+  "isActive": false
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "pcn",
+  "title": "Pcn",
+  "subtitle": "Descrizione in arrivo",
+  "image": "img.png",
+  "lastUpdated": "",
+  "hasNews": false,
+  "statusTag": "Pagina in allestimento",
+  "narrativeSummary": "Aggiornamenti in preparazione.",
+  "page": "pages/algoritmi/pcn/",
+  "macroGroup": "neurale",
+  "isActive": false
+}
+

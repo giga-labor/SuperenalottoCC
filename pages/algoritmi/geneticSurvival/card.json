@@ -1,0 +1,15 @@
+{
+  "id": "survival-analysis-ibrido",
+  "title": "GeneticSE Survival",
+  "subtitle": "Modelli tempo-evento con training su sequenze",
+  "image": "img.png",
+  "lastUpdated": "",
+  "hasNews": false,
+  "statusTag": "Pagina in allestimento",
+  "narrativeSummary": "Modelli tempo-evento con training su sequenze.",
+  "page": "pages/algoritmi/geneticSurvival/",
+  "macroGroup": "neurale",
+  "isActive": false
+}
+
+

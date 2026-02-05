@@ -1,0 +1,14 @@
+{
+  "id": "super6NN",
+  "title": "Super6 NN",
+  "subtitle": "Walk-forward con training incrementale e sampling sestine",
+  "image": "img.png",
+  "lastUpdated": "",
+  "hasNews": false,
+  "statusTag": "Pagina in allestimento",
+  "narrativeSummary": "Walk-forward con training incrementale e sampling sestine.",
+  "page": "pages/algoritmi/super6NN/",
+  "macroGroup": "neurale",
+  "isActive": false
+}
+

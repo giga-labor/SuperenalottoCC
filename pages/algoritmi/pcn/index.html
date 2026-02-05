@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCN - Analisi algoritmo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#05060F',
+            steel: '#0F1220',
+            night: '#121633',
+            neon: '#FFD966',
+            ash: '#A5B1C9'
+          },
+          boxShadow: {
+            glow: '0 0 22px rgba(255, 217, 102, 0.35)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../../../assets/css/header.css">
+  <link rel="stylesheet" href="../../../assets/css/ads.css">
+</head>
+<body class="min-h-screen bg-midnight text-white">
+<header class="border-b border-white/10 bg-midnight/90 backdrop-blur-sm">
+    <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-6">
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-neon">Control Chaos</p>
+        <h1 class="mt-2 text-2xl font-semibold">PCN</h1>
+        <p class="mt-2 text-ash">Macro area: Reti neurali</p>
+      </div>
+      <nav class="flex flex-wrap gap-3">
+        <a class="rounded-full border border-neon/70 bg-neon/10 px-4 py-2 text-sm font-semibold text-neon transition hover:-translate-y-1 hover:bg-neon/20" href="../index.html">Tutti gli algoritmi</a>
+        <a class="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 transition hover:-translate-y-1 hover:border-neon/70 hover:text-neon" href="../../storico-estrazioni/">Storico estrazioni</a>
+        <a class="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 transition hover:-translate-y-1 hover:border-neon/70 hover:text-neon" href="../../../index.html">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-fade mx-auto max-w-5xl content-width px-6 py-10">
+    <section class="rounded-3xl border border-white/10 bg-night p-6">
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-ash">Sintesi</p>
+          <h2 class="mt-2 text-xl font-semibold">Panoramica risultati</h2>
+          <p class="mt-2 max-w-3xl text-ash">Placeholder per l analisi: descrizione delle metriche chiave, note di interpretazione e affidabilita dell algoritmo.</p>
+        </div>
+        <span class="rounded-full border border-emerald-400 bg-midnight/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-emerald-300">Analisi pronta</span>
+      </div>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl border border-white/10 bg-midnight/80 p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-ash">Ultimo run</p>
+          <p class="mt-2 text-lg font-semibold">--/--/----</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-midnight/80 p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-ash">Campioni analizzati</p>
+          <p class="mt-2 text-lg font-semibold">--</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-midnight/80 p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-ash">Confidenza media</p>
+          <p class="mt-2 text-lg font-semibold">--%</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-midnight/80 p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-ash">Note chiave</p>
+          <p class="mt-2 text-lg font-semibold">--</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 grid gap-6 lg:grid-cols-2">
+      <div class="rounded-3xl border border-white/10 bg-night p-6">
+        <h3 class="text-xl font-semibold">Andamento storico</h3>
+        <p class="mt-2 text-sm text-ash">Placeholder per grafico performance nel tempo.</p>
+        <div class="mt-4 h-56 rounded-2xl border border-dashed border-white/15 bg-midnight/70"></div>
+      </div>
+      <div class="rounded-3xl border border-white/10 bg-night p-6">
+        <h3 class="text-xl font-semibold">Distribuzione punteggi</h3>
+        <p class="mt-2 text-sm text-ash">Placeholder per istogramma o boxplot.</p>
+        <div class="mt-4 h-56 rounded-2xl border border-dashed border-white/15 bg-midnight/70"></div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-3xl border border-white/10 bg-night p-6">
+      <h3 class="text-xl font-semibold">Top risultati e insight</h3>
+      <p class="mt-2 text-sm text-ash">Placeholder per tabella con combinazioni, ranking, metriche e note operative.</p>
+      <div class="mt-4 overflow-x-auto rounded-2xl border border-white/10">
+        <table class="min-w-full text-left text-sm">
+          <thead class="bg-midnight/80 text-xs uppercase tracking-[0.2em] text-ash">
+            <tr>
+              <th class="px-4 py-3">Rank</th>
+              <th class="px-4 py-3">Combinazione</th>
+              <th class="px-4 py-3">Score</th>
+              <th class="px-4 py-3">Note</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5">
+            <tr>
+              <td class="px-4 py-3 text-ash">1</td>
+              <td class="px-4 py-3 text-ash">--</td>
+              <td class="px-4 py-3 text-ash">--</td>
+              <td class="px-4 py-3 text-ash">--</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-ash">2</td>
+              <td class="px-4 py-3 text-ash">--</td>
+              <td class="px-4 py-3 text-ash">--</td>
+              <td class="px-4 py-3 text-ash">--</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 px-6 py-6 text-center text-xs text-ash">
+    <p>Pagina di analisi algoritmo - contenuto placeholder.</p>
+  </footer>
+  <script src="../../../assets/js/header.js" defer></script>
+  <script src="../../../assets/js/ads.js" defer></script>
+</body>
+</html>

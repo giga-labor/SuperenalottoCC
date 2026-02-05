@@ -1,0 +1,14 @@
+{
+  "id": "superenalottoAI",
+  "title": "SuperEnalotto AI",
+  "subtitle": "Pipeline end-to-end: feature, training, predizione, ranking",
+  "image": "img.png",
+  "lastUpdated": "",
+  "hasNews": false,
+  "statusTag": "Pagina in allestimento",
+  "narrativeSummary": "Pipeline end-to-end: feature, training, predizione e ranking.",
+  "page": "pages/algoritmi/superenalottoAI/index.html",
+  "macroGroup": "neurale",
+  "isActive": false
+}
+

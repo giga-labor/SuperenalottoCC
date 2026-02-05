@@ -1,0 +1,15 @@
+{
+  "id": "sequenceLab",
+  "title": "Sequence Lab",
+  "subtitle": "Laboratorio sequenziale con più architetture",
+  "image": "img.png",
+  "lastUpdated": "",
+  "hasNews": false,
+  "statusTag": "Pagina in allestimento",
+  "narrativeSummary": "Laboratorio sequenziale con più architetture.",
+  "page": "pages/algoritmi/sequenceLab/",
+  "macroGroup": "neurale",
+  "isActive": false
+}
+
+

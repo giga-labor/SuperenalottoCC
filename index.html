@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Chaos • Superenalotto Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#05060F',
+            steel: '#0F1220',
+            night: '#121633',
+            neon: '#FFD966',
+            ash: '#A5B1C9'
+          },
+          boxShadow: {
+            glow: '0 0 22px rgba(255, 217, 102, 0.35)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/ads.css">
+</head>
+<body class="bg-midnight text-white" id="top">
+
+
+  <main class="content-fade mx-auto flex max-w-5xl content-width flex-col gap-10 px-6 py-2">
+    <section id="modules" class="pt-0 mt-[40px]" data-module-section>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <h2 class="text-2xl font-semibold">In Evidenza</h2>
+        </div>
+      </div>
+      <div class="cards-shell mt-4 bg-transparent">
+        <button class="cards-nav cards-nav--prev rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.2em] text-ash transition hover:border-neon/60 hover:text-neon" type="button" data-module-prev aria-label="Scorri a sinistra">Prev</button>
+        <div class="cards-viewport">
+          <div class="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory scroll-smooth" data-module-area data-module-scroll></div>
+        </div>
+        <button class="cards-nav cards-nav--next rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.2em] text-ash transition hover:border-neon/60 hover:text-neon" type="button" data-module-next aria-label="Scorri a destra">Next</button>
+      </div>
+    </section>
+
+    <div class="content-box">
+    <section class="mt-8" id="work-in-progress">
+      <div>
+        <h3 class="text-xl font-semibold">Lavori in corso</h3>
+        <p class="mt-2 text-ash">Immagini tratte dal flusso degli algoritmi, per ricordare che ogni modulo è una fabbrica in movimento.</p>
+      </div>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <figure class="rounded-xl border border-white/5 bg-midnight p-3 transition hover:-translate-y-1 hover:shadow-[0_0_18px_rgba(255,217,102,0.25)]">
+          <img class="rounded-lg" src="img/headerControlChaos3.png" alt="Grafico in progress">
+          <figcaption class="mt-3 text-sm text-ash">Elaborazioni statistiche in fase di ritocco</figcaption>
+        </figure>
+        <figure class="rounded-xl border border-white/5 bg-midnight p-3 transition hover:-translate-y-1 hover:shadow-[0_0_18px_rgba(255,217,102,0.25)]">
+          <img class="rounded-lg" src="img/headerControlChaos3.png" alt="Interfaccia Work in Progress">
+          <figcaption class="mt-3 text-sm text-ash">Reti neurali che “assorbono” dati e trend</figcaption>
+        </figure>
+        <figure class="rounded-xl border border-white/5 bg-midnight p-3 transition hover:-translate-y-1 hover:shadow-[0_0_18px_rgba(255,217,102,0.25)]">
+          <img class="rounded-lg" src="img/fortuna.png" alt="Palette fortuna">
+          <figcaption class="mt-3 text-sm text-ash">Luce e caos: la palette del progetto mentre aggiorniamo i moduli</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h3 class="text-xl font-semibold">Vuoi inserire un nuovo algoritmo?</h3>
+      <p class="mt-2 text-ash">Aggiungi il JSON nella cartella modulo, aggiorna il manifest e il prototipo visualizzerà subito la card con la scritta “Pagina in allestimento”.</p>
+      <a class="mt-5 inline-flex rounded-full bg-gradient-to-r from-neon via-yellow-300 to-amber-400 px-6 py-3 font-semibold text-midnight shadow-glow transition hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,217,102,0.6)]" href="#modules">Aggiungi un modulo</a>
+    </section>
+      </div>
+  </main>
+
+  <footer class="border-t border-white/10 px-6 py-8 text-center text-sm text-ash">
+    <p>© 2026 Control Chaos — Statistiche Superenalotto in allestimento.</p>
+    <p>Scrolla verso l'alto per rivedere i moduli.</p>
+  </footer>
+
+  <script src="assets/js/header.js" defer></script>
+  <script src="assets/js/cards.js" defer></script>
+  <script src="assets/js/cards-index.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/ads.js" defer></script>
+</body>
+</html>
+
