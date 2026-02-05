@@ -121,6 +121,7 @@ const ensureAds = () => {
   bottom.dataset.bottomAd = 'true';
   const bottomPanel = document.createElement('div');
   bottomPanel.className = 'bottom-ad__panel';
+  bottomPanel.id = 'bottomAdPanel';
 
   const title = document.createElement('span');
   title.className = 'bottom-ad__title';
@@ -148,6 +149,17 @@ const ensureAds = () => {
   document.body.appendChild(left);
   document.body.appendChild(right);
   document.body.appendChild(bottom);
+
+  const hint = document.createElement('a');
+  hint.className = 'bottom-ad__hint';
+  hint.href = '#catalogo';
+  hint.setAttribute('aria-label', 'Scorri verso gli algoritmi');
+  hint.innerHTML = `
+    <span class="bottom-ad__hint-label">Algoritmi</span>
+    <span class="bottom-ad__hint-arrow">↓</span>
+  `;
+  bottom.appendChild(hint);
+  hint.dataset.hint = 'algorithms';
 
   const buildSidePanel = (panel, items) => {
     if (!panel) return;
@@ -184,12 +196,23 @@ const ensureAds = () => {
     buildSidePanel(rightPanel, sideItemsRight);
   };
 
-  window.addEventListener('load', resizeAllSideTickers);
+  const updateHintVisibility = () => {
+    const hintEl = document.querySelector('[data-hint="algorithms"]');
+    if (!hintEl) return;
+    const nearBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+    hintEl.classList.toggle('is-hidden', nearBottom);
+  };
+
+  window.addEventListener('load', () => {
+    resizeAllSideTickers();
+    updateHintVisibility();
+  });
   window.addEventListener('resize', () => {
     window.clearTimeout(window.__sideTickerResize);
     window.__sideTickerResize = window.setTimeout(resizeAllSideTickers, 150);
   });
   window.setTimeout(resizeAllSideTickers, 50);
+  window.addEventListener('scroll', updateHintVisibility, { passive: true });
 
   fetchLatestDraw().then((latestDraw) => {
     updateDrawTexts(latestDraw);
