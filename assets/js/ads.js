@@ -247,9 +247,21 @@ function resolveWithBase(path) {
   if (value.startsWith('#') || /^https?:\/\//i.test(value) || value.startsWith('file:')) {
     return value;
   }
-  const resolver = window.CC_BASE?.resolve;
+  const resolver = window.CC_BASE?.resolve || localBaseResolve;
   if (typeof resolver === 'function') {
     return resolver(value);
   }
   return value;
+}
+
+function localBaseResolve(value) {
+  const path = window.location.pathname.replace(/\\/g, '/');
+  const marker = '/pages/';
+  const index = path.toLowerCase().indexOf(marker);
+  const basePath = index !== -1
+    ? path.slice(0, index + 1)
+    : path.replace(/\/[^\/]*$/, '/');
+  const baseUrl = new URL(basePath, window.location.href);
+  const trimmed = value.startsWith('/') ? value.slice(1) : value.replace(/^\.\//, '');
+  return new URL(trimmed, baseUrl).toString();
 }
