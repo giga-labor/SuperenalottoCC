@@ -45,7 +45,8 @@ const resolveWithBaseHref = (href, baseUrl = BASE.url) => {
 
 const AUDIO_ENABLED = false;
 
-const VERSION = window.CC_VERSION || '00.00.000';
+const getVersion = () => window.CC_VERSION || '00.00.000';
+const VERSION = getVersion();
 
 const buildHeaderMarkup = () => `
   <header id="site-header" class="sticky top-0 z-50 relative border-b border-white/10 backdrop-blur-sm">
@@ -126,6 +127,19 @@ if (header) {
   setHeaderOffsets();
   window.addEventListener('load', setHeaderOffsets);
   window.addEventListener('resize', setHeaderOffsets);
+}
+
+const syncHeaderVersion = () => {
+  const versionEl = document.querySelector('.header-version');
+  if (versionEl) {
+    versionEl.textContent = getVersion();
+  }
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', syncHeaderVersion);
+} else {
+  syncHeaderVersion();
 }
 
 const updateAdRails = () => {
