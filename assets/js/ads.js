@@ -9,7 +9,7 @@ const shuffle = (list) => {
 
 const fetchLatestDraw = async () => {
   try {
-    const response = await fetch('/archives/draws/draws.csv', { cache: 'no-store' });
+    const response = await fetch(resolveWithBase('archives/draws/draws.csv'), { cache: 'no-store' });
     if (!response.ok) return '';
     const raw = await response.text();
     const lines = raw
@@ -103,7 +103,11 @@ const ensureAds = () => {
   const fallbackItems = buildFallbackItems('');
   const buildSideItems = (items) => items.map((item, index) => ({
     ...item,
-    logo: index % 3 === 0 ? '/img/headerControlChaos3.png' : index % 3 === 1 ? '/img/headerControlChaos.png' : '/img/fortuna.png',
+    logo: index % 3 === 0
+      ? resolveWithBase('img/headerControlChaos3.png')
+      : index % 3 === 1
+        ? resolveWithBase('img/headerControlChaos.png')
+        : resolveWithBase('img/fortuna.png'),
     href: ''
   }));
   const sideItemsLeft = buildSideItems(shuffle(fallbackItems));
@@ -235,4 +239,17 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', ensureAds);
 } else {
   ensureAds();
+}
+
+function resolveWithBase(path) {
+  if (!path) return path;
+  const value = String(path);
+  if (value.startsWith('#') || /^https?:\/\//i.test(value) || value.startsWith('file:')) {
+    return value;
+  }
+  const resolver = window.CC_BASE?.resolve;
+  if (typeof resolver === 'function') {
+    return resolver(value);
+  }
+  return value;
 }
