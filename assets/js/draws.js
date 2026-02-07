@@ -18,6 +18,7 @@ let rows = [];
 let filtered = [];
 let headers = [];
 let dateIndex = -1;
+let drawNumberIndexes = [];
 let currentPage = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,6 +41,7 @@ async function loadDraws() {
     rows = parsed.rows;
     headers = parsed.headers;
     dateIndex = findDateIndex(headers);
+    drawNumberIndexes = findDrawNumberIndexes(headers);
     sortRowsByDateDesc();
     renderHeader(headers);
     applyFilter('');
@@ -88,6 +90,17 @@ function findDateIndex(headersList) {
   return idx === -1 ? 0 : idx;
 }
 
+function findDrawNumberIndexes(headersList) {
+  const indexes = [];
+  headersList.forEach((header, index) => {
+    const normalized = String(header || '').trim().toLowerCase();
+    if (/^n\d+$/.test(normalized) || normalized.includes('jolly') || normalized.includes('superstar')) {
+      indexes.push(index);
+    }
+  });
+  return indexes;
+}
+
 function sortRowsByDateDesc() {
   if (dateIndex < 0) return;
   rows.sort((a, b) => {
@@ -117,10 +130,41 @@ function renderHeader(headers) {
 }
 
 function applyFilter(term) {
-  const normalized = term.toLowerCase();
-  filtered = rows.filter((row) => row.join(' ').toLowerCase().includes(normalized));
+  const normalized = String(term || '').trim().toLowerCase();
+  if (!normalized) {
+    filtered = rows;
+    currentPage = 1;
+    renderTable();
+    return;
+  }
+
+  const tokens = normalized.split(/\s+/).filter(Boolean);
+  const numericTokens = tokens.filter((token) => /^\d+$/.test(token)).map(normalizeNumericToken);
+  const textTokens = tokens.filter((token) => !/^\d+$/.test(token));
+
+  filtered = rows.filter((row) => {
+    const rowText = row.join(' ').toLowerCase();
+    const textMatch = textTokens.every((token) => rowText.includes(token));
+    if (!textMatch) return false;
+    if (!numericTokens.length) return true;
+
+    const rowNumbers = getRowNumberSet(row);
+    return numericTokens.every((token) => rowNumbers.has(token));
+  });
   currentPage = 1;
   renderTable();
+}
+
+function normalizeNumericToken(token) {
+  return String(parseInt(token, 10));
+}
+
+function getRowNumberSet(row) {
+  const numberCells = drawNumberIndexes.length
+    ? drawNumberIndexes.map((index) => row[index])
+    : row;
+  const rowNumbers = numberCells.join(' ').match(/\d+/g) || [];
+  return new Set(rowNumbers.map(normalizeNumericToken));
 }
 
 function renderTable() {
