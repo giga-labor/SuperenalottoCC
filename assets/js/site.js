@@ -1,4 +1,4 @@
-const cardsIndexPath = 'data/cards-index.json';
+﻿const cardsIndexPath = 'data/cards-index.json';
 
 document.addEventListener('DOMContentLoaded', () => {
   const area = document.querySelector('[data-module-area]');
@@ -57,7 +57,7 @@ function renderModules(area, modules) {
   area.innerHTML = '';
   modules.forEach((module) => {
     const card = document.createElement('a');
-    card.className = 'card-3d is-active flex min-h-[320px] w-[clamp(200px,22vw,230px)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-white/10 transition hover:-translate-y-2 hover:border-neon/60';
+    card.className = 'card-3d algorithm-card is-active flex min-h-[330px] w-[clamp(200px,22vw,230px)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-white/10 transition hover:border-neon/60';
     card.dataset.cardId = module.id || '';
     card.href = module.page || '#';
     card.setAttribute('aria-label', `Apri ${module.title || 'modulo'}`);
@@ -69,26 +69,22 @@ function renderModules(area, modules) {
 
     const imageUrl = resolveCardImage(module);
     const narrative = module.narrativeSummary || 'Modulo in evoluzione, presto la scheda completa.';
-    const statusTag = module.statusTag || 'Pagina in allestimento';
-    const noveltyTag = hasNews(module) ? 'Novità' : '';
-
+    const typeLabel = resolveCardType(module);
+    const dateLabel = resolveDateLabel(module.lastUpdated);
     const imageStyle = resolveImageStyle(module);
 
     card.innerHTML = `
-      <div class="relative h-28 overflow-hidden">
+      <div class="algorithm-card__media algorithm-card__media--third relative overflow-hidden">
         <img class="h-full w-full saturate-110" style="${imageStyle}" src="${imageUrl}" alt="Anteprima di ${module.title}">
-        ${noveltyTag ? `<span class="badge-novita absolute top-4 left-4 rounded-full border border-neon/80 bg-midnight/80 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-neon shadow-[0_0_14px_rgba(255,217,102,0.6)] [text-shadow:0_2px_6px_rgba(0,0,0,0.9)]"><span>Novità</span></span>` : ''}
-        <span class="absolute bottom-4 right-4 rounded-full border border-neon bg-midnight/80 px-3 py-1 text-xs uppercase tracking-[0.15em] text-neon">${statusTag}</span>
+        <span class="card-type-badge">${typeLabel}</span>
+        <span class="card-date-badge"><span data-card-updated>${dateLabel}</span></span>
       </div>
-      <div class="flex flex-1 flex-col gap-3 px-5 py-4">
-        <span class="text-xs uppercase tracking-[0.25em] text-neon">${module.macroGroup || 'statistica'}</span>
-        <h3 class="text-base font-semibold">${module.title}</h3>
-        ${module.subtitle ? `<p class="text-xs text-ash">${module.subtitle}</p>` : ''}
-        <p class="text-xs text-white/80">${narrative}</p>
+      <div class="algorithm-card__body flex flex-1 flex-col gap-1.5 px-4 py-2.5">
+        <span class="text-[10px] uppercase tracking-[0.22em] text-neon/90">${module.macroGroup || 'statistica'}</span>
+        <h3 class="text-[0.98rem] font-semibold leading-tight">${module.title}</h3>
+        ${module.subtitle ? `<p class="text-[0.74rem] leading-[1.25] text-ash">${module.subtitle}</p>` : ''}
+        <p class="algorithm-card__desc text-[0.74rem] leading-[1.25] text-white/80">${narrative}</p>
         <div class="mt-auto text-xs text-ash">
-          <div class="card-updated-row">
-            <span data-card-updated>${module.lastUpdated ? `Aggiornato ${module.lastUpdated}` : 'Ultimo aggiornamento in corso'}</span>
-          </div>
           <div class="card-numbers" data-card-numbers hidden></div>
         </div>
       </div>
@@ -97,10 +93,28 @@ function renderModules(area, modules) {
     area.appendChild(card);
   });
   updateCardAlignment(area, modules.length);
+  if (window.CARDS && typeof window.CARDS.enableDepth === 'function') {
+    window.CARDS.enableDepth(area);
+  }
 }
 
 function hasNews(module) {
   return Boolean(module.hasNews || module.featured || (module.news && module.news.length));
+}
+
+function resolveCardType(module) {
+  if (hasNews(module)) return 'NOVITA';
+  const id = String(module?.id || '').toLowerCase();
+  const macro = String(module?.macroGroup || '').toLowerCase();
+  if (id.includes('storico') || macro.includes('storico')) {
+    return 'STORICO';
+  }
+  return 'ALGORITMO';
+}
+
+function resolveDateLabel(lastUpdated) {
+  const value = String(lastUpdated || '').trim();
+  return value || 'NO DATA';
 }
 
 function isActive(module) {
@@ -124,9 +138,8 @@ function resolveCardImage(module) {
 }
 
 function resolveImageStyle(module) {
-  const fit = normalizeFit(module.imageFit);
   const position = normalizePosition(module.imagePosition);
-  return `object-fit:${fit};object-position:${position};`;
+  return `object-fit:contain;object-position:${position};`;
 }
 
 function normalizeFit(value) {
@@ -229,3 +242,6 @@ function updateCardAlignment(area, count) {
     area.classList.add('justify-center');
   }
 }
+
+
+

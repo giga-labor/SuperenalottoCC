@@ -1,6 +1,7 @@
 const cardsIndexPath = 'data/cards-index.json';
 
 document.addEventListener('DOMContentLoaded', () => {
+  enableCardDepthForAll();
   const area = document.querySelector('[data-algorithms-area]');
   const counter = document.querySelector('[data-algorithms-count]');
   if (!area) return;
@@ -62,41 +63,39 @@ function renderAlgorithms(area, grouped) {
       </div>
       <div class="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-group-grid></div>
     `;
+
     const grid = section.querySelector('[data-group-grid]');
     group.items.forEach((algorithm) => {
       const card = document.createElement('a');
       const imageUrl = resolveCardImage(algorithm);
       const active = algorithm.isActive !== false;
-      card.className = `card-3d algorithm-card group relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl border border-white/10 transition hover:-translate-y-1 hover:border-neon/60${active ? ' is-active shadow-[0_0_22px_rgba(255,217,102,0.22)]' : ' bg-black/70 border-white/5 pointer-events-none'}`;
-      card.href = active ? (algorithm.page || '#') : '#';
+      const typeLabel = resolveCardType(algorithm);
+      const dateLabel = resolveDateLabel(algorithm.lastUpdated);
       const description = algorithm.subtitle || algorithm.narrativeSummary || 'Descrizione in arrivo';
-      let lastText = '';
-      let lastClass = 'text-[11px] text-ash';
-      if (active) {
-        if (algorithm.lastUpdated) {
-          lastText = `Aggiornato ${algorithm.lastUpdated}`;
-        } else {
-          lastText = 'NO DATA';
-          lastClass = 'text-[11px] uppercase tracking-[0.2em] text-red-400';
-        }
-      } else {
-        lastText = algorithm.lastUpdated ? `Aggiornato ${algorithm.lastUpdated}` : '';
+
+      card.className = `card-3d algorithm-card group relative flex min-h-[330px] flex-col overflow-hidden rounded-2xl border border-white/10 transition hover:border-neon/60${active ? ' is-active shadow-[0_0_22px_rgba(255,217,102,0.22)]' : ' is-inactive bg-black/70 border-white/5'}`;
+      card.href = active ? (algorithm.page || '#') : '#';
+      if (!active) {
+        card.setAttribute('aria-disabled', 'true');
+        card.addEventListener('click', (event) => event.preventDefault());
       }
-      const safeLastText = lastText || '&nbsp;';
+
       card.innerHTML = `
         ${active ? '' : '<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/45"><span class="select-none whitespace-nowrap text-[clamp(0.68rem,2.1vw,1.9rem)] font-semibold uppercase tracking-[clamp(0.16em,0.8vw,0.5em)] text-neon/60 rotate-[-60deg] [text-shadow:0_0_18px_rgba(255,217,102,0.65),0_0_32px_rgba(0,0,0,0.85)]">coming soon</span></div>'}
-        <div class="algorithm-card__media relative overflow-hidden">
+        <div class="algorithm-card__media algorithm-card__media--third relative overflow-hidden">
           <img class="h-full w-full object-cover" src="${imageUrl}" alt="Anteprima di ${algorithm.title}">
+          <span class="card-type-badge">${typeLabel}</span>
+          <span class="card-date-badge">${dateLabel}</span>
         </div>
-        <div class="algorithm-card__body flex flex-1 flex-col gap-2 px-4 py-3">
-          <span class="text-[10px] uppercase tracking-[0.25em] text-neon">${algorithm.macroGroup || 'algoritmo'}</span>
-          <h3 class="text-base font-semibold leading-tight ${active ? 'group-hover:text-neon' : ''}">${algorithm.title || 'Algoritmo'}</h3>
-          <p class="algorithm-card__desc text-xs text-ash">${description}</p>
-          <div class="mt-auto ${lastClass}">${safeLastText}</div>
+        <div class="algorithm-card__body flex flex-1 flex-col gap-1.5 px-4 py-2.5">
+          <span class="text-[10px] uppercase tracking-[0.22em] text-neon/90">${algorithm.macroGroup || 'algoritmo'}</span>
+          <h3 class="text-[0.98rem] font-semibold leading-tight ${active ? 'group-hover:text-neon' : ''}">${algorithm.title || 'Algoritmo'}</h3>
+          <p class="algorithm-card__desc text-[0.74rem] leading-[1.25] text-ash">${description}</p>
         </div>
       `;
       grid.appendChild(card);
     });
+
     area.appendChild(section);
 
     if (grid) {
@@ -131,11 +130,24 @@ function renderAlgorithms(area, grouped) {
       }
     }
   });
+
+  enableCardDepthForAll();
 }
 
+
+function enableCardDepthForAll() {
+  if (window.CARDS && typeof window.CARDS.enableDepth === 'function') {
+    window.CARDS.enableDepth(document);
+  }
+}
 function sortByTitle(a, b) {
-  const nameA = (a.title || '').toLowerCase();
-  const nameB = (b.title || '').toLowerCase();
+  const activeA = a.isActive !== false;
+  const activeB = b.isActive !== false;
+  if (activeA !== activeB) {
+    return activeA ? -1 : 1;
+  }
+  const nameA = String(a.title || '').toLowerCase();
+  const nameB = String(b.title || '').toLowerCase();
   return nameA.localeCompare(nameB);
 }
 
@@ -148,6 +160,7 @@ function groupByMacro(items) {
     }
     groups.get(key).push(item);
   });
+
   const order = ['statistici', 'logici', 'statistica', 'neurale', 'ibrido', 'custom', 'algoritmo', 'storico'];
   const labels = {
     statistici: 'Statistici',
@@ -159,11 +172,13 @@ function groupByMacro(items) {
     algoritmo: 'Algoritmi',
     storico: 'Storico'
   };
+
   const sorted = Array.from(groups.entries()).map(([key, list]) => ({
     key,
     label: labels[key] || key.replace(/(^\\w|\\s\\w)/g, (m) => m.toUpperCase()),
     items: list.sort(sortByTitle)
   }));
+
   sorted.sort((a, b) => {
     const ia = order.indexOf(a.key);
     const ib = order.indexOf(b.key);
@@ -172,7 +187,25 @@ function groupByMacro(items) {
     if (ib === -1) return -1;
     return ia - ib;
   });
+
   return sorted;
+}
+
+function resolveCardType(card) {
+  if (card && (card.hasNews || card.featured || (Array.isArray(card.news) && card.news.length > 0))) {
+    return 'NOVITA';
+  }
+  const id = String(card?.id || '').toLowerCase();
+  const macro = String(card?.macroGroup || '').toLowerCase();
+  if (id.includes('storico') || macro.includes('storico')) {
+    return 'STORICO';
+  }
+  return 'ALGORITMO';
+}
+
+function resolveDateLabel(lastUpdated) {
+  const value = String(lastUpdated || '').trim();
+  return value || 'NO DATA';
 }
 
 function resolveCardImage(card) {
@@ -196,3 +229,4 @@ function appendCacheBuster(url, version) {
   const joiner = url.includes('?') ? '&' : '?';
   return `${url}${joiner}v=${version}`;
 }
+

@@ -9,5 +9,5 @@
     "narrativeSummary":  "Algoritmo custom con scoring e regole proprietarie.",
     "page":  "pages/algoritmi/arc90-logico-algoritmica/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  true
 }

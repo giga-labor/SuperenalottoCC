@@ -112,14 +112,22 @@ const buildHeaderMarkup = () => `
         <h1 class="header-title mt-4 text-3xl sm:text-5xl font-semibold drop-shadow-[0_0_14px_rgba(255,217,102,0.35)]">Statistiche e algoritmi per dominare il caos del <span class="superenalotto-mark" aria-label="Super-Enalotto"><span class="super-word">S<span class="super-u">u</span>per</span><span class="super-dash">-</span><span class="enalotto-word">Enalotto</span></span></h1>
         <div class="header-actions mt-10 flex flex-wrap items-center justify-between gap-4">
           <div class="header-actions__left flex flex-wrap items-center gap-4">
-            <a class="home-badge home-badge--pentagon bg-neon/10 px-6 py-3 font-semibold text-neon transition hover:-translate-y-1 hover:bg-neon/20 hover:shadow-[0_0_22px_rgba(255,217,102,0.45)]" href="${resolveWithBaseHref('index.html')}#top" aria-label="Home" data-tooltip="HOME PAGE"></a>
+            <a class="home-badge home-badge--icon bg-neon/10 px-6 py-3 font-semibold text-neon transition hover:-translate-y-1 hover:bg-neon/20 hover:shadow-[0_0_22px_rgba(255,217,102,0.45)]" href="${resolveWithBaseHref('index.html')}#top" aria-label="Home" data-tooltip="HOME PAGE">
+              <svg class="home-badge__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4.5 11.2 12 5l7.5 6.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M6.5 10.8V19h11V10.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect x="10.2" y="13.2" width="3.6" height="5.8" rx="0.8"></rect>
+                <path d="M8.7 13.3h1.7M13.6 8.4h1.8" stroke-linecap="round"></path>
+              </svg>
+            </a>
             <a class="home-badge home-badge--icon bg-neon/10 px-6 py-3 font-semibold text-neon transition hover:-translate-y-1 hover:bg-neon/20 hover:shadow-[0_0_22px_rgba(255,217,102,0.45)]" href="${resolveWithBaseHref('pages/storico-estrazioni/')}" aria-label="Storico estrazioni" data-tooltip="Storico estrazioni">
               <svg class="home-badge__icon" viewBox="0 0 24 24" aria-hidden="true">
-                <circle class="icon-fill" cx="5" cy="6" r="2"></circle>
-                <circle class="icon-fill" cx="12" cy="12" r="2"></circle>
-                <circle class="icon-fill" cx="19" cy="18" r="2"></circle>
-                <path d="M7 6h4m3 6h4" stroke-linecap="round"></path>
-                <path d="M7 6l3 6 3 6" stroke-linecap="round"></path>
+                <circle cx="17.5" cy="7.5" r="4.2"></circle>
+                <path d="M17.5 5.2v2.4l1.8 1" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect x="4" y="9" width="11.5" height="8.5" rx="1.2"></rect>
+                <rect x="6" y="6.5" width="11.5" height="8.5" rx="1.2"></rect>
+                <rect x="8" y="4" width="11.5" height="8.5" rx="1.2"></rect>
+                <path d="M10.5 7h4.5M10.5 9.2h6.5" stroke-linecap="round"></path>
               </svg>
             </a>
             <a class="home-badge home-badge--icon bg-neon/10 px-6 py-3 font-semibold text-neon transition hover:-translate-y-1 hover:bg-neon/20 hover:shadow-[0_0_22px_rgba(255,217,102,0.45)]" href="${resolveWithBaseHref('pages/algoritmi/index.html')}" aria-label="Algoritmi" data-tooltip="Algoritmi">
@@ -188,7 +196,7 @@ if (header) {
     const wrap = header.querySelector('.header-wrap') || container;
     const rect = container.getBoundingClientRect();
     const wrapRect = wrap.getBoundingClientRect();
-    const safePad = isHome ? 64 : 24;
+    const safePad = isHome ? 8 : 24;
     const offset = Math.ceil(rect.bottom + safePad);
     document.documentElement.style.setProperty('--fixed-header-offset', `${offset}px`);
     document.documentElement.style.setProperty('--header-fade-height', `${Math.ceil(rect.bottom + 10)}px`);
@@ -662,5 +670,3 @@ document.querySelectorAll('a[href="#top"]').forEach((link) => {
   });
 });
 }
-
-

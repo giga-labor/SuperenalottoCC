@@ -23,7 +23,12 @@
     );
     return cards
       .filter(Boolean)
-      .sort((a, b) => (String(a.title || '').toLowerCase()).localeCompare(String(b.title || '').toLowerCase()));
+      .sort((a, b) => {
+        const activeA = a.isActive !== false;
+        const activeB = b.isActive !== false;
+        if (activeA !== activeB) return activeA ? -1 : 1;
+        return String(a.title || '').toLowerCase().localeCompare(String(b.title || '').toLowerCase());
+      });
   }
 
   async function fetchCard(entry) {
