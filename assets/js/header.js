@@ -125,25 +125,25 @@ const buildHeaderMarkup = () => `
           <div class="header-actions__left flex flex-wrap items-center gap-4">
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('index.html')}#top" aria-label="Home" data-tooltip="HOME PAGE">
               <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/home.png')}" alt="" aria-hidden="true">
+              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/home.webp')}" alt="" aria-hidden="true">
             </a>
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/storico-estrazioni/')}" aria-label="Storico estrazioni" data-tooltip="Storico estrazioni">
               <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/history.png')}" alt="" aria-hidden="true">
+              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/history.webp')}" alt="" aria-hidden="true">
             </a>
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/algoritmi/index.html')}" aria-label="Algoritmi" data-tooltip="Algoritmi">
               <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/algoritm.png')}" alt="" aria-hidden="true">
+              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/algoritm.webp')}" alt="" aria-hidden="true">
             </a>
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/analisi-statistiche/')}" aria-label="Analisi statistiche" data-tooltip="Analisi statistiche">
               <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/statistic.png')}" alt="" aria-hidden="true">
+              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/statistic.webp')}" alt="" aria-hidden="true">
             </a>
           </div>
           <div class="header-actions__right">
             <button class="home-badge home-badge--audio home-badge--home bg-neon/10 px-4 py-3 text-neon transition" type="button" aria-label="Audio" data-tooltip="MUSIC" data-audio-toggle${AUDIO_ENABLED ? '' : ' hidden'}>
               <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img audio-icon" src="${resolveWithBaseHref('img/home.png')}" alt="" aria-hidden="true">
+              <img class="home-badge__home-img audio-icon" src="${resolveWithBaseHref('img/home.webp')}" alt="" aria-hidden="true">
               <span class="audio-track" data-audio-track>â€”</span>
             </button>
           </div>
