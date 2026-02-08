@@ -9,5 +9,6 @@
     "narrativeSummary":  "Indicatori frequenza/ritardo su ultime 50, 100 e 200 estrazioni.",
     "page":  "/pages/algoritmi/classic-statistiche-combinate-finestre-mobili/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

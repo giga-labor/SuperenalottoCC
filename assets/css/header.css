@@ -7,8 +7,11 @@
       --page-w: calc(100% - 2rem - env(safe-area-inset-left));
       --col-x: var(--page-x);
       --col-w: var(--page-w);
-      --card-min: 180px;
-      --card-max: 260px;
+      --glass-text-relief:
+        0 -1px 0 rgba(255, 255, 255, 0.34),
+        0 1px 0 rgba(6, 8, 18, 0.58),
+        0 2px 6px rgba(0, 0, 0, 0.26),
+        0 0 10px rgba(255, 255, 255, 0.12);
       --cc-glass-border: rgba(255, 255, 255, 0.26);
       --cc-glass-bg:
         linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06) 42%, rgba(255, 255, 255, 0.03) 100%),
@@ -240,6 +243,7 @@
       line-height: calc(1.9rem - 0.4rem * var(--header-progress));
     }
     #site-header .header-wrap {
+      --header-content-shift-x: clamp(8px, 1.2vw, 20px);
       padding-top: 0.6rem;
       padding-bottom: 0.6rem;
       transition: padding 0.1s linear;
@@ -248,7 +252,7 @@
       text-align: left;
     }
     #site-header .header-wrap {
-      padding-left: 0.2rem;
+      padding-left: calc(0.2rem + var(--header-content-shift-x));
       padding-right: 0.2rem;
     }
     #site-header .header-container {
@@ -619,6 +623,23 @@
         1px 1px 0 rgba(0, 0, 0, 0.9),
         0 0 8px rgba(0, 0, 0, 0.82);
     }
+    .card-date-badge.is-no-data {
+      color: rgba(255, 120, 120, 0.95) !important;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-shadow:
+        -1px -1px 0 rgba(0, 0, 0, 0.9),
+        1px 1px 0 rgba(0, 0, 0, 0.86),
+        0 0 10px rgba(255, 60, 60, 0.42);
+    }
+    .card-3d:not(.is-active) .card-date-badge.is-no-data {
+      opacity: 0.92;
+      color: rgba(255, 110, 110, 0.95) !important;
+      text-shadow:
+        -1px -1px 0 rgba(0, 0, 0, 0.92),
+        1px 1px 0 rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(255, 70, 70, 0.38);
+    }
     .card-numbers {
       display: flex;
       gap: 0.3rem;
@@ -898,6 +919,7 @@
     .home-badge {
       position: relative;
       --badge-3d-depth: 6px;
+      border-radius: 12px;
       color: #fef3c7 !important;
       background:
         linear-gradient(165deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.14) 36%, rgba(255, 255, 255, 0.05) 100%),
@@ -957,7 +979,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 999px;
+      border-radius: inherit;
       background:
         radial-gradient(circle at 50% 120%, rgba(8, 10, 20, 0.42), rgba(8, 10, 20, 0) 52%),
         radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 44%);
@@ -1590,10 +1612,10 @@ main.home-main [data-module-area].news-grid {
 }
 
 main.home-main [data-module-area].news-grid > a.card-3d {
-  width: 100% !important;
-  min-width: 0 !important;
-  max-width: none !important;
-  justify-self: stretch;
+  width: min(100%, var(--card-max)) !important;
+  min-width: var(--card-min) !important;
+  max-width: var(--card-max) !important;
+  justify-self: start;
 }
 
 main.home-main [data-module-area].news-strip {
@@ -1802,6 +1824,12 @@ html[data-ad-rail="right"] #site-header .header-container {
   pointer-events: none;
   border-radius: inherit;
   background:
+    radial-gradient(
+      circle calc(var(--glass-light-r, 140px) * 1.05) at var(--glass-light-x, 50%) var(--glass-light-y, 50%),
+      rgba(255, 245, 210, calc(var(--glass-light-a, 0.42) * 0.9)) 0%,
+      rgba(255, 245, 210, calc(var(--glass-light-a, 0.42) * 0.45)) 38%,
+      rgba(255, 245, 210, 0) 72%
+    ),
     radial-gradient(62% 46% at 14% 7%, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0) 72%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 62%);
   opacity: 0.65;
@@ -1811,6 +1839,13 @@ html[data-ad-rail="right"] #site-header .header-container {
 html[data-ad-rail="right"] #site-header .header-container > * {
   position: relative;
   z-index: 1;
+}
+
+#site-header .header-wrap {
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 217, 102, 0.26) !important;
 }
 
 .glass-reflective {
@@ -1835,9 +1870,30 @@ html[data-ad-rail="right"] #site-header .header-container > * {
     );
 }
 
+#site-header .header-container.glass-reflective::after,
+#site-header .header-wrap.glass-reflective::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 3;
+  padding: 1px;
+  background:
+    radial-gradient(
+      circle var(--glass-light-r, 140px) at var(--glass-light-x, 50%) var(--glass-light-y, 50%),
+      rgba(255, 255, 255, calc(var(--glass-light-a, 0.42) * 1.5)) 0%,
+      rgba(255, 240, 190, calc(var(--glass-light-a, 0.42) * 1.05)) 34%,
+      rgba(255, 255, 255, 0) 70%
+    );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
 html[data-ad-rail="right"] #site-header .header-wrap {
   text-align: left !important;
-  padding-left: 0 !important;
+  padding-left: var(--header-content-shift-x, clamp(8px, 1.2vw, 20px)) !important;
   padding-right: 0 !important;
 }
 
@@ -1851,25 +1907,12 @@ html[data-ad-rail="right"] #site-header .header-title {
   line-height: 1.12 !important;
 }
 
-html[data-ad-rail="bottom"] #site-header {
-  left: 0 !important;
-  right: 0 !important;
-}
-
-html[data-ad-rail="bottom"] #site-header .header-container {
-  width: fit-content !important;
-  max-width: calc(100vw - 1rem) !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding: 0.35rem 0.6rem 0.5rem !important;
-}
-
 html[data-ad-rail="bottom"] #site-header .header-wrap {
   padding: 0.35rem 0.45rem !important;
   text-align: center !important;
 }
 html[data-ad-rail="bottom"] #site-header .header-wrap {
-  padding-left: 0 !important;
+  padding-left: var(--header-content-shift-x, clamp(8px, 1.2vw, 20px)) !important;
   padding-right: 0 !important;
 }
 
@@ -1910,55 +1953,6 @@ html[data-ad-rail="bottom"] #site-header .home-badge--audio {
   width: 52px !important;
   height: 42px !important;
   min-height: 42px !important;
-}
-
-/* Full-use layout policy:
-   - right rail: app/header consume all width left of ads
-   - bottom ads: app/header consume full available width */
-html[data-ad-rail="right"] #site-header {
-  left: 0 !important;
-  right: var(--ad-reserve-right, 0px) !important;
-}
-
-html[data-ad-rail="right"] #site-header .header-container {
-  width: calc(100% - 2rem) !important;
-  max-width: none !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-html[data-ad-rail="right"] main.content-width,
-html[data-ad-rail="right"] main.content-fade,
-html[data-ad-rail="right"] .mx-auto.max-w-5xl {
-  max-width: none !important;
-  width: calc(100vw - var(--ad-reserve-right, 0px)) !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: clamp(0.9rem, 2vw, 1.6rem) !important;
-  padding-right: clamp(0.9rem, 2vw, 1.6rem) !important;
-}
-
-html[data-ad-rail="bottom"] #site-header {
-  left: 0 !important;
-  right: 0 !important;
-}
-
-html[data-ad-rail="bottom"] #site-header .header-container {
-  width: calc(100% - 1rem) !important;
-  max-width: none !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-html[data-ad-rail="bottom"] main.content-width,
-html[data-ad-rail="bottom"] main.content-fade,
-html[data-ad-rail="bottom"] .mx-auto.max-w-5xl {
-  max-width: none !important;
-  width: 100% !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: clamp(0.9rem, 2.8vw, 1.25rem) !important;
-  padding-right: clamp(0.9rem, 2.8vw, 1.25rem) !important;
 }
 
 /* Unified app frame:
@@ -2002,4 +1996,12 @@ html[data-ad-rail="bottom"] main.content-fade,
 html[data-ad-rail="bottom"] .mx-auto.max-w-5xl {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+    .algorithm-card {
+      width: clamp(var(--card-min), 22vw, var(--card-max));
+      max-width: var(--card-max);
+    }
+
+body :is(h1, h2, h3, h4, h5, h6, p, span, a, button, th, td, label, li, code) {
+  text-shadow: var(--glass-text-relief);
 }

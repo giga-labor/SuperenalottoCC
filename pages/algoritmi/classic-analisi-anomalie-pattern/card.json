@@ -9,5 +9,6 @@
     "narrativeSummary":  "Ricerca di fenomeni ricorrenti, sincronie di ritardo e stringhe particolari.",
     "page":  "/pages/algoritmi/classic-analisi-anomalie-pattern/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

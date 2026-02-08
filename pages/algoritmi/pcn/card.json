@@ -1,4 +1,4 @@
-﻿{
+{
     "id":  "pcn",
     "title":  "Pcn",
     "subtitle":  "Descrizione in arrivo",
@@ -9,5 +9,6 @@
     "narrativeSummary":  "Aggiornamenti in preparazione.",
     "page":  "pages/algoritmi/pcn/",
     "macroGroup":  "neurale",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

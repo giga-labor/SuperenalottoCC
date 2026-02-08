@@ -1,23 +1,3 @@
-﻿const GA_MEASUREMENT_ID = 'G-7FLYS8Y9BB';
-
-const ensureAnalytics = () => {
-  if (!GA_MEASUREMENT_ID) return;
-  if (document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"]`)) {
-    return;
-  }
-  const gtagScript = document.createElement('script');
-  gtagScript.async = true;
-  gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(gtagScript);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ window.dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', GA_MEASUREMENT_ID);
-};
-
-ensureAnalytics();
-
 const ensureViewTransitionMeta = () => {
   const existing = document.querySelector('meta[name="view-transition"]');
   if (existing) return;
@@ -144,7 +124,7 @@ const buildHeaderMarkup = () => `
             <button class="home-badge home-badge--audio home-badge--home bg-neon/10 px-4 py-3 text-neon transition" type="button" aria-label="Audio" data-tooltip="MUSIC" data-audio-toggle${AUDIO_ENABLED ? '' : ' hidden'}>
               <span class="home-badge__home-bg" aria-hidden="true"></span>
               <img class="home-badge__home-img audio-icon" src="${resolveWithBaseHref('img/home.webp')}" alt="" aria-hidden="true">
-              <span class="audio-track" data-audio-track>â€”</span>
+              <span class="audio-track" data-audio-track>—</span>
             </button>
           </div>
         </div>
@@ -310,8 +290,9 @@ const bindGlassLight = () => {
     '#site-header .header-wrap',
     '.ad-rail__panel',
     '.bottom-ad__panel',
-    '.content-box',
-    '.card-3d'
+    '.home-badge',
+    '.tabs-sheet',
+    '.tab-btn'
   ].join(', ');
 
   const ensureOverlay = (el) => {
@@ -326,6 +307,13 @@ const bindGlassLight = () => {
   };
 
   const refreshReflectiveTargets = () => {
+    document.querySelectorAll('.glass-reflective').forEach((el) => {
+      if (el.matches(reflectiveSelector)) return;
+      el.classList.remove('glass-reflective');
+      const overlay = el.querySelector(':scope > .glass-light-overlay');
+      if (overlay) overlay.remove();
+      el.style.setProperty('--glass-light-a', '0');
+    });
     document.querySelectorAll(reflectiveSelector).forEach(ensureOverlay);
   };
 
@@ -341,13 +329,12 @@ const bindGlassLight = () => {
       const clampedX = Math.max(-10, Math.min(110, localX));
       const clampedY = Math.max(-10, Math.min(110, localY));
 
-      const cx = rect.left + rect.width * 0.5;
-      const cy = rect.top + rect.height * 0.5;
-      const dx = pointerX - cx;
-      const dy = pointerY - cy;
+      const nearestX = Math.max(rect.left, Math.min(pointerX, rect.right));
+      const nearestY = Math.max(rect.top, Math.min(pointerY, rect.bottom));
+      const dx = pointerX - nearestX;
+      const dy = pointerY - nearestY;
       const dist = Math.hypot(dx, dy);
-      const maxDist = Math.hypot(rect.width, rect.height) * 0.9;
-      const activationDist = maxDist * 0.36;
+      const activationDist = Math.max(42, Math.min(rect.width, rect.height) * 0.28);
       if (dist > activationDist) {
         el.style.setProperty('--glass-light-a', '0');
         return;
@@ -639,7 +626,7 @@ if (audioToggle && AUDIO_ENABLED) {
       <button type="button" data-audio-prev aria-label="Brano precedente">Prev</button>
       <button type="button" data-audio-next aria-label="Brano successivo">Next</button>
       <button type="button" data-audio-random aria-label="Brano random">Rnd</button>
-      <button type="button" data-audio-vol-down aria-label="Volume giÃ¹">Vol-</button>
+      <button type="button" data-audio-vol-down aria-label="Volume giù">Vol-</button>
       <button type="button" data-audio-vol-up aria-label="Volume su">Vol+</button>
     `;
     (header || document.body).appendChild(audioMenu);
@@ -810,4 +797,5 @@ document.addEventListener('click', (event) => {
   if (supportsCrossDocumentTransitions()) return;
   markPageNavigating();
 });
+
 

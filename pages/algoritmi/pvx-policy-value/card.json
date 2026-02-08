@@ -1,4 +1,4 @@
-﻿{
+{
     "id":  "policy-value-nn-pvx",
     "title":  "PVX Policy-Value-Exploration",
     "subtitle":  "Policy/Value + ricerca combinatoria (beam/MCTS)",
@@ -9,5 +9,6 @@
     "narrativeSummary":  "Policy/Value + ricerca combinatoria (beam/MCTS).",
     "page":  "pages/algoritmi/pvx-policy-value/",
     "macroGroup":  "ibrido",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

@@ -1,69 +1,66 @@
-﻿# Control Chaos
+# Control Chaos
 
-Static website for SuperEnalotto analysis, algorithms, and historical draws.
-No backend: all pages are client-side and served as static files.
+Static website for SuperEnalotto analysis, algorithms, and historical draws.  
+No backend: everything is client-side static delivery.
 
 ## Repository
 - GitHub: `https://github.com/giga-labor/secc`
 - Default branch: `main`
 - Deploy target: GitHub Pages (`/` root)
 
-## Current Contents
-- Home with featured modules and project updates
-- Algorithms catalog with dedicated technical pages
-- Historical draws page backed by `draws.csv`
-- Statistics page with editorial content (frequencies, delays, co-occurrences)
-- Legal pages: Privacy, Cookie, Contacts/About
-- Visual rails/ticker components (project UI elements, not ad-network widgets)
+## Current Scope
+- Home with featured cards and project updates
+- Algorithms catalog with dedicated detail pages
+- Historical draws page backed by `archives/draws/draws.csv`
+- Statistics and legal pages
+- Runtime ad layout rails (`assets/js/ads.js`) for project UI slots
 
 ## Project Structure
-- `index.html`: home page
-- `pages/algoritmi/`: algorithms catalog and detail pages
-- `pages/storico-estrazioni/`: historical draws page
+- `index.html`: home
+- `pages/algoritmi/`: algorithms catalog + detail pages
+- `pages/storico-estrazioni/`: draws archive
 - `pages/analisi-statistiche/`: statistics page
-- `pages/privacy-policy/`: privacy policy
-- `pages/cookie-policy/`: cookie policy
-- `pages/contatti-chi-siamo/`: contacts/about
-- `assets/`: CSS/JS/audio
-- `img/`: shared images
-- `archives/draws/draws.csv`: historical draws dataset
-- `data/modules-manifest.json`: cards source of truth
-- `data/cards-index.json`: generated/fallback cards index
-- `scripts/`: local maintenance utilities
+- `pages/privacy-policy/`, `pages/cookie-policy/`, `pages/contatti-chi-siamo/`: legal pages
+- `assets/js/cards.js`: card builder/source of truth for card sizing and card rendering behavior
+- `assets/js/cards-index.js`: manifest/card loader
+- `assets/js/site.js`: home cards render flow
+- `assets/js/algorithms.js`: algorithms + spotlight render flow
+- `assets/js/ga4.js`: GA4 bootstrap
+- `assets/js/ads.js`: ad slot layout host logic
+- `data/modules-manifest.json`: main cards manifest
+- `data/algorithms-spotlight/modules-manifest.json`: spotlight cards manifest
+- `ads.txt`, `robots.txt`, `sitemap.xml`: crawl/ads technical files
+
+## GitHub Workflow
+1. Create/update page folder with `index.html` + `card.json` (+ media assets).
+2. Register `card.json` path in the correct manifest.
+3. Keep `assets/js/version.js` updated per release batch.
+4. Commit to `main` and publish through GitHub Pages settings.
 
 ## Cards Flow
-Cards are loaded at runtime from `data/modules-manifest.json`.
-Each algorithm page has a `card.json`.
+- Cards are loaded from manifests, then normalized in `assets/js/cards-index.js`.
+- Cards are built by `window.CARDS.buildAlgorithmCard(...)` in `assets/js/cards.js`.
+- `no_data_show` is supported per card (`card.json`) and defaults to `true` when missing.
 
-To add a new algorithm card:
-1. Create `pages/algoritmi/<id>/`
-2. Add `index.html`, `card.json`, optional `img.webp`
-3. Add `pages/algoritmi/<id>/card.json` to `data/modules-manifest.json`
-4. (Optional) refresh fallback index:
-```bash
-python scripts/build-cards-index.py
-```
+## AdSense & Ads Documentation
+Current status:
+- `ads.txt` is present as template and must be replaced with your real `pub-...`.
+- GA4 is centralized in `assets/js/ga4.js` and included by all `index.html`.
+- Ad UI slots are project-managed by `assets/js/ads.js` (`window.CC_RENDER_AD_SLOT` hook).
+- No direct `adsbygoogle.js` embed is committed by default.
+
+Go-live checklist:
+1. Set real publisher line in `ads.txt`.
+2. Add official AdSense script/policy-compliant units.
+3. Validate policy pages (`privacy`, `cookie`, `contacts`) and consent handling.
+4. Re-check `robots.txt` + `sitemap.xml` reachability in production.
+5. Verify monetized pages are approved and crawlable on GitHub Pages domain.
 
 ## Local Development
-Run:
 ```bat
 start-server.bat
 ```
-Then open:
-- `http://localhost:8000/`
-
-## SEO / Crawl / Ads Readiness Files
-Root files currently included:
-- `ads.txt` (template to complete with your real AdSense publisher ID)
-- `robots.txt`
-- `sitemap.xml`
-
-Important:
-- Replace the placeholder line in `ads.txt` with your real `pub-...` before production monetization checks.
-
-## Versioning
-- UI version is exposed by `assets/js/version.js` (`window.CC_VERSION`).
-- Bump version on every release batch.
+Open `http://localhost:8000/`.
 
 ## Deployment (GitHub Pages)
 1. Repo -> Settings -> Pages
@@ -71,12 +68,12 @@ Important:
 3. Branch: `main`
 4. Folder: `/ (root)`
 
-Expected site URL:
+Expected URL:
 - `https://giga-labor.github.io/secc/`
 
 ## Notes
 - Audio autoplay is browser-restricted; audio toggle is disabled by default.
-- No backend is required.
+- No backend required.
 
 ## Italian Documentation
 See `README.it.md`.

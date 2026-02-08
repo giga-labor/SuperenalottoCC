@@ -1,4 +1,4 @@
-﻿{
+{
     "id":  "analisi-statistiche",
     "title":  "Analisi statistiche",
     "subtitle":  "Report statistici su frequenze, ritardi e pattern storici",
@@ -10,5 +10,6 @@
     "image":  "img.webp",
     "lastUpdated":  "",
     "hasNews":  false,
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

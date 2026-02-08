@@ -7,6 +7,7 @@
     "pages/algoritmi/helix-6-feature-generazione-valutazione/card.json",
     "pages/algoritmi/ipx/card.json",
     "pages/algoritmi/kairos/card.json",
+    "pages/algoritmi/lightgbm/card.json",
     "pages/algoritmi/ma-3-master-architect-orchestrazione-subnetworks/card.json",
     "pages/algoritmi/mase-4/card.json",
     "pages/algoritmi/paradox-logiche-decisionali-metriche/card.json",
@@ -27,5 +28,6 @@
     "pages/algoritmi/classic-ritardi-combinazioni/card.json",
     "pages/algoritmi/classic-analisi-anomalie-pattern/card.json",
     "pages/algoritmi/classic-tavole-probabilita-teorica-test-uniformita/card.json",
-    "pages/algoritmi/classic-statistiche-combinate-finestre-mobili/card.json"
+    "pages/algoritmi/classic-statistiche-combinate-finestre-mobili/card.json",
+    "pages/analisi-statistiche/card.json"
 ]

@@ -1,4 +1,4 @@
-﻿{
+{
     "id":  "mase-orchestrazione-multi-modulo",
     "title":  "MASE 4.0 Master Architect",
     "subtitle":  "Orchestratore di sottoreti con pesi dinamici",
@@ -9,5 +9,6 @@
     "narrativeSummary":  "Orchestratore di sottoreti con pesi dinamici.",
     "page":  "pages/algoritmi/mase-4/",
     "macroGroup":  "ibrido",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

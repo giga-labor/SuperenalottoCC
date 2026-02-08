@@ -1,4 +1,4 @@
-﻿{
+{
     "id":  "kairos",
     "title":  "Kairos",
     "subtitle":  "Predittivo con Contrastive + EBM + Evolutionary",
@@ -9,5 +9,6 @@
     "narrativeSummary":  "Predittivo con Contrastive + EBM + Evolutionary.",
     "page":  "pages/algoritmi/kairos/",
     "macroGroup":  "ibrido",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

@@ -9,5 +9,6 @@
     "narrativeSummary":  "Confronto tra frequenze osservate e attese tramite modelli probabilistici.",
     "page":  "/pages/algoritmi/classic-tavole-probabilita-teorica-test-uniformita/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

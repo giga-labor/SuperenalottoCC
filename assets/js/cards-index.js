@@ -11,7 +11,11 @@
       if (Array.isArray(manifest) && manifest.length) {
         return buildFromManifest(manifest);
       }
-      return fetchJson(resolveWithBase(cardsIndexPath), { cache: 'no-store' }, false);
+      const fallback = await fetchJson(resolveWithBase(cardsIndexPath), { cache: 'no-store' }, false);
+      if (!Array.isArray(fallback)) return [];
+      return fallback
+        .map((card) => normalizeCard(card))
+        .filter(Boolean);
     }
   };
 
@@ -40,14 +44,21 @@
 
     const cardBase = normalizedEntry.replace(/card\.json$/i, '');
     const id = data.id || inferId(cardBase);
+    return normalizeCard(data, { id, cardBase });
+  }
+
+  function normalizeCard(data, defaults = {}) {
+    if (!data || typeof data !== 'object') return null;
     const card = { ...data };
 
+    const id = card.id || defaults.id || inferId(card.cardBase || defaults.cardBase || '');
     if (!card.id) card.id = id;
-    if (!card.cardBase) card.cardBase = cardBase;
-    if (!card.page) card.page = cardBase;
+    if (!card.cardBase && defaults.cardBase) card.cardBase = defaults.cardBase;
+    if (!card.page) card.page = card.cardBase || defaults.cardBase || '';
     if (!card.image) card.image = 'img.webp';
     if (card.isActive === undefined) card.isActive = false;
     if (!card.title) card.title = card.id || id;
+    if (card.no_data_show === undefined) card.no_data_show = true;
 
     return card;
   }
@@ -56,7 +67,7 @@
     if (typeof cardsIndexPath !== 'string' || !cardsIndexPath.trim()) {
       return 'data/modules-manifest.json';
     }
-    return cardsIndexPath.replace(/cards-index\.json$/i, 'modules-manifest.json');
+    return cardsIndexPath;
   }
 
   function inferId(cardBase) {

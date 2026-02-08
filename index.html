@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -7,36 +7,11 @@
   <title>SuperEnalotto Control Chaos</title>
   <meta name="description" content="SuperEnalotto Control Chaos: archivio estrazioni, algoritmi di analisi e approfondimenti statistici sul dataset storico.">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            midnight: '#05060F',
-            steel: '#0F1220',
-            night: '#121633',
-            neon: '#FFD966',
-            ash: '#A5B1C9'
-          },
-          boxShadow: {
-            glow: '0 0 22px rgba(255, 217, 102, 0.35)'
-          }
-        }
-      }
-    }
-  </script>
+  <script src="assets/js/tailwind-config.js"></script>
+  <script src="assets/js/ga4.js"></script>
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/header.css">
   <link rel="stylesheet" href="assets/css/ads.css">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FLYS8Y9BB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-7FLYS8Y9BB');
-  </script>
 </head>
 <body class="bg-midnight text-white" id="top">
 
@@ -46,22 +21,9 @@
       <div class="cards-shell mt-1 bg-transparent">
         <div class="cards-viewport">
           <div class="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory scroll-smooth" data-module-area data-module-scroll>
-            <a class="card-3d algorithm-card is-active flex min-h-[330px] w-[clamp(200px,22vw,230px)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-white/10 transition hover:border-neon/60" data-card-id="storico-estrazioni" href="pages/storico-estrazioni/index.html" aria-label="Apri Storico estrazioni">
-              <div class="algorithm-card__media algorithm-card__media--third relative overflow-hidden">
-                <img class="h-full w-full saturate-110" style="object-fit:contain;object-position:center top;" src="pages/storico-estrazioni/img.webp" alt="Anteprima di Storico estrazioni">
-                <span class="card-type-badge">NOVITA</span>
-                <span class="card-date-badge"><span data-card-updated>02/02/2026</span></span>
-              </div>
-              <div class="algorithm-card__body flex flex-1 flex-col gap-1.5 px-4 py-2.5">
-                <span class="text-[10px] uppercase tracking-[0.22em] text-neon/90">storico</span>
-                <h3 class="text-[0.98rem] font-semibold leading-tight">Storico estrazioni</h3>
-                <p class="text-[0.74rem] leading-[1.25] text-ash">Archivio completo delle estrazioni</p>
-                <p class="algorithm-card__desc text-[0.74rem] leading-[1.25] text-white/80">Le nuove estrazioni saranno disponibili quando pubblicate sul sito ufficiale.</p>
-                <div class="mt-auto text-xs text-ash">
-                  <div class="card-numbers" data-card-numbers hidden></div>
-                </div>
-              </div>
-            </a>
+            <div class="rounded-2xl border border-dashed border-white/15 bg-midnight/40 px-5 py-6 text-sm text-ash">
+              Caricamento novita...
+            </div>
           </div>
         </div>
       </div>
@@ -76,6 +38,10 @@
   <script src="assets/js/ads.js" defer></script>
 </body>
 </html>
+
+
+
+
 
 
 

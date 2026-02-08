@@ -1,4 +1,4 @@
-﻿{
+{
     "id":  "rdp-recursive-deep-paradox",
     "title":  "RDP SuperEnalotto Analysis v3.1",
     "subtitle":  "Analisi ricorsiva con metriche C/D/E/R/M, ranking numeri e void detection",
@@ -9,5 +9,6 @@
     "narrativeSummary":  "Analisi ricorsiva con metriche C/D/E/R/M, ranking numeri e void detection.",
     "page":  "pages/algoritmi/rdp-recursive-deep-paradox/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

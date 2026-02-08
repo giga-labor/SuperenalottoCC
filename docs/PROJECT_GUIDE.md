@@ -1,60 +1,65 @@
-ï»¿# Guida Progetto (IT)
+# Guida Progetto (IT)
 
-Questa guida descrive la struttura aggiornata di **Control Chaos** e il flusso di manutenzione per il repository GitHub.
+Questa guida riassume lo stato operativo aggiornato di **Control Chaos** per gestione GitHub e readiness AdSense.
 
 ## Obiettivo
-Portale statico per analisi SuperEnalotto con:
-- archivio storico estrazioni
+Portale statico SuperEnalotto con:
+- archivio estrazioni
 - catalogo algoritmi
-- pagine statistiche e informative
+- pagine statistiche e legali
 
 ## Repository
 - URL: `https://github.com/giga-labor/secc`
 - Branch principale: `main`
 - Deploy: GitHub Pages
 
-## Struttura Principale
-- `index.html`: home
-- `pages/algoritmi/`: catalogo e schede algoritmo
-- `pages/storico-estrazioni/`: archivio estrazioni
-- `pages/analisi-statistiche/`: analisi statistiche
-- `pages/privacy-policy/`, `pages/cookie-policy/`, `pages/contatti-chi-siamo/`: pagine legali
-- `archives/draws/draws.csv`: dataset storico
-- `data/modules-manifest.json`: sorgente card
-- `data/cards-index.json`: fallback/generato
-- `assets/js/version.js`: versione pubblica UI
+## Struttura Chiave
+- `data/modules-manifest.json`: manifest card principale
+- `data/algorithms-spotlight/modules-manifest.json`: manifest spotlight
+- `assets/js/cards-index.js`: loader e normalizzazione card
+- `assets/js/cards.js`: costruttore card (sorgente unica per sizing e varianti card)
+- `assets/js/site.js`: rendering card home
+- `assets/js/algorithms.js`: rendering catalogo algoritmi/spotlight
+- `assets/js/ga4.js`: bootstrap analytics GA4
+- `assets/js/ads.js`: host layout slot ads runtime
+
+## Workflow GitHub (Operativo)
+1. Crea cartella modulo/pagina con `index.html` e `card.json`.
+2. Inserisci il path del `card.json` nel manifest corretto.
+3. Verifica che il path sia coperto dai manifest runtime.
+4. Incrementa `assets/js/version.js` per il rilascio.
+5. Commit/push su `main`.
 
 ## Flusso Card
-1. Le card sono elencate in `data/modules-manifest.json`.
-2. Ogni entry punta a un `card.json` locale.
-3. Il frontend carica il manifest runtime.
+1. I manifest elencano i `card.json`.
+2. `cards-index.js` carica e normalizza i dati.
+3. `cards.js` costruisce il markup card (`buildAlgorithmCard`).
+4. Il flag `no_data_show` è gestito per-card e defaulta a `true` se mancante.
 
-### Aggiunta Nuovo Algoritmo
-1. Crea `pages/algoritmi/<id>/`
-2. Aggiungi `index.html` + `card.json` (+ `img.webp` opzionale)
-3. Inserisci il path in `data/modules-manifest.json`
-4. Facoltativo: rigenera fallback
-```bash
-python scripts/build-cards-index.py
-```
+## AdSense / Ads: Stato e Checklist
+Stato attuale:
+- `ads.txt` presente come template.
+- GA4 presente e centralizzato (`assets/js/ga4.js`).
+- Layout slot ads gestito dal progetto (`assets/js/ads.js`, hook `window.CC_RENDER_AD_SLOT`).
+- Script ufficiale AdSense (`adsbygoogle.js`) non integrato di default.
 
-## Storico Estrazioni
-- File sorgente: `archives/draws/draws.csv`
-- La pagina storico legge il CSV lato client e applica filtri ricerca.
+Checklist go-live AdSense:
+1. Sostituisci placeholder in `ads.txt` con publisher reale (`pub-...`).
+2. Inserisci script ufficiale AdSense e unità ads conformi.
+3. Verifica pagine legali e gestione consenso cookie.
+4. Verifica crawlability: `robots.txt`, `sitemap.xml`, URL pubblici.
+5. Controlla rendering ads su mobile/desktop senza CLS critico.
 
 ## File Root Tecnici
-- `ads.txt`: da compilare con publisher AdSense reale
-- `robots.txt`: regole crawl
-- `sitemap.xml`: elenco URL pubbliche
-
-## Versioning
-- Aggiornare `assets/js/version.js` a ogni rilascio.
+- `ads.txt`
+- `robots.txt`
+- `sitemap.xml`
 
 ## Avvio Locale
 ```bat
 start-server.bat
 ```
-URL locale: `http://localhost:8000/`
+URL: `http://localhost:8000/`
 
 ## Deploy GitHub Pages
 1. Settings -> Pages
@@ -63,8 +68,3 @@ URL locale: `http://localhost:8000/`
 4. Folder: `/ (root)`
 
 URL atteso: `https://giga-labor.github.io/secc/`
-
-## Note Operative
-- Nessun backend.
-- Componenti ads nel layout sono UI interne; non equivalgono a integrazione AdSense automatica.
-- Prima del go-live ads, completare `ads.txt` con `pub-...` reale.

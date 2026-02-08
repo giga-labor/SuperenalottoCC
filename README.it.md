@@ -1,71 +1,68 @@
-ï»¿# Control Chaos
+# Control Chaos
 
-Sito statico per analisi, algoritmi e storico estrazioni SuperEnalotto.
-Nessun backend: tutte le pagine sono client-side e servite come file statici.
+Sito statico per analisi, algoritmi e storico estrazioni SuperEnalotto.  
+Nessun backend: tutto è client-side statico.
 
 ## Repository
 - GitHub: `https://github.com/giga-labor/secc`
 - Branch principale: `main`
-- Deploy: GitHub Pages (root `/`)
+- Deploy target: GitHub Pages (root `/`)
 
-## Contenuti Attuali
-- Home con moduli in evidenza e aggiornamenti progetto
-- Catalogo algoritmi con pagine tecniche dedicate
-- Storico estrazioni basato su `draws.csv`
-- Pagina analisi statistiche (frequenze, ritardi, co-occorrenze)
-- Pagine legali: Privacy, Cookie, Contatti/Chi siamo
-- Rail/ticker visuali (componenti UI del progetto, non widget ad-network)
+## Scope Attuale
+- Home con card in evidenza e aggiornamenti progetto
+- Catalogo algoritmi con pagine dettaglio dedicate
+- Pagina storico estrazioni su `archives/draws/draws.csv`
+- Pagine statistiche e legali
+- Layout ads runtime (`assets/js/ads.js`) come host slot UI del progetto
 
 ## Struttura Progetto
 - `index.html`: home
-- `pages/algoritmi/`: catalogo e dettaglio algoritmi
-- `pages/storico-estrazioni/`: archivio storico
-- `pages/analisi-statistiche/`: analisi statistiche
-- `pages/privacy-policy/`: privacy policy
-- `pages/cookie-policy/`: cookie policy
-- `pages/contatti-chi-siamo/`: contatti/chi siamo
-- `assets/`: CSS/JS/audio
-- `img/`: immagini condivise
-- `archives/draws/draws.csv`: dataset estrazioni
-- `data/modules-manifest.json`: sorgente principale card
-- `data/cards-index.json`: indice card generato/fallback
-- `scripts/`: utility di manutenzione
+- `pages/algoritmi/`: catalogo + pagine dettaglio algoritmi
+- `pages/storico-estrazioni/`: archivio estrazioni
+- `pages/analisi-statistiche/`: pagina statistiche
+- `pages/privacy-policy/`, `pages/cookie-policy/`, `pages/contatti-chi-siamo/`: pagine legali
+- `assets/js/cards.js`: costruttore card e sorgente unica sizing/comportamenti card
+- `assets/js/cards-index.js`: loader manifest/card
+- `assets/js/site.js`: rendering card home
+- `assets/js/algorithms.js`: rendering catalogo algoritmi + spotlight
+- `assets/js/ga4.js`: bootstrap GA4
+- `assets/js/ads.js`: logica host slot ads
+- `data/modules-manifest.json`: manifest card principale
+- `data/algorithms-spotlight/modules-manifest.json`: manifest card spotlight
+- `ads.txt`, `robots.txt`, `sitemap.xml`: file tecnici crawl/ads
+
+## Workflow GitHub
+1. Crea/aggiorna cartella pagina con `index.html` + `card.json` (+ media).
+2. Registra il path del `card.json` nel manifest corretto.
+3. Aggiorna `assets/js/version.js` a ogni batch release.
+4. Commit su `main` e pubblicazione via GitHub Pages.
 
 ## Flusso Card
-Le card vengono caricate runtime da `data/modules-manifest.json`.
-Ogni algoritmo ha il proprio `card.json`.
+- Le card sono caricate dai manifest e normalizzate in `assets/js/cards-index.js`.
+- Le card sono costruite da `window.CARDS.buildAlgorithmCard(...)` in `assets/js/cards.js`.
+- `no_data_show` è gestito per-card in `card.json`; default `true` quando assente.
 
-Per aggiungere una nuova card algoritmo:
-1. Crea `pages/algoritmi/<id>/`
-2. Aggiungi `index.html`, `card.json`, opzionale `img.webp`
-3. Inserisci `pages/algoritmi/<id>/card.json` in `data/modules-manifest.json`
-4. (Opzionale) rigenera indice fallback:
-```bash
-python scripts/build-cards-index.py
-```
+## Documentazione AdSense e Ads
+Stato attuale:
+- `ads.txt` presente come template e da sostituire con il tuo `pub-...` reale.
+- GA4 centralizzato in `assets/js/ga4.js`, incluso in tutti gli `index.html`.
+- Slot ads UI gestiti da `assets/js/ads.js` (hook `window.CC_RENDER_AD_SLOT`).
+- Nessun embed diretto `adsbygoogle.js` committato di default.
+
+Checklist go-live monetizzazione:
+1. Inserisci la riga publisher reale in `ads.txt`.
+2. Integra script ufficiale AdSense e unità conformi alle policy.
+3. Verifica pagine policy (`privacy`, `cookie`, `contatti`) e consenso cookie.
+4. Ricontrolla raggiungibilità `robots.txt` + `sitemap.xml` in produzione.
+5. Verifica approvazione e crawlabilità delle pagine monetizzate su dominio GitHub Pages.
 
 ## Avvio Locale
-Esegui:
 ```bat
 start-server.bat
 ```
-Poi apri:
-- `http://localhost:8000/`
+Apri `http://localhost:8000/`.
 
-## File SEO / Crawl / Ads
-In root sono presenti:
-- `ads.txt` (template da completare con publisher ID AdSense reale)
-- `robots.txt`
-- `sitemap.xml`
-
-Importante:
-- Sostituisci la riga placeholder in `ads.txt` con il tuo `pub-...` reale prima dei controlli monetizzazione in produzione.
-
-## Versionamento
-- La versione UI e in `assets/js/version.js` (`window.CC_VERSION`).
-- Incrementare la versione a ogni rilascio.
-
-## Pubblicazione (GitHub Pages)
+## Deploy (GitHub Pages)
 1. Repo -> Settings -> Pages
 2. Source: Deploy from a branch
 3. Branch: `main`
@@ -75,8 +72,8 @@ URL atteso:
 - `https://giga-labor.github.io/secc/`
 
 ## Note
-- L'autoplay audio e limitato dai browser; toggle audio disabilitato di default.
+- L'autoplay audio è limitato dai browser; toggle audio disabilitato di default.
 - Nessun backend richiesto.
 
-## Documentazione EN
+## Documentation EN
 Vedi `README.md`.

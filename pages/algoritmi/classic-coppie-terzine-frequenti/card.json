@@ -9,5 +9,6 @@
     "narrativeSummary":  "Classificazione di combinazioni di 2 o 3 numeri per frequenza di co-occorrenza.",
     "page":  "/pages/algoritmi/classic-coppie-terzine-frequenti/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

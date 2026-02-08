@@ -1,4 +1,4 @@
-﻿{
+{
     "id":  "rdp-imagination",
     "title":  "RDP Imagination System",
     "subtitle":  "Simulazione scenari futuri via metriche RDP e ottimizzazione pesi",
@@ -9,5 +9,6 @@
     "narrativeSummary":  "Simulazione scenari futuri via metriche RDP e ottimizzazione pesi.",
     "page":  "pages/algoritmi/rdp-imagination/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

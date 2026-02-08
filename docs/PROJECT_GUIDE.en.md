@@ -1,60 +1,65 @@
-﻿# Project Guide (EN)
+# Project Guide (EN)
 
-This guide documents the updated **Control Chaos** architecture and maintenance workflow for the GitHub repository.
+This guide summarizes the current **Control Chaos** operational status for GitHub management and AdSense readiness.
 
 ## Goal
-Static SuperEnalotto analysis portal with:
+Static SuperEnalotto portal with:
 - historical draws archive
 - algorithms catalog
-- statistics and legal/information pages
+- statistics and legal pages
 
 ## Repository
 - URL: `https://github.com/giga-labor/secc`
 - Default branch: `main`
-- Deployment: GitHub Pages
+- Deploy target: GitHub Pages
 
-## Main Structure
-- `index.html`: home
-- `pages/algoritmi/`: algorithms catalog and detail pages
-- `pages/storico-estrazioni/`: historical draws archive
-- `pages/analisi-statistiche/`: statistics page
-- `pages/privacy-policy/`, `pages/cookie-policy/`, `pages/contatti-chi-siamo/`: legal pages
-- `archives/draws/draws.csv`: historical dataset
-- `data/modules-manifest.json`: cards source of truth
-- `data/cards-index.json`: generated/fallback index
-- `assets/js/version.js`: public UI version
+## Key Structure
+- `data/modules-manifest.json`: main cards manifest
+- `data/algorithms-spotlight/modules-manifest.json`: spotlight manifest
+- `assets/js/cards-index.js`: cards loading/normalization
+- `assets/js/cards.js`: card builder (single source for card sizing/variants)
+- `assets/js/site.js`: home cards rendering
+- `assets/js/algorithms.js`: algorithms/spotlight rendering
+- `assets/js/ga4.js`: GA4 bootstrap
+- `assets/js/ads.js`: runtime ad-slot layout host
 
-## Card Flow
-1. Cards are listed in `data/modules-manifest.json`.
-2. Each entry points to a local `card.json`.
-3. Frontend loads the manifest at runtime.
+## GitHub Workflow (Operational)
+1. Create/update page module with `index.html` and `card.json`.
+2. Register `card.json` path in the correct manifest.
+3. Verify all `card.json` files are covered by manifests.
+4. Bump `assets/js/version.js` for release.
+5. Commit/push to `main`.
 
-### Add a New Algorithm
-1. Create `pages/algoritmi/<id>/`
-2. Add `index.html` + `card.json` (+ optional `img.webp`)
-3. Add the path to `data/modules-manifest.json`
-4. Optional fallback refresh:
-```bash
-python scripts/build-cards-index.py
-```
+## Cards Flow
+1. Manifests list `card.json` files.
+2. `cards-index.js` loads and normalizes card data.
+3. `cards.js` builds card markup (`buildAlgorithmCard`).
+4. `no_data_show` is per-card and defaults to `true` if missing.
 
-## Historical Draws
-- Source file: `archives/draws/draws.csv`
-- The draws page loads CSV client-side and applies search filters.
+## AdSense / Ads: Status and Checklist
+Current status:
+- `ads.txt` exists as template.
+- GA4 is centralized (`assets/js/ga4.js`).
+- Ad-slot UI host is project-managed (`assets/js/ads.js`, `window.CC_RENDER_AD_SLOT` hook).
+- Official AdSense script (`adsbygoogle.js`) is not embedded by default.
 
-## Root Technical Files
-- `ads.txt`: must be completed with real AdSense publisher ID
-- `robots.txt`: crawl directives
-- `sitemap.xml`: public URL inventory
+AdSense go-live checklist:
+1. Replace `ads.txt` placeholder with real publisher (`pub-...`).
+2. Add official AdSense script and policy-compliant ad units.
+3. Verify legal pages and cookie consent flow.
+4. Verify crawlability: `robots.txt`, `sitemap.xml`, public URLs.
+5. Validate mobile/desktop ad rendering without critical CLS regressions.
 
-## Versioning
-- Update `assets/js/version.js` for every release batch.
+## Technical Root Files
+- `ads.txt`
+- `robots.txt`
+- `sitemap.xml`
 
 ## Local Run
 ```bat
 start-server.bat
 ```
-Local URL: `http://localhost:8000/`
+URL: `http://localhost:8000/`
 
 ## GitHub Pages Deploy
 1. Settings -> Pages
@@ -63,8 +68,3 @@ Local URL: `http://localhost:8000/`
 4. Folder: `/ (root)`
 
 Expected URL: `https://giga-labor.github.io/secc/`
-
-## Operational Notes
-- No backend.
-- Ads UI elements in the layout are project UI components; they are not automatic AdSense integration.
-- Before ads go-live, complete `ads.txt` with real `pub-...` value.

@@ -9,5 +9,6 @@
     "narrativeSummary":  "Ritardi di gruppi di numeri (terni, quaterne e oltre) su base storica.",
     "page":  "/pages/algoritmi/classic-ritardi-combinazioni/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

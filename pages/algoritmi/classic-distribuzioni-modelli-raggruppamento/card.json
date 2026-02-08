@@ -9,5 +9,6 @@
     "narrativeSummary":  "Studio di fasce numeriche, pari/dispari, somme e bilanciamento della sestina.",
     "page":  "/pages/algoritmi/classic-distribuzioni-modelli-raggruppamento/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

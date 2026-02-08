@@ -7,35 +7,10 @@
   <title>Storico estrazioni - SuperEnalotto Control Chaos</title>
   <meta name="description" content="Archivio storico estrazioni SuperEnalotto con ricerca rapida per data, concorso e numeri.">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            midnight: '#05060F',
-            steel: '#0F1220',
-            night: '#121633',
-            neon: '#FFD966',
-            ash: '#A5B1C9'
-          },
-          boxShadow: {
-            glow: '0 0 22px rgba(255, 217, 102, 0.35)'
-          }
-        }
-      }
-    }
-  </script>
+  <script src="../../assets/js/tailwind-config.js"></script>
+  <script src="../../assets/js/ga4.js"></script>
     <link rel="stylesheet" href="../../assets/css/header.css">
   <link rel="stylesheet" href="../../assets/css/ads.css">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FLYS8Y9BB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-7FLYS8Y9BB');
-  </script>
 </head>
 <body class="min-h-screen bg-midnight text-white">
 
@@ -100,10 +75,10 @@
 
       <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
         <p class="text-sm text-ash" data-draws-status>0 record visualizzati</p>
-        <div class="flex items-center gap-2">
-          <button class="rounded-full border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-prev>Indietro</button>
+        <div class="flex items-center gap-1">
+          <button class="rounded-lg border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-prev>Indietro</button>
           <span class="text-sm text-ash" data-draws-page>Pagina 1</span>
-          <button class="rounded-full border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-next>Avanti</button>
+          <button class="rounded-lg border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-next>Avanti</button>
         </div>
       </div>
     </section>
@@ -126,6 +101,10 @@
   <script src="../../assets/js/ads.js" defer></script>
 </body>
 </html>
+
+
+
+
 
 
 

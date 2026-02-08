@@ -9,5 +9,6 @@
     "narrativeSummary":  "Calcolo del ritardo di ciascun numero e confronto tra ritardo attuale e storico.",
     "page":  "/pages/algoritmi/classic-ritardi/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

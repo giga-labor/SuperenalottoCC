@@ -9,5 +9,6 @@
     "narrativeSummary":  "Monitoraggio della presenza di numeri consecutivi nelle sestine estratte.",
     "page":  "/pages/algoritmi/classic-coppie-terni-consecutivi/",
     "macroGroup":  "statistica",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }

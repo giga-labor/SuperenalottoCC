@@ -1,4 +1,4 @@
-﻿{
+{
     "id":  "genetic-algorithm-evolutionary",
     "title":  "GeneticSE",
     "subtitle":  "Multi-agent online learning con aggiornamenti continui",
@@ -9,5 +9,6 @@
     "narrativeSummary":  "Multi-agent online learning con aggiornamenti continui.",
     "page":  "pages/algoritmi/genetic/index.html",
     "macroGroup":  "neurale",
-    "isActive":  false
+    "isActive":  false,
+    "no_data_show":  true
 }
