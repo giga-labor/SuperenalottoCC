@@ -7,7 +7,7 @@
     "hasNews":  false,
     "statusTag":  "Tipologia",
     "narrativeSummary":  "Ingresso diretto ai moduli neurali del catalogo.",
-    "page":  "spotlight/neurali/",
+    "page":  "pages/algoritmi/spotlight/neurali/",
     "macroGroup":  "neurale",
     "isActive":  true,
     "no_data_show":  false

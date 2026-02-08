@@ -7,7 +7,7 @@
     "hasNews":  false,
     "statusTag":  "Tipologia",
     "narrativeSummary":  "Ingressi dedicati agli algoritmi statistici del catalogo.",
-    "page":  "spotlight/statistici/",
+    "page":  "pages/algoritmi/spotlight/statistici/",
     "macroGroup":  "statistici",
     "isActive":  true,
     "no_data_show":  false
