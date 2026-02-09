@@ -247,10 +247,7 @@ const buildHeaderMarkup = () => `
           </div>
           <div class="header-actions__right">
             <button class="home-badge home-badge--audio home-badge--home bg-neon/10 px-4 py-3 text-neon transition" type="button" aria-label="Audio" data-tooltip="MUSIC" data-audio-toggle${AUDIO_ENABLED ? '' : ' hidden'}>
-              <svg class="audio-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M10 18.2V5.8a1 1 0 0 1 1.58-.81l7.2 5.2a1 1 0 0 1 0 1.62l-7.2 5.2A1 1 0 0 1 10 18.2Z"></path>
-                <path d="M4 9h4v6H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1Z"></path>
-              </svg>
+              <img class="audio-icon home-badge__icon home-badge__icon--img" src="${resolveWithBaseHref('img/play.webp')}" alt="" aria-hidden="true">
               <span class="audio-track" data-audio-track>—</span>
             </button>
           </div>
