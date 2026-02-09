@@ -70,14 +70,22 @@ async function renderNewsCards(area, modules) {
 }
 
 async function createNewsCard(module) {
+  const tuneCardMedia = (card) => {
+    const image = card?.querySelector?.('img');
+    if (!image) return card;
+    if (!image.getAttribute('decoding')) image.setAttribute('decoding', 'async');
+    if (!image.getAttribute('loading')) image.setAttribute('loading', 'lazy');
+    return card;
+  };
   if (window.CARDS && typeof window.CARDS.buildAlgorithmCard === 'function') {
-    return window.CARDS.buildAlgorithmCard(module, { forceActive: true });
+    const card = await window.CARDS.buildAlgorithmCard(module, { forceActive: true });
+    return tuneCardMedia(card);
   }
   const fallback = document.createElement('a');
   fallback.className = 'card-3d algorithm-card is-active';
   fallback.href = resolveWithBase(module.page || '#') || '#';
   fallback.textContent = module.title || 'Modulo';
-  return fallback;
+  return tuneCardMedia(fallback);
 }
 
 function renderNoNews(area, totalCards) {

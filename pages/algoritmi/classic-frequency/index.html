@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -6,10 +6,12 @@
   
   <title>Classic Frequency - SuperEnalotto Control Chaos</title>
   <meta name="description" content="Scheda algoritmo Classic Frequency: analisi frequenziale su storico estrazioni, metodo, output e limiti operativi.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="../../../assets/js/tailwind-config.js"></script>
-  <script src="../../../assets/js/ga4.js"></script>
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=swap">
+<script src="../../../assets/js/ga4.js" defer></script>
+<link rel="stylesheet" href="../../../assets/css/tailwind.generated.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
   <link rel="stylesheet" href="../../../assets/css/header.css">
   <link rel="stylesheet" href="../../../assets/css/ads.css">
   <style>
@@ -207,7 +209,7 @@
           </div>
         </div>
 
-        <div class="tabs-shell mt-4 text-sm text-ash" data-tabs-root>
+        <div class="tabs-shell mt-4 text-sm text-ash" data-tabs-root data-tab-panel-label="off">
           <div class="folder-tabs">
             <button class="tab-btn is-active" type="button" data-tab-target="algoritmo">Algoritmo</button>
             <button class="tab-btn" type="button" data-tab-target="storica">Storica</button>
@@ -338,14 +340,42 @@
         const shell = root.classList.contains('tabs-shell') ? root : root.closest('.tabs-shell');
         const sheet = shell ? shell.querySelector('.tabs-sheet') : null;
         const tabRow = shell ? shell.querySelector('.folder-tabs') : null;
+        if (!shell || !sheet || !tabRow) return;
+        const showPanelLabel = root.dataset.tabPanelLabel !== 'off';
+        const getLabelByTarget = (target) => {
+          const button = buttons.find((btn) => btn.dataset.tabTarget === target);
+          return button ? button.textContent.trim() : '';
+        };
+        const ensurePanelLabels = () => {
+          if (!showPanelLabel) {
+            panels.forEach((panel) => {
+              panel.querySelectorAll(':scope > [data-tab-active-label]').forEach((label) => label.remove());
+            });
+            return;
+          }
+          panels.forEach((panel) => {
+            let label = panel.querySelector(':scope > [data-tab-active-label]');
+            if (!label) {
+              label = document.createElement('p');
+              label.className = 'tab-active-label';
+              label.dataset.tabActiveLabel = '';
+              label.setAttribute('aria-live', 'polite');
+              panel.prepend(label);
+            }
+            label.textContent = getLabelByTarget(panel.dataset.tabPanel);
+          });
+        };
         const updateNotch = () => {
-          if (!sheet || !tabRow) return;
-          const activeBtn = buttons.find((btn) => btn.classList.contains('is-active'));
+          const activeBtn = buttons.find((btn) => btn.classList.contains('is-active')) || buttons[0];
           if (!activeBtn) return;
           const rowRect = tabRow.getBoundingClientRect();
           const btnRect = activeBtn.getBoundingClientRect();
+          const firstBtnRect = buttons[0]?.getBoundingClientRect();
           const left = Math.max(0, btnRect.left - rowRect.left);
           const width = Math.max(0, btnRect.width);
+          const isWrapped = Boolean(firstBtnRect) && rowRect.height > (firstBtnRect.height + 6);
+          const isOverflowing = tabRow.scrollWidth > (tabRow.clientWidth + 4);
+          shell.classList.toggle('is-compact-tabs', isWrapped || isOverflowing);
           shell.style.setProperty('--active-notch-left', `${left.toFixed(2)}px`);
           shell.style.setProperty('--active-notch-width', `${width.toFixed(2)}px`);
         };
@@ -354,11 +384,27 @@
           panels.forEach((panel) => panel.classList.toggle('is-active', panel.dataset.tabPanel === target));
           updateNotch();
         };
+        const refreshTabsLayout = () => window.requestAnimationFrame(updateNotch);
         buttons.forEach((btn) => {
           btn.addEventListener('click', () => activate(btn.dataset.tabTarget));
         });
-        window.addEventListener('resize', updateNotch);
-        updateNotch();
+        window.addEventListener('resize', refreshTabsLayout, { passive: true });
+        window.addEventListener('orientationchange', refreshTabsLayout, { passive: true });
+        window.addEventListener('pageshow', refreshTabsLayout, { passive: true });
+        document.addEventListener('visibilitychange', refreshTabsLayout, { passive: true });
+        if (window.visualViewport) {
+          window.visualViewport.addEventListener('resize', refreshTabsLayout, { passive: true });
+        }
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(() => refreshTabsLayout());
+          observer.observe(shell);
+          observer.observe(tabRow);
+          root._tabsResizeObserver = observer;
+        }
+        ensurePanelLabels();
+        refreshTabsLayout();
+        window.setTimeout(refreshTabsLayout, 80);
+        window.setTimeout(refreshTabsLayout, 220);
       });
 
       const historicalBody = document.querySelector('[data-historical-body]');

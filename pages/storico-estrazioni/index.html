@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -6,83 +6,99 @@
   
   <title>Storico estrazioni - SuperEnalotto Control Chaos</title>
   <meta name="description" content="Archivio storico estrazioni SuperEnalotto con ricerca rapida per data, concorso e numeri.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="../../assets/js/tailwind-config.js"></script>
-  <script src="../../assets/js/ga4.js"></script>
-    <link rel="stylesheet" href="../../assets/css/header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=swap">
+<script src="../../assets/js/ga4.js" defer></script>
+<link rel="stylesheet" href="../../assets/css/tailwind.generated.css">
+<link rel="stylesheet" href="../../assets/css/header.css">
   <link rel="stylesheet" href="../../assets/css/ads.css">
 </head>
 <body class="min-h-screen bg-midnight text-white">
 
 
-  <div class="mx-auto max-w-5xl px-6 py-14">
-    <header class="mt-6 space-y-3">
-      <span class="text-xs uppercase tracking-[0.2em] text-ash">Archivio storico</span>
+  <main class="content-fade mx-auto max-w-5xl content-width px-6 py-2">
+    <div class="content-box">
+    <header class="mt-6 space-y-3" data-page-kicker-wrap>
+      <span class="text-xs uppercase tracking-[0.2em] text-ash" data-page-kicker>Archivio storico</span>
     </header>
 
-    <section class="mt-10 rounded-3xl border border-white/10 bg-night p-6">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <p class="text-xs uppercase tracking-[0.2em] text-ash">Riepilogo</p>
-          <h2 class="text-xl font-semibold">Dati estrazioni</h2>
-        </div>
-        <span class="rounded-full border border-emerald-400 bg-midnight/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-emerald-300" data-draws-status-tag>Archivio attivo</span>
+    <div class="tabs-shell mt-10" data-tabs-root data-tab-panel-label="off">
+      <div class="folder-tabs">
+        <button class="tab-btn is-active" type="button" data-tab-target="riepilogo">Riepilogo</button>
+        <button class="tab-btn" type="button" data-tab-target="archivio">Archivio</button>
       </div>
-      <div class="mt-6 rounded-2xl border border-white/10 bg-midnight/80 p-4">
-        <div class="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-ash">Record totali</p>
-            <p class="mt-2 text-2xl font-semibold" data-draws-count>?</p>
+      <div class="tabs-sheet">
+        <section class="tab-panel is-active space-y-4" data-tab-panel="riepilogo">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold">Dati estrazioni</h2>
+            </div>
+            <span class="rounded-full border border-emerald-400 bg-midnight/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-emerald-300" data-draws-status-tag>Archivio attivo</span>
           </div>
-          <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-ash">Prima estrazione</p>
-            <p class="mt-2 text-xl font-semibold" data-draws-first>?</p>
+          <div class="mt-2 rounded-2xl border border-white/10 bg-midnight/80 p-4">
+            <div class="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-ash">Record totali</p>
+                <p class="mt-2 text-2xl font-semibold" data-draws-count>?</p>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-ash">Prima estrazione</p>
+                <p class="mt-2 text-xl font-semibold" data-draws-first>?</p>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-ash">Ultima estrazione</p>
+                <p class="mt-2 text-xl font-semibold" data-draws-last>?</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-ash">Ultima estrazione</p>
-            <p class="mt-2 text-xl font-semibold" data-draws-last>?</p>
+        </section>
+
+        <section class="tab-panel space-y-4" data-tab-panel="archivio">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold">Filtro rapido</h3>
+              <p class="text-ash text-sm">Cerca per data, numero concorso o combinazione.</p>
+            </div>
+            <input class="w-full sm:w-72 rounded-full border border-white/10 bg-midnight/80 px-4 py-2 text-sm text-white placeholder:text-ash focus:outline-none focus:ring-2 focus:ring-neon" type="text" placeholder="Cerca..." data-draws-search>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="mt-10 rounded-3xl border border-white/10 bg-night p-6">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h3 class="text-xl font-semibold">Filtro rapido</h3>
-          <p class="text-ash text-sm">Cerca per data, numero concorso o combinazione.</p>
-        </div>
-        <input class="w-full sm:w-72 rounded-full border border-white/10 bg-midnight/80 px-4 py-2 text-sm text-white placeholder:text-ash focus:outline-none focus:ring-2 focus:ring-neon" type="text" placeholder="Cerca..." data-draws-search>
-      </div>
+          <div class="table-scroll-shell mt-2" data-draws-scroll-shell>
+            <div class="overflow-x-auto rounded-2xl border border-white/10" data-draws-scroll>
+              <table class="draws-table min-w-full text-left text-sm">
+                <thead class="bg-midnight/80 text-xs uppercase tracking-[0.2em] text-ash">
+                  <tr data-draws-header>
+                    <th class="px-4 py-3">Data</th>
+                    <th class="px-4 py-3">Concorso</th>
+                    <th class="px-4 py-3">Numeri</th>
+                    <th class="px-4 py-3">Jolly/SuperStar</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5" data-draws-body>
+                  <tr>
+                    <td class="px-4 py-6 text-ash" colspan="4">In attesa di <code class="text-neon">draws.csv</code>...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table-scroll-fixedbar" data-draws-scrollbar hidden aria-hidden="true">
+            <div class="table-scroll-fixedbar__inner" data-draws-scrollbar-inner></div>
+          </div>
 
-      <div class="mt-6 overflow-x-auto rounded-2xl border border-white/10">
-        <table class="draws-table min-w-full text-left text-sm">
-          <thead class="bg-midnight/80 text-xs uppercase tracking-[0.2em] text-ash">
-            <tr data-draws-header>
-              <th class="px-4 py-3">Data</th>
-              <th class="px-4 py-3">Concorso</th>
-              <th class="px-4 py-3">Numeri</th>
-              <th class="px-4 py-3">Jolly/SuperStar</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-white/5" data-draws-body>
-            <tr>
-              <td class="px-4 py-6 text-ash" colspan="4">In attesa di <code class="text-neon">draws.csv</code>...</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="mt-2 flex flex-wrap items-center justify-between gap-4">
+            <p class="text-sm text-ash" data-draws-status>0 record visualizzati</p>
+            <div class="flex items-center gap-1">
+              <button class="rounded-lg border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-prev>Indietro</button>
+              <span class="text-sm text-ash" data-draws-page>Pagina 1</span>
+              <button class="rounded-lg border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-next>Avanti</button>
+            </div>
+          </div>
+        </section>
       </div>
-
-      <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
-        <p class="text-sm text-ash" data-draws-status>0 record visualizzati</p>
-        <div class="flex items-center gap-1">
-          <button class="rounded-lg border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-prev>Indietro</button>
-          <span class="text-sm text-ash" data-draws-page>Pagina 1</span>
-          <button class="rounded-lg border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-next>Avanti</button>
-        </div>
-      </div>
-    </section>
-  </div>
+    </div>
+    </div>
+  </main>
 
   
 

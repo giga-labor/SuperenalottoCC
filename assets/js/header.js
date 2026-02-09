@@ -9,6 +9,49 @@ const ensureViewTransitionMeta = () => {
 
 ensureViewTransitionMeta();
 
+const rafThrottle = (fn) => {
+  let frame = 0;
+  return (...args) => {
+    if (frame) return;
+    frame = window.requestAnimationFrame(() => {
+      frame = 0;
+      fn(...args);
+    });
+  };
+};
+
+const ensureHeroBackgroundPreload = () => {
+  const width = window.innerWidth || document.documentElement.clientWidth || 0;
+  const heroPath = width <= 640
+    ? 'img/fortuna_header_1_640.webp'
+    : (width < 1200 ? 'img/fortuna_header_1_960.webp' : 'img/fortuna_header_1.webp');
+  const href = resolveWithBaseHref(heroPath);
+  if (!href) return;
+  if (document.querySelector(`link[rel="preload"][as="image"][href="${href}"]`)) return;
+  const preload = document.createElement('link');
+  preload.rel = 'preload';
+  preload.as = 'image';
+  preload.href = href;
+  preload.setAttribute('fetchpriority', 'high');
+  document.head.appendChild(preload);
+};
+
+const optimizeImageLoading = () => {
+  const images = document.querySelectorAll('img');
+  images.forEach((img, index) => {
+    if (!img.getAttribute('decoding')) {
+      img.setAttribute('decoding', 'async');
+    }
+    if (!img.getAttribute('loading')) {
+      const eager = index < 2 || Boolean(img.closest('#site-header'));
+      img.setAttribute('loading', eager ? 'eager' : 'lazy');
+    }
+    if (!img.getAttribute('fetchpriority') && index === 0) {
+      img.setAttribute('fetchpriority', 'high');
+    }
+  });
+};
+
 let header = document.getElementById('site-header');
 
 const resolveBasePath = () => {
@@ -54,7 +97,7 @@ const resolveWithBaseHref = (href, baseUrl = BASE.url) => {
   return new URL(trimmed, baseUrl).toString();
 };
 
-const AUDIO_ENABLED = false;
+const AUDIO_ENABLED = true;
 
 const getVersion = () => window.CC_VERSION || '00.00.000';
 const getLastDraw = () => String(window.CC_LAST_DRAW || '').trim();
@@ -66,6 +109,19 @@ const getVersionDisplay = () => {
 const VERSION = getVersionDisplay();
 
 const fetchLatestDrawHeader = async () => {
+  const cacheKey = 'cc-latest-draw-cache';
+  const now = Date.now();
+  try {
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (parsed && parsed.value && Number.isFinite(parsed.ts) && (now - parsed.ts) < 5 * 60 * 1000) {
+        return String(parsed.value);
+      }
+    }
+  } catch (error) {
+    // ignore session cache issues
+  }
   try {
     const response = await fetch(resolveWithBaseHref('archives/draws/draws.csv'), { cache: 'no-store' });
     if (!response.ok) return '';
@@ -78,10 +134,83 @@ const fetchLatestDrawHeader = async () => {
     const lastLine = lines[lines.length - 1];
     const delimiter = lastLine.includes(';') ? ';' : ',';
     const parts = lastLine.split(delimiter).map((cell) => cell.trim());
-    return parts[0] || '';
+    const latest = parts[0] || '';
+    if (latest) {
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify({ value: latest, ts: now }));
+      } catch (error) {
+        // ignore storage quota/privacy failures
+      }
+    }
+    return latest;
   } catch (error) {
     return '';
   }
+};
+
+const normalizeKicker = (value) => String(value || '')
+  .replace(/\s+/g, ' ')
+  .trim()
+  .toUpperCase();
+
+const titleToKicker = () => {
+  const raw = String(document.title || '').trim();
+  if (!raw) return 'PAGINA';
+  const primary = raw.split('|')[0].split(' - ')[0].trim();
+  return normalizeKicker(primary || 'PAGINA');
+};
+
+const getPageKickerLabel = () => {
+  const path = (window.location.pathname || '').replace(/\\/g, '/').toLowerCase();
+  if (path === '/' || path.endsWith('/index.html') && !path.includes('/pages/')) return 'HOME';
+  if (path.includes('/pages/storico-estrazioni')) return 'ARCHIVIO STORICO';
+  if (path.includes('/pages/analisi-statistiche')) return 'ANALISI STATISTICHE';
+  if (path.includes('/pages/algoritmi/spotlight/statistici')) return 'SPOTLIGHT STATISTICI';
+  if (path.includes('/pages/algoritmi/spotlight/neurali')) return 'SPOTLIGHT NEURALI';
+  if (path.includes('/pages/algoritmi/spotlight/ibridi')) return 'SPOTLIGHT IBRIDI';
+  if (path.includes('/pages/algoritmi/index')) return 'ALGORITMI';
+  if (path.includes('/pages/algoritmi/')) return titleToKicker();
+  if (path.includes('/pages/contatti-chi-siamo')) return 'CONTATTI E CHI SIAMO';
+  if (path.includes('/pages/privacy-policy')) return 'PRIVACY POLICY';
+  if (path.includes('/pages/cookie-policy')) return 'COOKIE POLICY';
+  return titleToKicker();
+};
+
+const applyUnifiedPageKicker = () => {
+  const main = document.querySelector('main');
+  if (!main) return;
+  if (main.dataset.pageKicker === 'off' || document.body?.dataset.pageKicker === 'off') return;
+  const host = main.querySelector(':scope > .content-box') || main;
+  const label = getPageKickerLabel();
+  if (!label) return;
+
+  let wrap = host.querySelector(':scope > [data-page-kicker-wrap]');
+  let textNode = wrap ? wrap.querySelector('[data-page-kicker]') : null;
+
+  if (!wrap) {
+    const firstHeader = host.querySelector(':scope > header');
+    const firstHeaderText = firstHeader?.querySelector('span, p');
+    const hasBigTitle = Boolean(firstHeader?.querySelector('h1, h2, h3'));
+    if (firstHeader && firstHeaderText && !hasBigTitle) {
+      wrap = firstHeader;
+      wrap.dataset.pageKickerWrap = '';
+      textNode = firstHeaderText;
+      textNode.dataset.pageKicker = '';
+    }
+  }
+
+  if (!wrap) {
+    wrap = document.createElement('header');
+    wrap.dataset.pageKickerWrap = '';
+    textNode = document.createElement('span');
+    textNode.dataset.pageKicker = '';
+    wrap.appendChild(textNode);
+    host.insertBefore(wrap, host.firstElementChild || null);
+  }
+
+  wrap.classList.add('page-kicker-wrap');
+  textNode.classList.add('page-kicker-text');
+  textNode.textContent = label;
 };
 
 const buildHeaderMarkup = () => `
@@ -105,25 +234,23 @@ const buildHeaderMarkup = () => `
           <div class="header-actions__left flex flex-wrap items-center gap-4">
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('index.html')}#top" aria-label="Home" data-tooltip="HOME PAGE">
               <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/home.webp')}" alt="" aria-hidden="true">
             </a>
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/storico-estrazioni/')}" aria-label="Storico estrazioni" data-tooltip="Storico estrazioni">
-              <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/history.webp')}" alt="" aria-hidden="true">
+              <img class="home-badge__icon home-badge__icon--img" src="${resolveWithBaseHref('img/history.webp')}" alt="" aria-hidden="true">
             </a>
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/algoritmi/index.html')}" aria-label="Algoritmi" data-tooltip="Algoritmi">
-              <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/algoritm.webp')}" alt="" aria-hidden="true">
+              <img class="home-badge__icon home-badge__icon--img" src="${resolveWithBaseHref('img/algoritm.webp')}" alt="" aria-hidden="true">
             </a>
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/analisi-statistiche/')}" aria-label="Analisi statistiche" data-tooltip="Analisi statistiche">
-              <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img" src="${resolveWithBaseHref('img/statistic.webp')}" alt="" aria-hidden="true">
+              <img class="home-badge__icon home-badge__icon--img" src="${resolveWithBaseHref('img/statistic.webp')}" alt="" aria-hidden="true">
             </a>
           </div>
           <div class="header-actions__right">
             <button class="home-badge home-badge--audio home-badge--home bg-neon/10 px-4 py-3 text-neon transition" type="button" aria-label="Audio" data-tooltip="MUSIC" data-audio-toggle${AUDIO_ENABLED ? '' : ' hidden'}>
-              <span class="home-badge__home-bg" aria-hidden="true"></span>
-              <img class="home-badge__home-img audio-icon" src="${resolveWithBaseHref('img/home.webp')}" alt="" aria-hidden="true">
+              <svg class="audio-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M10 18.2V5.8a1 1 0 0 1 1.58-.81l7.2 5.2a1 1 0 0 1 0 1.62l-7.2 5.2A1 1 0 0 1 10 18.2Z"></path>
+                <path d="M4 9h4v6H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1Z"></path>
+              </svg>
               <span class="audio-track" data-audio-track>—</span>
             </button>
           </div>
@@ -164,17 +291,28 @@ if (header) {
     const railMode = document.documentElement.getAttribute('data-ad-rail') || 'right';
     const isPortrait = window.matchMedia('(orientation: portrait)').matches;
 
-    if (width >= 1600) return 22;
-    if (width >= 1400) return 20;
-    if (width >= 1200) return 18;
-    if (width >= 1024) return 16;
-    if (width >= 768) return railMode === 'bottom' || isPortrait ? 12 : 14;
-    return 10;
+    if (width >= 1600) return 8;
+    if (width >= 1400) return 7;
+    if (width >= 1200) return 6;
+    if (width >= 1024) return 5;
+    if (width >= 768) return railMode === 'bottom' || isPortrait ? 4 : 5;
+    return 4;
   };
 
   const setHeaderOffsets = () => {
     const container = header.querySelector('.header-container') || header;
     const wrap = header.querySelector('.header-wrap') || container;
+    const headerPosition = window.getComputedStyle(header).position;
+    const inFlowLayout = headerPosition !== 'fixed';
+    if (inFlowLayout) {
+      document.documentElement.style.setProperty('--fixed-header-offset', '0px');
+      document.documentElement.style.setProperty('--header-content-gap', '0px');
+      document.documentElement.style.setProperty('--header-fade-height', '0px');
+      if (main) {
+        main.style.paddingTop = '0px';
+      }
+      return;
+    }
     const rect = container.getBoundingClientRect();
     const headerRect = header.getBoundingClientRect();
     const wrapRect = wrap.getBoundingClientRect();
@@ -190,9 +328,21 @@ if (header) {
       main.style.paddingTop = `${offset}px`;
     }
   };
+  const scheduleHeaderOffsets = rafThrottle(setHeaderOffsets);
   setHeaderOffsets();
-  window.addEventListener('load', setHeaderOffsets);
-  window.addEventListener('resize', setHeaderOffsets);
+  window.addEventListener('load', scheduleHeaderOffsets, { passive: true });
+  window.addEventListener('resize', scheduleHeaderOffsets, { passive: true });
+  window.addEventListener('orientationchange', scheduleHeaderOffsets, { passive: true });
+  window.addEventListener('pageshow', scheduleHeaderOffsets, { passive: true });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', scheduleHeaderOffsets, { passive: true });
+  }
+  window.setTimeout(scheduleHeaderOffsets, 80);
+  window.setTimeout(scheduleHeaderOffsets, 220);
+  window.setTimeout(scheduleHeaderOffsets, 480);
+  if (document.fonts && typeof document.fonts.ready?.then === 'function') {
+    document.fonts.ready.then(scheduleHeaderOffsets).catch(() => {});
+  }
 }
 
 const syncHeaderVersion = () => {
@@ -274,12 +424,13 @@ const onAdRailScroll = () => {
 };
 
 window.addEventListener('load', updateAdRails);
-window.addEventListener('resize', updateAdRails);
-window.addEventListener('resize', syncHeaderTitleVisibility);
+window.addEventListener('resize', rafThrottle(updateAdRails), { passive: true });
+window.addEventListener('resize', rafThrottle(syncHeaderTitleVisibility), { passive: true });
 // Ads stay standing; no scroll listener.
 
 const bindGlassLight = () => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
 
   let pointerX = Math.round(window.innerWidth * 0.5);
   let pointerY = Math.round(window.innerHeight * 0.2);
@@ -291,6 +442,7 @@ const bindGlassLight = () => {
     '.ad-rail__panel',
     '.bottom-ad__panel',
     '.home-badge',
+    '.audio-menu',
     '.tabs-sheet',
     '.tab-btn'
   ].join(', ');
@@ -323,6 +475,9 @@ const bindGlassLight = () => {
     targets.forEach((el) => {
       const rect = el.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
+      if (rect.bottom < 0 || rect.top > window.innerHeight || rect.right < 0 || rect.left > window.innerWidth) {
+        return;
+      }
 
       const localX = ((pointerX - rect.left) / rect.width) * 100;
       const localY = ((pointerY - rect.top) / rect.height) * 100;
@@ -362,19 +517,21 @@ const bindGlassLight = () => {
     scheduleApply();
   };
 
+  const scheduleRefresh = rafThrottle(refreshReflectiveTargets);
+
   window.addEventListener('pointermove', onPointerMove, { passive: true });
   window.addEventListener('resize', () => {
-    refreshReflectiveTargets();
+    scheduleRefresh();
     scheduleApply();
-  });
+  }, { passive: true });
   window.addEventListener('scroll', scheduleApply, { passive: true });
   window.addEventListener('load', () => {
-    refreshReflectiveTargets();
+    scheduleRefresh();
     scheduleApply();
-  });
+  }, { passive: true });
 
   const observer = new MutationObserver(() => {
-    refreshReflectiveTargets();
+    scheduleRefresh();
     scheduleApply();
   });
   observer.observe(document.body, { childList: true, subtree: true });
@@ -386,7 +543,14 @@ const bindGlassLight = () => {
   }, 120);
 };
 
-bindGlassLight();
+optimizeImageLoading();
+ensureHeroBackgroundPreload();
+
+if (document.readyState === 'complete') {
+  bindGlassLight();
+} else {
+  window.addEventListener('load', bindGlassLight, { once: true, passive: true });
+}
 
 const homeBadges = document.querySelectorAll('.home-badge[data-tooltip]');
 let homeTooltip = document.querySelector('[data-home-tooltip]');
@@ -423,7 +587,23 @@ const audioToggle = document.querySelector('[data-audio-toggle]');
 if (audioToggle && AUDIO_ENABLED) {
   const audio = new Audio();
   audio.preload = 'none';
-  const targetVolume = 0.35;
+  const volumeKey = 'cc-audio-volume';
+  const safeStorageGet = (key) => {
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  };
+  const safeStorageSet = (key, value) => {
+    try {
+      localStorage.setItem(key, value);
+    } catch (error) {
+      // ignore storage access failures
+    }
+  };
+  const savedVolumeRaw = Number.parseFloat(safeStorageGet(volumeKey) || '0.35');
+  let targetVolume = Number.isFinite(savedVolumeRaw) ? savedVolumeRaw : 0.35;
   audio.volume = 0;
   let playlist = null;
   let playlistPromise = null;
@@ -433,10 +613,8 @@ if (audioToggle && AUDIO_ENABLED) {
   const defaultEnabled = 'on';
   let resumeTime = 0;
   const history = [];
-  let suppressToggle = false;
-  let holdTimer = null;
+  let toggleBusy = false;
   let audioMenu = null;
-  let hideTimer = null;
 
   const loadPlaylist = async () => {
     if (playlist) return playlist;
@@ -452,7 +630,7 @@ if (audioToggle && AUDIO_ENABLED) {
         })
         .then((data) => {
           playlist = Array.isArray(data)
-            ? data.filter(Boolean).map((item) => resolveWithBase(item))
+            ? data.filter(Boolean).map((item) => resolveWithBaseHref(item))
             : [];
           return playlist;
         })
@@ -475,6 +653,12 @@ if (audioToggle && AUDIO_ENABLED) {
   };
 
   const clampVolume = (value) => Math.min(1, Math.max(0, value));
+  targetVolume = clampVolume(targetVolume);
+  safeStorageSet(volumeKey, String(targetVolume));
+  const syncAudioVolumeMeter = () => {
+    if (!audioMenu) return;
+    audioMenu.style.setProperty('--audio-volume-level', targetVolume.toFixed(3));
+  };
   const fadeTo = (value, duration = 800) => new Promise((resolve) => {
     const start = audio.volume;
     const delta = value - start;
@@ -595,16 +779,45 @@ if (audioToggle && AUDIO_ENABLED) {
     ensurePlayback();
   };
 
-  audioToggle.addEventListener('click', async () => {
-    if (suppressToggle) return;
-    const isPlaying = audioToggle.classList.contains('is-playing');
-    if (isPlaying) {
-      setEnabledState(false);
-      audio.pause();
-      return;
+  const stopPlayback = async () => {
+    const currentTime = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
+    if (currentTime > 0) {
+      localStorage.setItem(timeKey, String(currentTime));
     }
-    setEnabledState(true);
+    await fadeTo(0, 280);
+    audio.pause();
+  };
+
+  const startPlayback = async () => {
+    const hasSource = Boolean(audio.src);
+    if (hasSource) {
+      try {
+        audio.volume = 0;
+        await audio.play();
+        await fadeTo(targetVolume, 520);
+        return;
+      } catch (error) {
+        // fallback to playlist flow
+      }
+    }
     await playNext();
+  };
+
+  audioToggle.addEventListener('click', async () => {
+    if (toggleBusy) return;
+    toggleBusy = true;
+    try {
+      const isPlaying = audioToggle.classList.contains('is-playing');
+      if (isPlaying) {
+        setEnabledState(false);
+        await stopPlayback();
+        return;
+      }
+      setEnabledState(true);
+      await startPlayback();
+    } finally {
+      toggleBusy = false;
+    }
   });
 
   const stored = localStorage.getItem(storageKey);
@@ -628,8 +841,11 @@ if (audioToggle && AUDIO_ENABLED) {
       <button type="button" data-audio-random aria-label="Brano random">Rnd</button>
       <button type="button" data-audio-vol-down aria-label="Volume giù">Vol-</button>
       <button type="button" data-audio-vol-up aria-label="Volume su">Vol+</button>
+      <div class="audio-menu-volume" aria-hidden="true">
+        <span class="audio-menu-volume__fill"></span>
+      </div>
     `;
-    (header || document.body).appendChild(audioMenu);
+    document.body.appendChild(audioMenu);
     audioMenu.addEventListener('click', (event) => {
       event.stopPropagation();
     });
@@ -644,12 +860,7 @@ if (audioToggle && AUDIO_ENABLED) {
     });
     audioMenu.querySelector('[data-audio-vol-down]')?.addEventListener('click', () => changeVolume(-0.1));
     audioMenu.querySelector('[data-audio-vol-up]')?.addEventListener('click', () => changeVolume(0.1));
-    audioMenu.addEventListener('mouseenter', () => {
-      clearTimeout(hideTimer);
-    });
-    audioMenu.addEventListener('mouseleave', () => {
-      scheduleHideMenu();
-    });
+    syncAudioVolumeMeter();
     return audioMenu;
   };
 
@@ -657,15 +868,59 @@ if (audioToggle && AUDIO_ENABLED) {
     if (!audioMenu) return;
     const rect = audioToggle.getBoundingClientRect();
     const menuRect = audioMenu.getBoundingClientRect();
-    const left = Math.max(12, rect.left - menuRect.width - 12);
-    const top = Math.max(12, Math.min(window.innerHeight - menuRect.height - 12, rect.top + rect.height / 2 - menuRect.height / 2));
+    const minGap = 12;
+    const gap = 10;
+    const maxLeft = Math.max(minGap, window.innerWidth - menuRect.width - minGap);
+    const maxTop = Math.max(minGap, window.innerHeight - menuRect.height - minGap);
+    const fitsLeft = (rect.left - gap - menuRect.width) >= minGap;
+
+    let left;
+    let top;
+    if (fitsLeft) {
+      left = rect.left - menuRect.width - gap;
+      top = rect.top;
+    } else {
+      left = rect.right - menuRect.width;
+      top = rect.bottom + gap;
+    }
+
+    left = Math.min(maxLeft, Math.max(minGap, left));
+    top = Math.min(maxTop, Math.max(minGap, top));
+
     audioMenu.style.left = `${left}px`;
     audioMenu.style.top = `${top}px`;
   };
 
-  const showMenu = () => {
+  const OPEN_DELAY_MS = 1400;
+  const CLOSE_DELAY_MS = 2000;
+  let openTimer = 0;
+  let closeTimer = 0;
+  let overToggle = false;
+  let overMenu = false;
+
+  const clearOpenTimer = () => {
+    if (!openTimer) return;
+    window.clearTimeout(openTimer);
+    openTimer = 0;
+  };
+
+  const clearCloseTimer = () => {
+    if (!closeTimer) return;
+    window.clearTimeout(closeTimer);
+    closeTimer = 0;
+  };
+
+  const ensureMenuMounted = () => {
     buildAudioMenu();
+    if (!document.body.contains(audioMenu)) {
+      document.body.appendChild(audioMenu);
+    }
+  };
+
+  const showMenu = () => {
+    ensureMenuMounted();
     positionMenu();
+    syncAudioVolumeMeter();
     audioMenu.classList.add('is-visible');
   };
 
@@ -674,15 +929,47 @@ if (audioToggle && AUDIO_ENABLED) {
     audioMenu.classList.remove('is-visible');
   };
 
-  const scheduleHideMenu = () => {
-    clearTimeout(hideTimer);
-    hideTimer = window.setTimeout(() => {
-      hideMenu();
-    }, 1500);
+  const scheduleOpenMenu = () => {
+    clearCloseTimer();
+    clearOpenTimer();
+    openTimer = window.setTimeout(() => {
+      openTimer = 0;
+      if (overToggle || overMenu) {
+        showMenu();
+      }
+    }, OPEN_DELAY_MS);
+  };
+
+  const scheduleCloseMenu = () => {
+    clearOpenTimer();
+    clearCloseTimer();
+    closeTimer = window.setTimeout(() => {
+      closeTimer = 0;
+      if (!overToggle && !overMenu) {
+        hideMenu();
+      }
+    }, CLOSE_DELAY_MS);
+  };
+
+  const getAdaptiveVolumeStep = (direction) => {
+    const level = clampVolume(targetVolume);
+    const nearLow = level <= 0.22;
+    const nearHigh = level >= 0.78;
+    const outerBand = level <= 0.4 || level >= 0.6;
+    if ((direction < 0 && nearLow) || (direction > 0 && nearHigh)) return 0.015;
+    if (outerBand) return 0.03;
+    return 0.06;
   };
 
   const changeVolume = (delta) => {
-    audio.volume = clampVolume(audio.volume + delta);
+    const direction = delta < 0 ? -1 : 1;
+    const step = getAdaptiveVolumeStep(direction);
+    targetVolume = clampVolume(targetVolume + (step * direction));
+    safeStorageSet(volumeKey, String(targetVolume));
+    if (!audio.paused) {
+      audio.volume = targetVolume;
+    }
+    syncAudioVolumeMeter();
   };
 
   const playRandom = async () => {
@@ -706,31 +993,207 @@ if (audioToggle && AUDIO_ENABLED) {
     await playRandom();
   };
 
+  ensureMenuMounted();
+  hideMenu();
+
   audioToggle.addEventListener('mouseenter', () => {
-    suppressToggle = false;
-    clearTimeout(holdTimer);
-    clearTimeout(hideTimer);
-    holdTimer = window.setTimeout(() => {
-      suppressToggle = true;
-      showMenu();
-    }, 700);
+    overToggle = true;
+    scheduleOpenMenu();
   });
   audioToggle.addEventListener('mouseleave', () => {
-    clearTimeout(holdTimer);
-    scheduleHideMenu();
+    overToggle = false;
+    scheduleCloseMenu();
+  });
+  audioToggle.addEventListener('focus', () => {
+    overToggle = true;
+    scheduleOpenMenu();
+  });
+  audioToggle.addEventListener('blur', () => {
+    overToggle = false;
+    scheduleCloseMenu();
   });
 
+  audioMenu.addEventListener('mouseenter', () => {
+    overMenu = true;
+    clearCloseTimer();
+  });
+  audioMenu.addEventListener('mouseleave', () => {
+    overMenu = false;
+    scheduleCloseMenu();
+  });
 
-  document.addEventListener('click', (event) => {
-    if (audioMenu && !audioMenu.contains(event.target) && event.target !== audioToggle) {
-      hideMenu();
+  window.addEventListener('resize', () => {
+    if (!audioMenu) return;
+    if (audioMenu.classList.contains('is-visible')) {
+      positionMenu();
     }
+  }, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (audioMenu && audioMenu.classList.contains('is-visible')) {
+      positionMenu();
+    }
+  }, { passive: true });
+}
+
+const initTabsRoot = (root) => {
+  if (!root || root.dataset.tabsReady === '1') return;
+  const buttons = Array.from(root.querySelectorAll('[data-tab-target]'));
+  const panels = Array.from(root.querySelectorAll('[data-tab-panel]'));
+  if (!buttons.length || !panels.length) return;
+  const shell = root.classList.contains('tabs-shell') ? root : root.closest('.tabs-shell');
+  const sheet = shell ? shell.querySelector('.tabs-sheet') : null;
+  const tabRow = shell ? shell.querySelector('.folder-tabs') : null;
+  if (!shell || !sheet || !tabRow) return;
+  const showPanelLabel = root.dataset.tabPanelLabel !== 'off';
+  const getLabelByTarget = (target) => {
+    const button = buttons.find((btn) => btn.dataset.tabTarget === target);
+    return button ? button.textContent.trim() : '';
+  };
+
+  const ensurePanelLabels = () => {
+    if (!showPanelLabel) {
+      panels.forEach((panel) => {
+        panel.querySelectorAll(':scope > [data-tab-active-label]').forEach((label) => label.remove());
+      });
+      return;
+    }
+    panels.forEach((panel) => {
+      let label = panel.querySelector(':scope > [data-tab-active-label]');
+      if (!label) {
+        label = document.createElement('p');
+        label.className = 'tab-active-label';
+        label.dataset.tabActiveLabel = '';
+        label.setAttribute('aria-live', 'polite');
+        panel.prepend(label);
+      }
+      label.textContent = getLabelByTarget(panel.dataset.tabPanel);
+    });
+  };
+
+  const updateNotch = () => {
+    const activeBtn = buttons.find((btn) => btn.classList.contains('is-active')) || buttons[0];
+    if (!activeBtn) return;
+    const rowRect = tabRow.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
+    const firstBtnRect = buttons[0]?.getBoundingClientRect();
+    const left = Math.max(0, btnRect.left - rowRect.left);
+    const width = Math.max(0, btnRect.width);
+    const isWrapped = Boolean(firstBtnRect) && rowRect.height > (firstBtnRect.height + 6);
+    const isOverflowing = tabRow.scrollWidth > (tabRow.clientWidth + 4);
+    shell.classList.toggle('is-compact-tabs', isWrapped || isOverflowing);
+    shell.style.setProperty('--active-notch-left', `${left.toFixed(2)}px`);
+    shell.style.setProperty('--active-notch-width', `${width.toFixed(2)}px`);
+  };
+
+  const activate = (target) => {
+    buttons.forEach((btn) => btn.classList.toggle('is-active', btn.dataset.tabTarget === target));
+    panels.forEach((panel) => panel.classList.toggle('is-active', panel.dataset.tabPanel === target));
+    updateNotch();
+  };
+
+  const refreshTabsLayout = rafThrottle(() => updateNotch());
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => activate(btn.dataset.tabTarget));
+  });
+  window.addEventListener('resize', refreshTabsLayout, { passive: true });
+  window.addEventListener('orientationchange', refreshTabsLayout, { passive: true });
+  window.addEventListener('pageshow', refreshTabsLayout, { passive: true });
+  document.addEventListener('visibilitychange', refreshTabsLayout, { passive: true });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', refreshTabsLayout, { passive: true });
+  }
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(() => refreshTabsLayout());
+    observer.observe(shell);
+    observer.observe(tabRow);
+    root._tabsResizeObserver = observer;
+  }
+  root.dataset.tabsReady = '1';
+  ensurePanelLabels();
+  refreshTabsLayout();
+  window.setTimeout(refreshTabsLayout, 80);
+  window.setTimeout(refreshTabsLayout, 220);
+  if (document.fonts && typeof document.fonts.ready?.then === 'function') {
+    document.fonts.ready.then(refreshTabsLayout).catch(() => {});
+  }
+};
+
+const slugifyTab = (value, index) => {
+  const base = String(value || '')
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+  return base || `sezione-${index + 1}`;
+};
+
+const applyAutoGlassTabs = () => {
+  const path = (window.location.pathname || '').toLowerCase();
+  const isAlgorithmsCatalog = /\/pages\/algoritmi(?:\/index\.html|\/)?$/.test(path);
+  if (isAlgorithmsCatalog) return;
+  if (document.querySelector('[data-tabs-root]')) {
+    document.querySelectorAll('[data-tabs-root]').forEach(initTabsRoot);
+    return;
+  }
+  const main = document.querySelector('main');
+  if (!main) return;
+  const host = main.querySelector(':scope > .content-box') || main;
+  if (!host || host.dataset.autoTabsApplied === '1') return;
+  const sections = Array.from(host.children).filter((el) => el.tagName === 'SECTION');
+  if (!sections.length) return;
+
+  const shell = document.createElement('div');
+  shell.className = 'tabs-shell';
+  const hideTabBar = host.dataset.tabsHideBar === '1' || main.dataset.tabsHideBar === '1' || document.body?.dataset.tabsHideBar === '1';
+  if (hideTabBar) shell.classList.add('tabs-hide-bar');
+  const panelLabelMode = host.dataset.tabPanelLabel || main.dataset.tabPanelLabel || document.body?.dataset.tabPanelLabel;
+  if (panelLabelMode) {
+    shell.dataset.tabPanelLabel = panelLabelMode;
+  } else if (hideTabBar) {
+    shell.dataset.tabPanelLabel = 'off';
+  }
+  shell.dataset.tabsRoot = '';
+
+  const folderTabs = document.createElement('div');
+  folderTabs.className = 'folder-tabs';
+  const sheet = document.createElement('div');
+  sheet.className = 'tabs-sheet';
+
+  sections.forEach((section, index) => {
+    const titleNode = section.querySelector('h2, h1, h3');
+    const rawTitle = titleNode ? titleNode.textContent : '';
+    const explicitLabel = String(section.dataset.tabLabel || '').trim();
+    const label = String(explicitLabel || rawTitle || `Sezione ${index + 1}`).trim().slice(0, 40);
+    const target = slugifyTab(label, index);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = `tab-btn${index === 0 ? ' is-active' : ''}`;
+    btn.dataset.tabTarget = target;
+    btn.textContent = label || `Sezione ${index + 1}`;
+
+    section.classList.add('tab-panel');
+    if (index === 0) section.classList.add('is-active');
+    section.dataset.tabPanel = target;
+
+    folderTabs.appendChild(btn);
+    sheet.appendChild(section);
   });
 
-  window.addEventListener('resize', positionMenu);
-  window.addEventListener('scroll', () => {
-    if (audioMenu && audioMenu.classList.contains('is-visible')) positionMenu();
-  }, { passive: true });
+  shell.appendChild(folderTabs);
+  shell.appendChild(sheet);
+  host.appendChild(shell);
+  host.dataset.autoTabsApplied = '1';
+  initTabsRoot(shell);
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', applyAutoGlassTabs);
+  document.addEventListener('DOMContentLoaded', applyUnifiedPageKicker);
+} else {
+  applyAutoGlassTabs();
+  applyUnifiedPageKicker();
 }
 
 const smoothScrollToTop = (duration = 600) => {

@@ -106,11 +106,15 @@ const ensureAds = () => {
     if (showRightRail) {
       rightRail.hidden = false;
       bottomAd.hidden = true;
+      rightRail.style.display = '';
+      bottomAd.style.display = 'none';
       root.dataset.adRail = 'right';
       moveSlotTo(rightHost);
     } else {
       rightRail.hidden = true;
       bottomAd.hidden = false;
+      rightRail.style.display = 'none';
+      bottomAd.style.display = '';
       root.dataset.adRail = 'bottom';
       moveSlotTo(bottomHost);
     }
@@ -123,11 +127,16 @@ const ensureAds = () => {
   document.body.appendChild(policyRow);
 
   updateAdLayout();
-  window.addEventListener('load', updateAdLayout);
-  window.addEventListener('resize', () => {
-    window.clearTimeout(window.__ccAdLayoutResize);
-    window.__ccAdLayoutResize = window.setTimeout(updateAdLayout, 120);
-  });
+  let layoutRaf = 0;
+  const scheduleAdLayout = () => {
+    if (layoutRaf) return;
+    layoutRaf = window.requestAnimationFrame(() => {
+      layoutRaf = 0;
+      updateAdLayout();
+    });
+  };
+  window.addEventListener('load', scheduleAdLayout, { passive: true });
+  window.addEventListener('resize', scheduleAdLayout, { passive: true });
 };
 
 if (document.readyState === 'loading') {

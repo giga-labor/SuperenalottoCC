@@ -3,6 +3,19 @@ const GA_MEASUREMENT_ID = 'G-7FLYS8Y9BB';
 (() => {
   if (!GA_MEASUREMENT_ID) return;
 
+  const ensurePreconnect = (href) => {
+    if (!href) return;
+    if (document.querySelector(`link[rel="preconnect"][href="${href}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'preconnect';
+    link.href = href;
+    link.crossOrigin = 'anonymous';
+    document.head.appendChild(link);
+  };
+
+  ensurePreconnect('https://www.googletagmanager.com');
+  ensurePreconnect('https://www.google-analytics.com');
+
   const existingLoader = document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"]`);
   if (!existingLoader) {
     const gtagScript = document.createElement('script');
@@ -18,7 +31,7 @@ const GA_MEASUREMENT_ID = 'G-7FLYS8Y9BB';
 
   if (!window.__ccGa4Initialized) {
     window.gtag('js', new Date());
-    window.gtag('config', GA_MEASUREMENT_ID);
+    window.gtag('config', GA_MEASUREMENT_ID, { transport_type: 'beacon' });
     window.__ccGa4Initialized = true;
   }
 })();

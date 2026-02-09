@@ -31,6 +31,9 @@ function bindSpotlightHeroFallbackDepth() {
     // even when global depth binding is absent or overridden by page-specific styles.
     if (card.dataset.heroDepthBound === '1') return;
     card.dataset.heroDepthBound = '1';
+    let rect = null;
+    let raf = 0;
+    let pending = null;
 
     const reset = () => {
       card.style.setProperty('--card-rotate-x', '0deg');
@@ -51,27 +54,35 @@ function bindSpotlightHeroFallbackDepth() {
     };
 
     const onMove = (event) => {
-      const rect = card.getBoundingClientRect();
+      if (event.pointerType === 'touch') return;
+      if (!rect) rect = card.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
-      const x = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
-      const y = Math.min(Math.max((event.clientY - rect.top) / rect.height, 0), 1);
-      const dx = x * 2 - 1;
-      const dy = y * 2 - 1;
+      pending = { x: event.clientX, y: event.clientY };
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        if (!pending || !rect) return;
+        const x = Math.min(Math.max((pending.x - rect.left) / rect.width, 0), 1);
+        const y = Math.min(Math.max((pending.y - rect.top) / rect.height, 0), 1);
+        const dx = x * 2 - 1;
+        const dy = y * 2 - 1;
 
-      card.style.setProperty('--card-glow-x', `${(x * 100).toFixed(1)}%`);
-      card.style.setProperty('--card-glow-y', `${(y * 100).toFixed(1)}%`);
-      card.style.setProperty('--spotlight-glow-x', `${(x * 100).toFixed(1)}%`);
-      card.style.setProperty('--spotlight-glow-y', `${(y * 100).toFixed(1)}%`);
-      card.style.setProperty('--card-rotate-x', `${(-6 * dy).toFixed(2)}deg`);
-      card.style.setProperty('--card-rotate-y', `${(8 * dx).toFixed(2)}deg`);
-      card.style.setProperty('--edge-left-a', (0.14 + Math.max(0, -dx) * 0.26).toFixed(3));
-      card.style.setProperty('--edge-right-a', (0.14 + Math.max(0, dx) * 0.26).toFixed(3));
-      card.style.setProperty('--edge-top-a', (0.16 + Math.max(0, -dy) * 0.24).toFixed(3));
-      card.style.setProperty('--edge-bottom-a', (0.16 + Math.max(0, dy) * 0.24).toFixed(3));
-      card.classList.add('is-hovered');
+        card.style.setProperty('--card-glow-x', `${(x * 100).toFixed(1)}%`);
+        card.style.setProperty('--card-glow-y', `${(y * 100).toFixed(1)}%`);
+        card.style.setProperty('--spotlight-glow-x', `${(x * 100).toFixed(1)}%`);
+        card.style.setProperty('--spotlight-glow-y', `${(y * 100).toFixed(1)}%`);
+        card.style.setProperty('--card-rotate-x', `${(-6 * dy).toFixed(2)}deg`);
+        card.style.setProperty('--card-rotate-y', `${(8 * dx).toFixed(2)}deg`);
+        card.style.setProperty('--edge-left-a', (0.14 + Math.max(0, -dx) * 0.26).toFixed(3));
+        card.style.setProperty('--edge-right-a', (0.14 + Math.max(0, dx) * 0.26).toFixed(3));
+        card.style.setProperty('--edge-top-a', (0.16 + Math.max(0, -dy) * 0.24).toFixed(3));
+        card.style.setProperty('--edge-bottom-a', (0.16 + Math.max(0, dy) * 0.24).toFixed(3));
+        card.classList.add('is-hovered');
+      });
     };
 
     const onEnter = () => {
+      rect = card.getBoundingClientRect();
       card.classList.add('is-hovered');
       card.style.setProperty('--card-lift', '-8px');
       card.style.setProperty('--card-z', '10px');
@@ -79,15 +90,19 @@ function bindSpotlightHeroFallbackDepth() {
 
     const onLeave = () => {
       card.classList.remove('is-hovered');
+      rect = null;
+      pending = null;
+      if (raf) {
+        window.cancelAnimationFrame(raf);
+        raf = 0;
+      }
       reset();
     };
 
-    card.addEventListener('pointerenter', onEnter);
-    card.addEventListener('pointermove', onMove);
-    card.addEventListener('pointerleave', onLeave);
-    card.addEventListener('pointercancel', onLeave);
-    card.addEventListener('mouseenter', onEnter);
-    card.addEventListener('mouseleave', onLeave);
+    card.addEventListener('pointerenter', onEnter, { passive: true });
+    card.addEventListener('pointermove', onMove, { passive: true });
+    card.addEventListener('pointerleave', onLeave, { passive: true });
+    card.addEventListener('pointercancel', onLeave, { passive: true });
 
     reset();
   });

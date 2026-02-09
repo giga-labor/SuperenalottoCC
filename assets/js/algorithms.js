@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   enableCardDepthForAll();
   const area = document.querySelector('[data-algorithms-area]');
   const counter = document.querySelector('[data-algorithms-count]');
-  const spotlightArea = document.querySelector('[data-spotlight-cards]');
-  if (spotlightArea) {
-    loadSpotlightCards(spotlightArea);
-  }
   if (!area) return;
   loadAlgorithms(area, counter);
 });
@@ -16,10 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadSpotlightCards(area) {
   try {
     const cards = await loadCardsIndex(spotlightCardsIndexPath);
-    const spotlight = cards
-      .filter((card) => card.isActive !== false)
-      .sort(sortBySpotlightType)
-      .slice(0, 3);
+    const spotlight = pickSpotlightByCategory(cards);
     await renderSpotlightCards(area, spotlight);
   } catch (error) {
     area.innerHTML = '<div class="rounded-2xl border border-dashed border-white/15 bg-transparent p-5 text-sm text-ash">Impossibile caricare le tipologie.</div>';
@@ -28,10 +21,12 @@ async function loadSpotlightCards(area) {
 
 async function loadAlgorithms(area, counter) {
   try {
-    const cards = await loadCardsIndex(cardsIndexPath);
+    const [cards, spotlightCards] = await Promise.all([
+      loadCardsIndex(cardsIndexPath),
+      loadCardsIndex(spotlightCardsIndexPath).catch(() => [])
+    ]);
     const algorithms = cards.filter((card) => card.id && card.id !== 'storico-estrazioni');
-    const grouped = groupByMacro(algorithms);
-    await renderAlgorithms(area, grouped);
+    await renderAlgorithms(area, algorithms, spotlightCards);
     if (counter) {
       counter.textContent = `${algorithms.length} algoritmi`;
     }
@@ -65,36 +60,96 @@ function resolveWithBase(path) {
   return new URL(trimmed, base).toString();
 }
 
-async function renderAlgorithms(area, grouped) {
+async function renderAlgorithms(area, algorithms, spotlightCards = []) {
   area.innerHTML = '';
   const gridObservers = [];
-  for (const group of grouped) {
-    const section = document.createElement('section');
-    section.className = 'mt-10';
-    section.id = `group-${sanitizeId(group.key)}`;
-    section.style.scrollMarginTop = '140px';
-    section.innerHTML = `
-      <div class="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neon/30 bg-neon/5 px-4 py-3 shadow-[0_0_18px_rgba(255,217,102,0.18)]">
-        <div class="flex items-center gap-3">
-          <span class="rounded-full border border-neon/40 bg-neon/15 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-neon">Macro area</span>
-          <h2 class="text-xl font-semibold text-white">${group.label}</h2>
-        </div>
-        <p class="text-xs uppercase tracking-[0.2em] text-ash">Totale algoritmi: ${group.items.length}</p>
-      </div>
-      <div class="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-group-grid></div>
-    `;
+  const tabsRoot = document.createElement('div');
+  tabsRoot.className = 'tabs-shell mt-2';
+  tabsRoot.dataset.tabsRoot = '';
+  tabsRoot.dataset.tabPanelLabel = 'off';
+  const tabsRow = document.createElement('div');
+  tabsRow.className = 'folder-tabs';
+  const tabsSheet = document.createElement('div');
+  tabsSheet.className = 'tabs-sheet';
 
-    const grid = section.querySelector('[data-group-grid]');
-    const cards = await Promise.all(
-      group.items.map((algorithm) => createAlgorithmCard(algorithm, { forceActive: false }))
-    );
-    cards.forEach((card) => grid.appendChild(card));
+  const buckets = {
+    statistici: [],
+    neurali: [],
+    ibridi: []
+  };
 
-    area.appendChild(section);
+  algorithms.forEach((algorithm) => {
+    const category = classifyAlgorithmCategory(algorithm);
+    buckets[category].push(algorithm);
+  });
 
-    if (grid) bindAlgorithmGridLayout(grid, gridObservers);
+  const tabDefs = [
+    { key: 'tipologie', label: 'Tipologie' },
+    { key: 'statistici', label: 'Statistici' },
+    { key: 'neurali', label: 'Neurali' },
+    { key: 'ibridi', label: 'Ibridi' }
+  ];
+
+  for (let index = 0; index < tabDefs.length; index += 1) {
+    const tabDef = tabDefs[index];
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `tab-btn${index === 0 ? ' is-active' : ''}`;
+    button.dataset.tabTarget = tabDef.key;
+    button.textContent = tabDef.label;
+    tabsRow.appendChild(button);
+
+    const panel = document.createElement('section');
+    panel.className = `tab-panel space-y-10${index === 0 ? ' is-active' : ''}`;
+    panel.dataset.tabPanel = tabDef.key;
+
+    if (tabDef.key === 'tipologie') {
+      const spotlight = pickSpotlightByCategory(spotlightCards);
+      if (!spotlight.length) {
+        panel.innerHTML = '<div class="rounded-2xl border border-dashed border-white/15 bg-midnight/70 p-5 text-sm text-ash">Nessuna tipologia disponibile.</div>';
+      } else {
+        const grid = document.createElement('div');
+        grid.className = 'grid min-h-[220px] gap-4 sm:grid-cols-2 lg:grid-cols-3';
+        const cards = await Promise.all(
+          spotlight.map((algorithm) => createAlgorithmCard(algorithm, { forceActive: false }))
+        );
+        cards.forEach((card) => grid.appendChild(card));
+        panel.appendChild(grid);
+        bindAlgorithmGridLayout(grid, gridObservers);
+      }
+    } else {
+      const items = buckets[tabDef.key] || [];
+      if (!items.length) {
+        panel.innerHTML = '<div class="rounded-2xl border border-dashed border-white/15 bg-midnight/70 p-5 text-sm text-ash">Nessuna tipologia disponibile.</div>';
+        tabsSheet.appendChild(panel);
+        continue;
+      }
+      const intro = document.createElement('div');
+      intro.className = 'flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-neon/30 bg-neon/5 px-4 py-3 shadow-[0_0_18px_rgba(255,217,102,0.18)]';
+      const activeCount = items.filter((item) => item?.isActive !== false).length;
+      intro.innerHTML = `
+        <p class="text-xs uppercase tracking-[0.2em] text-ash">Totale: ${items.length} · Attivi: ${activeCount}</p>
+      `;
+      panel.appendChild(intro);
+
+      const grid = document.createElement('div');
+      grid.className = 'mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
+      grid.dataset.groupGrid = '';
+      const cards = await Promise.all(
+        items.map((algorithm) => createAlgorithmCard(algorithm, { forceActive: false }))
+      );
+      cards.forEach((card) => grid.appendChild(card));
+      panel.appendChild(grid);
+      bindAlgorithmGridLayout(grid, gridObservers);
+    }
+
+    tabsSheet.appendChild(panel);
   }
 
+  tabsRoot.appendChild(tabsRow);
+  tabsRoot.appendChild(tabsSheet);
+  area.appendChild(tabsRoot);
+  initTabsRootLocal(tabsRoot);
   enableCardDepthForAll();
   scrollToGroupHash();
 }
@@ -119,14 +174,22 @@ async function renderSpotlightCards(area, cards) {
 }
 
 async function createAlgorithmCard(algorithm, options = {}) {
+  const tuneCardMedia = (card) => {
+    const image = card?.querySelector?.('img');
+    if (!image) return card;
+    if (!image.getAttribute('decoding')) image.setAttribute('decoding', 'async');
+    if (!image.getAttribute('loading')) image.setAttribute('loading', 'lazy');
+    return card;
+  };
   if (window.CARDS && typeof window.CARDS.buildAlgorithmCard === 'function') {
-    return window.CARDS.buildAlgorithmCard(algorithm, options);
+    const card = await window.CARDS.buildAlgorithmCard(algorithm, options);
+    return tuneCardMedia(card);
   }
   const fallback = document.createElement('a');
   fallback.className = 'card-3d algorithm-card is-active';
   fallback.href = resolveWithBase(algorithm.page || '#') || '#';
   fallback.textContent = algorithm.title || 'Algoritmo';
-  return fallback;
+  return tuneCardMedia(fallback);
 }
 
 function enableCardDepthForAll() {
@@ -156,6 +219,133 @@ function sortBySpotlightType(a, b) {
   return String(a?.title || '').localeCompare(String(b?.title || ''));
 }
 
+function classifyCategoryFromText(value) {
+  const key = String(value || '').toLowerCase();
+  if (key.includes('neur')) return 'neurali';
+  if (key.includes('ibrid')) return 'ibridi';
+  return 'statistici';
+}
+
+function classifyAlgorithmCategory(algorithm) {
+  const macro = String(algorithm?.macroGroup || '');
+  const id = String(algorithm?.id || '');
+  const title = String(algorithm?.title || '');
+  return classifyCategoryFromText(`${macro} ${id} ${title}`);
+}
+
+function pickSpotlightByCategory(cards) {
+  const active = (cards || []).filter((card) => card?.isActive !== false);
+  const chosen = [];
+  const usedIds = new Set();
+  const categories = ['statistici', 'neurali', 'ibridi'];
+
+  categories.forEach((category) => {
+    const match = active.find((card) => {
+      const cardCategory = classifyAlgorithmCategory(card);
+      return cardCategory === category && !usedIds.has(card.id);
+    });
+    if (match) {
+      chosen.push(match);
+      usedIds.add(match.id);
+    }
+  });
+
+  if (chosen.length < 3) {
+    const fallback = active
+      .filter((card) => !usedIds.has(card.id))
+      .sort(sortBySpotlightType)
+      .slice(0, 3 - chosen.length);
+    fallback.forEach((card) => {
+      chosen.push(card);
+      usedIds.add(card.id);
+    });
+  }
+  return chosen.slice(0, 3);
+}
+
+function initTabsRootLocal(root) {
+  if (!root || root.dataset.tabsReady === '1') return;
+  const buttons = Array.from(root.querySelectorAll('[data-tab-target]'));
+  const panels = Array.from(root.querySelectorAll('[data-tab-panel]'));
+  const shell = root.classList.contains('tabs-shell') ? root : root.closest('.tabs-shell');
+  const sheet = shell ? shell.querySelector('.tabs-sheet') : null;
+  const tabRow = shell ? shell.querySelector('.folder-tabs') : null;
+  if (!buttons.length || !panels.length || !shell || !sheet || !tabRow) return;
+  const showPanelLabel = root.dataset.tabPanelLabel !== 'off';
+  const getLabelByTarget = (target) => {
+    const button = buttons.find((btn) => btn.dataset.tabTarget === target);
+    return button ? button.textContent.trim() : '';
+  };
+
+  const ensurePanelLabels = () => {
+    if (!showPanelLabel) {
+      panels.forEach((panel) => {
+        panel.querySelectorAll(':scope > [data-tab-active-label]').forEach((label) => label.remove());
+      });
+      return;
+    }
+    panels.forEach((panel) => {
+      let label = panel.querySelector(':scope > [data-tab-active-label]');
+      if (!label) {
+        label = document.createElement('p');
+        label.className = 'tab-active-label';
+        label.dataset.tabActiveLabel = '';
+        label.setAttribute('aria-live', 'polite');
+        panel.prepend(label);
+      }
+      label.textContent = getLabelByTarget(panel.dataset.tabPanel);
+    });
+  };
+
+  const updateNotch = () => {
+    const activeBtn = buttons.find((btn) => btn.classList.contains('is-active')) || buttons[0];
+    if (!activeBtn) return;
+    const rowRect = tabRow.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
+    const firstBtnRect = buttons[0]?.getBoundingClientRect();
+    const left = Math.max(0, btnRect.left - rowRect.left);
+    const width = Math.max(0, btnRect.width);
+    const isWrapped = Boolean(firstBtnRect) && rowRect.height > (firstBtnRect.height + 6);
+    const isOverflowing = tabRow.scrollWidth > (tabRow.clientWidth + 4);
+    shell.classList.toggle('is-compact-tabs', isWrapped || isOverflowing);
+    shell.style.setProperty('--active-notch-left', `${left.toFixed(2)}px`);
+    shell.style.setProperty('--active-notch-width', `${width.toFixed(2)}px`);
+  };
+
+  const activate = (target) => {
+    buttons.forEach((btn) => btn.classList.toggle('is-active', btn.dataset.tabTarget === target));
+    panels.forEach((panel) => panel.classList.toggle('is-active', panel.dataset.tabPanel === target));
+    updateNotch();
+  };
+
+  const refreshTabsLayout = () => window.requestAnimationFrame(updateNotch);
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => activate(btn.dataset.tabTarget));
+  });
+  window.addEventListener('resize', refreshTabsLayout, { passive: true });
+  window.addEventListener('orientationchange', refreshTabsLayout, { passive: true });
+  window.addEventListener('pageshow', refreshTabsLayout, { passive: true });
+  document.addEventListener('visibilitychange', refreshTabsLayout, { passive: true });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', refreshTabsLayout, { passive: true });
+  }
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(() => refreshTabsLayout());
+    observer.observe(shell);
+    observer.observe(tabRow);
+    root._tabsResizeObserver = observer;
+  }
+  root.dataset.tabsReady = '1';
+  ensurePanelLabels();
+  refreshTabsLayout();
+  window.setTimeout(refreshTabsLayout, 80);
+  window.setTimeout(refreshTabsLayout, 220);
+  if (document.fonts && typeof document.fonts.ready?.then === 'function') {
+    document.fonts.ready.then(refreshTabsLayout).catch(() => {});
+  }
+}
+
 function bindAlgorithmGridLayout(grid, observersStore) {
   const getCardMin = () => {
     if (window.CARDS && typeof window.CARDS.getCardSizing === 'function') {
@@ -176,18 +366,28 @@ function bindAlgorithmGridLayout(grid, observersStore) {
     const cardMin = getCardMin();
     const gap = getGap();
     const columns = Math.max(1, Math.floor((width + gap) / (cardMin + gap)));
+    if (grid.dataset.columnsApplied === String(columns)) return;
+    grid.dataset.columnsApplied = String(columns);
     grid.style.setProperty('display', 'grid');
     grid.style.setProperty('width', '100%');
     grid.style.setProperty('grid-template-columns', `repeat(${columns}, minmax(0, 1fr))`, 'important');
   };
 
   updateColumns();
+  let raf = 0;
+  const scheduleUpdate = () => {
+    if (raf) return;
+    raf = window.requestAnimationFrame(() => {
+      raf = 0;
+      updateColumns();
+    });
+  };
   if ('ResizeObserver' in window) {
-    const observer = new ResizeObserver(() => updateColumns());
+    const observer = new ResizeObserver(() => scheduleUpdate());
     observer.observe(grid);
     if (Array.isArray(observersStore)) observersStore.push(observer);
   } else {
-    window.addEventListener('resize', updateColumns);
+    window.addEventListener('resize', scheduleUpdate, { passive: true });
   }
 }
 

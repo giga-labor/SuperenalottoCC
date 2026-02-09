@@ -17,6 +17,11 @@
   gap: 0.42rem;
 }
 
+.ad-rail[hidden],
+.bottom-ad[hidden] {
+  display: none !important;
+}
+
 .ad-rail--right {
   right: 0;
   left: auto;
@@ -226,6 +231,18 @@ html[data-ad-rail="bottom"] .mx-auto.max-w-5xl {
 
 html[data-ad-rail="bottom"] .ad-rail {
   display: none !important;
+}
+
+html[data-ad-rail="right"] .bottom-ad {
+  display: none !important;
+}
+
+html[data-ad-rail="right"] .ad-rail {
+  display: flex !important;
+}
+
+html[data-ad-rail="bottom"] .bottom-ad {
+  display: flex !important;
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {

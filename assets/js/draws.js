@@ -11,7 +11,11 @@ const elements = {
   status: document.querySelector('[data-draws-status]'),
   prev: document.querySelector('[data-draws-prev]'),
   next: document.querySelector('[data-draws-next]'),
-  page: document.querySelector('[data-draws-page]')
+  page: document.querySelector('[data-draws-page]'),
+  scrollShell: document.querySelector('[data-draws-scroll-shell]'),
+  scroll: document.querySelector('[data-draws-scroll]'),
+  scrollbar: document.querySelector('[data-draws-scrollbar]'),
+  scrollbarInner: document.querySelector('[data-draws-scrollbar-inner]')
 };
 
 let rows = [];
@@ -20,6 +24,8 @@ let headers = [];
 let dateIndex = -1;
 let drawNumberIndexes = [];
 let currentPage = 1;
+let searchTimer = null;
+let syncingScroll = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   if (!elements.body) return;
@@ -66,6 +72,7 @@ function showUnavailable(message) {
   if (elements.count) elements.count.textContent = '???';
   if (elements.first) elements.first.textContent = '???';
   if (elements.last) elements.last.textContent = '???';
+  updateHorizontalScrollControls();
 }
 function detectDelimiter(line) {
   const semi = (line.match(/;/g) || []).length;
@@ -127,6 +134,7 @@ function renderHeader(headers) {
     })
     .join('');
   elements.header.innerHTML = headerRow;
+  updateHorizontalScrollControls();
 }
 
 function applyFilter(term) {
@@ -174,10 +182,11 @@ function renderTable() {
     elements.body.innerHTML = `<tr><td class="px-4 py-6 text-ash" colspan="${elements.header.children.length || 4}">Nessun record trovato.</td></tr>`;
   } else {
     elements.body.innerHTML = pageRows
-      .map((row) => `<tr>${row.map((cell) => `<td class="px-4 py-3 text-ash">${cell}</td>`).join('')}</tr>`)
+      .map((row) => `<tr>${row.map((cell) => `<td class="px-4 py-3 text-ash">${escapeHtml(cell)}</td>`).join('')}</tr>`)
       .join('');
   }
   updatePagination();
+  updateHorizontalScrollControls();
 }
 
 function updatePagination() {
@@ -209,7 +218,9 @@ function updateSummary() {
 
 function attachEvents() {
   elements.search.addEventListener('input', (event) => {
-    applyFilter(event.target.value);
+    window.clearTimeout(searchTimer);
+    const value = event.target.value;
+    searchTimer = window.setTimeout(() => applyFilter(value), 120);
   });
   elements.prev.addEventListener('click', () => {
     if (currentPage > 1) {
@@ -224,4 +235,63 @@ function attachEvents() {
       renderTable();
     }
   });
+  if (elements.scroll) {
+    elements.scroll.addEventListener('scroll', () => {
+      syncFromTableScroll();
+      updateHorizontalScrollControls();
+    }, { passive: true });
+  }
+  if (elements.scrollbar) {
+    elements.scrollbar.addEventListener('scroll', () => {
+      syncFromFixedBarScroll();
+      updateHorizontalScrollControls();
+    }, { passive: true });
+  }
+  window.addEventListener('resize', updateHorizontalScrollControls, { passive: true });
+  window.addEventListener('orientationchange', updateHorizontalScrollControls, { passive: true });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', updateHorizontalScrollControls, { passive: true });
+  }
+  if ('ResizeObserver' in window && elements.scroll) {
+    const observer = new ResizeObserver(() => updateHorizontalScrollControls());
+    observer.observe(elements.scroll);
+  }
+}
+
+function syncFromTableScroll() {
+  if (syncingScroll || !elements.scroll || !elements.scrollbar) return;
+  syncingScroll = true;
+  elements.scrollbar.scrollLeft = elements.scroll.scrollLeft;
+  syncingScroll = false;
+}
+
+function syncFromFixedBarScroll() {
+  if (syncingScroll || !elements.scroll || !elements.scrollbar) return;
+  syncingScroll = true;
+  elements.scroll.scrollLeft = elements.scrollbar.scrollLeft;
+  syncingScroll = false;
+}
+
+function updateHorizontalScrollControls() {
+  if (!elements.scroll || !elements.scrollbar || !elements.scrollbarInner) return;
+
+  const maxScroll = Math.max(0, elements.scroll.scrollWidth - elements.scroll.clientWidth);
+  const hasOverflow = maxScroll > 4;
+
+  if (elements.scrollShell) {
+    elements.scrollShell.classList.toggle('has-scroll-controls', hasOverflow);
+  }
+  elements.scrollbar.hidden = !hasOverflow;
+  if (!hasOverflow) return;
+  elements.scrollbarInner.style.width = `${elements.scroll.scrollWidth}px`;
+  syncFromTableScroll();
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }

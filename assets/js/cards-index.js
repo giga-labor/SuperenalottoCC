@@ -1,5 +1,6 @@
 (() => {
   const BASE = window.CC_BASE || createBase();
+  const JSON_CACHE = new Map();
   if (!window.CC_BASE) {
     window.CC_BASE = BASE;
   }
@@ -106,14 +107,22 @@
   }
 
   async function fetchJson(url, options, silent) {
-    try {
+    if (JSON_CACHE.has(url)) {
+      return JSON_CACHE.get(url);
+    }
+    const loadPromise = (async () => {
       const response = await fetch(url, options);
       if (!response.ok) {
         if (silent) return null;
         throw new Error(`status ${response.status}`);
       }
       return response.json();
+    })();
+    JSON_CACHE.set(url, loadPromise);
+    try {
+      return await loadPromise;
     } catch (error) {
+      JSON_CACHE.delete(url);
       if (silent) return null;
       throw error;
     }
