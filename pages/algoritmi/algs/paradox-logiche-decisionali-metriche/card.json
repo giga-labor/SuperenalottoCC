@@ -1,14 +1,15 @@
 {
-    "id":  "paradox-logiche-decisionali-metriche",
-    "title":  "Paradox Logiche Decisionali Metriche",
-    "subtitle":  "Descrizione in arrivo",
-    "image":  "img.webp",
-    "lastUpdated":  "07/02/2026",
-    "hasNews":  false,
-    "statusTag":  "Scheda tecnica",
-    "narrativeSummary":  "Aggiornamenti in preparazione.",
-    "page":  "pages/algoritmi/algs/paradox-logiche-decisionali-metriche/",
-    "macroGroup":  "ibrido",
-    "isActive":  false,
-    "no_data_show":  true
+  "id": "paradox-logiche-decisionali-metriche",
+  "title": "Paradox Logiche Decisionali Metriche",
+  "subtitle": "Descrizione in arrivo",
+  "image": "img.webp",
+  "lastUpdated": "07/02/2026",
+  "hasNews": false,
+  "statusTag": "Scheda tecnica",
+  "narrativeSummary": "Aggiornamenti in preparazione.",
+  "page": "pages/algoritmi/algs/paradox-logiche-decisionali-metriche/",
+  "macroGroup": "ibrido",
+  "isActive": false,
+  "no_data_show": true,
+  "accessTier": "off"
 }

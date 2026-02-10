@@ -1,14 +1,15 @@
 {
-    "id":  "superenalottoAI",
-    "title":  "SuperEnalotto AI",
-    "subtitle":  "Pipeline end-to-end: feature, training, predizione, ranking",
-    "image":  "img.webp",
-    "lastUpdated":  "07/02/2026",
-    "hasNews":  false,
-    "statusTag":  "Scheda tecnica",
-    "narrativeSummary":  "Pipeline end-to-end: feature, training, predizione e ranking.",
-    "page":  "pages/algoritmi/algs/superenalottoAI/index.html",
-    "macroGroup":  "neurale",
-    "isActive":  false,
-    "no_data_show":  true
+  "id": "superenalottoAI",
+  "title": "SuperEnalotto AI",
+  "subtitle": "Pipeline end-to-end: feature, training, predizione, ranking",
+  "image": "img.webp",
+  "lastUpdated": "07/02/2026",
+  "hasNews": false,
+  "statusTag": "Scheda tecnica",
+  "narrativeSummary": "Pipeline end-to-end: feature, training, predizione e ranking.",
+  "page": "pages/algoritmi/algs/superenalottoAI/index.html",
+  "macroGroup": "neurale",
+  "isActive": false,
+  "no_data_show": true,
+  "accessTier": "off"
 }

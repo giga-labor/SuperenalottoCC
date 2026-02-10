@@ -60,6 +60,8 @@
     if (card.isActive === undefined) card.isActive = false;
     if (!card.title) card.title = card.id || id;
     if (card.no_data_show === undefined) card.no_data_show = true;
+    const tierRaw = String(card.accessTier ?? 'off').trim().toLowerCase();
+    card.accessTier = ['off', 'free', 'premium', 'gold'].includes(tierRaw) ? tierRaw : 'off';
 
     return card;
   }

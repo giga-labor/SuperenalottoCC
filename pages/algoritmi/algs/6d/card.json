@@ -10,5 +10,6 @@
   "page": "pages/algoritmi/algs/6d/",
   "macroGroup": "statistica",
   "isActive": false,
-  "no_data_show": true
+  "no_data_show": true,
+  "accessTier": "off"
 }

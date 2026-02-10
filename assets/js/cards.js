@@ -94,6 +94,98 @@ const CARDS = {
           0 0 36px rgba(216, 255, 76, 1),
           0 0 58px rgba(178, 255, 30, 0.95) !important;
       }
+      .cc-tier-ribbon {
+        position: absolute;
+        top: 10px;
+        right: -8px;
+        width: auto;
+        transform: rotate(45deg) translateZ(16px);
+        transform-origin: center;
+        pointer-events: none;
+        z-index: 18;
+        text-align: center;
+      }
+      .cc-tier-ribbon__inner {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.24rem;
+        min-width: 0;
+        width: max-content;
+        padding: 0.28rem 0.62rem 0.24rem;
+        border-radius: 0.34rem;
+        border: 1px solid rgba(255,255,255,0.52);
+        letter-spacing: 0.1em;
+        font-size: 0.67rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-shadow: 0 1px 0 rgba(0,0,0,0.55), 0 0 8px rgba(0,0,0,0.25);
+        white-space: nowrap;
+      }
+      .cc-tier-ribbon--free .cc-tier-ribbon__inner {
+        color: #2af07b;
+        background: transparent;
+        border-color: transparent;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        -webkit-text-stroke: 0.55px rgba(255, 255, 255, 0.96);
+        text-shadow:
+          0 1px 0 rgba(255,255,255,0.88),
+          0 4px 10px rgba(0,0,0,0.96),
+          0 8px 18px rgba(0,0,0,0.9),
+          0 12px 26px rgba(0,0,0,0.82),
+          0 16px 34px rgba(0,0,0,0.7),
+          0 0 12px rgba(52, 244, 138, 0.34);
+        box-shadow: none;
+      }
+      .cc-tier-ribbon--premium .cc-tier-ribbon__inner,
+      .cc-tier-ribbon--gold .cc-tier-ribbon__inner {
+        color: #2b1400;
+        border-color: rgba(255, 235, 158, 0.95);
+        background: linear-gradient(180deg, #fff9dc 0%, #f4d87a 36%, #cc9a27 70%, #a46f08 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.9),
+          inset 0 -2px 0 rgba(90, 53, 0, 0.72),
+          0 0 0 1px rgba(255, 222, 112, 0.84),
+          0 10px 18px rgba(144, 95, 5, 0.45),
+          0 0 24px rgba(255, 202, 70, 0.55);
+      }
+      .cc-tier-ribbon--gold .cc-tier-ribbon__inner {
+        padding-left: 0.56rem;
+        padding-right: 0.58rem;
+      }
+      .cc-tier-crown {
+        display: inline-block;
+        font-size: 0.65rem;
+        line-height: 1;
+        color: #5b2e00;
+        text-shadow: 0 1px 0 rgba(255, 245, 186, 0.75);
+      }
+      .card-type-badge.card-type-badge--news {
+        top: auto;
+        left: 0.55rem;
+        bottom: 0.42rem;
+        transform: none;
+        min-width: 0;
+        text-align: left;
+        justify-content: flex-start;
+        letter-spacing: 0.015em;
+        text-transform: none;
+        font-style: italic;
+        font-family: "Segoe Script", "Lucida Handwriting", "Bradley Hand", "Brush Script MT", cursive;
+        font-size: 0.82rem;
+        font-weight: 700;
+        background: linear-gradient(180deg, #ff4a4a 0%, #d91515 100%);
+        border-radius: 0.42rem;
+        padding: 0.08rem 0.38rem;
+        color: #ffffff;
+        -webkit-text-stroke: 0.45px rgba(255, 255, 255, 0.92);
+        text-shadow:
+          0 1px 0 rgba(255,255,255,0.45),
+          0 2px 6px rgba(0,0,0,0.78),
+          0 0 10px rgba(0,0,0,0.35);
+      }
     `;
     document.head.appendChild(style);
   },
@@ -142,6 +234,10 @@ const CARDS = {
     const active = options.forceActive ? true : (algorithm.isActive !== false);
     const noDataShow = algorithm?.no_data_show !== false;
     const typeLabel = this.resolveCardType(algorithm);
+    const showNewsBadge = typeLabel === 'NOVITA';
+    const typeBadgeMarkup = showNewsBadge ? '<span class="card-type-badge card-type-badge--news">Novita</span>' : '';
+    const accessTier = this.resolveAccessTier(algorithm);
+    const accessBadge = this.buildAccessBadgeMarkup(accessTier);
     const baseDescription = algorithm.subtitle || algorithm.narrativeSummary || 'Descrizione in arrivo';
     const usesOutData = Boolean(algorithm?.usesOutData === true);
     const [metricsRows, historicalRows, latestArchiveSeq] = usesOutData
@@ -196,8 +292,9 @@ const CARDS = {
       ${active ? '' : '<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/45"><span class="select-none whitespace-nowrap text-[clamp(0.68rem,2.1vw,1.9rem)] font-semibold uppercase tracking-[clamp(0.16em,0.8vw,0.5em)] text-neon/60 rotate-[-60deg] [text-shadow:0_0_18px_rgba(255,217,102,0.65),0_0_32px_rgba(0,0,0,0.85)]">coming soon</span></div>'}
       <div class="cc-card-media algorithm-card__media algorithm-card__media--third relative overflow-hidden">
         <img class="h-full w-full object-cover" src="${imageUrl}" alt="Anteprima di ${algorithm.title}">
-        <span class="card-type-badge">${typeLabel}</span>
+        ${typeBadgeMarkup}
         <span class="card-date-badge${noDataDate && !hideNoDataDate ? ' is-no-data' : ''}${hideNoDataDate ? ' hidden' : ''}" data-date-badge>${hideNoDataDate ? '' : dateLabel}</span>
+        ${accessBadge}
       </div>
       <div class="cc-card-body algorithm-card__body flex flex-1 flex-col gap-1.5 px-4 pt-2.5 pb-10">
         <span class="text-[10px] uppercase tracking-[0.22em] text-neon/90">${algorithm.macroGroup || 'algoritmo'}</span>
@@ -231,6 +328,20 @@ const CARDS = {
       size -= 0.02;
       badge.style.fontSize = `${size.toFixed(2)}rem`;
     }
+  },
+
+
+  resolveAccessTier(card) {
+    const raw = String(card?.accessTier || card?.tier || 'off').trim().toLowerCase();
+    if (raw === 'free' || raw === 'premium' || raw === 'gold') return raw;
+    return 'off';
+  },
+
+  buildAccessBadgeMarkup(tier) {
+    if (!tier || tier === 'off') return '';
+    const label = tier.toUpperCase();
+    const crown = tier === 'gold' ? '<span class="cc-tier-crown" aria-hidden="true">&#9819;</span>' : '';
+    return `<span class="cc-tier-ribbon cc-tier-ribbon--${tier}" aria-label="Piano ${label}"><span class="cc-tier-ribbon__inner">${crown}${label}</span></span>`;
   },
 
   resolveCardType(card) {

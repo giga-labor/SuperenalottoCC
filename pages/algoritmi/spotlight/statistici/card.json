@@ -1,14 +1,15 @@
 {
-    "id":  "tipologia-statistici",
-    "title":  "Algoritmi Statistici",
-    "subtitle":  "Modelli basati su frequenze, distribuzioni e trend storici",
-    "image":  "img.webp",
-    "lastUpdated":  "07/02/2026",
-    "hasNews":  false,
-    "statusTag":  "Tipologia",
-    "narrativeSummary":  "Ingressi dedicati agli algoritmi statistici del catalogo.",
-    "page":  "pages/algoritmi/spotlight/statistici/",
-    "macroGroup":  "statistici",
-    "isActive":  true,
-    "no_data_show":  false
+  "id": "tipologia-statistici",
+  "title": "Algoritmi Statistici",
+  "subtitle": "Modelli basati su frequenze, distribuzioni e trend storici",
+  "image": "img.webp",
+  "lastUpdated": "07/02/2026",
+  "hasNews": false,
+  "statusTag": "Tipologia",
+  "narrativeSummary": "Ingressi dedicati agli algoritmi statistici del catalogo.",
+  "page": "pages/algoritmi/spotlight/statistici/",
+  "macroGroup": "statistici",
+  "isActive": true,
+  "no_data_show": false,
+  "accessTier": "off"
 }

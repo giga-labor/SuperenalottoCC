@@ -1,5 +1,5 @@
-﻿[
-  "pages/algoritmi/spotlight/statistici/card.json",
+[
+  "pages/algoritmi/spotlight/ibridi/card.json",
   "pages/algoritmi/spotlight/neurali/card.json",
-  "pages/algoritmi/spotlight/ibridi/card.json"
+  "pages/algoritmi/spotlight/statistici/card.json"
 ]
