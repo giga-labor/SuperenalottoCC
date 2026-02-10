@@ -1,0 +1,14 @@
+{
+    "id":  "kairos",
+    "title":  "Kairos",
+    "subtitle":  "Predittivo con Contrastive + EBM + Evolutionary",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Predittivo con Contrastive + EBM + Evolutionary.",
+    "page":  "pages/algoritmi/algs/kairos/",
+    "macroGroup":  "ibrido",
+    "isActive":  false,
+    "no_data_show":  true
+}

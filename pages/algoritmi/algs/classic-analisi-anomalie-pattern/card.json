@@ -1,0 +1,14 @@
+{
+    "id":  "classic-analisi-anomalie-pattern",
+    "title":  "classic-analisi-anomalie-pattern",
+    "subtitle":  "Analisi di anomalie e pattern",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Ricerca di fenomeni ricorrenti, sincronie di ritardo e stringhe particolari.",
+    "page":  "/pages/algoritmi/algs/classic-analisi-anomalie-pattern/",
+    "macroGroup":  "statistica",
+    "isActive":  false,
+    "no_data_show":  true
+}

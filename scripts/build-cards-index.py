@@ -1,4 +1,4 @@
-import json
+﻿import json
 import pathlib
 
 root = pathlib.Path(__file__).resolve().parent.parent
@@ -18,7 +18,10 @@ if algos_dir.exists():
             continue
         card = dict(card_data)
         card.setdefault('id', algo_dir.name)
-        card_base = f'pages/algoritmi/{algo_dir.name}/'
+
+        rel_base = algo_dir.relative_to(root).as_posix().rstrip('/') + '/'
+        card_base = rel_base
+
         card.setdefault('page', card_base)
         card.setdefault('cardBase', card_base)
         card.setdefault('image', 'img.webp')

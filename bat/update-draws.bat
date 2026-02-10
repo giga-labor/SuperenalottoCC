@@ -10,7 +10,7 @@ set "PY_SCRIPT=%REPO_DIR%\..\src\update_archives_draws.py"
 
 if not exist "%PY_SCRIPT%" (
   echo [ERRORE] Script non trovato: "%PY_SCRIPT%"
-  echo Verifica che la cartella "..\src" esista accanto a secc_clone_01.
+  echo Verifica che la cartella "..\src" esista accanto a secc.
   exit /b 1
 )
 
