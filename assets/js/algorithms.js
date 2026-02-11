@@ -36,7 +36,7 @@ async function loadAlgorithms(area, counter) {
       loadCardsIndex(cardsIndexPath),
       loadCardsIndex(spotlightCardsIndexPath).catch(() => [])
     ]);
-    const algorithms = cards.filter((card) => card.id && card.id !== 'storico-estrazioni');
+    const algorithms = cards.filter((card) => card.id && card.id !== 'storico-estrazioni' && card.view === true);
     await preloadAlgorithmRankings(algorithms);
     await renderAlgorithms(area, algorithms, spotlightCards);
     if (counter) {
@@ -50,7 +50,7 @@ async function loadAlgorithms(area, counter) {
 
 async function preloadAlgorithmRankings(cards) {
   if (!window.CARDS || typeof window.CARDS.computeRankingForAlgorithm !== 'function') return;
-  const activeCards = (cards || []).filter((card) => card?.isActive !== false);
+  const activeCards = (cards || []).filter((card) => card?.view === true && card?.isActive !== false);
   await Promise.all(activeCards.map(async (card) => {
     try {
       const ranking = await window.CARDS.computeRankingForAlgorithm(card);
@@ -138,7 +138,7 @@ async function renderAlgorithms(area, algorithms, spotlightCards = []) {
         const cards = await Promise.all(
           spotlight.map((algorithm) => createAlgorithmCard(algorithm, { forceActive: false }))
         );
-        cards.forEach((card) => grid.appendChild(card));
+        cards.filter(Boolean).forEach((card) => grid.appendChild(card));
         panel.appendChild(grid);
         bindAlgorithmGridLayout(grid, gridObservers);
       }
@@ -163,7 +163,7 @@ async function renderAlgorithms(area, algorithms, spotlightCards = []) {
       const cards = await Promise.all(
         items.map((algorithm) => createAlgorithmCard(algorithm, { forceActive: false }))
       );
-      cards.forEach((card) => grid.appendChild(card));
+      cards.filter(Boolean).forEach((card) => grid.appendChild(card));
       panel.appendChild(grid);
       bindAlgorithmGridLayout(grid, gridObservers);
     }
@@ -191,7 +191,7 @@ async function renderSpotlightCards(area, cards) {
   const builtCards = await Promise.all(
     visibleCards.map((cardData) => createAlgorithmCard(cardData, { forceActive: false }))
   );
-  builtCards.forEach((card) => area.appendChild(card));
+  builtCards.filter(Boolean).forEach((card) => area.appendChild(card));
 
   bindAlgorithmGridLayout(area, gridObservers);
 
@@ -199,6 +199,7 @@ async function renderSpotlightCards(area, cards) {
 }
 
 async function createAlgorithmCard(algorithm, options = {}) {
+  if (!algorithm || algorithm.view !== true) return null;
   const tuneCardMedia = (card) => {
     const image = card?.querySelector?.('img');
     if (!image) return card;
@@ -208,35 +209,57 @@ async function createAlgorithmCard(algorithm, options = {}) {
   };
   if (window.CARDS && typeof window.CARDS.buildAlgorithmCard === 'function') {
     const card = await window.CARDS.buildAlgorithmCard(algorithm, options);
-    return tuneCardMedia(card);
+    if (card) return tuneCardMedia(card);
+    return null;
   }
   const fallback = buildFallbackCard(algorithm);
   return tuneCardMedia(fallback);
 }
 
 function buildFallbackCard(algorithm) {
-  const href = resolveWithBase(algorithm.page || '#') || '#';
+  const active = algorithm?.isActive !== false;
+  const href = active ? (resolveWithBase(algorithm.page || '#') || '#') : '#';
   const title = algorithm.title || 'Algoritmo';
+  const overlayHtml = active ? '' : '<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/45"><span class="select-none whitespace-nowrap text-[clamp(0.68rem,2.1vw,1.9rem)] font-semibold uppercase tracking-[clamp(0.16em,0.8vw,0.5em)] text-neon/60 rotate-[-60deg] [text-shadow:0_0_18px_rgba(255,217,102,0.65),0_0_32px_rgba(0,0,0,0.85)]">coming soon</span></div>';
   const builder = window.CC_COMPONENTS;
   if (builder && typeof builder.build === 'function' && builder.has('card')) {
     const built = builder.build('card', {
       tag: 'a',
-      className: 'cc-card cc-card-action card-3d algorithm-card is-active',
+      className: `cc-card cc-card-action card-3d algorithm-card${active ? ' is-active' : ' is-inactive bg-black/70 border-white/5'}`,
       href,
       dataset: {
         cardId: String(algorithm.id || title).toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         cardType: 'action'
       },
       slots: {
+        overlay: overlayHtml,
         body: `<div class=\"cc-card-body algorithm-card__body flex flex-1 flex-col gap-2 px-4 py-4\"><h3 class=\"text-[0.98rem] font-semibold leading-tight\">${escapeHtml(title)}</h3></div>`
       }
     });
-    if (built) return built;
+    if (built) {
+      if (!active) {
+        built.setAttribute('aria-disabled', 'true');
+        built.setAttribute('tabindex', '-1');
+        built.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        });
+      }
+      return built;
+    }
   }
   const fallback = document.createElement('a');
-  fallback.className = 'cc-card cc-card-action card-3d algorithm-card is-active';
+  fallback.className = `cc-card cc-card-action card-3d algorithm-card${active ? ' is-active' : ' is-inactive bg-black/70 border-white/5'}`;
   fallback.href = href;
-  fallback.textContent = title;
+  fallback.innerHTML = `${active ? '' : overlayHtml}<span>${escapeHtml(title)}</span>`;
+  if (!active) {
+    fallback.setAttribute('aria-disabled', 'true');
+    fallback.setAttribute('tabindex', '-1');
+    fallback.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+    });
+  }
   return fallback;
 }
 
@@ -282,7 +305,7 @@ function classifyAlgorithmCategory(algorithm) {
 }
 
 function pickSpotlightByCategory(cards) {
-  const active = (cards || []).filter((card) => card?.isActive !== false);
+  const active = (cards || []).filter((card) => card?.view === true && card?.isActive !== false);
   const chosen = [];
   const usedIds = new Set();
   const categories = ['statistici', 'neurali', 'ibridi'];

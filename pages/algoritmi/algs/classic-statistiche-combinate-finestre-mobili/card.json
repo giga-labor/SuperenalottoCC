@@ -1,15 +1,17 @@
-{
-  "id": "classic-statistiche-combinate-finestre-mobili",
-  "title": "classic-statistiche-combinate-finestre-mobili",
-  "subtitle": "Statistiche combinate su finestre mobili",
-  "image": "img.webp",
-  "lastUpdated": "07/02/2026",
-  "hasNews": false,
-  "statusTag": "Scheda tecnica",
-  "narrativeSummary": "Indicatori frequenza/ritardo su ultime 50, 100 e 200 estrazioni.",
-  "page": "/pages/algoritmi/algs/classic-statistiche-combinate-finestre-mobili/",
-  "macroGroup": "statistica",
-  "isActive": false,
-  "no_data_show": true,
-  "accessTier": "off"
+﻿{
+    "id":  "classic-statistiche-combinate-finestre-mobili",
+    "title":  "classic-statistiche-combinate-finestre-mobili",
+    "subtitle":  "Statistiche combinate su finestre mobili",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Indicatori frequenza/ritardo su ultime 50, 100 e 200 estrazioni.",
+    "page":  "/pages/algoritmi/algs/classic-statistiche-combinate-finestre-mobili/",
+    "macroGroup":  "statistica",
+    "isActive":  false,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "view":  false
 }
+

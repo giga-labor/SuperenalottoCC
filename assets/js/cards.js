@@ -395,6 +395,7 @@ const CARDS = {
   },
 
   async buildAlgorithmCard(algorithm, options = {}) {
+    if (!algorithm || algorithm.view !== true) return null;
     this.ensureComponentStyles();
     this.ensureCardSizing();
     const size = this.getCardSizing();
@@ -469,7 +470,8 @@ const CARDS = {
     const cardFamily = this.resolveTelemetryCardType(algorithm);
     const cardTypeClass = cardFamily === 'paper' ? 'cc-card-paper' : 'cc-card-action';
     const visualTone = this.resolveCardVisualTone(algorithm);
-    card.className = `cc-card cc-card3d ${cardTypeClass} cc-card-tone-${visualTone} card-3d algorithm-card group relative flex min-h-[330px] flex-col overflow-hidden rounded-2xl border border-white/10 transition hover:border-neon/60${active ? ' is-active shadow-[0_0_22px_rgba(255,217,102,0.22)]' : ' is-inactive bg-black/70 border-white/5'}`;
+    const hoverClass = active ? ' hover:border-neon/60' : '';
+    card.className = `cc-card cc-card3d ${cardTypeClass} cc-card-tone-${visualTone} card-3d algorithm-card group relative flex min-h-[330px] flex-col overflow-hidden rounded-2xl border border-white/10 transition${hoverClass}${active ? ' is-active shadow-[0_0_22px_rgba(255,217,102,0.22)]' : ' is-inactive bg-black/70 border-white/5'}`;
     card.dataset.cardFamily = cardFamily;
     card.dataset.cardTone = visualTone;
     card.style.minWidth = size.min;
@@ -488,7 +490,20 @@ const CARDS = {
 
     if (!active) {
       card.setAttribute('aria-disabled', 'true');
-      card.addEventListener('click', (event) => event.preventDefault());
+      card.setAttribute('tabindex', '-1');
+      card.dataset.cardInteractive = '0';
+      card.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      });
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      });
+    } else {
+      card.dataset.cardInteractive = '1';
     }
 
     const overlayHtml = active ? '' : '<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/45"><span class="select-none whitespace-nowrap text-[clamp(0.68rem,2.1vw,1.9rem)] font-semibold uppercase tracking-[clamp(0.16em,0.8vw,0.5em)] text-neon/60 rotate-[-60deg] [text-shadow:0_0_18px_rgba(255,217,102,0.65),0_0_32px_rgba(0,0,0,0.85)]">coming soon</span></div>';
@@ -523,7 +538,7 @@ const CARDS = {
 
     this.bindCardImageFallback(card, imageFallbackUrl);
     this.fitProposalBadge(card);
-    this.bindTelemetry(card, algorithm);
+    if (active) this.bindTelemetry(card, algorithm);
     return card;
   },
 

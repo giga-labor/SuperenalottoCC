@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadModules(area, section) {
   try {
     const cards = await loadCardsIndex(cardsIndexPath);
-    const newsCards = cards.filter((card) => hasNews(card));
+    const newsCards = cards.filter((card) => card?.view === true && hasNews(card));
     if (!newsCards.length) {
       renderNoNews(area, cards.length);
       if (section) section.classList.remove('hidden');
@@ -70,6 +70,7 @@ async function renderNewsCards(area, modules) {
 }
 
 async function createNewsCard(module) {
+  if (!module || module.view !== true) return null;
   const tuneCardMedia = (card) => {
     const image = card?.querySelector?.('img');
     if (!image) return card;
@@ -78,36 +79,58 @@ async function createNewsCard(module) {
     return card;
   };
   if (window.CARDS && typeof window.CARDS.buildAlgorithmCard === 'function') {
-    const card = await window.CARDS.buildAlgorithmCard(module, { forceActive: true });
-    return tuneCardMedia(card);
+    const card = await window.CARDS.buildAlgorithmCard(module, { forceActive: false });
+    if (card) return tuneCardMedia(card);
+    return null;
   }
   const fallback = buildFallbackCard(module);
   return tuneCardMedia(fallback);
 }
 
 function buildFallbackCard(module) {
-  const href = resolveWithBase(module.page || '#') || '#';
+  const active = module?.isActive !== false;
+  const href = active ? (resolveWithBase(module.page || '#') || '#') : '#';
   const title = module.title || 'Modulo';
+  const overlayHtml = active ? '' : '<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/45"><span class="select-none whitespace-nowrap text-[clamp(0.68rem,2.1vw,1.9rem)] font-semibold uppercase tracking-[clamp(0.16em,0.8vw,0.5em)] text-neon/60 rotate-[-60deg] [text-shadow:0_0_18px_rgba(255,217,102,0.65),0_0_32px_rgba(0,0,0,0.85)]">coming soon</span></div>';
   const builder = window.CC_COMPONENTS;
   if (builder && typeof builder.build === 'function' && builder.has('card')) {
     const built = builder.build('card', {
       tag: 'a',
-      className: 'cc-card cc-card-action card-3d algorithm-card is-active',
+      className: `cc-card cc-card-action card-3d algorithm-card${active ? ' is-active' : ' is-inactive bg-black/70 border-white/5'}`,
       href,
       dataset: {
         cardId: String(module.id || title).toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         cardType: 'action'
       },
       slots: {
+        overlay: overlayHtml,
         body: `<div class=\"cc-card-body algorithm-card__body flex flex-1 flex-col gap-2 px-4 py-4\"><h3 class=\"text-[0.98rem] font-semibold leading-tight\">${escapeHtml(title)}</h3></div>`
       }
     });
-    if (built) return built;
+    if (built) {
+      if (!active) {
+        built.setAttribute('aria-disabled', 'true');
+        built.setAttribute('tabindex', '-1');
+        built.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        });
+      }
+      return built;
+    }
   }
   const fallback = document.createElement('a');
-  fallback.className = 'cc-card cc-card-action card-3d algorithm-card is-active';
+  fallback.className = `cc-card cc-card-action card-3d algorithm-card${active ? ' is-active' : ' is-inactive bg-black/70 border-white/5'}`;
   fallback.href = href;
-  fallback.textContent = title;
+  fallback.innerHTML = `${active ? '' : overlayHtml}<span>${escapeHtml(title)}</span>`;
+  if (!active) {
+    fallback.setAttribute('aria-disabled', 'true');
+    fallback.setAttribute('tabindex', '-1');
+    fallback.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+    });
+  }
   return fallback;
 }
 

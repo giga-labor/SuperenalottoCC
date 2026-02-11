@@ -1,15 +1,17 @@
-{
-  "id": "helix-6-feature-generazione-valutazione",
-  "title": "HELIX-6",
-  "subtitle": "Pipeline feature → generazione → valutazione",
-  "image": "img.webp",
-  "lastUpdated": "07/02/2026",
-  "hasNews": false,
-  "statusTag": "Scheda tecnica",
-  "narrativeSummary": "Pipeline feature → generazione → valutazione.",
-  "page": "pages/algoritmi/algs/helix-6-feature-generazione-valutazione/",
-  "macroGroup": "ibrido",
-  "isActive": false,
-  "no_data_show": true,
-  "accessTier": "off"
+﻿{
+    "id":  "helix-6-feature-generazione-valutazione",
+    "title":  "HELIX-6",
+    "subtitle":  "Pipeline feature → generazione → valutazione",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Pipeline feature → generazione → valutazione.",
+    "page":  "pages/algoritmi/algs/helix-6-feature-generazione-valutazione/",
+    "macroGroup":  "ibrido",
+    "isActive":  false,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "view":  false
 }
+

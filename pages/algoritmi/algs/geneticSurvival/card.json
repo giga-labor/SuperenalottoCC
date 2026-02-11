@@ -1,15 +1,17 @@
-{
-  "id": "survival-analysis-ibrido",
-  "title": "GeneticSE Survival",
-  "subtitle": "Modelli tempo-evento con training su sequenze",
-  "image": "img.webp",
-  "lastUpdated": "07/02/2026",
-  "hasNews": false,
-  "statusTag": "Scheda tecnica",
-  "narrativeSummary": "Modelli tempo-evento con training su sequenze.",
-  "page": "pages/algoritmi/algs/geneticSurvival/",
-  "macroGroup": "neurale",
-  "isActive": false,
-  "no_data_show": true,
-  "accessTier": "off"
+﻿{
+    "id":  "survival-analysis-ibrido",
+    "title":  "GeneticSE Survival",
+    "subtitle":  "Modelli tempo-evento con training su sequenze",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Modelli tempo-evento con training su sequenze.",
+    "page":  "pages/algoritmi/algs/geneticSurvival/",
+    "macroGroup":  "neurale",
+    "isActive":  false,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "view":  false
 }
+

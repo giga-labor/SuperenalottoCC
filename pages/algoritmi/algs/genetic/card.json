@@ -1,17 +1,19 @@
-{
-  "id": "genetic-algorithm-evolutionary",
-  "title": "GeneticSE",
-  "subtitle": "Multi-agent online learning con aggiornamenti continui",
-  "image": "img.webp",
-  "lastUpdated": "07/02/2026",
-  "hasNews": true,
-  "usesOutData": true,
-  "statusTag": "Scheda tecnica",
-  "narrativeSummary": "Multi-agent online learning con aggiornamenti continui.",
-  "page": "pages/algoritmi/algs/genetic/",
-  "macroGroup": "neurale",
-  "isActive": true,
-  "no_data_show": true,
-  "accessTier": "off",
-  "type": "ALGORITMI"
+﻿{
+    "id":  "genetic-algorithm-evolutionary",
+    "title":  "GeneticSE",
+    "subtitle":  "Multi-agent online learning con aggiornamenti continui",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  true,
+    "usesOutData":  true,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Multi-agent online learning con aggiornamenti continui.",
+    "page":  "pages/algoritmi/algs/genetic/",
+    "macroGroup":  "neurale",
+    "isActive":  true,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "type":  "ALGORITMI",
+    "view":  true
 }
+

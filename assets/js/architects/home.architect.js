@@ -32,7 +32,7 @@
             .filter((card) => Boolean(card?.hasNews || card?.featured || (Array.isArray(card?.news) && card.news.length > 0)))
             .sort((a, b) => String(b.lastUpdated || '').localeCompare(String(a.lastUpdated || '')));
           const limited = zone.limit ? filtered.slice(0, zone.limit) : filtered;
-          await mountCardList(ctx, host, limited, { forceActive: true, sourceBlock: 'home_news' });
+          await mountCardList(ctx, host, limited, { forceActive: false, sourceBlock: 'home_news' });
           continue;
         }
 

@@ -58,6 +58,11 @@
     if (!card.page) card.page = card.cardBase || defaults.cardBase || '';
     if (!card.image) card.image = 'img.webp';
     if (card.isActive === undefined) card.isActive = false;
+    if (card.view === undefined) {
+      card.view = (card.isActive !== undefined) ? Boolean(card.isActive) : true;
+    } else {
+      card.view = Boolean(card.view);
+    }
     if (!card.title) card.title = card.id || id;
     if (card.no_data_show === undefined) card.no_data_show = true;
     const tierRaw = String(card.accessTier ?? 'off').trim().toLowerCase();

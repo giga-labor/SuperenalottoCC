@@ -28,7 +28,7 @@
             : list;
           const limited = zone.limit ? filtered.slice(0, zone.limit) : filtered;
           if (window.CC_ARCHITECT_BASE?.mountCardList) {
-            await window.CC_ARCHITECT_BASE.mountCardList(ctx, host, limited, { forceActive: true, sourceBlock: zone.sourceBlock || 'zone_cards' });
+            await window.CC_ARCHITECT_BASE.mountCardList(ctx, host, limited, { forceActive: false, sourceBlock: zone.sourceBlock || 'zone_cards' });
           }
         }
       }

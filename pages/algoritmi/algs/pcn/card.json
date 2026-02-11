@@ -1,15 +1,17 @@
-{
-  "id": "pcn",
-  "title": "Pcn",
-  "subtitle": "Descrizione in arrivo",
-  "image": "img.webp",
-  "lastUpdated": "07/02/2026",
-  "hasNews": false,
-  "statusTag": "Scheda tecnica",
-  "narrativeSummary": "Aggiornamenti in preparazione.",
-  "page": "pages/algoritmi/algs/pcn/",
-  "macroGroup": "neurale",
-  "isActive": false,
-  "no_data_show": true,
-  "accessTier": "off"
+﻿{
+    "id":  "pcn",
+    "title":  "Pcn",
+    "subtitle":  "Descrizione in arrivo",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Aggiornamenti in preparazione.",
+    "page":  "pages/algoritmi/algs/pcn/",
+    "macroGroup":  "neurale",
+    "isActive":  false,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "view":  false
 }
+

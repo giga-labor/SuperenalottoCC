@@ -1,0 +1,38 @@
+Descrizione tecnica algoritmo
+Super6NN usa una rete GRU con output multi-label su 90 classi, una per ogni numero possibile.
+Ogni concorso viene codificato in multi-hot e letto in sequenza temporale per estrarre struttura ricorrente.
+La stima per ogni step usa solo lo storico precedente al concorso target, in ottica walk-forward.
+
+Impostazione di questo export SICC
+Analisi eseguita su 4143 concorsi del draws admin, con 4142 step di validazione storica.
+Per ogni step viene proposta una sestina deterministica dai 6 logit piu alti del modello.
+In assenza di checkpoint valido il run applica fallback frequenziale per garantire continuita operativa.
+
+Risultati osservati sullo storico
+- Media hit/sestina: 4.4138
+- Hit >=1: 3989/4142 (96.31%)
+- Hit >=2: 3890/4142 (93.92%)
+- Hit >=3: 3795/4142 (91.62%)
+- Hit >=4: 3428/4142 (82.76%)
+- Hit >=5: 2391/4142 (57.7257%)
+- Hit =6: 789/4142 (19.048769%)
+- Distribuzione hit esatta: 0:153 1:99 2:95 3:367 4:1037 5:1602 6:789
+
+Confronto con baseline casuale (6 su 90)
+- Media hit attesa random: 0.4000 | osservata: 4.4138
+- Hit>=2 atteso random: 4.963% | osservato: 93.916% | z-score: 263.60
+- Hit>=3 atteso random: 0.315%
+- Hit>=4 atteso random: 0.00848%
+
+Stabilita temporale
+- Media ultimi 200 step: 4.5250
+- Deviazione standard hit: 1.4014
+
+Configurazione operativa
+- Ultimo concorso disponibile: 4143 (10/02/2026)
+- Prossimo concorso stimato: 4144
+- Sestina proposta: 11 43 51 53 54 59
+
+Lettura e limiti
+Le metriche descrivono comportamento storico del modello ma non costituiscono garanzia predittiva futura.
+Il run va rieseguito a ogni aggiornamento draws per mantenere coerenza tra storico, metriche e proposta operativa.

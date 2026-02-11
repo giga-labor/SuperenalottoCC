@@ -1,10 +1,10 @@
 {
   "id": "classic-co-occorrenze",
-  "title": "classic-co-occorrenze",
+  "title": "classic  co-occorrenze",
   "subtitle": "Analisi relazionale su coppie e co-presenze storiche",
   "image": "img.webp",
   "lastUpdated": "10/02/2026",
-  "hasNews": true,
+  "hasNews": false,
   "usesOutData": true,
   "statusTag": "Scheda tecnica",
   "narrativeSummary": "Modello statistico relazionale che seleziona sestine con alta coesione storica, valorizzando le co-occorrenze tra numeri e la densita della rete di coppie.",
@@ -12,5 +12,7 @@
   "macroGroup": "statistica",
   "isActive": true,
   "no_data_show": true,
-  "accessTier": "free"
+  "accessTier": "free",
+  "view": true,
+  "type": "ALGORITMI"
 }

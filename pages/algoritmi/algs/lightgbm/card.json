@@ -1,15 +1,17 @@
-{
-  "id": "lightgbm",
-  "title": "Lightgbm",
-  "subtitle": "Descrizione in arrivo",
-  "image": "img.webp",
-  "lastUpdated": "07/02/2026",
-  "hasNews": false,
-  "statusTag": "Scheda tecnica",
-  "narrativeSummary": "Aggiornamenti in preparazione.",
-  "page": "pages/algoritmi/algs/lightgbm/",
-  "macroGroup": "statistica",
-  "isActive": false,
-  "no_data_show": true,
-  "accessTier": "off"
+﻿{
+    "id":  "lightgbm",
+    "title":  "Lightgbm",
+    "subtitle":  "Descrizione in arrivo",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Aggiornamenti in preparazione.",
+    "page":  "pages/algoritmi/algs/lightgbm/",
+    "macroGroup":  "statistica",
+    "isActive":  false,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "view":  false
 }
+

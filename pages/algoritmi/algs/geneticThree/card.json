@@ -1,15 +1,17 @@
-{
-  "id": "geneticThree",
-  "title": "GeneticSE Three",
-  "subtitle": "Ensemble di sottoreti addestrate",
-  "image": "img.webp",
-  "lastUpdated": "07/02/2026",
-  "hasNews": false,
-  "statusTag": "Scheda tecnica",
-  "narrativeSummary": "Ensemble di sottoreti addestrate.",
-  "page": "pages/algoritmi/algs/geneticThree/",
-  "macroGroup": "neurale",
-  "isActive": false,
-  "no_data_show": true,
-  "accessTier": "off"
+﻿{
+    "id":  "geneticThree",
+    "title":  "GeneticSE Three",
+    "subtitle":  "Ensemble di sottoreti addestrate",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Ensemble di sottoreti addestrate.",
+    "page":  "pages/algoritmi/algs/geneticThree/",
+    "macroGroup":  "neurale",
+    "isActive":  false,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "view":  false
 }
+

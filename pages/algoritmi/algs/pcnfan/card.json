@@ -1,15 +1,17 @@
-{
-  "id": "pcnfan",
-  "title": "Pcnfan",
-  "subtitle": "Descrizione in arrivo",
-  "image": "img.webp",
-  "lastUpdated": "07/02/2026",
-  "hasNews": false,
-  "statusTag": "Scheda tecnica",
-  "narrativeSummary": "Aggiornamenti in preparazione.",
-  "page": "pages/algoritmi/algs/pcnfan/",
-  "macroGroup": "neurale",
-  "isActive": false,
-  "no_data_show": true,
-  "accessTier": "off"
+﻿{
+    "id":  "pcnfan",
+    "title":  "Pcnfan",
+    "subtitle":  "Descrizione in arrivo",
+    "image":  "img.webp",
+    "lastUpdated":  "07/02/2026",
+    "hasNews":  false,
+    "statusTag":  "Scheda tecnica",
+    "narrativeSummary":  "Aggiornamenti in preparazione.",
+    "page":  "pages/algoritmi/algs/pcnfan/",
+    "macroGroup":  "neurale",
+    "isActive":  false,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "view":  false
 }
+
