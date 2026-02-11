@@ -4,8 +4,8 @@
 
 const ADSENSE_DEFAULT_CONFIG = Object.freeze({
   CLIENT: 'ca-pub-4257836243471373',
-  SLOT_RIGHT: '',
-  SLOT_BOTTOM: '',
+  SLOT_RIGHT: '1365924967',
+  SLOT_BOTTOM: '7739761628',
   CMP_TCF_ENABLED: true
 });
 
@@ -236,6 +236,7 @@ const createAdsenseNode = (position) => {
   ins.style.height = '100%';
   ins.setAttribute('data-ad-client', ADSENSE_CONFIG.CLIENT);
   ins.setAttribute('data-ad-slot', slotValue);
+  ins.setAttribute('data-ad-format', 'auto');
   ins.setAttribute('data-full-width-responsive', 'true');
   return ins;
 };
