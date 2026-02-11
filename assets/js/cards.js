@@ -408,7 +408,7 @@ const CARDS = {
     const typeLabel = this.resolveCardType(algorithm);
     const typeBadgeMarkup = this.buildTypeBadgeMarkup(typeLabel);
     const showNewsBadge = this.hasNewsBadge(algorithm);
-    const newsBadgeMarkup = showNewsBadge ? '<span class="card-type-badge card-type-badge--news">Novita</span>' : '';
+    const newsBadgeMarkup = showNewsBadge ? '<span class="card-type-badge card-type-badge--news">Novità</span>' : '';
     const accessTier = this.resolveAccessTier(algorithm);
     const accessBadge = this.buildAccessBadgeMarkup(accessTier);
     const needsDrawTemplate = this.hasDrawTemplateTokens(algorithm);
@@ -1257,6 +1257,14 @@ const CARDS = {
         updatePerspectiveEdges(0, 0);
       };
 
+      if (card.classList.contains('is-inactive')) {
+        // Inactive cards are intentionally static and non-interactive.
+        reset();
+        card.classList.remove('is-hovered', 'is-grabbed', 'is-selected');
+        card.setAttribute('aria-disabled', 'true');
+        return;
+      }
+
       const onMove = (event) => {
         if (event.pointerType === 'touch') return;
         if (!rect) rect = card.getBoundingClientRect();
@@ -1271,33 +1279,25 @@ const CARDS = {
           card.style.setProperty('--card-glow-x', `${(x * 100).toFixed(1)}%`);
           card.style.setProperty('--card-glow-y', `${(y * 100).toFixed(1)}%`);
 
-          if (!card.classList.contains('is-inactive')) {
-            const dx = x * 2 - 1;
-            const dy = y * 2 - 1;
-            const maxTilt = prefersReducedMotion ? 7.5 : 15;
-            const rotateX = -(maxTilt / Math.SQRT2) * dy;
-            const rotateY = (maxTilt / Math.SQRT2) * dx;
-            card.style.setProperty('--card-rotate-x', `${rotateX.toFixed(2)}deg`);
-            card.style.setProperty('--card-rotate-y', `${rotateY.toFixed(2)}deg`);
-            updatePerspectiveEdges(rotateX, rotateY);
-          }
+          const dx = x * 2 - 1;
+          const dy = y * 2 - 1;
+          const baseTilt = prefersReducedMotion ? 7.5 : 15;
+          const maxTilt = baseTilt;
+          const rotateX = -(maxTilt / Math.SQRT2) * dy;
+          const rotateY = (maxTilt / Math.SQRT2) * dx;
+          card.style.setProperty('--card-rotate-x', `${rotateX.toFixed(2)}deg`);
+          card.style.setProperty('--card-rotate-y', `${rotateY.toFixed(2)}deg`);
+          updatePerspectiveEdges(rotateX, rotateY);
         });
       };
 
       const onEnter = () => {
         rect = card.getBoundingClientRect();
         card.classList.add('is-hovered');
-        if (!card.classList.contains('is-inactive')) {
-          card.style.setProperty('--card-lift', '-9px');
-          card.style.setProperty('--card-z', '10px');
-          card.style.setProperty('--card-wobble-x', '0deg');
-          card.style.setProperty('--card-wobble-y', '0deg');
-        } else {
-          card.style.setProperty('--card-lift', '0px');
-          card.style.setProperty('--card-z', '0px');
-          card.style.setProperty('--card-wobble-x', '0deg');
-          card.style.setProperty('--card-wobble-y', '0deg');
-        }
+        card.style.setProperty('--card-lift', '-9px');
+        card.style.setProperty('--card-z', '10px');
+        card.style.setProperty('--card-wobble-x', '0deg');
+        card.style.setProperty('--card-wobble-y', '0deg');
       };
 
       const onLeave = () => {
