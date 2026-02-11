@@ -1,7 +1,7 @@
 const CARDS = {
   CARD_SIZE: Object.freeze({
-    minPx: 236,
-    maxPx: 286,
+    minPx: 178,
+    maxPx: 210,
     fluidWidth: '24vw'
   }),
 

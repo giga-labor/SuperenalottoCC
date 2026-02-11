@@ -1859,6 +1859,38 @@ main.home-main [data-module-area].news-strip {
   justify-content: flex-start !important;
 }
 
+/* Anti-overlap policy: cards must never overlap each other */
+:root {
+  --cc-card-gap-min: 1rem;
+}
+
+[data-module-area],
+main .grid,
+.mx-auto.max-w-5xl .grid,
+main.home-main [data-module-area].news-grid,
+main.home-main [data-module-area].news-strip {
+  gap: max(var(--cc-card-gap-min), 12px) !important;
+  align-items: stretch !important;
+}
+
+[data-module-area] > .card-3d,
+main .grid > .card-3d,
+.mx-auto.max-w-5xl .grid > .card-3d {
+  margin: 0 !important;
+  position: relative;
+  z-index: 0;
+}
+
+.card-3d:hover,
+.card-3d.is-hovered,
+.card-3d:focus-visible,
+.card-3d.is-selected,
+.card-3d:active,
+.card-3d.is-grabbed {
+  --card-lift: 0px !important;
+  --card-z: 0px !important;
+}
+
 
 /* cards: active cards should look glossier */
 .card-3d.is-active {
@@ -2281,10 +2313,22 @@ main.content-fade > .content-box {
   padding-left: var(--cc-frame-pad) !important;
   padding-right: var(--cc-frame-pad) !important;
 }
-    .algorithm-card {
-      width: clamp(var(--card-min), 22vw, var(--card-max));
-      max-width: var(--card-max);
-    }
+/* Algorithm cards: full width inside grid cells (no overlap),
+   fixed clamp width only in horizontal news strips. */
+[data-group-grid] > .algorithm-card,
+.tabs-sheet .grid > .algorithm-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  justify-self: stretch !important;
+}
+
+main.home-main [data-module-area].news-strip > .algorithm-card,
+main.home-main [data-module-area]:not(.news-grid):not([data-group-grid]) > .algorithm-card {
+  width: clamp(var(--card-min), 22vw, var(--card-max));
+  max-width: var(--card-max);
+  flex: 0 0 auto;
+}
 
 body :is(h1, h2, h3, h4, h5, h6, p, span, a, button, th, td, label, li, code) {
   text-shadow: var(--glass-text-relief);
