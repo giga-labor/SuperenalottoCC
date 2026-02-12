@@ -12,8 +12,7 @@
     "macroGroup":  "neurale",
     "isActive":  true,
     "no_data_show":  true,
-    "accessTier":  "off",
     "type":  "ALGORITMI",
-    "view":  true
+    "view":  true,
+    "accessTier":  "free"
 }
-
