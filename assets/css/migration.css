@@ -269,6 +269,24 @@ body[data-page-id="home"] .cc-abovefold {
   padding: 24px 0 16px;
 }
 
+/* V4 modern look tokens (home-only scope) */
+body[data-page-id="home"] {
+  --cc-space-1: 8px;
+  --cc-space-2: 12px;
+  --cc-space-3: 16px;
+  --cc-space-4: 24px;
+  --cc-space-5: 32px;
+  --cc-radius-1: 12px;
+  --cc-radius-2: 16px;
+  --cc-surface-1: rgba(255, 255, 255, 0.04);
+  --cc-surface-2: rgba(255, 255, 255, 0.06);
+  --cc-border: rgba(255, 255, 255, 0.10);
+  --cc-text-1: rgba(255, 255, 255, 0.92);
+  --cc-text-2: rgba(255, 255, 255, 0.72);
+  --cc-accent: rgba(120, 200, 255, 1);
+  --cc-accent-2: rgba(255, 120, 220, 1);
+}
+
 /* V4.3: hard isolation for above-the-fold runtime independence */
 #cc-abovefold {
   contain: layout paint style;
@@ -297,6 +315,7 @@ body[data-page-id="home"] .cc-abovefold-featured {
 
 /* V4.6: promote textual LCP and keep featured image secondary */
 body[data-page-id="home"] .cc-abovefold-copy h1 {
+  color: var(--cc-text-1);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-size: clamp(28px, 4.8vw, 44px);
   line-height: 1.05;
@@ -306,9 +325,16 @@ body[data-page-id="home"] .cc-abovefold-copy h1 {
 }
 
 body[data-page-id="home"] .cc-abovefold-copy p {
+  color: var(--cc-text-2);
   font-size: 16px;
   line-height: 1.4;
   max-width: 60ch;
+}
+
+body[data-page-id="home"] .cc-abovefold-cta {
+  display: flex;
+  gap: var(--cc-space-2);
+  flex-wrap: wrap;
 }
 
 @media (max-width: 767px) {
@@ -333,10 +359,10 @@ body[data-page-id="home"] .cc-abovefold-kpi {
 }
 
 body[data-page-id="home"] .cc-abovefold-kpi span {
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--cc-border);
   border-radius: 999px;
   padding: 4px 10px;
-  background: rgba(5, 8, 20, 0.45);
+  background: var(--cc-surface-1);
 }
 
 body[data-page-id="home"] .cc-card--featured {
@@ -347,6 +373,53 @@ body[data-page-id="home"] .cc-card--featured {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
+}
+
+/* V4 modern segmented tabs (home-only, lightweight) */
+body[data-page-id="home"] .tabs-shell .folder-tabs {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--cc-border);
+  border-radius: var(--cc-radius-2);
+  background: var(--cc-surface-1);
+  box-shadow: none !important;
+}
+
+body[data-page-id="home"] .tabs-shell .tab-btn {
+  border-radius: 999px !important;
+  border: 1px solid transparent !important;
+  color: var(--cc-text-2) !important;
+  padding: 10px 12px !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+body[data-page-id="home"] .tabs-shell .tab-btn.is-active,
+body[data-page-id="home"] .tabs-shell .tab-btn[aria-selected="true"] {
+  color: var(--cc-text-1) !important;
+  background: var(--cc-surface-2) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+body[data-page-id="home"] .tabs-shell .tab-btn:focus-visible {
+  outline: 2px solid var(--cc-accent) !important;
+  outline-offset: 2px !important;
+}
+
+body[data-page-id="home"] .tabs-shell .tab-btn::after {
+  display: none !important;
+}
+
+/* Reduce visual noise in home hero/modules */
+body[data-page-id="home"] #cc-abovefold,
+body[data-page-id="home"] #modules,
+body[data-page-id="home"] .cc-hero-panel {
+  text-shadow: none !important;
+  box-shadow: 0 10px 22px rgba(2, 5, 14, 0.22);
 }
 
 body[data-page-id="home"] .cc-card--featured .cc-card-media {
