@@ -1,4 +1,4 @@
-:root {
+﻿:root {
       --header-scroll: 269px;
       --header-floating-gap: 8px;
       --fixed-header-offset: 0px;
@@ -23,12 +23,12 @@
         linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06) 42%, rgba(255, 255, 255, 0.03) 100%),
         linear-gradient(145deg, rgba(28, 36, 70, 0.56), rgba(10, 14, 26, 0.44));
       --cc-glass-shadow:
-        0 8px 0 rgba(8, 10, 20, 0.7),
-        0 24px 42px rgba(0, 0, 0, 0.52),
-        0 0 38px rgba(255, 217, 102, 0.22),
-        0 0 60px rgba(173, 216, 255, 0.14),
-        inset 0 1px 0 rgba(255, 255, 255, 0.62),
-        inset 0 -14px 22px rgba(7, 10, 20, 0.3);
+        0 6px 0 rgba(8, 10, 20, 0.62),
+        0 16px 28px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 217, 102, 0.14),
+        0 0 32px rgba(173, 216, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.54),
+        inset 0 -10px 16px rgba(7, 10, 20, 0.24);
       --cc-glass-radius: 1.25rem;
       --cc-glass-sheen-opacity: 0.65;
       --glass-light-x: 50%;
@@ -2501,6 +2501,18 @@ body :is(h1, h2, h3, h4, h5, h6, p, span, a, button, th, td, label, li, code) {
   text-shadow: var(--glass-text-relief);
 }
 
+/* LCP optimization: avoid expensive global text shadows in above-the-fold hero/modules */
+.hero-section :is(h1, h2, h3, p, a, button),
+#modules :is(h1, h2, h3, p, a, button) {
+  text-shadow: none !important;
+}
+
+.hero-section h2 {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
 .table-scroll-shell {
   position: relative;
 }
@@ -2658,4 +2670,178 @@ body[data-page-id="algsheet"] #site-header .header-container {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-weight: 600;
+}
+
+/* M1 structural overrides: A1 + A2 + B1 + C1 */
+:root {
+  --z-base: 0;
+  --z-overlay: 40;
+  --z-header: 50;
+  --z-modal: 100;
+}
+
+#site-header {
+  z-index: var(--z-header) !important;
+}
+
+#site-header .header-bg,
+#site-header .header-overlay {
+  z-index: var(--z-base);
+}
+
+#site-header .standing-marquee,
+#site-header .header-container {
+  position: relative;
+  z-index: var(--z-overlay);
+}
+
+#site-header .backdrop-blur-sm {
+  backdrop-filter: blur(8px) saturate(1.08) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(1.08) !important;
+}
+
+#site-header .header-overlay {
+  opacity: 0.16 !important;
+}
+
+.standing-marquee {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  min-height: 1.2rem;
+  overflow: hidden;
+  contain: layout paint style;
+}
+
+#site-header .header-wrap {
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+#site-header .header-container {
+  padding-top: 0.1rem;
+  padding-bottom: 0.6rem;
+  margin-top: 4px;
+}
+
+#site-header .header-actions {
+  margin-top: 0.55rem !important;
+}
+
+main.home-main > .content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.hero-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 120% at 10% 0%, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 52%),
+    linear-gradient(165deg, rgba(5, 6, 15, 0.34), rgba(5, 6, 15, 0.2));
+  z-index: var(--z-base);
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section h2 {
+  font-size: clamp(1.08rem, 2.35vw, 1.42rem);
+  line-height: 1.3;
+}
+
+.hero-section p {
+  max-width: 65ch;
+}
+
+.cc-module-note {
+  border-radius: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(5, 6, 15, 0.26);
+  padding: 0.95rem 1rem;
+}
+
+#modules {
+  margin-top: 0;
+}
+
+.cc-hero-grid {
+  grid-template-columns: 1fr;
+  margin-top: 0;
+}
+
+.standing-marquee__track {
+  min-height: 1rem;
+  align-items: center;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  animation-duration: 40s;
+  will-change: transform;
+  animation-play-state: paused;
+}
+
+html.cc-ready .standing-marquee__track {
+  animation-play-state: running;
+}
+
+.standing-marquee__track span {
+  display: inline-block;
+  min-height: 1rem;
+  line-height: 1;
+}
+
+/* M3: focus visibility + shadow tuning */
+#site-header .header-container {
+  box-shadow: 0 0 16px rgba(255, 217, 102, 0.26) !important;
+}
+
+#site-header .header-wrap {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(255, 217, 102, 0.18) !important;
+}
+
+#site-header :is(a, button, .tab-btn, .home-badge, .card-3d):focus-visible {
+  outline: 2px solid rgba(255, 217, 102, 0.98) !important;
+  outline-offset: 3px !important;
+  box-shadow:
+    0 0 0 2px rgba(5, 6, 15, 0.88),
+    0 0 0 4px rgba(255, 217, 102, 0.34) !important;
+}
+
+/* M2: D1 cards desktop overflow hardening */
+@media (min-width: 768px) {
+  main.home-main [data-module-area][data-module-scroll] {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    scroll-snap-type: none !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  main.home-main [data-module-area][data-module-scroll] > * {
+    min-width: 0 !important;
+    width: 100% !important;
+    scroll-snap-align: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  main.home-main [data-module-area][data-module-scroll] {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+  }
 }
