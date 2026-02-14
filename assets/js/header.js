@@ -1,4 +1,4 @@
-﻿const ensureViewTransitionMeta = () => {
+const ensureViewTransitionMeta = () => {
   const existing = document.querySelector('meta[name="view-transition"]');
   if (existing) return;
   const meta = document.createElement('meta');
@@ -365,9 +365,6 @@ const rafThrottle = (fn) => {
 };
 
 const ensureHeroBackgroundPreload = () => {
-  const pageId = String(document.body?.dataset?.pageId || '').toLowerCase();
-  const explicitPreload = document.body?.dataset?.heroPreload === 'true';
-  if (!explicitPreload && pageId !== 'home') return;
   const width = window.innerWidth || document.documentElement.clientWidth || 0;
   const heroPath = width <= 640
     ? 'img/fortuna_header_1_640.webp'
@@ -923,13 +920,9 @@ optimizeImageLoading();
 ensureHeroBackgroundPreload();
 
 if (document.readyState === 'complete') {
-  document.documentElement.classList.add('cc-ready');
   bindGlassLight();
 } else {
-  window.addEventListener('load', () => {
-    document.documentElement.classList.add('cc-ready');
-    bindGlassLight();
-  }, { once: true, passive: true });
+  window.addEventListener('load', bindGlassLight, { once: true, passive: true });
 }
 
 const homeBadges = document.querySelectorAll('.home-badge[data-tooltip]');
@@ -1424,39 +1417,11 @@ const initTabsRoot = (root) => {
   const sheet = shell ? shell.querySelector('.tabs-sheet') : null;
   const tabRow = shell ? shell.querySelector('.folder-tabs') : null;
   if (!shell || !sheet || !tabRow) return;
-  const tabsIdBase = root.id || root.dataset.tabsId || `tabs-${Math.random().toString(36).slice(2, 8)}`;
   const showPanelLabel = root.dataset.tabPanelLabel !== 'off';
   const getLabelByTarget = (target) => {
     const button = buttons.find((btn) => btn.dataset.tabTarget === target);
     return button ? button.textContent.trim() : '';
   };
-  const getButtonByTarget = (target) => buttons.find((btn) => btn.dataset.tabTarget === target);
-  const getPanelByTarget = (target) => panels.find((panel) => panel.dataset.tabPanel === target);
-
-  tabRow.setAttribute('role', 'tablist');
-  tabRow.setAttribute('aria-label', root.dataset.tablistLabel || 'Sezioni contenuto');
-
-  buttons.forEach((btn, index) => {
-    const target = btn.dataset.tabTarget || `tab-${index + 1}`;
-    const panelId = `${tabsIdBase}-panel-${target}`;
-    const tabId = `${tabsIdBase}-tab-${target}`;
-    btn.id = tabId;
-    btn.setAttribute('role', 'tab');
-    btn.setAttribute('aria-controls', panelId);
-    btn.setAttribute('aria-selected', 'false');
-    btn.setAttribute('tabindex', '-1');
-  });
-
-  panels.forEach((panel, index) => {
-    const target = panel.dataset.tabPanel || `tab-${index + 1}`;
-    const panelId = `${tabsIdBase}-panel-${target}`;
-    const tabId = `${tabsIdBase}-tab-${target}`;
-    panel.id = panelId;
-    panel.setAttribute('role', 'tabpanel');
-    panel.setAttribute('aria-labelledby', tabId);
-    panel.setAttribute('tabindex', '0');
-    panel.hidden = !panel.classList.contains('is-active');
-  });
 
   const ensurePanelLabels = () => {
     if (!showPanelLabel) {
@@ -1493,20 +1458,9 @@ const initTabsRoot = (root) => {
     shell.style.setProperty('--active-notch-width', `${width.toFixed(2)}px`);
   };
 
-  const activate = (target, options = {}) => {
-    const { focus = false } = options;
-    buttons.forEach((btn) => {
-      const isActive = btn.dataset.tabTarget === target;
-      btn.classList.toggle('is-active', isActive);
-      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      btn.setAttribute('tabindex', isActive ? '0' : '-1');
-      if (focus && isActive) btn.focus();
-    });
-    panels.forEach((panel) => {
-      const isActive = panel.dataset.tabPanel === target;
-      panel.classList.toggle('is-active', isActive);
-      panel.hidden = !isActive;
-    });
+  const activate = (target) => {
+    buttons.forEach((btn) => btn.classList.toggle('is-active', btn.dataset.tabTarget === target));
+    panels.forEach((panel) => panel.classList.toggle('is-active', panel.dataset.tabPanel === target));
     updateNotch();
   };
 
@@ -1514,37 +1468,6 @@ const initTabsRoot = (root) => {
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => activate(btn.dataset.tabTarget));
-    btn.addEventListener('keydown', (event) => {
-      const currentIndex = buttons.indexOf(btn);
-      if (currentIndex === -1) return;
-
-      let nextIndex = -1;
-      switch (event.key) {
-        case 'ArrowRight':
-          nextIndex = (currentIndex + 1) % buttons.length;
-          break;
-        case 'ArrowLeft':
-          nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
-          break;
-        case 'Home':
-          nextIndex = 0;
-          break;
-        case 'End':
-          nextIndex = buttons.length - 1;
-          break;
-        case 'Enter':
-        case ' ':
-          event.preventDefault();
-          activate(btn.dataset.tabTarget);
-          return;
-        default:
-          return;
-      }
-      event.preventDefault();
-      const nextBtn = buttons[nextIndex];
-      if (!nextBtn) return;
-      activate(nextBtn.dataset.tabTarget, { focus: true });
-    });
   });
   window.addEventListener('resize', refreshTabsLayout, { passive: true });
   window.addEventListener('orientationchange', refreshTabsLayout, { passive: true });
@@ -1561,10 +1484,6 @@ const initTabsRoot = (root) => {
   }
   root.dataset.tabsReady = '1';
   ensurePanelLabels();
-  const activeTarget = buttons.find((btn) => btn.classList.contains('is-active'))?.dataset.tabTarget
-    || panels.find((panel) => panel.classList.contains('is-active'))?.dataset.tabPanel
-    || buttons[0]?.dataset.tabTarget;
-  if (activeTarget) activate(activeTarget);
   refreshTabsLayout();
   window.setTimeout(refreshTabsLayout, 80);
   window.setTimeout(refreshTabsLayout, 220);
