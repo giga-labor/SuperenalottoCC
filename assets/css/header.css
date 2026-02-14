@@ -2695,6 +2695,9 @@ body[data-page-id="algsheet"] #site-header .header-container {
 .standing-marquee {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
+  min-height: 1.2rem;
+  overflow: hidden;
+  contain: layout paint style;
 }
 
 #site-header .header-wrap {
@@ -2764,6 +2767,20 @@ main.home-main > .content-box {
 .cc-hero-grid {
   grid-template-columns: 1fr;
   margin-top: 0;
+}
+
+.standing-marquee__track {
+  min-height: 1rem;
+  align-items: center;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  animation-duration: 40s;
+  will-change: transform;
+}
+
+.standing-marquee__track span {
+  display: inline-block;
+  min-height: 1rem;
+  line-height: 1;
 }
 
 /* M3: focus visibility + shadow tuning */

@@ -99,6 +99,12 @@ Snapshot post-M3 registrato (`docs/lighthouse-home-v3-m3.json`):
 - `CLS`: `0.2625`
 - `LCP`: `19488 ms`
 
+Snapshot post-M3 stabilization (`docs/lighthouse-home-v3-m3-postrevert.json`):
+- `Performance (mobile)`: `43`
+- `Accessibility`: `96`
+- `CLS`: `0.2625`
+- `LCP`: `19472 ms`
+
 Target minimi V3 (gate `M3`):
 - `CLS < 0.10` sulla home.
 - `Accessibility >= 90`.
