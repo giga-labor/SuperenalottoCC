@@ -347,6 +347,18 @@ main {
   color: var(--muted);
 }
 
+/* M3: unified visible focus ring */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+.tab-btn:focus-visible,
+.card-3d:focus-visible,
+.cc-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px rgba(5, 6, 15, 0.9), 0 0 0 4px rgba(255, 217, 102, 0.42);
+}
+
 .work-progress {
   margin-top: 2.5rem;
   border-radius: 1.25rem;

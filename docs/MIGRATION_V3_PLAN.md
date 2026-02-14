@@ -93,6 +93,12 @@ Snapshot post-M2 registrato (`docs/lighthouse-home-v3-m2.json`):
 - `CLS`: `0.2625`
 - `LCP`: `17860 ms`
 
+Snapshot post-M3 registrato (`docs/lighthouse-home-v3-m3.json`):
+- `Performance (mobile)`: `40`
+- `Accessibility`: `96`
+- `CLS`: `0.2625`
+- `LCP`: `19488 ms`
+
 Target minimi V3 (gate `M3`):
 - `CLS < 0.10` sulla home.
 - `Accessibility >= 90`.
@@ -211,7 +217,7 @@ Owner: `AI IDE` + verifica finale `Operatore umano`
 
 ### F. Accessibility hardening
 
-`F1` Global focus-visible (`TODO`)  
+`F1` Global focus-visible (`DONE`)  
 File:
 - `assets/css/main.css`
 - `assets/css/header.css`
@@ -222,7 +228,7 @@ Acceptance:
 - Nessun conflitto con hover/active.
 Owner: `AI IDE`
 
-`F2` Alt text audit (`TODO`)  
+`F2` Alt text audit (`DONE`)  
 File:
 - `index.html`
 Azioni:
@@ -231,10 +237,12 @@ Azioni:
 Acceptance:
 - Nessuna immagine funzionale senza `alt`.
 Owner: `AI IDE` + review copy `Operatore umano`
+Nota esecuzione:
+- In `index.html` non sono presenti tag `<img>` funzionali; nessuna regressione alt in home.
 
 ### G. Performance cleanup
 
-`G1` Preload minimization (`TODO`)  
+`G1` Preload minimization (`DONE`)  
 File:
 - `index.html`
 Azioni:
@@ -245,7 +253,7 @@ Acceptance:
 - Nessuna regressione rendering hero.
 Owner: `AI IDE`
 
-`G2` Shadow/effects reduction (`TODO`)  
+`G2` Shadow/effects reduction (`DONE`)  
 File:
 - `assets/css/header.css`
 - `assets/css/main.css`

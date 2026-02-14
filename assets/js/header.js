@@ -365,6 +365,9 @@ const rafThrottle = (fn) => {
 };
 
 const ensureHeroBackgroundPreload = () => {
+  const pageId = String(document.body?.dataset?.pageId || '').toLowerCase();
+  const explicitPreload = document.body?.dataset?.heroPreload === 'true';
+  if (!explicitPreload && pageId !== 'home') return;
   const width = window.innerWidth || document.documentElement.clientWidth || 0;
   const heroPath = width <= 640
     ? 'img/fortuna_header_1_640.webp'
