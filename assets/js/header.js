@@ -923,9 +923,13 @@ optimizeImageLoading();
 ensureHeroBackgroundPreload();
 
 if (document.readyState === 'complete') {
+  document.documentElement.classList.add('cc-ready');
   bindGlassLight();
 } else {
-  window.addEventListener('load', bindGlassLight, { once: true, passive: true });
+  window.addEventListener('load', () => {
+    document.documentElement.classList.add('cc-ready');
+    bindGlassLight();
+  }, { once: true, passive: true });
 }
 
 const homeBadges = document.querySelectorAll('.home-badge[data-tooltip]');

@@ -6,6 +6,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="google-adsense-account" content="ca-pub-4257836243471373">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var w = window.innerWidth || document.documentElement.clientWidth || 0;
+      var isRight = w >= 1024;
+      root.dataset.adRail = isRight ? 'right' : 'bottom';
+      root.style.setProperty('--ad-reserve-left', '0px');
+      root.style.setProperty('--ad-reserve-right', isRight ? '276px' : '0px');
+      root.style.setProperty('--ad-reserve-bottom', isRight ? '0px' : '120px');
+      root.style.setProperty('--ad-rail-bottom', isRight ? '0px' : '120px');
+    })();
+  </script>
 
   <title>SuperEnalotto Control Chaos</title>
   <meta name="description" content="SuperEnalotto Control Chaos: archivio estrazioni, algoritmi di analisi e approfondimenti statistici sul dataset storico.">

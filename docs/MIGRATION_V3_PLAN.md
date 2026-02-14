@@ -105,6 +105,12 @@ Snapshot post-M3 stabilization (`docs/lighthouse-home-v3-m3-postrevert.json`):
 - `CLS`: `0.2625`
 - `LCP`: `19472 ms`
 
+Snapshot post-paint optimization (`docs/lighthouse-home-v3-postpaint-opt.json`):
+- `Performance (mobile)`: `57`
+- `Accessibility`: `100`
+- `CLS`: `0.0011`
+- `LCP`: `20503 ms`
+
 Target minimi V3 (gate `M3`):
 - `CLS < 0.10` sulla home.
 - `Accessibility >= 90`.
@@ -174,7 +180,7 @@ Acceptance:
 - Layout integro desktop/mobile.
 Owner: `AI IDE`
 
-`C2` Tabs accessibility hardening (`DONE`)  
+`C2` Tabs accessibility hardening (`VERIFIED`)  
 File:
 - `assets/js/architects/home.architect.js`
 - `assets/js/header.js`
@@ -195,7 +201,7 @@ Owner: `AI IDE`
 
 ### D. Cards grid hardening
 
-`D1` Desktop no horizontal overflow (`DONE`)  
+`D1` Desktop no horizontal overflow (`VERIFIED`)  
 File:
 - `assets/css/main.css`
 Azioni:
@@ -208,7 +214,7 @@ Owner: `AI IDE`
 
 ### E. Ads isolation and CLS control
 
-`E1` Ad wrapper stabilization (`DONE`)  
+`E1` Ad wrapper stabilization (`VERIFIED`)  
 File:
 - `assets/css/ads.css`
 Azioni:
@@ -223,7 +229,7 @@ Owner: `AI IDE` + verifica finale `Operatore umano`
 
 ### F. Accessibility hardening
 
-`F1` Global focus-visible (`DONE`)  
+`F1` Global focus-visible (`VERIFIED`)  
 File:
 - `assets/css/main.css`
 - `assets/css/header.css`
@@ -234,7 +240,7 @@ Acceptance:
 - Nessun conflitto con hover/active.
 Owner: `AI IDE`
 
-`F2` Alt text audit (`DONE`)  
+`F2` Alt text audit (`VERIFIED`)  
 File:
 - `index.html`
 Azioni:
@@ -248,7 +254,7 @@ Nota esecuzione:
 
 ### G. Performance cleanup
 
-`G1` Preload minimization (`DONE`)  
+`G1` Preload minimization (`VERIFIED`)  
 File:
 - `index.html`
 Azioni:
@@ -259,7 +265,7 @@ Acceptance:
 - Nessuna regressione rendering hero.
 Owner: `AI IDE`
 
-`G2` Shadow/effects reduction (`DONE`)  
+`G2` Shadow/effects reduction (`VERIFIED`)  
 File:
 - `assets/css/header.css`
 - `assets/css/main.css`

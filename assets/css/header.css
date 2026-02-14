@@ -2775,6 +2775,11 @@ main.home-main > .content-box {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   animation-duration: 40s;
   will-change: transform;
+  animation-play-state: paused;
+}
+
+html.cc-ready .standing-marquee__track {
+  animation-play-state: running;
 }
 
 .standing-marquee__track span {
