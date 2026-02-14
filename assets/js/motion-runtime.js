@@ -190,6 +190,29 @@
     });
   };
 
+  const initOffscreenDegrade = () => {
+    const targets = Array.from(document.querySelectorAll('.cc-card, .card-3d, .cc-hero-panel'));
+    if (!targets.length) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target;
+        if (entry.isIntersecting) {
+          el.classList.remove('is-offscreen-lite');
+        } else {
+          el.classList.add('is-offscreen-lite');
+        }
+      });
+    }, {
+      threshold: 0.01,
+      rootMargin: '120px 0px 120px 0px'
+    });
+
+    targets.forEach((el) => observer.observe(el));
+    addCleanup(() => observer.disconnect());
+  };
+
   const ensureTransitionLayer = () => {
     let layer = document.querySelector('[data-transition-layer="cc"]');
     if (!layer) {
@@ -316,6 +339,7 @@
     initRevealSystem();
     initHoverTilt();
     initMagnetic();
+    initOffscreenDegrade();
     initCursor();
     initTransitions(gsap);
 
