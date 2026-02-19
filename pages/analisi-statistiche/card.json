@@ -1,0 +1,21 @@
+{
+    "id":  "analisi-statistiche",
+    "title":  "Analisi statistiche",
+    "subtitle":  "Report statistici su frequenze, ritardi e pattern storici",
+    "statusTag":  "Analisi",
+    "narrativeSummary":  "Report in preparazione.",
+    "macroGroup":  "statistica",
+    "page":  "pages/analisi-statistiche/index.html",
+    "cardBase":  "pages/analisi-statistiche/",
+    "image":  "img.webp",
+    "lastUpdated":  "",
+    "hasNews":  false,
+    "isActive":  false,
+    "no_data_show":  true,
+    "accessTier":  "off",
+    "view":  false,
+    "hits":  {
+                 "enabled":  false,
+                 "count":  0
+             }
+}

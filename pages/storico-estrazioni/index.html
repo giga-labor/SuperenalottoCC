@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="google-adsense-account" content="ca-pub-4257836243471373">
+  
+  <title>Storico estrazioni - SuperEnalotto Control Chaos</title>
+  <meta name="description" content="Archivio storico estrazioni SuperEnalotto con ricerca rapida per data, concorso e numeri.">
+  <link rel="canonical" href="https://www.superenalottocc.it/pages/storico-estrazioni/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=swap">
+<script src="../../assets/js/ga4.js" defer></script>
+<link rel="stylesheet" href="../../assets/css/tailwind.generated.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/header.css">
+  <link rel="stylesheet" href="../../assets/css/ads.css">
+  <link rel="stylesheet" href="../../assets/css/migration.css">
+</head>
+<body class="min-h-screen bg-midnight text-white theme-cosmic motion-bold cc-final-look" data-style-lock="final">
+<main class="content-fade mx-auto max-w-5xl content-width px-6 py-2">
+    <div class="content-box">
+    <header class="mt-6 space-y-3" data-page-kicker-wrap>
+      <span class="text-xs uppercase tracking-[0.2em] text-ash" data-page-kicker>Archivio storico</span>
+    </header>
+
+    <aside class="cc-bridge-box" data-bridge-box data-bridge-id="archive_bridge_ritardi" data-linked-paper-id="classic-ritardi" data-source-data-module="storico-estrazioni">
+      <p><strong>Approfondimento teorico:</strong> i ritardi osservati nello storico sono discussi nello studio <a href="../algoritmi/algs/classic-ritardi/index.html">Classic Ritardi</a>.</p>
+    </aside>
+
+    <div class="tabs-shell mt-10" data-tabs-root data-tab-panel-label="off">
+      <div class="folder-tabs">
+        <button class="tab-btn is-active" type="button" data-tab-target="riepilogo">Riepilogo</button>
+        <button class="tab-btn" type="button" data-tab-target="archivio">Archivio</button>
+      </div>
+      <div class="tabs-sheet">
+        <section class="tab-panel is-active space-y-4" data-tab-panel="riepilogo">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold">Dati estrazioni</h2>
+            </div>
+            <span class="rounded-full border border-emerald-400 bg-midnight/80 px-3 py-1 text-xs uppercase tracking-[0.2em] text-emerald-300" data-draws-status-tag>Archivio attivo</span>
+          </div>
+          <div class="mt-2 rounded-2xl border border-white/10 bg-midnight/80 p-4">
+            <div class="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-ash">Record totali</p>
+                <p class="mt-2 text-2xl font-semibold" data-draws-count>?</p>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-ash">Prima estrazione</p>
+                <p class="mt-2 text-xl font-semibold" data-draws-first>?</p>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-ash">Ultima estrazione</p>
+                <p class="mt-2 text-xl font-semibold" data-draws-last>?</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="tab-panel space-y-4" data-tab-panel="archivio">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold">Filtro rapido</h3>
+              <p class="text-ash text-sm">Cerca per data, numero concorso o combinazione.</p>
+            </div>
+            <input class="w-full sm:w-72 rounded-full border border-white/10 bg-midnight/80 px-4 py-2 text-sm text-white placeholder:text-ash focus:outline-none focus:ring-2 focus:ring-neon" type="text" placeholder="Cerca..." data-draws-search>
+          </div>
+
+          <div class="table-scroll-shell mt-2" data-draws-scroll-shell>
+            <div class="cc-table-wrap" data-draws-scroll>
+              <table class="draws-table min-w-full text-left text-sm">
+                <thead class="bg-midnight/80 text-xs uppercase tracking-[0.2em] text-ash">
+                  <tr data-draws-header>
+                    <th class="px-4 py-3">Data</th>
+                    <th class="px-4 py-3">Concorso</th>
+                    <th class="px-4 py-3">Numeri</th>
+                    <th class="px-4 py-3">Jolly/SuperStar</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5" data-draws-body>
+                  <tr>
+                    <td class="px-4 py-6 text-ash" colspan="4">In attesa di <code class="text-neon">draws.csv</code>...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table-scroll-fixedbar" data-draws-scrollbar hidden aria-hidden="true">
+            <div class="table-scroll-fixedbar__inner" data-draws-scrollbar-inner></div>
+          </div>
+
+          <div class="mt-2 flex flex-wrap items-center justify-between gap-4">
+            <p class="text-sm text-ash" data-draws-status>0 record visualizzati</p>
+            <div class="flex items-center gap-1">
+              <button class="rounded-lg border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-prev>Indietro</button>
+              <span class="text-sm text-ash" data-draws-page>Pagina 1</span>
+              <button class="rounded-lg border border-white/10 px-4 py-2 text-sm text-ash transition hover:border-neon hover:text-neon" data-draws-next>Avanti</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <aside class="cc-bridge-box" data-bridge-box data-bridge-id="archive_bridge_frequency" data-linked-paper-id="classic-frequency" data-source-data-module="storico-estrazioni">
+      <p>Questo dataset storico è la base informativa comune: da qui tutti gli algoritmi ricavano statistiche e segnali di apprendimento.</p>
+    </aside>
+    <section class="cc-page-hub" data-reveal="fade-up">
+      <h3 class="cc-page-hub__title">Continua l'esplorazione</h3>
+      <div class="cc-page-hub__grid">
+        <a class="cc-page-hub__item" href="../../index.html#home">Home</a>
+        <a class="cc-page-hub__item" href="../algoritmi/index.html">Algorithms</a>
+        <a class="cc-page-hub__item" href="../analisi-statistiche/index.html">Dashboard</a>
+        <a class="cc-page-hub__item" href="../oracle/index.html">Oracle</a>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  
+
+  <script src="../../assets/js/version.js" defer></script>
+<script src="../../assets/js/header.js" defer></script>
+  <script src="../../assets/js/component-builder.js" defer></script>
+  <script src="../../assets/js/core/cache-engine.js" defer></script>
+  <script src="../../assets/js/core/data-repository.js" defer></script>
+  <script src="../../assets/js/core/page-orchestrator.js" defer></script>
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/architects/base.architect.js" defer></script>
+  <script src="../../assets/js/architects/storico.architect.js" defer></script>
+  <script src="../../assets/js/directors/storico.director.js" defer></script>
+  <script src="../../assets/js/runtime-bootstrap.js" defer></script>
+  <script src="../../assets/js/draws.js" defer></script>
+  <script src="../../assets/js/ads.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
