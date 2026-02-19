@@ -28,3 +28,22 @@
 [19:57:32] Avvio fase: apply_stage_to_repo
 [19:57:32] Fase KO: apply_stage_to_repo -> Working tree non pulita (gate strict)
 [19:57:32] Avvio fase: git_add_commit_push_once
+[19:57:33] Fase KO: git_add_commit_push_once -> Push fallito -> PENDING_PUBLISH
+To https://github.com/giga-labor/secc.git
+!	HEAD:refs/heads/main	[rejected] (non-fast-forward)
+Done
+error: failed to push some refs to 'https://github.com/giga-labor/secc.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+[19:57:33] Avvio fase: post_push_verify
+[19:57:34] Fase KO: post_push_verify -> Mismatch locale/remoto: 3ba05b7a79b8a33954442305f9fed74843d4190c vs 28619c4afe396fbe84e0148b9a4adf8721f94919
+[19:57:34] Avvio fase: email_final_report
+[19:57:36] Fase OK: email_final_report
+[19:57:36] Avvio fase: lock_release
+[19:57:36] Fase OK: lock_release
+[19:57:36] SERVER ciclo #1: degraded
+[19:57:36] SERVER: prossimo ciclo tra 10m 00s alle 20:07:36
+[19:59:12] Richiesta stop ricevuta.
+[19:59:13] Modalita server arrestata da operatore
