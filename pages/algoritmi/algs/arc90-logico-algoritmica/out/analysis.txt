@@ -5,8 +5,8 @@ Questo adapter esegue sincronizzazione dati e conversione verso formato output r
 Stato esecuzione
 - Draws usati: 4148
 - Nuovi concorsi importati in cortex: 4148
-- Step training incrementale: 1
-- Stato indice training: 4146 -> 4147
+- Step training incrementale: 0
+- Stato indice training: 4147 -> 4147
 - Valutazione storica anti-leakage: walk-forward stretto
 - Neuroni totali: 4148
 - Credibilita media: 0.2000
