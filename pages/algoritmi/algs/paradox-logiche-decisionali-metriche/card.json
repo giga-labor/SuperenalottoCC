@@ -4,7 +4,7 @@
   "subtitle": "Descrizione in arrivo",
   "image": "img.webp",
   "lastUpdated": "07/02/2026",
-  "hasNews": true,
+  "hasNews": false,
   "usesOutData": true,
   "statusTag": "Scheda tecnica",
   "narrativeSummary": "Aggiornamenti in preparazione.",
@@ -18,5 +18,7 @@
   "hits": {
     "enabled": false,
     "count": 1
-  }
+  },
+  "featured": false,
+  "news": []
 }
