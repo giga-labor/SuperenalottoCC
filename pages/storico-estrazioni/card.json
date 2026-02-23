@@ -1,7 +1,7 @@
 {
   "macroGroup": "storico",
   "id": "storico-estrazioni",
-  "title": "Ultima estrazione:",
+  "title": "Estrazione del:",
   "subtitle": "$D",
   "showSubtitle": true,
   "image": "img.webp",
