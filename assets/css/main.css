@@ -262,6 +262,11 @@ body.cc-final-look #site-header.cc-nav-minimal .cc-nav-link:focus-visible {
   border-bottom-color: rgba(255, 190, 126, 0.65);
 }
 
+body.cc-final-look #site-header.cc-nav-minimal .cc-nav-link.is-active {
+  color: #ffd6a5;
+  border-bottom-color: rgba(255, 190, 126, 0.75);
+}
+
 body.cc-final-look .cc-hero-grid {
   margin-top: 3.6rem;
 }

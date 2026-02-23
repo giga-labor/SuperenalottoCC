@@ -525,6 +525,7 @@ const getPageKickerLabel = () => {
   if (path === '/' || path.endsWith('/index.html') && !path.includes('/pages/')) return 'HOME';
   if (path.includes('/pages/storico-estrazioni')) return 'ARCHIVIO STORICO';
   if (path.includes('/pages/analisi-statistiche')) return 'ANALISI STATISTICHE';
+  if (path.includes('/pages/ranking')) return 'RANKING';
   if (path.includes('/pages/algoritmi/spotlight/statistici')) return 'SPOTLIGHT STATISTICI';
   if (path.includes('/pages/algoritmi/spotlight/neurali')) return 'SPOTLIGHT NEURALI';
   if (path.includes('/pages/algoritmi/spotlight/ibridi')) return 'SPOTLIGHT IBRIDI';
@@ -666,12 +667,14 @@ if (header) {
     const homeHref = isFinalHome ? '#home' : resolveWithBaseHref('index.html#home');
     const algorithmsHref = resolveWithBaseHref('pages/algoritmi/index.html');
     const dashboardHref = resolveWithBaseHref('pages/analisi-statistiche/index.html');
+    const rankingHref = resolveWithBaseHref('pages/ranking/index.html');
     const oracleHref = resolveWithBaseHref('pages/oracle/index.html');
     if (left) {
       left.innerHTML = `
         <a class="cc-nav-link" href="${homeHref}">Home</a>
         <a class="cc-nav-link" href="${algorithmsHref}">Algorithms</a>
         <a class="cc-nav-link" href="${dashboardHref}">Dashboard</a>
+        <a class="cc-nav-link" href="${rankingHref}">Ranking</a>
         <a class="cc-nav-link" href="${oracleHref}">Oracle</a>
       `;
     }
@@ -680,6 +683,30 @@ if (header) {
     if (title) title.style.display = 'none';
     if (topline) topline.style.display = 'none';
     header.classList.add('cc-nav-minimal', 'header--top');
+
+    const markMinimalNavActive = () => {
+      const navLinks = header.querySelectorAll('.cc-nav-link[href]');
+      const path = (window.location.pathname || '').replace(/\/index\.html$/, '/').toLowerCase();
+      navLinks.forEach((link) => {
+        const label = String(link.textContent || '').trim().toLowerCase();
+        let active = false;
+        if (label === 'home') {
+          active = path === '/' || (path.endsWith('/index.html') && !path.includes('/pages/'));
+        } else if (label === 'algorithms') {
+          active = path.includes('/pages/algoritmi/');
+        } else if (label === 'dashboard') {
+          active = path.includes('/pages/analisi-statistiche/');
+        } else if (label === 'ranking') {
+          active = path.includes('/pages/ranking/');
+        } else if (label === 'oracle') {
+          active = path.includes('/pages/oracle/');
+        }
+        link.classList.toggle('is-active', active);
+      });
+    };
+    markMinimalNavActive();
+    window.addEventListener('hashchange', markMinimalNavActive, { passive: true });
+    window.addEventListener('pageshow', markMinimalNavActive, { passive: true });
 
     const updateHeaderMode = () => {
       const y = window.scrollY || document.documentElement.scrollTop || 0;
@@ -1598,7 +1625,13 @@ const initTabsRoot = (root) => {
   }
   root.dataset.tabsReady = '1';
   ensurePanelLabels();
-  const activeTarget = buttons.find((btn) => btn.classList.contains('is-active'))?.dataset.tabTarget
+  const hashTarget = String(window.location.hash || '').replace(/^#/, '').trim().toLowerCase();
+  const hashMatchTarget = hashTarget
+    ? (buttons.find((btn) => String(btn.dataset.tabTarget || '').trim().toLowerCase() === hashTarget)?.dataset.tabTarget
+      || panels.find((panel) => String(panel.dataset.tabPanel || '').trim().toLowerCase() === hashTarget)?.dataset.tabPanel)
+    : '';
+  const activeTarget = hashMatchTarget
+    || buttons.find((btn) => btn.classList.contains('is-active'))?.dataset.tabTarget
     || panels.find((panel) => panel.classList.contains('is-active'))?.dataset.tabPanel
     || buttons[0]?.dataset.tabTarget;
   if (activeTarget) activate(activeTarget);

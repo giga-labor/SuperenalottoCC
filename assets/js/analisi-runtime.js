@@ -5,6 +5,10 @@ function shouldUseRuntimeDirectorAnalisi() {
   return Boolean(window.CC_PAGE_ORCHESTRATOR && document.body?.dataset?.pageId === 'analisi');
 }
 
+function isRankingPage() {
+  return document.body?.dataset?.pageId === 'ranking';
+}
+
 function mountAnalisiPage() {
   if (analisiMounted) return;
   analisiMounted = true;
@@ -233,7 +237,13 @@ async function loadAnalisiRanking() {
 
 document.addEventListener('DOMContentLoaded', () => {
   if (shouldUseRuntimeDirectorAnalisi()) return;
-  mountAnalisiPage();
+  if (document.body?.dataset?.pageId === 'analisi') {
+    mountAnalisiPage();
+    return;
+  }
+  if (isRankingPage()) {
+    loadAnalisiRanking();
+  }
 });
 
 window.CC_ANALISI_RUNTIME = {
