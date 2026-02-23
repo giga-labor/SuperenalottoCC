@@ -6,7 +6,8 @@ const ADSENSE_DEFAULT_CONFIG = Object.freeze({
   CLIENT: 'ca-pub-4257836243471373',
   SLOT_RIGHT: '1365924967',
   SLOT_BOTTOM: '7739761628',
-  CMP_TCF_ENABLED: true
+  CMP_TCF_ENABLED: true,
+  AUTO_ADS_ENABLED: true
 });
 
 const CONSENT_STORAGE_KEY = 'cc_cookie_consent_v1';
@@ -17,7 +18,15 @@ let adsenseLoaderPromise = null;
 let fundingChoicesPromise = null;
 let consentModeSource = 'custom';
 let adsInitialized = false;
+let autoAdsInitialized = false;
 const adViewBound = new WeakSet();
+const ADS_DISABLED_PATH_SEGMENTS = Object.freeze([
+  '/pages/privacy-policy/',
+  '/pages/cookie-policy/',
+  '/pages/termini-servizio/',
+  '/pages/disclaimer/',
+  '/pages/contatti-chi-siamo/'
+]);
 
 const resolveAdsenseConfig = () => {
   const override = (window.CC_ADSENSE_CONFIG && typeof window.CC_ADSENSE_CONFIG === 'object')
@@ -27,11 +36,32 @@ const resolveAdsenseConfig = () => {
     CLIENT: String(override.CLIENT || ADSENSE_DEFAULT_CONFIG.CLIENT || '').trim(),
     SLOT_RIGHT: String(override.SLOT_RIGHT || ADSENSE_DEFAULT_CONFIG.SLOT_RIGHT || '').trim(),
     SLOT_BOTTOM: String(override.SLOT_BOTTOM || ADSENSE_DEFAULT_CONFIG.SLOT_BOTTOM || '').trim(),
-    CMP_TCF_ENABLED: Boolean(override.CMP_TCF_ENABLED ?? ADSENSE_DEFAULT_CONFIG.CMP_TCF_ENABLED)
+    CMP_TCF_ENABLED: Boolean(override.CMP_TCF_ENABLED ?? ADSENSE_DEFAULT_CONFIG.CMP_TCF_ENABLED),
+    AUTO_ADS_ENABLED: Boolean(override.AUTO_ADS_ENABLED ?? ADSENSE_DEFAULT_CONFIG.AUTO_ADS_ENABLED)
   };
 };
 
 const ADSENSE_CONFIG = resolveAdsenseConfig();
+
+const normalizePagePathname = () => {
+  const raw = String(window.location?.pathname || '/').replace(/\\/g, '/').toLowerCase();
+  const withLeadingSlash = raw.startsWith('/') ? raw : `/${raw}`;
+  return withLeadingSlash.replace(/\/index\.html$/, '/');
+};
+
+const isAdsDisabledByPage = () => {
+  const body = document.body;
+  const attr = String(
+    body?.getAttribute('data-ads-disabled')
+    || body?.dataset?.adsDisabled
+    || body?.dataset?.ccAdsDisabled
+    || ''
+  ).trim().toLowerCase();
+  if (attr === '1' || attr === 'true' || attr === 'yes' || attr === 'on') return true;
+
+  const pathname = normalizePagePathname();
+  return ADS_DISABLED_PATH_SEGMENTS.some((segment) => pathname.includes(segment));
+};
 
 const resolveSiteBase = () => {
   const script = document.querySelector('script[src*="assets/js/ads.js"]');
@@ -299,6 +329,25 @@ const ensureAdsenseLoader = () => {
   return adsenseLoaderPromise;
 };
 
+const ensureAutoAds = async () => {
+  if (autoAdsInitialized) return;
+  if (!ADSENSE_CONFIG.AUTO_ADS_ENABLED) return;
+  if (isAdsDisabledByPage()) return;
+  const consent = getStoredConsent();
+  if (!consent || consent.ads !== 'granted') return;
+
+  try {
+    await ensureAdsenseLoader();
+    (window.adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: ADSENSE_CONFIG.CLIENT,
+      enable_page_level_ads: true
+    });
+    autoAdsInitialized = true;
+  } catch (_) {
+    // fallback to manual slots only
+  }
+};
+
 const createBlockedNotice = (title = 'Annunci sospesi', text = 'Apri "Gestisci cookie" per attivare AdSense.') => {
   const notice = document.createElement('div');
   notice.className = 'ad-slot__notice';
@@ -548,6 +597,8 @@ const ensureAds = () => {
 
   const root = document.documentElement;
   const baseHrefPrefix = resolveSiteBase();
+  const adsDisabledForPage = isAdsDisabledByPage();
+  root.dataset.ccAdsMonetization = adsDisabledForPage ? 'disabled' : 'enabled';
   let rightHost = resolveAdHost('right');
   let rightRail = resolveAdContainer(rightHost, 'right');
   const rightCreated = !(rightHost && rightRail);
@@ -596,6 +647,27 @@ const ensureAds = () => {
     policyRow.innerHTML = buildPolicyRowMarkup(baseHrefPrefix);
   }
   syncPolicyBrandVersion(policyRow);
+
+  if (adsDisabledForPage) {
+    root.style.setProperty('--ad-reserve-bottom', '0px');
+    root.style.setProperty('--ad-reserve-left', '0px');
+    root.style.setProperty('--ad-reserve-right', '0px');
+    root.style.setProperty('--ad-rail-bottom', '0px');
+    if (policyCreated) document.body.appendChild(policyRow);
+    wireConsentUi();
+
+    const startPolicyOnly = async () => {
+      await initConsentSource();
+      if (consentModeSource !== 'tcf') {
+        const consent = getStoredConsent();
+        applyConsentMode(consent);
+        toggleConsentBanner(!consent);
+      }
+    };
+
+    startPolicyOnly();
+    return;
+  }
 
   const adSlot = document.createElement('div');
   adSlot.className = 'ad-slot';
@@ -667,6 +739,7 @@ const ensureAds = () => {
       applyConsentMode(consent);
       toggleConsentBanner(!consent);
     }
+    await ensureAutoAds();
     updateAdLayout();
   };
 
@@ -682,7 +755,10 @@ const ensureAds = () => {
   };
   window.addEventListener('load', scheduleAdLayout, { passive: true });
   window.addEventListener('resize', scheduleAdLayout, { passive: true });
-  window.addEventListener(CONSENT_EVENT_NAME, rerenderCurrentAd);
+  window.addEventListener(CONSENT_EVENT_NAME, () => {
+    ensureAutoAds();
+    rerenderCurrentAd();
+  });
 };
 
 if (document.readyState === 'loading') {
