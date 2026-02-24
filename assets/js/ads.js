@@ -20,7 +20,7 @@ const RIGHT_RAIL_SMARTLINK_CONFIG = Object.freeze({
   LABEL: 'Contenuto sponsorizzato',
   TITLE: 'Pagina promozionale esterna',
   TEXT: 'Si apre una pagina promozionale esterna con contenuto variabile in base al network.',
-  CTA: 'Apri contenuto sponsorizzato'
+  CTA: 'Contenuto sponsorizzato'
 });
 const RIGHT_REFERRAL_BANNER_CONFIG = Object.freeze({
   ENABLED: true,
