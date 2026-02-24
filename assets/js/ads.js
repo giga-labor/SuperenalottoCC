@@ -17,9 +17,6 @@ const SMARTLINK_CONFIG = Object.freeze({
 const RIGHT_RAIL_SMARTLINK_CONFIG = Object.freeze({
   ENABLED: true,
   URL: 'https://www.effectivegatecpm.com/i8my4m0w?key=bc4fe97c1756c654c5515e10e79ebd5d',
-  LABEL: 'Contenuto sponsorizzato',
-  TITLE: 'Pagina promozionale esterna',
-  TEXT: 'Si apre una pagina promozionale esterna con contenuto variabile in base al network.',
   CTA: 'Contenuto sponsorizzato'
 });
 const RIGHT_REFERRAL_BANNER_CONFIG = Object.freeze({
@@ -27,6 +24,26 @@ const RIGHT_REFERRAL_BANNER_CONFIG = Object.freeze({
   URL: 'https://beta.publishers.adsterra.com/referral/gEwu8JJXMD',
   IMAGE_SRC: 'https://landings-cdn.adsterratech.com/referralBanners/gif/120x150_adsterra_reff.gif',
   LABEL: 'Partner'
+});
+const RIGHT_ADSTERRA_DISPLAY_CONFIG = Object.freeze({
+  ENABLED: true,
+  SCRIPT_SRC: 'https://www.highperformanceformat.com/d5db3e693a2e496945214af3d188b975/invoke.js',
+  CONTAINER_ID: 'container-right-adsterra-display',
+  KEY: 'd5db3e693a2e496945214af3d188b975',
+  FORMAT: 'iframe',
+  WIDTH: 160,
+  HEIGHT: 300,
+  LABEL: 'Partner Ad'
+});
+const BOTTOM_ADSTERRA_DISPLAY_CONFIG = Object.freeze({
+  ENABLED: true,
+  SCRIPT_SRC: 'https://www.highperformanceformat.com/49e69f729b9a38eace8bec52c40a4ccb/invoke.js',
+  CONTAINER_ID: 'container-bottom-adsterra-display',
+  KEY: '49e69f729b9a38eace8bec52c40a4ccb',
+  FORMAT: 'iframe',
+  WIDTH: 320,
+  HEIGHT: 50,
+  LABEL: 'Partner Ad'
 });
 const BOTTOM_REFERRAL_BANNER_CONFIG = Object.freeze({
   ENABLED: true,
@@ -45,6 +62,10 @@ let fundingChoicesPromise = null;
 let consentModeSource = 'custom';
 let adsInitialized = false;
 let autoAdsInitialized = false;
+let rightAdsterraDisplayLoaded = false;
+let rightAdsterraFitObserver = null;
+let bottomAdsterraDisplayLoaded = false;
+let bottomAdsterraFitObserver = null;
 let smartlinkArmed = false;
 let smartlinkOpened = false;
 const adViewBound = new WeakSet();
@@ -129,15 +150,9 @@ const buildRightRailSmartlinkMarkup = () => {
   if (!RIGHT_RAIL_SMARTLINK_CONFIG.ENABLED) return '';
   const url = String(RIGHT_RAIL_SMARTLINK_CONFIG.URL || '').trim();
   if (!/^https?:\/\//i.test(url)) return '';
-  const label = String(RIGHT_RAIL_SMARTLINK_CONFIG.LABEL || 'Link sponsorizzato');
-  const title = String(RIGHT_RAIL_SMARTLINK_CONFIG.TITLE || 'Offerta consigliata');
-  const text = String(RIGHT_RAIL_SMARTLINK_CONFIG.TEXT || 'Apri una proposta sponsorizzata in una nuova scheda.');
   const cta = String(RIGHT_RAIL_SMARTLINK_CONFIG.CTA || 'Apri');
   return `
-    <section class="ad-smartlink-card" aria-label="${label}" data-smartlink-card="right-rail">
-      <p class="ad-smartlink-card__eyebrow">${label}</p>
-      <p class="ad-smartlink-card__title">${title}</p>
-      <p class="ad-smartlink-card__text">${text}</p>
+    <section class="ad-smartlink-card" aria-label="${cta}" data-smartlink-card="right-rail">
       <button class="ad-smartlink-card__cta" type="button" data-smartlink-open-window="true" data-smartlink-url="${url}">
         ${cta}
       </button>
@@ -171,6 +186,176 @@ const buildRightReferralBannerMarkup = () => {
       <img class="ad-referral-banner__img" alt="Referral Adsterra" src="${src}" width="120" height="150" loading="lazy" decoding="async">
     </a>
   `;
+};
+
+const buildRightAdsterraDisplayMarkup = () => {
+  if (!RIGHT_ADSTERRA_DISPLAY_CONFIG.ENABLED) return '';
+  const containerId = String(RIGHT_ADSTERRA_DISPLAY_CONFIG.CONTAINER_ID || '').trim();
+  const label = String(RIGHT_ADSTERRA_DISPLAY_CONFIG.LABEL || 'Partner Ad');
+  if (!containerId) return '';
+  return `
+    <section class="ad-adsterra-display ad-adsterra-display--right" aria-label="${label}">
+      <p class="ad-adsterra-display__label">${label}</p>
+      <div class="ad-adsterra-display__host" id="${containerId}"></div>
+    </section>
+  `;
+};
+
+const buildBottomAdsterraDisplayMarkup = () => {
+  if (!BOTTOM_ADSTERRA_DISPLAY_CONFIG.ENABLED) return '';
+  const containerId = String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.CONTAINER_ID || '').trim();
+  const label = String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.LABEL || 'Partner Ad');
+  if (!containerId) return '';
+  return `
+    <section class="ad-adsterra-display ad-adsterra-display--bottom" aria-label="${label}">
+      <div class="ad-adsterra-display__host" id="${containerId}"></div>
+    </section>
+  `;
+};
+
+const ensureRightAdsterraDisplayLoader = () => {
+  if (!RIGHT_ADSTERRA_DISPLAY_CONFIG.ENABLED) return;
+  if (rightAdsterraDisplayLoaded) return;
+  const containerId = String(RIGHT_ADSTERRA_DISPLAY_CONFIG.CONTAINER_ID || '').trim();
+  const scriptSrc = String(RIGHT_ADSTERRA_DISPLAY_CONFIG.SCRIPT_SRC || '').trim();
+  const key = String(RIGHT_ADSTERRA_DISPLAY_CONFIG.KEY || '').trim();
+  const format = String(RIGHT_ADSTERRA_DISPLAY_CONFIG.FORMAT || 'iframe').trim();
+  const width = Number.parseInt(String(RIGHT_ADSTERRA_DISPLAY_CONFIG.WIDTH || ''), 10);
+  const height = Number.parseInt(String(RIGHT_ADSTERRA_DISPLAY_CONFIG.HEIGHT || ''), 10);
+  if (!containerId || !/^https?:\/\//i.test(scriptSrc)) return;
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  if (!key || !Number.isFinite(width) || !Number.isFinite(height)) return;
+  if (container.dataset.adsterraLoaded === '1') {
+    rightAdsterraDisplayLoaded = true;
+    return;
+  }
+  container.textContent = '';
+  window.atOptions = {
+    key,
+    format,
+    height,
+    width,
+    params: {}
+  };
+  const script = document.createElement('script');
+  script.async = false;
+  script.src = scriptSrc;
+  script.setAttribute('data-cfasync', 'false');
+  script.dataset.ccAdsterraRightDisplay = 'true';
+  script.onload = () => {
+    rightAdsterraDisplayLoaded = true;
+    container.dataset.adsterraLoaded = '1';
+    window.requestAnimationFrame(fitRightAdsterraDisplay);
+  };
+  script.onerror = () => {
+    rightAdsterraDisplayLoaded = false;
+    container.dataset.adsterraLoaded = '0';
+  };
+  container.appendChild(script);
+};
+
+const ensureBottomAdsterraDisplayLoader = () => {
+  if (!BOTTOM_ADSTERRA_DISPLAY_CONFIG.ENABLED) return;
+  if (bottomAdsterraDisplayLoaded) return;
+  const containerId = String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.CONTAINER_ID || '').trim();
+  const scriptSrc = String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.SCRIPT_SRC || '').trim();
+  const key = String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.KEY || '').trim();
+  const format = String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.FORMAT || 'iframe').trim();
+  const width = Number.parseInt(String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.WIDTH || ''), 10);
+  const height = Number.parseInt(String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.HEIGHT || ''), 10);
+  if (!containerId || !/^https?:\/\//i.test(scriptSrc)) return;
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  if (!key || !Number.isFinite(width) || !Number.isFinite(height)) return;
+  if (container.dataset.adsterraLoaded === '1') {
+    bottomAdsterraDisplayLoaded = true;
+    return;
+  }
+  container.textContent = '';
+  window.atOptions = { key, format, height, width, params: {} };
+  const script = document.createElement('script');
+  script.async = false;
+  script.src = scriptSrc;
+  script.setAttribute('data-cfasync', 'false');
+  script.dataset.ccAdsterraBottomDisplay = 'true';
+  script.onload = () => {
+    bottomAdsterraDisplayLoaded = true;
+    container.dataset.adsterraLoaded = '1';
+    window.requestAnimationFrame(fitBottomAdsterraDisplay);
+  };
+  script.onerror = () => {
+    bottomAdsterraDisplayLoaded = false;
+    container.dataset.adsterraLoaded = '0';
+  };
+  container.appendChild(script);
+};
+
+const fitRightAdsterraDisplay = () => {
+  const containerId = String(RIGHT_ADSTERRA_DISPLAY_CONFIG.CONTAINER_ID || '').trim();
+  if (!containerId) return;
+  const host = document.getElementById(containerId);
+  if (!(host instanceof HTMLElement)) return;
+  const child = host.querySelector('iframe, div, img');
+  if (!(child instanceof HTMLElement)) return;
+
+  host.classList.add('is-fit-host');
+  child.style.transform = '';
+  child.style.transformOrigin = 'top center';
+
+  const hostRect = host.getBoundingClientRect();
+  const childRect = child.getBoundingClientRect();
+  if (!hostRect.width || !hostRect.height || !childRect.width || !childRect.height) return;
+
+  const scaleX = hostRect.width / childRect.width;
+  const scaleY = hostRect.height / childRect.height;
+  const scale = Math.min(1, scaleX, scaleY);
+  if (scale < 0.999) {
+    child.style.transform = `scale(${scale})`;
+  }
+};
+
+const ensureRightAdsterraDisplayFitObserver = () => {
+  const containerId = String(RIGHT_ADSTERRA_DISPLAY_CONFIG.CONTAINER_ID || '').trim();
+  if (!containerId) return;
+  const host = document.getElementById(containerId);
+  if (!(host instanceof HTMLElement)) return;
+
+  if (rightAdsterraFitObserver) rightAdsterraFitObserver.disconnect();
+  rightAdsterraFitObserver = new MutationObserver(() => {
+    window.requestAnimationFrame(fitRightAdsterraDisplay);
+  });
+  rightAdsterraFitObserver.observe(host, { childList: true, subtree: true });
+  window.requestAnimationFrame(fitRightAdsterraDisplay);
+};
+
+const fitBottomAdsterraDisplay = () => {
+  const containerId = String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.CONTAINER_ID || '').trim();
+  if (!containerId) return;
+  const host = document.getElementById(containerId);
+  if (!(host instanceof HTMLElement)) return;
+  const child = host.querySelector('iframe, div, img');
+  if (!(child instanceof HTMLElement)) return;
+  child.style.transform = '';
+  child.style.transformOrigin = 'top left';
+  const hostRect = host.getBoundingClientRect();
+  const childRect = child.getBoundingClientRect();
+  if (!hostRect.width || !hostRect.height || !childRect.width || !childRect.height) return;
+  const scale = Math.min(1, hostRect.width / childRect.width, hostRect.height / childRect.height);
+  if (scale < 0.999) child.style.transform = `scale(${scale})`;
+};
+
+const ensureBottomAdsterraDisplayFitObserver = () => {
+  const containerId = String(BOTTOM_ADSTERRA_DISPLAY_CONFIG.CONTAINER_ID || '').trim();
+  if (!containerId) return;
+  const host = document.getElementById(containerId);
+  if (!(host instanceof HTMLElement)) return;
+  if (bottomAdsterraFitObserver) bottomAdsterraFitObserver.disconnect();
+  bottomAdsterraFitObserver = new MutationObserver(() => {
+    window.requestAnimationFrame(fitBottomAdsterraDisplay);
+  });
+  bottomAdsterraFitObserver.observe(host, { childList: true, subtree: true });
+  window.requestAnimationFrame(fitBottomAdsterraDisplay);
 };
 
 let rightRailSmartlinkUiWired = false;
@@ -784,6 +969,7 @@ const ensureAds = () => {
       <div class="ad-rail__panel">
         <p class="ad-rail__label-head">Annunci</p>
         ${buildRightRailSmartlinkMarkup()}
+        ${buildRightAdsterraDisplayMarkup()}
         ${buildRightReferralBannerMarkup()}
         <div class="ad-slot-host" data-ad-host="right"></div>
       </div>
@@ -804,6 +990,7 @@ const ensureAds = () => {
       <div class="bottom-ad__panel">
         <p class="ad-rail__label-head">Annunci</p>
         ${buildRightRailSmartlinkMarkup()}
+        ${buildBottomAdsterraDisplayMarkup()}
         ${buildBottomReferralBannerMarkup()}
         <div class="ad-slot-host" data-ad-host="bottom"></div>
       </div>
@@ -899,6 +1086,14 @@ const ensureAds = () => {
       moveSlotTo(bottomHost, 'bottom');
     }
 
+    if (showRightRail) {
+      ensureRightAdsterraDisplayLoader();
+      ensureRightAdsterraDisplayFitObserver();
+    } else {
+      ensureBottomAdsterraDisplayLoader();
+      ensureBottomAdsterraDisplayFitObserver();
+    }
+
     updateLayoutReserve();
     rerenderCurrentAd();
   };
@@ -933,7 +1128,11 @@ const ensureAds = () => {
     });
   };
   window.addEventListener('load', scheduleAdLayout, { passive: true });
-  window.addEventListener('resize', scheduleAdLayout, { passive: true });
+  window.addEventListener('resize', () => {
+    scheduleAdLayout();
+    window.requestAnimationFrame(fitRightAdsterraDisplay);
+    window.requestAnimationFrame(fitBottomAdsterraDisplay);
+  }, { passive: true });
   window.addEventListener(CONSENT_EVENT_NAME, () => {
     ensureAutoAds();
     armSmartlink();
