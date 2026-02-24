@@ -48,7 +48,7 @@ const BOTTOM_ADSTERRA_DISPLAY_CONFIG = Object.freeze({
 const BOTTOM_REFERRAL_BANNER_CONFIG = Object.freeze({
   ENABLED: true,
   URL: 'https://beta.publishers.adsterra.com/referral/gEwu8JJXMD',
-  IMAGE_SRC: 'https://landings-cdn.adsterratech.com/referralBanners/png/80%20x%2030%20px.png',
+  IMAGE_SRC: 'https://landings-cdn.adsterratech.com/referralBanners/png/120%20x%2045%20px.png',
   LABEL: 'Partner'
 });
 
@@ -208,7 +208,7 @@ const buildBottomReferralBannerMarkup = () => {
   return `
     <a class="ad-referral-badge" href="${url}" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="Referral Adsterra (${label})">
       <span class="ad-referral-badge__label">${label}</span>
-      <img class="ad-referral-badge__img" alt="Referral Adsterra" src="${src}" width="80" height="30" loading="lazy" decoding="async">
+      <img class="ad-referral-badge__img" alt="Referral Adsterra" src="${src}" width="120" height="45" loading="lazy" decoding="async">
     </a>
   `;
 };

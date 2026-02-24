@@ -3,18 +3,7 @@ const GA_MEASUREMENT_ID = 'G-7FLYS8Y9BB';
 (() => {
   if (!GA_MEASUREMENT_ID) return;
 
-  const ensurePreconnect = (href) => {
-    if (!href) return;
-    if (document.querySelector(`link[rel="preconnect"][href="${href}"]`)) return;
-    const link = document.createElement('link');
-    link.rel = 'preconnect';
-    link.href = href;
-    link.crossOrigin = 'anonymous';
-    document.head.appendChild(link);
-  };
-
   const loadGtagScript = () => {
-    ensurePreconnect('https://www.googletagmanager.com');
     const existingLoader = document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"]`);
     if (existingLoader) return;
     const gtagScript = document.createElement('script');

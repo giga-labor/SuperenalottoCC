@@ -433,8 +433,8 @@
 
 .ad-referral-badge__img {
   display: block;
-  width: 80px;
-  height: 30px;
+  width: 120px;
+  height: 45px;
   border-radius: 0.25rem;
 }
 
@@ -603,6 +603,13 @@
 .ad-policy-row__link {
   color: rgba(255, 217, 102, 0.95);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.22rem 0.38rem;
+  border-radius: 0.45rem;
+  line-height: 1.15;
 }
 
 .ad-policy-row__link:hover,
@@ -616,10 +623,10 @@
   background: rgba(255, 217, 102, 0.1);
   color: rgba(255, 240, 190, 0.95);
   border-radius: 999px;
-  padding: 0.03rem 0.4rem;
-  font-size: 0.52rem;
-  line-height: 1;
-  min-height: 0.66rem;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.62rem;
+  line-height: 1.1;
+  min-height: 2rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
