@@ -1,0 +1,11 @@
+[20:50:27] Fase OK: lock_acquire
+[20:50:27] Avvio fase: check_sources_quorum
+[20:50:29] Fase KO: check_sources_quorum -> Quorum insufficiente (2)
+[20:50:29] SERVER ciclo #14: quorum degraded (Quorum insufficiente (2))
+[20:50:29] Avvio fase: update_local_draws_stage
+[20:50:30] Fase OK: update_local_draws_stage
+[20:50:30] Avvio fase: lock_release
+[20:50:30] Fase OK: lock_release
+[20:50:30] SERVER in ascolto: nessun nuovo draws, ciclo terminato senza training/deploy/publish
+[20:50:30] SERVER: prossimo ciclo tra 2m 00s alle 20:52:30
+[20:52:30] SERVER ciclo #15: avvio

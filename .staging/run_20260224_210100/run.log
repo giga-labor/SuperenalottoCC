@@ -1,0 +1,35 @@
+[21:01:00] Fase OK: lock_acquire
+[21:01:00] Avvio fase: check_sources_quorum
+[21:01:06] Fase OK: check_sources_quorum
+[21:01:06] Avvio fase: update_local_draws_stage
+[21:01:08] Fase OK: update_local_draws_stage
+[21:01:08] SERVER: nuovo draws rilevato, avvio pipeline completa post-update
+[21:01:08] Avvio fase: verify_draws_stage
+[21:01:08] Fase OK: verify_draws_stage
+[21:01:08] Avvio fase: apply_draws_local_atomic
+[21:01:08] Fase OK: apply_draws_local_atomic
+[21:01:08] Avvio fase: train_incremental_stage_all_active
+[21:07:40] Fase OK: train_incremental_stage_all_active
+[21:07:40] Avvio fase: verify_train_outputs_stage
+[21:07:40] Fase OK: verify_train_outputs_stage
+[21:07:40] Avvio fase: update_card_hits_stage
+[21:07:40] Fase OK: update_card_hits_stage
+[21:07:40] Avvio fase: verify_card_hits_stage
+[21:07:40] Fase OK: verify_card_hits_stage
+[21:07:40] Avvio fase: build_manifest_stage
+[21:07:40] Fase OK: build_manifest_stage
+[21:07:40] Avvio fase: verify_bundle_stage
+[21:07:40] Fase OK: verify_bundle_stage
+[21:07:40] Avvio fase: apply_stage_to_repo
+[21:07:40] Fase KO: apply_stage_to_repo -> Working tree non pulita (gate strict)
+?? .staging/
+?? .state/
+[21:07:40] SERVER ciclo #19: stop su apply_stage_to_repo (Working tree non pulita (gate strict)
+?? .staging/
+?? .state/)
+[21:07:40] Avvio fase: lock_release
+[21:07:40] Fase OK: lock_release
+[21:07:40] SERVER ciclo #19: degraded
+[21:07:40] SERVER: prossimo ciclo tra 2m 00s alle 21:09:40
+[21:09:40] SERVER ciclo #20: avvio
+[21:09:40] Avvio fase: git_add_commit_push_once
