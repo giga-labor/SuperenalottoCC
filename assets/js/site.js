@@ -64,18 +64,24 @@ async function loadCardsIndex(path) {
 async function renderNewsCards(area, modules) {
   area.innerHTML = '';
   const built = await Promise.all(
-    modules.map((module) => createNewsCard(module))
+    modules.map((module, index) => createNewsCard(module, index))
   );
   built.filter(Boolean).forEach((card) => area.appendChild(card));
 }
 
-async function createNewsCard(module) {
+async function createNewsCard(module, index = -1) {
   if (!module || module.view !== true) return null;
   const tuneCardMedia = (card) => {
     const image = card?.querySelector?.('img');
     if (!image) return card;
     if (!image.getAttribute('decoding')) image.setAttribute('decoding', 'async');
-    if (!image.getAttribute('loading')) image.setAttribute('loading', 'lazy');
+    if (index === 0) {
+      image.setAttribute('loading', 'eager');
+      image.setAttribute('fetchpriority', 'high');
+    } else if (!image.getAttribute('loading')) {
+      image.setAttribute('loading', 'lazy');
+      image.setAttribute('fetchpriority', 'low');
+    }
     return card;
   };
   if (window.CARDS && typeof window.CARDS.buildAlgorithmCard === 'function') {
@@ -179,7 +185,8 @@ function applyCardEffects(area) {
 }
 
 function isNewsFeedEligibleCard(module) {
-  return hasNews(module) || isComingSoon(module) || hasHits(module);
+  if (module?.isActive === false) return false;
+  return hasNews(module) || hasHits(module);
 }
 
 function hasNews(module) {
