@@ -9,16 +9,23 @@ const ADSENSE_DEFAULT_CONFIG = Object.freeze({
   CMP_TCF_ENABLED: true,
   AUTO_ADS_ENABLED: true
 });
+const SMARTLINK_CONFIG = Object.freeze({
+  ENABLED: true,
+  URL: 'https://www.effectivegatecpm.com/nhv153qprr?key=d68e4e2ba05b70ea3652430fd9228177'
+});
 
 const CONSENT_STORAGE_KEY = 'cc_cookie_consent_v1';
 const CONSENT_EVENT_NAME = 'cc:consent-updated';
 const FOOTER_DRAW_CACHE_KEY = 'cc-footer-latest-draw-cache';
+const SMARTLINK_SESSION_KEY = 'cc_smartlink_1_opened_v1';
 
 let adsenseLoaderPromise = null;
 let fundingChoicesPromise = null;
 let consentModeSource = 'custom';
 let adsInitialized = false;
 let autoAdsInitialized = false;
+let smartlinkArmed = false;
+let smartlinkOpened = false;
 const adViewBound = new WeakSet();
 const ADS_DISABLED_PATH_SEGMENTS = Object.freeze([
   '/pages/privacy-policy/',
@@ -346,6 +353,70 @@ const ensureAutoAds = async () => {
   } catch (_) {
     // fallback to manual slots only
   }
+};
+
+const hasOpenedSmartlinkThisSession = () => {
+  if (smartlinkOpened) return true;
+  try {
+    return window.sessionStorage.getItem(SMARTLINK_SESSION_KEY) === '1';
+  } catch (_) {
+    return false;
+  }
+};
+
+const markSmartlinkOpened = () => {
+  smartlinkOpened = true;
+  try {
+    window.sessionStorage.setItem(SMARTLINK_SESSION_KEY, '1');
+  } catch (_) {
+    // ignore storage failures
+  }
+};
+
+const canOpenSmartlink = () => {
+  if (!SMARTLINK_CONFIG.ENABLED) return false;
+  const target = String(SMARTLINK_CONFIG.URL || '').trim();
+  if (!/^https?:\/\//i.test(target)) return false;
+  if (isAdsDisabledByPage()) return false;
+  if (hasOpenedSmartlinkThisSession()) return false;
+  const consent = getStoredConsent();
+  return Boolean(consent && consent.ads === 'granted');
+};
+
+const tryOpenSmartlink = () => {
+  if (!canOpenSmartlink()) return false;
+  const target = String(SMARTLINK_CONFIG.URL || '').trim();
+  try {
+    const popup = window.open(target, '_blank', 'noopener,noreferrer');
+    if (!popup) return false;
+    markSmartlinkOpened();
+    return true;
+  } catch (_) {
+    return false;
+  }
+};
+
+const armSmartlink = () => {
+  if (smartlinkArmed) return;
+  if (!SMARTLINK_CONFIG.ENABLED) return;
+  smartlinkArmed = true;
+
+  const onFirstUserGesture = () => {
+    if (!tryOpenSmartlink()) return;
+    document.removeEventListener('click', onFirstUserGesture, true);
+    document.removeEventListener('touchend', onFirstUserGesture, true);
+    document.removeEventListener('keydown', onKeyDown, true);
+  };
+
+  const onKeyDown = (event) => {
+    const key = String(event?.key || '').toLowerCase();
+    if (key !== 'enter' && key !== ' ') return;
+    onFirstUserGesture();
+  };
+
+  document.addEventListener('click', onFirstUserGesture, true);
+  document.addEventListener('touchend', onFirstUserGesture, true);
+  document.addEventListener('keydown', onKeyDown, true);
 };
 
 const createBlockedNotice = (title = 'Annunci sospesi', text = 'Apri "Gestisci cookie" per attivare AdSense.') => {
@@ -740,6 +811,7 @@ const ensureAds = () => {
       toggleConsentBanner(!consent);
     }
     await ensureAutoAds();
+    armSmartlink();
     updateAdLayout();
   };
 
@@ -757,6 +829,7 @@ const ensureAds = () => {
   window.addEventListener('resize', scheduleAdLayout, { passive: true });
   window.addEventListener(CONSENT_EVENT_NAME, () => {
     ensureAutoAds();
+    armSmartlink();
     rerenderCurrentAd();
   });
 };
