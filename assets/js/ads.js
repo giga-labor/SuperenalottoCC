@@ -3,6 +3,7 @@
 });
 
 const ADSENSE_DEFAULT_CONFIG = Object.freeze({
+  ENABLED: true,
   CLIENT: 'ca-pub-4257836243471373',
   SLOT_RIGHT: '1365924967',
   SLOT_BOTTOM: '7739761628',
@@ -10,7 +11,7 @@ const ADSENSE_DEFAULT_CONFIG = Object.freeze({
   AUTO_ADS_ENABLED: true
 });
 const SMARTLINK_CONFIG = Object.freeze({
-  ENABLED: true,
+  ENABLED: false,
   URL: 'https://www.effectivegatecpm.com/nhv153qprr?key=d68e4e2ba05b70ea3652430fd9228177'
 });
 
@@ -40,6 +41,7 @@ const resolveAdsenseConfig = () => {
     ? window.CC_ADSENSE_CONFIG
     : {};
   return {
+    ENABLED: Boolean(override.ENABLED ?? ADSENSE_DEFAULT_CONFIG.ENABLED),
     CLIENT: String(override.CLIENT || ADSENSE_DEFAULT_CONFIG.CLIENT || '').trim(),
     SLOT_RIGHT: String(override.SLOT_RIGHT || ADSENSE_DEFAULT_CONFIG.SLOT_RIGHT || '').trim(),
     SLOT_BOTTOM: String(override.SLOT_BOTTOM || ADSENSE_DEFAULT_CONFIG.SLOT_BOTTOM || '').trim(),
@@ -312,6 +314,9 @@ const readTcfConsent = (timeoutMs = 5000) => new Promise((resolve) => {
 });
 
 const ensureAdsenseLoader = () => {
+  if (!ADSENSE_CONFIG.ENABLED) {
+    return Promise.reject(new Error('adsense-disabled'));
+  }
   if (adsenseLoaderPromise) return adsenseLoaderPromise;
   const existingBySrc = document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]');
   if (existingBySrc) {
@@ -338,6 +343,7 @@ const ensureAdsenseLoader = () => {
 
 const ensureAutoAds = async () => {
   if (autoAdsInitialized) return;
+  if (!ADSENSE_CONFIG.ENABLED) return;
   if (!ADSENSE_CONFIG.AUTO_ADS_ENABLED) return;
   if (isAdsDisabledByPage()) return;
   const consent = getStoredConsent();
@@ -669,7 +675,11 @@ const ensureAds = () => {
   const root = document.documentElement;
   const baseHrefPrefix = resolveSiteBase();
   const adsDisabledForPage = isAdsDisabledByPage();
-  root.dataset.ccAdsMonetization = adsDisabledForPage ? 'disabled' : 'enabled';
+  const adsenseStandby = !ADSENSE_CONFIG.ENABLED;
+  const disableDisplayAds = adsDisabledForPage || adsenseStandby;
+  root.dataset.ccAdsMonetization = disableDisplayAds
+    ? (adsenseStandby ? 'adsense-standby' : 'disabled')
+    : 'enabled';
   let rightHost = resolveAdHost('right');
   let rightRail = resolveAdContainer(rightHost, 'right');
   const rightCreated = !(rightHost && rightRail);
@@ -719,7 +729,7 @@ const ensureAds = () => {
   }
   syncPolicyBrandVersion(policyRow);
 
-  if (adsDisabledForPage) {
+  if (disableDisplayAds) {
     root.style.setProperty('--ad-reserve-bottom', '0px');
     root.style.setProperty('--ad-reserve-left', '0px');
     root.style.setProperty('--ad-reserve-right', '0px');
@@ -734,6 +744,7 @@ const ensureAds = () => {
         applyConsentMode(consent);
         toggleConsentBanner(!consent);
       }
+      armSmartlink();
     };
 
     startPolicyOnly();
