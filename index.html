@@ -33,14 +33,14 @@
   <link rel="amphtml" href="https://www.superenalottocc.it/amp/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=swap"></noscript>
   <script src="assets/js/ga4.js" defer></script>
+  <link rel="preload" as="image" href="assets/img/featured/featured-hero-lite.webp">
   <link rel="stylesheet" href="assets/css/tailwind.generated.css">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/header.css">
-  <link rel="stylesheet" href="assets/css/ads.css">
-  <link rel="stylesheet" href="assets/css/migration.css">
-  <script src="https://pl28786041.effectivegatecpm.com/6b/79/ba/6b79ba568da8791cfa9c41e755a1ac23.js"></script>
+  <script src="https://pl28786041.effectivegatecpm.com/6b/79/ba/6b79ba568da8791cfa9c41e755a1ac23.js" defer></script>
 </head>
 <body class="bg-midnight text-white theme-cosmic motion-bold cc-final-look" id="top" data-page-id="home" data-hero-preload="true" data-style-lock="final">
 <main class="content-fade home-main mx-auto flex max-w-5xl content-width flex-col px-6 py-2" data-tab-panel-label="off">
@@ -55,7 +55,7 @@
                   <span class="cc-title-mainline">ControlChaos</span><br>
                   <span class="superenalotto-mark superenalotto-mark--small superenalotto-mark--joined" aria-label="Super-Enalotto"><span class="super-word">S<span class="super-u">u</span>per</span><span class="super-dash">-</span><span class="enalotto-word">Enalotto</span></span>
                 </span>
-                <video class="cc-title-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <video class="cc-title-video" muted loop playsinline preload="none" data-deferred-autoplay="true" aria-hidden="true">
                   <source src="assets/video/logo_header.webm" type="video/webm">
                 </video>
               </span>
@@ -185,6 +185,34 @@
   </main>
 
   <script src="assets/js/version.js" defer></script>
+  <script>
+    (function () {
+      var start = function () {
+        var videos = document.querySelectorAll('video[data-deferred-autoplay="true"]');
+        for (var i = 0; i < videos.length; i += 1) {
+          var video = videos[i];
+          if (!video || typeof video.play !== 'function') continue;
+          video.autoplay = true;
+          var p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(function () {});
+        }
+      };
+
+      var schedule = function () {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(start, { timeout: 1500 });
+          return;
+        }
+        window.setTimeout(start, 700);
+      };
+
+      if (document.readyState === 'complete') {
+        schedule();
+      } else {
+        window.addEventListener('load', schedule, { once: true, passive: true });
+      }
+    })();
+  </script>
   <script src="assets/js/header.js" defer></script>
   <script src="assets/js/component-builder.js" defer></script>
   <script src="assets/js/core/cache-engine.js" defer></script>

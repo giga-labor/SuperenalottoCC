@@ -59,6 +59,7 @@ const SMARTLINK_SESSION_KEY = 'cc_smartlink_1_opened_v1';
 
 let adsenseLoaderPromise = null;
 let fundingChoicesPromise = null;
+let adsStylesheetPromise = null;
 let consentModeSource = 'custom';
 let adsInitialized = false;
 let autoAdsInitialized = false;
@@ -68,6 +69,8 @@ let bottomAdsterraDisplayLoaded = false;
 let bottomAdsterraFitObserver = null;
 let smartlinkArmed = false;
 let smartlinkOpened = false;
+let consentBannerDeferredTimer = 0;
+let consentBannerDeferredHooked = false;
 const adViewBound = new WeakSet();
 const ADS_DISABLED_PATH_SEGMENTS = Object.freeze([
   '/pages/privacy-policy/',
@@ -121,6 +124,42 @@ const resolveSiteBase = () => {
   const idx = normalized.lastIndexOf('assets/js/ads.js');
   if (idx === -1) return '/';
   return normalized.slice(0, idx);
+};
+
+const resolveAssetHref = (relativePath) => {
+  const base = resolveSiteBase();
+  if (!relativePath) return base || '/';
+  const trimmed = String(relativePath).replace(/^\.?\//, '');
+  try {
+    const baseUrl = new URL(base || '/', window.location.href);
+    return new URL(trimmed, baseUrl).toString();
+  } catch (_) {
+    return `${base}${trimmed}`;
+  }
+};
+
+const ensureAdsStylesheet = () => {
+  if (adsStylesheetPromise) return adsStylesheetPromise;
+  const href = resolveAssetHref('assets/css/ads.css');
+  const existing = document.querySelector(`link[data-cc-ads-style="true"][href="${href}"]`)
+    || document.querySelector(`link[rel="stylesheet"][href="${href}"]`)
+    || document.querySelector('link[href$="assets/css/ads.css"]');
+  if (existing) {
+    adsStylesheetPromise = Promise.resolve(existing);
+    return adsStylesheetPromise;
+  }
+
+  adsStylesheetPromise = new Promise((resolve) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.dataset.ccAdsStyle = 'true';
+    link.onload = () => resolve(link);
+    link.onerror = () => resolve(link);
+    document.head.appendChild(link);
+  });
+
+  return adsStylesheetPromise;
 };
 
 const buildPolicyRowMarkup = (baseHrefPrefix) => `
@@ -802,6 +841,8 @@ const createConsentBanner = () => {
   const banner = document.createElement('aside');
   banner.className = 'cc-consent-banner';
   banner.dataset.ccConsentBanner = 'true';
+  banner.hidden = true;
+  banner.style.display = 'none';
   banner.innerHTML = `
     <div class="cc-consent-banner__box" role="dialog" aria-live="polite" aria-label="Gestione consenso cookie">
       <p class="cc-consent-banner__title">Cookie e annunci</p>
@@ -826,12 +867,63 @@ const ensureConsentBanner = () => {
   return banner;
 };
 
-const toggleConsentBanner = (forceVisible) => {
-  const banner = ensureConsentBanner();
-  if (forceVisible) {
-    banner.hidden = false;
-    banner.style.display = '';
+const showConsentBannerNow = (banner) => {
+  if (!(banner instanceof HTMLElement)) return;
+  banner.hidden = false;
+  banner.style.display = '';
+};
+
+const scheduleConsentBannerShow = (banner) => {
+  if (!(banner instanceof HTMLElement)) return;
+  if (banner.dataset.ccConsentVisibleScheduled === '1') return;
+  banner.dataset.ccConsentVisibleScheduled = '1';
+
+  const show = () => {
+    if (consentBannerDeferredTimer) {
+      window.clearTimeout(consentBannerDeferredTimer);
+      consentBannerDeferredTimer = 0;
+    }
+    banner.dataset.ccConsentVisibleScheduled = '0';
+    showConsentBannerNow(banner);
+  };
+
+  const armTimer = () => {
+    if (consentBannerDeferredTimer) return;
+    consentBannerDeferredTimer = window.setTimeout(show, 1400);
+  };
+
+  if (!consentBannerDeferredHooked) {
+    consentBannerDeferredHooked = true;
+    window.addEventListener('load', armTimer, { once: true, passive: true });
+  }
+
+  if (document.readyState === 'complete') {
+    armTimer();
+    return;
+  }
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(armTimer, { timeout: 2200 });
   } else {
+    window.setTimeout(armTimer, 900);
+  }
+};
+
+const toggleConsentBanner = (forceVisible, options = {}) => {
+  const banner = ensureConsentBanner();
+  const immediate = Boolean(options.immediate);
+  if (forceVisible) {
+    if (immediate) {
+      showConsentBannerNow(banner);
+      return;
+    }
+    scheduleConsentBannerShow(banner);
+  } else {
+    if (consentBannerDeferredTimer) {
+      window.clearTimeout(consentBannerDeferredTimer);
+      consentBannerDeferredTimer = 0;
+    }
+    banner.dataset.ccConsentVisibleScheduled = '0';
     banner.hidden = true;
     banner.style.display = 'none';
   }
@@ -850,7 +942,7 @@ const openConsentUi = () => {
       // fallback below
     }
   }
-  toggleConsentBanner(true);
+  toggleConsentBanner(true, { immediate: true });
 };
 
 const wireConsentUi = () => {
@@ -944,9 +1036,38 @@ const resolveAdContainer = (host, position) => {
   return host.closest(selector) || host;
 };
 
+const waitForInitialAdsWarmup = () => new Promise((resolve) => {
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    resolve();
+  };
+
+  if (document.readyState === 'complete') {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => finish(), { timeout: 1200 });
+    } else {
+      window.setTimeout(finish, 500);
+    }
+    return;
+  }
+
+  window.addEventListener('load', () => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => finish(), { timeout: 1200 });
+      return;
+    }
+    window.setTimeout(finish, 500);
+  }, { once: true, passive: true });
+
+  window.setTimeout(finish, 1800);
+});
+
 const ensureAds = () => {
   if (adsInitialized) return;
   adsInitialized = true;
+  ensureAdsStylesheet();
 
   const root = document.documentElement;
   const baseHrefPrefix = resolveSiteBase();
@@ -1020,6 +1141,7 @@ const ensureAds = () => {
     wireConsentUi();
 
     const startPolicyOnly = async () => {
+      await waitForInitialAdsWarmup();
       await initConsentSource();
       if (consentModeSource !== 'tcf') {
         const consent = getStoredConsent();
@@ -1106,6 +1228,7 @@ const ensureAds = () => {
   wireRightRailSmartlinkUi();
 
   const start = async () => {
+    await waitForInitialAdsWarmup();
     await initConsentSource();
     if (consentModeSource !== 'tcf') {
       const consent = getStoredConsent();
