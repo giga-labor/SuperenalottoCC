@@ -14,6 +14,26 @@ const SMARTLINK_CONFIG = Object.freeze({
   ENABLED: false,
   URL: 'https://www.effectivegatecpm.com/nhv153qprr?key=d68e4e2ba05b70ea3652430fd9228177'
 });
+const RIGHT_RAIL_SMARTLINK_CONFIG = Object.freeze({
+  ENABLED: true,
+  URL: 'https://www.effectivegatecpm.com/i8my4m0w?key=bc4fe97c1756c654c5515e10e79ebd5d',
+  LABEL: 'Contenuto sponsorizzato',
+  TITLE: 'Pagina promozionale esterna',
+  TEXT: 'Si apre una pagina promozionale esterna con contenuto variabile in base al network.',
+  CTA: 'Apri contenuto sponsorizzato'
+});
+const RIGHT_REFERRAL_BANNER_CONFIG = Object.freeze({
+  ENABLED: true,
+  URL: 'https://beta.publishers.adsterra.com/referral/gEwu8JJXMD',
+  IMAGE_SRC: 'https://landings-cdn.adsterratech.com/referralBanners/gif/120x150_adsterra_reff.gif',
+  LABEL: 'Partner'
+});
+const BOTTOM_REFERRAL_BANNER_CONFIG = Object.freeze({
+  ENABLED: true,
+  URL: 'https://beta.publishers.adsterra.com/referral/gEwu8JJXMD',
+  IMAGE_SRC: 'https://landings-cdn.adsterratech.com/referralBanners/png/80%20x%2030%20px.png',
+  LABEL: 'Partner'
+});
 
 const CONSENT_STORAGE_KEY = 'cc_cookie_consent_v1';
 const CONSENT_EVENT_NAME = 'cc:consent-updated';
@@ -104,6 +124,77 @@ const buildPolicyRowMarkup = (baseHrefPrefix) => `
     </div>
   </div>
 `;
+
+const buildRightRailSmartlinkMarkup = () => {
+  if (!RIGHT_RAIL_SMARTLINK_CONFIG.ENABLED) return '';
+  const url = String(RIGHT_RAIL_SMARTLINK_CONFIG.URL || '').trim();
+  if (!/^https?:\/\//i.test(url)) return '';
+  const label = String(RIGHT_RAIL_SMARTLINK_CONFIG.LABEL || 'Link sponsorizzato');
+  const title = String(RIGHT_RAIL_SMARTLINK_CONFIG.TITLE || 'Offerta consigliata');
+  const text = String(RIGHT_RAIL_SMARTLINK_CONFIG.TEXT || 'Apri una proposta sponsorizzata in una nuova scheda.');
+  const cta = String(RIGHT_RAIL_SMARTLINK_CONFIG.CTA || 'Apri');
+  return `
+    <section class="ad-smartlink-card" aria-label="${label}" data-smartlink-card="right-rail">
+      <p class="ad-smartlink-card__eyebrow">${label}</p>
+      <p class="ad-smartlink-card__title">${title}</p>
+      <p class="ad-smartlink-card__text">${text}</p>
+      <button class="ad-smartlink-card__cta" type="button" data-smartlink-open-window="true" data-smartlink-url="${url}">
+        ${cta}
+      </button>
+    </section>
+  `;
+};
+
+const buildBottomReferralBannerMarkup = () => {
+  if (!BOTTOM_REFERRAL_BANNER_CONFIG.ENABLED) return '';
+  const url = String(BOTTOM_REFERRAL_BANNER_CONFIG.URL || '').trim();
+  const src = String(BOTTOM_REFERRAL_BANNER_CONFIG.IMAGE_SRC || '').trim();
+  const label = String(BOTTOM_REFERRAL_BANNER_CONFIG.LABEL || 'Partner');
+  if (!/^https?:\/\//i.test(url) || !/^https?:\/\//i.test(src)) return '';
+  return `
+    <a class="ad-referral-badge" href="${url}" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="Referral Adsterra (${label})">
+      <span class="ad-referral-badge__label">${label}</span>
+      <img class="ad-referral-badge__img" alt="Referral Adsterra" src="${src}" width="80" height="30" loading="lazy" decoding="async">
+    </a>
+  `;
+};
+
+const buildRightReferralBannerMarkup = () => {
+  if (!RIGHT_REFERRAL_BANNER_CONFIG.ENABLED) return '';
+  const url = String(RIGHT_REFERRAL_BANNER_CONFIG.URL || '').trim();
+  const src = String(RIGHT_REFERRAL_BANNER_CONFIG.IMAGE_SRC || '').trim();
+  const label = String(RIGHT_REFERRAL_BANNER_CONFIG.LABEL || 'Partner');
+  if (!/^https?:\/\//i.test(url) || !/^https?:\/\//i.test(src)) return '';
+  return `
+    <a class="ad-referral-banner" href="${url}" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="Referral Adsterra (${label})">
+      <span class="ad-referral-banner__label">${label}</span>
+      <img class="ad-referral-banner__img" alt="Referral Adsterra" src="${src}" width="120" height="150" loading="lazy" decoding="async">
+    </a>
+  `;
+};
+
+let rightRailSmartlinkUiWired = false;
+
+const wireRightRailSmartlinkUi = () => {
+  if (rightRailSmartlinkUiWired) return;
+  rightRailSmartlinkUiWired = true;
+
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof HTMLElement ? event.target : null;
+    if (!target) return;
+
+    const openWindowBtn = target.closest('[data-smartlink-open-window="true"]');
+    if (!openWindowBtn) return;
+    event.preventDefault();
+    const url = String(openWindowBtn.getAttribute('data-smartlink-url') || '').trim();
+    if (!/^https?:\/\//i.test(url)) return;
+    try {
+      window.open(url, '_blank', 'noopener,noreferrer,width=460,height=760');
+    } catch (_) {
+      // no-op
+    }
+  });
+};
 
 const getBaseVersion = () => {
   const raw = String(window.CC_VERSION || '00.00.000').trim();
@@ -692,6 +783,8 @@ const ensureAds = () => {
     rightRail.innerHTML = `
       <div class="ad-rail__panel">
         <p class="ad-rail__label-head">Annunci</p>
+        ${buildRightRailSmartlinkMarkup()}
+        ${buildRightReferralBannerMarkup()}
         <div class="ad-slot-host" data-ad-host="right"></div>
       </div>
     `;
@@ -710,6 +803,8 @@ const ensureAds = () => {
     bottomAd.innerHTML = `
       <div class="bottom-ad__panel">
         <p class="ad-rail__label-head">Annunci</p>
+        ${buildRightRailSmartlinkMarkup()}
+        ${buildBottomReferralBannerMarkup()}
         <div class="ad-slot-host" data-ad-host="bottom"></div>
       </div>
     `;
@@ -813,6 +908,7 @@ const ensureAds = () => {
   if (policyCreated) document.body.appendChild(policyRow);
 
   wireConsentUi();
+  wireRightRailSmartlinkUi();
 
   const start = async () => {
     await initConsentSource();

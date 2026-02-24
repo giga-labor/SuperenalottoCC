@@ -86,6 +86,172 @@
   background: transparent;
 }
 
+.ad-smartlink-card {
+  border: 1px solid rgba(255, 217, 102, 0.22);
+  border-radius: 0.95rem;
+  background: linear-gradient(180deg, rgba(255, 217, 102, 0.08), rgba(255, 217, 102, 0.03));
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.45rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ad-smartlink-card__eyebrow {
+  margin: 0;
+  font-size: 0.62rem;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 217, 102, 0.92);
+}
+
+.ad-smartlink-card__title {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #f7f9ff;
+}
+
+.ad-smartlink-card__text {
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: rgba(231, 236, 255, 0.82);
+}
+
+.ad-smartlink-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(255, 217, 102, 0.38);
+  background: rgba(255, 217, 102, 0.12);
+  color: #ffe9a4;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: background-color 120ms ease, border-color 120ms ease, transform 120ms ease;
+}
+
+.ad-smartlink-card__cta:hover,
+.ad-smartlink-card__cta:focus-visible {
+  background: rgba(255, 217, 102, 0.2);
+  border-color: rgba(255, 217, 102, 0.58);
+  transform: translateY(-1px);
+}
+
+.ad-smartlink-card__actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+}
+
+.ad-smartlink-card__preview-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.95rem;
+  padding: 0.42rem 0.65rem;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(231, 236, 255, 0.92);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, transform 120ms ease;
+}
+
+.ad-smartlink-card__preview-btn:hover,
+.ad-smartlink-card__preview-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.26);
+  transform: translateY(-1px);
+}
+
+.ad-smartlink-preview[hidden] {
+  display: none !important;
+}
+
+.ad-smartlink-preview {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 0.75rem;
+  background:
+    radial-gradient(75% 70% at 20% 0%, rgba(255, 217, 102, 0.12), rgba(255, 217, 102, 0) 72%),
+    rgba(8, 11, 22, 0.94);
+  border: 1px solid rgba(255, 217, 102, 0.22);
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 0.5rem;
+  z-index: 3;
+}
+
+.ad-smartlink-preview__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ad-smartlink-preview__title {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #f7f9ff;
+}
+
+.ad-smartlink-preview__close {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(231, 236, 255, 0.92);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ad-smartlink-preview__close:hover,
+.ad-smartlink-preview__close:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.ad-smartlink-preview__text {
+  margin: 0;
+  font-size: 0.73rem;
+  line-height: 1.35;
+  color: rgba(231, 236, 255, 0.82);
+}
+
+.ad-smartlink-preview__cta {
+  align-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(255, 217, 102, 0.38);
+  background: rgba(255, 217, 102, 0.12);
+  color: #ffe9a4;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ad-smartlink-preview__cta:hover,
+.ad-smartlink-preview__cta:focus-visible {
+  background: rgba(255, 217, 102, 0.2);
+  border-color: rgba(255, 217, 102, 0.58);
+}
+
 .ad-slot {
   position: relative;
   width: 100%;
@@ -151,6 +317,119 @@
 
 .bottom-ad .ad-slot {
   min-height: var(--ad-bottom-min-height);
+}
+
+.bottom-ad .ad-smartlink-card {
+  flex: 0 0 min(48vw, 220px);
+  width: min(48vw, 220px);
+  min-width: 150px;
+  padding: 0.55rem;
+  gap: 0.28rem;
+  border-radius: 0.7rem;
+}
+
+.bottom-ad .ad-smartlink-card__eyebrow {
+  font-size: 0.54rem;
+  letter-spacing: 0.12em;
+}
+
+.bottom-ad .ad-smartlink-card__title {
+  font-size: 0.72rem;
+  line-height: 1.15;
+}
+
+.bottom-ad .ad-smartlink-card__text {
+  font-size: 0.62rem;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bottom-ad .ad-smartlink-card__cta {
+  min-height: 1.8rem;
+  font-size: 0.66rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.bottom-ad .ad-slot-host {
+  min-width: 0;
+}
+
+.ad-referral-badge {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.28rem 0.38rem;
+  border-radius: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+}
+
+.ad-referral-badge:hover,
+.ad-referral-badge:focus-visible {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ad-referral-badge__label {
+  font-size: 0.58rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(231, 236, 255, 0.76);
+  white-space: nowrap;
+}
+
+.ad-referral-badge__img {
+  display: block;
+  width: 80px;
+  height: 30px;
+  border-radius: 0.25rem;
+}
+
+.ad-rail--right .ad-referral-badge {
+  display: none;
+}
+
+.ad-referral-banner {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+}
+
+.ad-referral-banner:hover,
+.ad-referral-banner:focus-visible {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ad-referral-banner__label {
+  font-size: 0.58rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(231, 236, 255, 0.76);
+}
+
+.ad-referral-banner__img {
+  display: block;
+  width: 120px;
+  height: 150px;
+  border-radius: 0.45rem;
+}
+
+.bottom-ad .ad-referral-banner {
+  display: none;
 }
 
 .ad-policy-row {
