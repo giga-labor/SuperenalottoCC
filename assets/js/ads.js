@@ -1282,8 +1282,9 @@ const ensureAds = () => {
   };
 
   const updateAdLayout = () => {
-    const width = window.innerWidth;
-    const showRightRail = width >= AD_LAYOUT.TABLET_LANDSCAPE;
+    const width = Math.max(0, window.innerWidth || document.documentElement.clientWidth || 0);
+    const height = Math.max(0, window.innerHeight || document.documentElement.clientHeight || 0);
+    const showRightRail = width > height;
 
     if (showRightRail) {
       rightRail.hidden = false;
