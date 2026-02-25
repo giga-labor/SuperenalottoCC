@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadModules(area, section) {
   try {
     const cards = await loadCardsIndex(cardsIndexPath);
-    const newsCards = cards.filter((card) => card?.view === true && isNewsFeedEligibleCard(card));
+    const newsCards = (window.CARDS_INDEX && typeof window.CARDS_INDEX.filter === 'function')
+      ? window.CARDS_INDEX.filter(cards, { context: 'home_news' })
+      : cards.filter((card) => card?.view === true && isNewsFeedEligibleCard(card));
     if (!newsCards.length) {
       renderNoNews(area, cards.length);
       if (section) section.classList.remove('hidden');

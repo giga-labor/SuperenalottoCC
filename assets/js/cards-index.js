@@ -7,6 +7,15 @@
 
   const CARDS_INDEX = {
     async load(cardsIndexPath) {
+      const aggregatePath = resolveAggregateIndexPath(cardsIndexPath);
+      if (aggregatePath) {
+        const aggregate = await fetchJson(resolveWithBase(aggregatePath), { cache: 'no-store' }, true);
+        if (Array.isArray(aggregate) && aggregate.length) {
+          return aggregate
+            .map((card) => normalizeCard(card))
+            .filter(Boolean);
+        }
+      }
       const manifestPath = resolveWithBase(resolveManifestPath(cardsIndexPath));
       const manifest = await fetchJson(manifestPath, { cache: 'no-store' }, true);
       if (Array.isArray(manifest) && manifest.length) {
@@ -17,6 +26,22 @@
       return fallback
         .map((card) => normalizeCard(card))
         .filter(Boolean);
+    },
+    filter(cards, options = {}) {
+      const list = Array.isArray(cards) ? cards : [];
+      return list.filter((card) => matchesCardContext(card, options));
+    },
+    matches(card, options = {}) {
+      return matchesCardContext(card, options);
+    },
+    hasNews(card) {
+      return hasNewsBadge(card);
+    },
+    hasHits(card) {
+      return hasHitsBadge(card);
+    },
+    getHitCount(card) {
+      return getHitCount(card);
     }
   };
 
@@ -78,6 +103,13 @@
     return cardsIndexPath;
   }
 
+  function resolveAggregateIndexPath(cardsIndexPath) {
+    const manifestPath = resolveManifestPath(cardsIndexPath);
+    const value = String(manifestPath || '').trim();
+    if (!/modules-manifest\.json$/i.test(value)) return '';
+    return value.replace(/modules-manifest\.json$/i, 'cards-index.json');
+  }
+
   function inferId(cardBase) {
     const trimmed = cardBase.replace(/\/+$/, '');
     const parts = trimmed.split('/');
@@ -86,6 +118,62 @@
 
   function normalizePath(value) {
     return String(value || '').replace(/\\/g, '/');
+  }
+
+  function matchesCardContext(card, options = {}) {
+    if (!card || typeof card !== 'object') return false;
+    const context = String(options.context || '').trim().toLowerCase();
+    const requireView = options.requireView !== false;
+    const includeInactive = options.includeInactive === true;
+
+    if (requireView && card.view !== true) return false;
+
+    const active = card.isActive !== false;
+    const hasNews = hasNewsBadge(card);
+    const hasHits = hasHitsBadge(card);
+    const page = String(card.page || '').toLowerCase();
+
+    if (!includeInactive && card.isActive === false) {
+      if (context !== 'coming_soon') return false;
+    }
+
+    switch (context) {
+      case '':
+      case 'all':
+        return true;
+      case 'active':
+        return active;
+      case 'inactive':
+      case 'coming_soon':
+        return card.isActive === false;
+      case 'news':
+        return active && hasNews;
+      case 'hits':
+        return active && hasHits;
+      case 'news_or_hits':
+      case 'feed':
+      case 'home_news':
+        return active && (hasNews || hasHits);
+      case 'algorithms':
+        return page.includes('/pages/algoritmi/algs/') || page.includes('/algoritmi/algs/');
+      case 'active_algorithms':
+        return active && (page.includes('/pages/algoritmi/algs/') || page.includes('/algoritmi/algs/'));
+      default:
+        return true;
+    }
+  }
+
+  function hasNewsBadge(card) {
+    return Boolean(card?.hasNews || card?.featured || (Array.isArray(card?.news) && card.news.length > 0));
+  }
+
+  function getHitCount(card) {
+    const raw = Number.parseInt(String(card?.hits?.count ?? ''), 10);
+    return Number.isFinite(raw) && raw > 0 ? raw : 0;
+  }
+
+  function hasHitsBadge(card) {
+    return Boolean(card?.hits?.enabled === true) && getHitCount(card) > 0;
   }
 
   function resolveWithBase(path) {
