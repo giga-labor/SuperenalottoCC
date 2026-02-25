@@ -2797,6 +2797,43 @@ html.cc-ready .standing-marquee__track {
     inset 0 -1px 0 rgba(255, 217, 102, 0.18) !important;
 }
 
+/* Minimal nav mobile: prevent clipping and allow horizontal scroll instead of truncation. */
+@media (max-width: 900px) {
+  body.cc-final-look #site-header.cc-nav-minimal .header-container {
+    overflow: visible;
+  }
+
+  body.cc-final-look #site-header.cc-nav-minimal .header-actions {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  body.cc-final-look #site-header.cc-nav-minimal .header-actions__left {
+    width: 100%;
+    max-width: 100%;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    gap: 0.45rem !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.1rem;
+  }
+
+  body.cc-final-look #site-header.cc-nav-minimal .header-actions__left::-webkit-scrollbar {
+    display: none;
+  }
+
+  body.cc-final-look #site-header.cc-nav-minimal .cc-nav-link {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 0.68rem;
+    padding: 0.36rem 0.2rem;
+  }
+}
+
 #site-header :is(a, button, .tab-btn, .home-badge, .card-3d):focus-visible {
   outline: 2px solid rgba(255, 217, 102, 0.98) !important;
   outline-offset: 3px !important;
