@@ -123,8 +123,8 @@ const createTelemetryRuntime = () => {
 
     pushLocalEvent(payload);
 
-    if (window.CC_TELEMETRY_DEBUG !== false) {
-      // Keep this visible during offline migration dry-run.
+    if (window.CC_TELEMETRY_DEBUG === true) {
+      // Opt-in debug logging for local telemetry inspection.
       console.debug('[cc-telemetry]', payload);
     }
 
@@ -726,6 +726,10 @@ window.addEventListener('pageshow', () => {
 
 if (header) {
   const main = document.querySelector('main');
+  let lastHeaderOffset = null;
+  let lastHeaderFadeHeight = null;
+  let lastHeaderGap = null;
+  let lastMainPaddingTop = null;
   const getResponsiveContentGap = () => {
     const width = window.innerWidth || document.documentElement.clientWidth || 0;
     const railMode = document.documentElement.getAttribute('data-ad-rail') || 'right';
@@ -745,11 +749,25 @@ if (header) {
     const headerPosition = window.getComputedStyle(header).position;
     const inFlowLayout = headerPosition !== 'fixed';
     if (inFlowLayout) {
-      document.documentElement.style.setProperty('--fixed-header-offset', '0px');
-      document.documentElement.style.setProperty('--header-content-gap', '0px');
-      document.documentElement.style.setProperty('--header-fade-height', '0px');
+      // Avoid a 0px -> fixed offset oscillation during startup while header styles settle.
+      if (document.readyState !== 'complete') return;
+      if (lastHeaderOffset !== 0) {
+        document.documentElement.style.setProperty('--fixed-header-offset', '0px');
+        lastHeaderOffset = 0;
+      }
+      if (lastHeaderGap !== 0) {
+        document.documentElement.style.setProperty('--header-content-gap', '0px');
+        lastHeaderGap = 0;
+      }
+      if (lastHeaderFadeHeight !== 0) {
+        document.documentElement.style.setProperty('--header-fade-height', '0px');
+        lastHeaderFadeHeight = 0;
+      }
       if (main) {
-        main.style.paddingTop = '0px';
+        if (lastMainPaddingTop !== 0) {
+          main.style.paddingTop = '0px';
+          lastMainPaddingTop = 0;
+        }
       }
       return;
     }
@@ -759,13 +777,26 @@ if (header) {
     const contentGap = getResponsiveContentGap();
     const headerBottom = Math.max(rect.bottom, wrapRect.bottom, headerRect.bottom);
     const offset = Math.ceil(headerBottom + contentGap);
-    document.documentElement.style.setProperty('--fixed-header-offset', `${offset}px`);
-    document.documentElement.style.setProperty('--header-content-gap', `${contentGap}px`);
-    document.documentElement.style.setProperty('--header-fade-height', `${Math.ceil(offset + 1)}px`);
+    const fadeHeight = Math.ceil(offset + 1);
+    if (lastHeaderOffset === null || Math.abs(lastHeaderOffset - offset) >= 2) {
+      document.documentElement.style.setProperty('--fixed-header-offset', `${offset}px`);
+      lastHeaderOffset = offset;
+    }
+    if (lastHeaderGap !== contentGap) {
+      document.documentElement.style.setProperty('--header-content-gap', `${contentGap}px`);
+      lastHeaderGap = contentGap;
+    }
+    if (lastHeaderFadeHeight === null || Math.abs(lastHeaderFadeHeight - fadeHeight) >= 2) {
+      document.documentElement.style.setProperty('--header-fade-height', `${fadeHeight}px`);
+      lastHeaderFadeHeight = fadeHeight;
+    }
     document.documentElement.style.setProperty('--col-x', `${Math.max(0, Math.round(wrapRect.left))}px`);
     document.documentElement.style.setProperty('--col-w', `${Math.max(0, Math.round(wrapRect.width))}px`);
     if (main) {
-      main.style.paddingTop = `${offset}px`;
+      if (lastMainPaddingTop === null || Math.abs(lastMainPaddingTop - offset) >= 2) {
+        main.style.paddingTop = `${offset}px`;
+        lastMainPaddingTop = offset;
+      }
     }
   };
   const scheduleHeaderOffsets = rafThrottle(setHeaderOffsets);
@@ -777,9 +808,7 @@ if (header) {
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', scheduleHeaderOffsets, { passive: true });
   }
-  window.setTimeout(scheduleHeaderOffsets, 80);
-  window.setTimeout(scheduleHeaderOffsets, 220);
-  window.setTimeout(scheduleHeaderOffsets, 480);
+  window.setTimeout(scheduleHeaderOffsets, 180);
   if (document.fonts && typeof document.fonts.ready?.then === 'function') {
     document.fonts.ready.then(scheduleHeaderOffsets).catch(() => {});
   }
@@ -984,7 +1013,6 @@ const bindGlassLight = () => {
 };
 
 optimizeImageLoading();
-ensureHeroBackgroundPreload();
 
 if (document.readyState === 'complete') {
   document.documentElement.classList.add('cc-ready');

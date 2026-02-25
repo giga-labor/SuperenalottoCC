@@ -845,6 +845,8 @@ p[data-reveal] {
 #cc-abovefold-title {
   font-size: clamp(1.45rem, 4.4vw, 2.45rem);
   line-height: 1.04;
+  /* Hero title is always two lines (explicit <br>), reserve height to reduce font-swap CLS. */
+  min-height: calc(2.15em);
   max-width: 100%;
   overflow-wrap: anywhere;
 }

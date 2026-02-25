@@ -19,11 +19,22 @@
       var root = document.documentElement;
       var w = window.innerWidth || document.documentElement.clientWidth || 0;
       var isRight = w >= 1024;
+      var initialHeaderOffset = w >= 1024 ? 96 : 88;
+      var desktopReserve = 276;
+      if (w >= 1600) {
+        desktopReserve = 366;
+      } else if (w >= 1400) {
+        desktopReserve = 336;
+      } else if (w >= 1200) {
+        desktopReserve = 316;
+      }
       root.dataset.adRail = isRight ? 'right' : 'bottom';
       root.style.setProperty('--ad-reserve-left', '0px');
-      root.style.setProperty('--ad-reserve-right', isRight ? '276px' : '0px');
-      root.style.setProperty('--ad-reserve-bottom', isRight ? '0px' : '120px');
-      root.style.setProperty('--ad-rail-bottom', isRight ? '0px' : '120px');
+      root.style.setProperty('--ad-reserve-right', isRight ? (desktopReserve + 'px') : '0px');
+      root.style.setProperty('--ad-reserve-bottom', isRight ? '0px' : '142px');
+      root.style.setProperty('--ad-rail-bottom', isRight ? '0px' : '142px');
+      root.style.setProperty('--fixed-header-offset', initialHeaderOffset + 'px');
+      root.style.setProperty('--header-fade-height', (initialHeaderOffset + 1) + 'px');
     })();
   </script>
 
@@ -31,12 +42,14 @@
   <meta name="description" content="SuperEnalotto Control Chaos: archivio estrazioni, algoritmi di analisi e approfondimenti statistici sul dataset storico.">
   <link rel="canonical" href="https://www.superenalottocc.it/">
   <link rel="amphtml" href="https://www.superenalottocc.it/amp/">
+  <link rel="icon" type="image/png" href="img/secc3.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=optional" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@600;700&display=optional"></noscript>
   <script src="assets/js/ga4.js" defer></script>
   <link rel="preload" as="image" href="assets/img/featured/featured-hero-lite.webp">
+  <link rel="preload" as="image" href="pages/algoritmi/algs/super6NN/img.webp">
   <link rel="stylesheet" href="assets/css/tailwind.generated.css">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/header.css">

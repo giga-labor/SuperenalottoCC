@@ -52,6 +52,17 @@ const BOTTOM_REFERRAL_BANNER_CONFIG = Object.freeze({
   LABEL: 'Partner'
 });
 
+const isLocalDevHost = () => {
+  try {
+    const host = String(window.location.hostname || '').toLowerCase();
+    return host === 'localhost' || host === '127.0.0.1' || host === '[::1]' || host.endsWith('.localhost');
+  } catch (_) {
+    return false;
+  }
+};
+
+const ADS_THIRD_PARTY_LOCAL_BYPASS = isLocalDevHost();
+
 const CONSENT_STORAGE_KEY = 'cc_cookie_consent_v1';
 const CONSENT_EVENT_NAME = 'cc:consent-updated';
 const FOOTER_DRAW_CACHE_KEY = 'cc-footer-latest-draw-cache';
@@ -544,6 +555,7 @@ const extractPublisherId = () => {
 };
 
 const ensureFundingChoicesLoader = () => {
+  if (ADS_THIRD_PARTY_LOCAL_BYPASS) return Promise.resolve(null);
   if (!ADSENSE_CONFIG.CMP_TCF_ENABLED) return Promise.resolve(null);
   if (fundingChoicesPromise) return fundingChoicesPromise;
 
@@ -629,6 +641,9 @@ const readTcfConsent = (timeoutMs = 5000) => new Promise((resolve) => {
 });
 
 const ensureAdsenseLoader = () => {
+  if (ADS_THIRD_PARTY_LOCAL_BYPASS) {
+    return Promise.reject(new Error('adsense-localhost-bypass'));
+  }
   if (!ADSENSE_CONFIG.ENABLED) {
     return Promise.reject(new Error('adsense-disabled'));
   }
