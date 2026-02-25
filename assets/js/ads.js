@@ -15,7 +15,7 @@ const SMARTLINK_CONFIG = Object.freeze({
   URL: 'https://www.effectivegatecpm.com/nhv153qprr?key=d68e4e2ba05b70ea3652430fd9228177'
 });
 const RIGHT_RAIL_SMARTLINK_CONFIG = Object.freeze({
-  ENABLED: true,
+  ENABLED: false,
   URL: 'https://www.effectivegatecpm.com/i8my4m0w?key=bc4fe97c1756c654c5515e10e79ebd5d',
   CTA: 'Contenuto sponsorizzato'
 });
@@ -196,6 +196,30 @@ const buildPolicyRowMarkup = (baseHrefPrefix) => `
   </div>
 `;
 
+const buildHeaderPolicyMenuMarkup = (baseHrefPrefix) => {
+  const href = `${baseHrefPrefix}pages/policy-consenso/index.html`;
+  let isActive = false;
+  try {
+    const currentPath = String(window.location.pathname || '').replace(/\\/g, '/').toLowerCase();
+    isActive = currentPath.includes('/pages/policy-consenso/');
+  } catch (_) {
+    isActive = false;
+  }
+  return `<a class="cc-nav-link${isActive ? ' is-active' : ''}" href="${href}">Policy e Consenso</a>`;
+};
+
+const mountHeaderPolicyMenu = (baseHrefPrefix) => {
+  const header = document.getElementById('site-header');
+  if (!(header instanceof HTMLElement)) return false;
+  const rightHost = header.querySelector('.header-actions__right');
+  if (!(rightHost instanceof HTMLElement)) return false;
+  rightHost.style.display = '';
+  rightHost.hidden = false;
+  rightHost.setAttribute('aria-hidden', 'false');
+  rightHost.innerHTML = buildHeaderPolicyMenuMarkup(baseHrefPrefix);
+  return true;
+};
+
 const buildRightRailSmartlinkMarkup = () => {
   if (!RIGHT_RAIL_SMARTLINK_CONFIG.ENABLED) return '';
   const url = String(RIGHT_RAIL_SMARTLINK_CONFIG.URL || '').trim();
@@ -248,6 +272,21 @@ const buildRightAdsterraDisplayMarkup = () => {
       <p class="ad-adsterra-display__label">${label}</p>
       <div class="ad-adsterra-display__host" id="${containerId}"></div>
     </section>
+  `;
+};
+
+const buildAdsLabelHeadMarkup = (position = 'right') => {
+  const config = position === 'bottom' ? BOTTOM_REFERRAL_BANNER_CONFIG : RIGHT_REFERRAL_BANNER_CONFIG;
+  const url = String(config?.URL || '').trim();
+  const hasLink = config?.ENABLED && /^https?:\/\//i.test(url);
+  if (!hasLink) {
+    return '<div class="ad-rail__label-head"><span>ANNUNCI</span></div>';
+  }
+  return `
+    <div class="ad-rail__label-head">
+      <span>ANNUNCI</span>
+      <a class="ad-rail__label-link" href="${url}" target="_blank" rel="nofollow sponsored noopener noreferrer">Contenuti Sponsorizzati</a>
+    </div>
   `;
 };
 
@@ -494,6 +533,12 @@ const buildPolicyBrandText = (drawSeq) => {
   return `SuperEnalotto Control Chaos ${base}${suffix}`;
 };
 
+const buildFooterVersionText = (drawSeq) => {
+  const base = getBaseVersion();
+  const suffix = drawSeq ? `.${drawSeq}` : '';
+  return `${base}${suffix}`;
+};
+
 const syncPolicyBrandVersion = async (policyRow) => {
   if (!(policyRow instanceof HTMLElement)) return;
   const brand = policyRow.querySelector('.ad-policy-row__brand');
@@ -507,6 +552,34 @@ const syncPolicyBrandVersion = async (policyRow) => {
     window.CC_LAST_DRAW = String(Number.parseInt(latestSeq, 10));
   }
   brand.textContent = buildPolicyBrandText(latestSeq || immediateSeq);
+};
+
+const ensureFooterVersionBadge = () => {
+  let host = document.querySelector('[data-cc-footer-version="true"]');
+  if (host instanceof HTMLElement) return host;
+  host = document.createElement('div');
+  host.className = 'cc-footer-version-fixed';
+  host.dataset.ccFooterVersion = 'true';
+  host.setAttribute('aria-hidden', 'true');
+  host.innerHTML = '<span class="cc-footer-version-fixed__pill"></span>';
+  document.body.appendChild(host);
+  return host;
+};
+
+const syncFooterVersionBadge = async () => {
+  const host = ensureFooterVersionBadge();
+  if (!(host instanceof HTMLElement)) return;
+  const pill = host.querySelector('.cc-footer-version-fixed__pill');
+  if (!(pill instanceof HTMLElement)) return;
+
+  const immediateSeq = normalizeDrawSeq(window.CC_LAST_DRAW);
+  pill.textContent = buildFooterVersionText(immediateSeq);
+
+  const latestSeq = await resolveLatestDrawSeq();
+  if (latestSeq) {
+    window.CC_LAST_DRAW = String(Number.parseInt(latestSeq, 10));
+  }
+  pill.textContent = buildFooterVersionText(latestSeq || immediateSeq);
 };
 
 const getStoredConsent = () => {
@@ -1103,7 +1176,7 @@ const ensureAds = () => {
     rightRail.setAttribute('aria-label', 'Annunci laterali');
     rightRail.innerHTML = `
       <div class="ad-rail__panel">
-        <p class="ad-rail__label-head">Annunci</p>
+        ${buildAdsLabelHeadMarkup('right')}
         ${buildRightRailSmartlinkMarkup()}
         ${buildRightAdsterraDisplayMarkup()}
         ${buildRightReferralBannerMarkup()}
@@ -1124,7 +1197,7 @@ const ensureAds = () => {
     bottomAd.setAttribute('aria-label', 'Annunci in basso');
     bottomAd.innerHTML = `
       <div class="bottom-ad__panel">
-        <p class="ad-rail__label-head">Annunci</p>
+        ${buildAdsLabelHeadMarkup('bottom')}
         ${buildRightRailSmartlinkMarkup()}
         ${buildBottomAdsterraDisplayMarkup()}
         ${buildBottomReferralBannerMarkup()}
@@ -1146,13 +1219,18 @@ const ensureAds = () => {
     policyRow.innerHTML = buildPolicyRowMarkup(baseHrefPrefix);
   }
   syncPolicyBrandVersion(policyRow);
+  syncFooterVersionBadge();
+  const policyMountedInHeader = mountHeaderPolicyMenu(baseHrefPrefix);
+  if (policyMountedInHeader && policyRow?.parentElement) {
+    policyRow.remove();
+  }
 
   if (disableDisplayAds) {
     root.style.setProperty('--ad-reserve-bottom', '0px');
     root.style.setProperty('--ad-reserve-left', '0px');
     root.style.setProperty('--ad-reserve-right', '0px');
     root.style.setProperty('--ad-rail-bottom', '0px');
-    if (policyCreated) document.body.appendChild(policyRow);
+    if (!policyMountedInHeader && policyCreated) document.body.appendChild(policyRow);
     wireConsentUi();
 
     const startPolicyOnly = async () => {
@@ -1237,7 +1315,7 @@ const ensureAds = () => {
 
   if (rightCreated) document.body.appendChild(rightRail);
   if (bottomCreated) document.body.appendChild(bottomAd);
-  if (policyCreated) document.body.appendChild(policyRow);
+  if (!policyMountedInHeader && policyCreated) document.body.appendChild(policyRow);
 
   wireConsentUi();
   wireRightRailSmartlinkUi();

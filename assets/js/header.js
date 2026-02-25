@@ -678,7 +678,12 @@ if (header) {
         <a class="cc-nav-link" href="${oracleHref}">Oracle</a>
       `;
     }
-    if (right) right.style.display = 'none';
+    if (right) {
+      right.style.display = '';
+      right.hidden = false;
+      right.removeAttribute('aria-hidden');
+      right.innerHTML = '<div class="cc-nav-policy-host" data-cc-nav-policy-host="true" aria-live="polite"></div>';
+    }
     if (marquee) marquee.style.display = 'none';
     if (title) title.style.display = 'none';
     if (topline) topline.style.display = 'none';

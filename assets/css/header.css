@@ -2805,7 +2805,9 @@ html.cc-ready .standing-marquee__track {
 
   body.cc-final-look #site-header.cc-nav-minimal .header-actions {
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
   }
 
   body.cc-final-look #site-header.cc-nav-minimal .header-actions__left {
@@ -2831,6 +2833,35 @@ html.cc-ready .standing-marquee__track {
     white-space: nowrap;
     font-size: 0.68rem;
     padding: 0.36rem 0.2rem;
+  }
+
+  body.cc-final-look #site-header.cc-nav-minimal .header-actions__right {
+    width: 100%;
+    justify-content: flex-end !important;
+    margin-left: 0 !important;
+    padding-left: 0;
+    padding-top: 0.28rem;
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  body.cc-final-look #site-header.cc-nav-minimal .cc-nav-policy {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  body.cc-final-look #site-header.cc-nav-minimal .cc-nav-policy__links {
+    right: 0;
+    left: auto;
+    min-width: min(30rem, 96vw);
+    max-width: min(32rem, 96vw);
+    justify-content: stretch;
+    gap: 0.4rem;
+  }
+
+  body.cc-final-look #site-header.cc-nav-minimal .cc-nav-policy__card {
+    width: 100%;
+    min-width: 0;
   }
 }
 
