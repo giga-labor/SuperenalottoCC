@@ -810,6 +810,56 @@
   }
 }
 
+@media (max-width: 767px) and (orientation: portrait) {
+  .bottom-ad {
+    padding-left: max(0.3rem, env(safe-area-inset-left));
+    padding-right: max(0.3rem, env(safe-area-inset-right));
+  }
+
+  .bottom-ad__panel {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.42rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 0.5rem 0.4rem 0.55rem;
+  }
+
+  .bottom-ad .ad-referral-badge {
+    order: 1;
+    align-self: flex-start;
+  }
+
+  .bottom-ad .ad-adsterra-display--bottom {
+    order: 2;
+    min-width: calc(min(320px, 100vw - 1.4rem) + 0.45rem);
+    padding: 0.22rem;
+  }
+
+  .bottom-ad .ad-adsterra-display--bottom .ad-adsterra-display__host {
+    width: min(320px, calc(100vw - 1.4rem));
+    min-height: 50px;
+    max-height: 50px;
+    margin: 0 auto;
+  }
+
+  .bottom-ad .ad-slot-host {
+    order: 3;
+    flex: 1 0 160px;
+    min-height: 72px;
+  }
+
+  .bottom-ad .ad-slot {
+    min-height: 72px;
+  }
+
+  .bottom-ad .ad-slot:empty::before {
+    inset: 0.3rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
+  }
+}
+
 .bottom-ad__panel::before {
   content: "";
   position: absolute;
