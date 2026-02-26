@@ -1,0 +1,2 @@
+{"ts": "2026-02-26T22:19:48", "event": "lock_released", "run_id": "20260226_221900", "payload": {}}
+{"ts": "2026-02-26T22:20:03", "event": "lock_acquired", "run_id": "20260226_221900", "payload": {"lease_until": "2026-02-26T22:22:03"}}
