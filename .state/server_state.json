@@ -1,0 +1,73 @@
+{
+  "latest_local_contest_id": 4154,
+  "last_published_commit": "",
+  "per_algo_last_trained_contest_id": {},
+  "last_card_hits_build_at": "2026-02-28T21:19:18",
+  "last_card_hits_changed_cards": 0,
+  "last_successful_run_id": "",
+  "last_email_status": "",
+  "pending_publish": {
+    "run_id": "20260228_211918",
+    "manifest_path": "D:\\PROGETTI\\SuperEnalotto\\01 Superenalotto ControlChaos\\secc\\.staging\\run_20260228_211918\\manifest.json",
+    "stage_root": "D:\\PROGETTI\\SuperEnalotto\\01 Superenalotto ControlChaos\\secc\\.staging\\run_20260228_211918",
+    "commit_sha": "",
+    "attempts": 0,
+    "applied_to_repo": true,
+    "created_at": "2026-02-28T21:19:41"
+  },
+  "run_journal": [
+    {
+      "ts": "2026-02-28T21:19:18",
+      "event": "lock_acquired",
+      "run_id": "20260228_211918",
+      "payload": {
+        "lease_until": "2026-02-28T21:21:18"
+      }
+    },
+    {
+      "ts": "2026-02-28T21:19:26",
+      "event": "lock_acquired",
+      "run_id": "20260228_211918",
+      "payload": {
+        "lease_until": "2026-02-28T21:21:26"
+      }
+    },
+    {
+      "ts": "2026-02-28T21:19:29",
+      "event": "lock_acquired",
+      "run_id": "20260228_211918",
+      "payload": {
+        "lease_until": "2026-02-28T21:21:29"
+      }
+    },
+    {
+      "ts": "2026-02-28T21:19:41",
+      "event": "lock_acquired",
+      "run_id": "20260228_211918",
+      "payload": {
+        "lease_until": "2026-02-28T21:21:41"
+      }
+    },
+    {
+      "ts": "2026-02-28T21:19:53",
+      "event": "lock_acquired",
+      "run_id": "20260228_211918",
+      "payload": {
+        "lease_until": "2026-02-28T21:21:53"
+      }
+    },
+    {
+      "ts": "2026-02-28T21:20:01",
+      "event": "lock_acquired",
+      "run_id": "20260228_211918",
+      "payload": {
+        "lease_until": "2026-02-28T21:22:01"
+      }
+    }
+  ],
+  "last_quorum_policy": {
+    "min_sources": 2,
+    "gold_weight": 2,
+    "max_skew_minutes": 180
+  }
+}
