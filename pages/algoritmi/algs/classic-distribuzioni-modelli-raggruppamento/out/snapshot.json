@@ -2,19 +2,19 @@
   "slug": "classic-distribuzioni-modelli-raggruppamento",
   "title": "distribuzioni-modelli-raggruppamento",
   "family": "statistica",
-  "generated_at": "2026-07-16T21:41:05",
-  "last_seq": 4224,
+  "generated_at": "2026-07-27T12:55:48",
+  "last_seq": 4225,
   "last_date": "",
   "proposal": [
     81,
     77,
     49,
     65,
-    19,
+    86,
     85
   ],
   "metrics": {
-    "draws_covered": 4224,
+    "draws_covered": 4225,
     "avg_hits": 0.39,
     "hit_rate_gte_2": 4.8,
     "best_streak": 6
@@ -26,16 +26,16 @@
     "Modello di forma descrittiva | Non stima probabilita causali | Vincoli di shape possono ridurre flessibilita della sestina"
   ],
   "last_verified": {
-    "seq": 4224,
-    "date": "16/07/2026",
+    "seq": 4225,
+    "date": "25/07/2026",
     "proposal": [
       81,
       77,
       49,
       65,
-      52,
-      19
+      19,
+      85
     ],
-    "hits": 1
+    "hits": 2
   }
 }
