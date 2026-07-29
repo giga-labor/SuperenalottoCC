@@ -2,8 +2,8 @@
   "slug": "classic-ritardi-combinazioni",
   "title": "ritardi-combinazioni",
   "family": "statistica",
-  "generated_at": "2026-07-27T12:55:48",
-  "last_seq": 4225,
+  "generated_at": "2026-07-29T14:28:04",
+  "last_seq": 4226,
   "last_date": "",
   "proposal": [
     3,
@@ -14,7 +14,7 @@
     12
   ],
   "metrics": {
-    "draws_covered": 4225,
+    "draws_covered": 4226,
     "avg_hits": 0.41,
     "hit_rate_gte_2": 5.3,
     "best_streak": 7
@@ -26,8 +26,8 @@
     "I ritardi combinazionali non creano obbligo di uscita | Score interno euristico | Nessuna garanzia predittiva"
   ],
   "last_verified": {
-    "seq": 4225,
-    "date": "25/07/2026",
+    "seq": 4226,
+    "date": "28/07/2026",
     "proposal": [
       3,
       86,

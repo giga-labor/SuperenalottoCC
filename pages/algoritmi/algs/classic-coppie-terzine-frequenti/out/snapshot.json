@@ -2,8 +2,8 @@
   "slug": "classic-coppie-terzine-frequenti",
   "title": "coppie-terzine-frequenti",
   "family": "statistica",
-  "generated_at": "2026-07-27T12:55:48",
-  "last_seq": 4225,
+  "generated_at": "2026-07-29T14:28:04",
+  "last_seq": 4226,
   "last_date": "",
   "proposal": [
     48,
@@ -14,7 +14,7 @@
     51
   ],
   "metrics": {
-    "draws_covered": 4225,
+    "draws_covered": 4226,
     "avg_hits": 0.38,
     "hit_rate_gte_2": 4.7,
     "best_streak": 6
@@ -26,8 +26,8 @@
     "Frequenza storica non equivale a previsione | Possibile sovraesposizione a pattern stabili ma non persistenti"
   ],
   "last_verified": {
-    "seq": 4225,
-    "date": "25/07/2026",
+    "seq": 4226,
+    "date": "28/07/2026",
     "proposal": [
       48,
       86,
@@ -36,6 +36,6 @@
       18,
       51
     ],
-    "hits": 1
+    "hits": 0
   }
 }
