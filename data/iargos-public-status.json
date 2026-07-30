@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-29 14:29:16",
+  "updated_at": "2026-07-30 21:47:25",
   "version": "03.00.000",
   "enabled": true,
   "learning_mode": false,
@@ -21,13 +21,13 @@
     "p9_smtp_broken": false
   },
   "alignment": {
-    "archive_update_state": "orange",
+    "archive_update_state": "green",
     "mirror_has_inconsistencies": false,
     "flow_guard_ok": false,
     "git_dirty": true,
     "remote_ahead": 0,
     "remote_behind": 0,
-    "alignment_diff_count": 78,
+    "alignment_diff_count": 42,
     "active_algorithms_count": 17,
     "active_algorithms_aligned_count": 17
   },
@@ -38,15 +38,15 @@
   "runtime": {
     "state_level": "ok",
     "state_label": "operativo",
-    "last_push_at": "2026-07-29 14:28:18",
+    "last_push_at": "2026-07-30 21:46:43",
     "last_release_id": "overview-resolved-20260401020218-026ab2fab0",
     "last_release_at": "2026-04-01 02:02:18",
-    "boot_ts": 1785327640
+    "boot_ts": 1785436237
   },
   "feed": [
     {
       "type": "alert",
-      "ts": "2026-07-29T14:27:22",
+      "ts": "2026-07-30T21:46:06",
       "message": "Rilevata una situazione anomala, intervento in corso",
       "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
       "ok": false,
@@ -54,11 +54,35 @@
     },
     {
       "type": "draw",
-      "ts": "2026-07-29T14:21:08",
+      "ts": "2026-07-30T21:41:13",
       "message": "Nuova estrazione importata e analizzata",
       "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
       "ok": true,
       "source": "iargos"
+    },
+    {
+      "type": "training",
+      "ts": "2026-07-30T21:40:59",
+      "message": "Algoritmi aggiornati con i dati più recenti",
+      "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
+      "ok": true,
+      "source": "updates"
+    },
+    {
+      "type": "draw",
+      "ts": "2026-07-29T14:28:59",
+      "message": "Nuova estrazione importata e analizzata",
+      "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
+      "ok": true,
+      "source": "iargos"
+    },
+    {
+      "type": "alert",
+      "ts": "2026-07-29T14:27:22",
+      "message": "Rilevata una situazione anomala, intervento in corso",
+      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
+      "ok": false,
+      "source": "updates"
     },
     {
       "type": "training",
@@ -149,28 +173,12 @@
       "source": "updates"
     },
     {
-      "type": "alert",
-      "ts": "2026-07-13T19:23:53",
-      "message": "Rilevata una situazione anomala, intervento in corso",
-      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
-      "ok": true,
-      "source": "iargos"
-    },
-    {
       "type": "draw",
       "ts": "2026-07-13T19:09:46",
       "message": "Nuova estrazione importata e analizzata",
       "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
       "ok": true,
       "source": "iargos"
-    },
-    {
-      "type": "training",
-      "ts": "2026-07-13T19:09:38",
-      "message": "Algoritmi aggiornati con i dati più recenti",
-      "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
-      "ok": true,
-      "source": "updates"
     },
     {
       "type": "draw",
@@ -273,14 +281,6 @@
       "ts": "2026-05-26T17:43:14",
       "message": "Nuova versione del sito pubblicata (00.11.003 -> 00.12.000)",
       "detail": "632 file sincronizzati tra mirror e sito pubblico",
-      "ok": true,
-      "source": "versioning-audit"
-    },
-    {
-      "type": "versioning",
-      "ts": "2026-04-19T00:23:14",
-      "message": "Versione del sito aggiornata (00.11.000 -> 00.11.002)",
-      "detail": "617 file sincronizzati tra mirror e sito pubblico",
       "ok": true,
       "source": "versioning-audit"
     }
