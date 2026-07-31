@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30 21:46:36",
+  "generated_at": "2026-07-31 21:00:56",
   "count": 17,
   "sheets": {
     "astra-moon": {
@@ -13,48 +13,16 @@
       "access_tier": "free",
       "last_updated": "17/04/2026",
       "proposal": [
-        17,
         16,
+        17,
         18,
-        19,
         15,
-        20
+        14,
+        19
       ],
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 90,
-                "hit": false
-              },
-              {
-                "number": 23,
-                "hit": false
-              },
-              {
-                "number": 89,
-                "hit": false
-              },
-              {
-                "number": 21,
-                "hit": false
-              },
-              {
-                "number": 88,
-                "hit": false
-              },
-              {
-                "number": 22,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -85,7 +53,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 1.0
           },
           {
             "seq": "4190",
@@ -117,7 +85,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.5
           },
           {
             "seq": "4191",
@@ -149,7 +117,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.25
+            "moving_avg": 0.3333
           },
           {
             "seq": "4192",
@@ -181,7 +149,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2
+            "moving_avg": 0.25
           },
           {
             "seq": "4193",
@@ -213,7 +181,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.4
           },
           {
             "seq": "4194",
@@ -245,7 +213,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2857
+            "moving_avg": 0.3333
           },
           {
             "seq": "4195",
@@ -277,7 +245,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.25
+            "moving_avg": 0.2857
           },
           {
             "seq": "4196",
@@ -309,7 +277,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2222
+            "moving_avg": 0.25
           },
           {
             "seq": "4197",
@@ -341,7 +309,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3
+            "moving_avg": 0.3333
           },
           {
             "seq": "4198",
@@ -1302,6 +1270,38 @@
               }
             ],
             "moving_avg": 0.4
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 17,
+                "hit": false
+              },
+              {
+                "number": 16,
+                "hit": false
+              },
+              {
+                "number": 18,
+                "hit": false
+              },
+              {
+                "number": 19,
+                "hit": false
+              },
+              {
+                "number": 15,
+                "hit": false
+              },
+              {
+                "number": 20,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.4
           }
         ]
       },
@@ -1311,7 +1311,7 @@
         "hit_rate_gte_2": "5.5%",
         "hit_rate_gte_3": "0.3%",
         "last_200_avg": "0.3750",
-        "std_hit": "0.6035"
+        "std_hit": "0.6034"
       },
       "method": {
         "intro": "ASTRA Moon e un algoritmo astro-statistico che collega ogni concorso a feature lunari calcolate con timestamp fisso 20:30 Europe/Rome.",
@@ -1345,38 +1345,6 @@
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
           {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 70,
-                "hit": false
-              },
-              {
-                "number": 73,
-                "hit": false
-              },
-              {
-                "number": 65,
-                "hit": false
-              },
-              {
-                "number": 86,
-                "hit": false
-              },
-              {
-                "number": 75,
-                "hit": false
-              },
-              {
-                "number": 31,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
-          {
             "seq": "4189",
             "date": "02/05/2026",
             "hit": 1,
@@ -1406,7 +1374,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 1.0
           },
           {
             "seq": "4190",
@@ -1438,7 +1406,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 1.0
           },
           {
             "seq": "4191",
@@ -1470,7 +1438,7 @@
                 "hit": true
               }
             ],
-            "moving_avg": 0.75
+            "moving_avg": 1.0
           },
           {
             "seq": "4192",
@@ -1502,7 +1470,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.8
+            "moving_avg": 1.0
           },
           {
             "seq": "4193",
@@ -1534,7 +1502,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.8
           },
           {
             "seq": "4194",
@@ -1566,7 +1534,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5714
+            "moving_avg": 0.6667
           },
           {
             "seq": "4195",
@@ -1598,7 +1566,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.5714
           },
           {
             "seq": "4196",
@@ -1630,7 +1598,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4444
+            "moving_avg": 0.5
           },
           {
             "seq": "4197",
@@ -1662,7 +1630,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.4444
           },
           {
             "seq": "4198",
@@ -2623,6 +2591,38 @@
               }
             ],
             "moving_avg": 0.4
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 65,
+                "hit": false
+              },
+              {
+                "number": 32,
+                "hit": false
+              },
+              {
+                "number": 50,
+                "hit": false
+              },
+              {
+                "number": 37,
+                "hit": false
+              },
+              {
+                "number": 11,
+                "hit": false
+              },
+              {
+                "number": 77,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.4
           }
         ]
       },
@@ -2631,8 +2631,8 @@
         "avg_hits": "0.40",
         "hit_rate_gte_2": "5.6%",
         "hit_rate_gte_3": "0.4%",
-        "last_200_avg": "0.4550",
-        "std_hit": "0.6088"
+        "last_200_avg": "0.4450",
+        "std_hit": "0.6087"
       },
       "method": {
         "intro": "Classic Analisi Anomalie Pattern e un modulo statistico descrittivo che osserva pattern strutturali insoliti o ricorrenti nelle sestine estratte.",
@@ -2666,38 +2666,6 @@
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
           {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 85,
-                "hit": false
-              },
-              {
-                "number": 55,
-                "hit": false
-              },
-              {
-                "number": 81,
-                "hit": false
-              },
-              {
-                "number": 76,
-                "hit": false
-              },
-              {
-                "number": 62,
-                "hit": false
-              },
-              {
-                "number": 80,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
-          {
             "seq": "4189",
             "date": "02/05/2026",
             "hit": 0,
@@ -2791,7 +2759,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.6667
           },
           {
             "seq": "4192",
@@ -2823,7 +2791,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.5
           },
           {
             "seq": "4193",
@@ -2855,7 +2823,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.4
           },
           {
             "seq": "4194",
@@ -2887,7 +2855,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4286
+            "moving_avg": 0.5
           },
           {
             "seq": "4195",
@@ -2919,7 +2887,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.375
+            "moving_avg": 0.4286
           },
           {
             "seq": "4196",
@@ -2929,6 +2897,38 @@
               {
                 "number": 85,
                 "hit": true
+              },
+              {
+                "number": 55,
+                "hit": false
+              },
+              {
+                "number": 81,
+                "hit": false
+              },
+              {
+                "number": 76,
+                "hit": false
+              },
+              {
+                "number": 62,
+                "hit": false
+              },
+              {
+                "number": 80,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.5
+          },
+          {
+            "seq": "4197",
+            "date": "15/05/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 85,
+                "hit": false
               },
               {
                 "number": 55,
@@ -2954,38 +2954,6 @@
             "moving_avg": 0.4444
           },
           {
-            "seq": "4197",
-            "date": "15/05/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 85,
-                "hit": false
-              },
-              {
-                "number": 55,
-                "hit": false
-              },
-              {
-                "number": 81,
-                "hit": false
-              },
-              {
-                "number": 76,
-                "hit": false
-              },
-              {
-                "number": 62,
-                "hit": false
-              },
-              {
-                "number": 80,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.4
-          },
-          {
             "seq": "4198",
             "date": "16/05/2026",
             "hit": 0,
@@ -3944,6 +3912,38 @@
               }
             ],
             "moving_avg": 0.6
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 85,
+                "hit": false
+              },
+              {
+                "number": 55,
+                "hit": false
+              },
+              {
+                "number": 81,
+                "hit": false
+              },
+              {
+                "number": 76,
+                "hit": false
+              },
+              {
+                "number": 80,
+                "hit": false
+              },
+              {
+                "number": 62,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.6
           }
         ]
       },
@@ -3953,7 +3953,7 @@
         "hit_rate_gte_2": "5.1%",
         "hit_rate_gte_3": "0.3%",
         "last_200_avg": "0.4350",
-        "std_hit": "0.5964"
+        "std_hit": "0.5963"
       },
       "method": {
         "intro": "Classic Co-Occorrenze e un modulo statistico relazionale che studia quanto spesso le coppie di numeri compaiono insieme nel tempo e costruisce sestine con alta coesione storica interna.",
@@ -3971,7 +3971,7 @@
       "title": "coppie-terni-consecutivi",
       "subtitle": "Analisi di coppie e terni consecutivi",
       "family": "statistica",
-      "rank_position": 11,
+      "rank_position": 12,
       "is_active": true,
       "access_tier": "free",
       "last_updated": "23/02/2026",
@@ -3986,38 +3986,6 @@
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 1,
-            "picks": [
-              {
-                "number": 43,
-                "hit": false
-              },
-              {
-                "number": 44,
-                "hit": true
-              },
-              {
-                "number": 45,
-                "hit": false
-              },
-              {
-                "number": 55,
-                "hit": false
-              },
-              {
-                "number": 56,
-                "hit": false
-              },
-              {
-                "number": 57,
-                "hit": false
-              }
-            ],
-            "moving_avg": 1.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -4048,7 +4016,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.0
           },
           {
             "seq": "4190",
@@ -4080,7 +4048,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.0
           },
           {
             "seq": "4191",
@@ -4112,7 +4080,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.75
+            "moving_avg": 0.6667
           },
           {
             "seq": "4192",
@@ -4144,7 +4112,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6
+            "moving_avg": 0.5
           },
           {
             "seq": "4193",
@@ -4176,7 +4144,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.4
           },
           {
             "seq": "4194",
@@ -4208,7 +4176,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5714
+            "moving_avg": 0.5
           },
           {
             "seq": "4195",
@@ -4240,7 +4208,7 @@
                 "hit": true
               }
             ],
-            "moving_avg": 0.625
+            "moving_avg": 0.5714
           },
           {
             "seq": "4196",
@@ -4272,7 +4240,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.625
           },
           {
             "seq": "4197",
@@ -4304,7 +4272,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6
+            "moving_avg": 0.5556
           },
           {
             "seq": "4198",
@@ -5265,16 +5233,48 @@
               }
             ],
             "moving_avg": 0.3
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 43,
+                "hit": false
+              },
+              {
+                "number": 44,
+                "hit": false
+              },
+              {
+                "number": 45,
+                "hit": false
+              },
+              {
+                "number": 55,
+                "hit": false
+              },
+              {
+                "number": 56,
+                "hit": false
+              },
+              {
+                "number": 57,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.3
           }
         ]
       },
       "metrics": {
-        "ranking_stability_pct": 41,
+        "ranking_stability_pct": 35,
         "avg_hits": "0.40",
         "hit_rate_gte_2": "4.8%",
         "hit_rate_gte_3": "0.4%",
         "last_200_avg": "0.4100",
-        "std_hit": "0.5936"
+        "std_hit": "0.5935"
       },
       "method": {
         "intro": "Classic Coppie Terni Consecutivi e un modulo descrittivo che misura e sfrutta la presenza di numeri consecutivi nelle sestine estratte.",
@@ -5308,38 +5308,6 @@
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
           {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 48,
-                "hit": false
-              },
-              {
-                "number": 86,
-                "hit": false
-              },
-              {
-                "number": 87,
-                "hit": false
-              },
-              {
-                "number": 13,
-                "hit": false
-              },
-              {
-                "number": 18,
-                "hit": false
-              },
-              {
-                "number": 51,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
-          {
             "seq": "4189",
             "date": "02/05/2026",
             "hit": 1,
@@ -5369,7 +5337,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 1.0
           },
           {
             "seq": "4190",
@@ -5401,7 +5369,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.5
           },
           {
             "seq": "4191",
@@ -5433,7 +5401,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.6667
           },
           {
             "seq": "4192",
@@ -5465,7 +5433,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6
+            "moving_avg": 0.75
           },
           {
             "seq": "4193",
@@ -5497,7 +5465,7 @@
                 "hit": true
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.8
           },
           {
             "seq": "4194",
@@ -5529,7 +5497,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5714
+            "moving_avg": 0.6667
           },
           {
             "seq": "4195",
@@ -5561,7 +5529,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.5714
           },
           {
             "seq": "4196",
@@ -5593,7 +5561,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4444
+            "moving_avg": 0.5
           },
           {
             "seq": "4197",
@@ -5625,7 +5593,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.5556
           },
           {
             "seq": "4198",
@@ -6586,6 +6554,38 @@
               }
             ],
             "moving_avg": 0.2
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 48,
+                "hit": false
+              },
+              {
+                "number": 86,
+                "hit": false
+              },
+              {
+                "number": 87,
+                "hit": false
+              },
+              {
+                "number": 13,
+                "hit": false
+              },
+              {
+                "number": 18,
+                "hit": false
+              },
+              {
+                "number": 51,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.1
           }
         ]
       },
@@ -6613,7 +6613,7 @@
       "title": "distribuzioni-modelli-raggruppamento",
       "subtitle": "Distribuzioni e modelli di raggruppamento",
       "family": "statistica",
-      "rank_position": 13,
+      "rank_position": 10,
       "is_active": true,
       "access_tier": "free",
       "last_updated": "23/02/2026",
@@ -6628,38 +6628,6 @@
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 86,
-                "hit": false
-              },
-              {
-                "number": 79,
-                "hit": false
-              },
-              {
-                "number": 49,
-                "hit": false
-              },
-              {
-                "number": 65,
-                "hit": false
-              },
-              {
-                "number": 83,
-                "hit": false
-              },
-              {
-                "number": 85,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -6690,7 +6658,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 1.0
+            "moving_avg": 2.0
           },
           {
             "seq": "4190",
@@ -6722,7 +6690,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 1.0
           },
           {
             "seq": "4191",
@@ -6754,7 +6722,7 @@
                 "hit": true
               }
             ],
-            "moving_avg": 0.75
+            "moving_avg": 1.0
           },
           {
             "seq": "4192",
@@ -6786,7 +6754,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6
+            "moving_avg": 0.75
           },
           {
             "seq": "4193",
@@ -6818,7 +6786,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.6
           },
           {
             "seq": "4194",
@@ -6850,7 +6818,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4286
+            "moving_avg": 0.5
           },
           {
             "seq": "4195",
@@ -6882,7 +6850,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.375
+            "moving_avg": 0.4286
           },
           {
             "seq": "4196",
@@ -6914,7 +6882,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4444
+            "moving_avg": 0.5
           },
           {
             "seq": "4197",
@@ -6946,7 +6914,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.4444
           },
           {
             "seq": "4198",
@@ -7907,15 +7875,47 @@
               }
             ],
             "moving_avg": 0.8
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 81,
+                "hit": false
+              },
+              {
+                "number": 77,
+                "hit": false
+              },
+              {
+                "number": 49,
+                "hit": false
+              },
+              {
+                "number": 65,
+                "hit": false
+              },
+              {
+                "number": 86,
+                "hit": false
+              },
+              {
+                "number": 85,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.8
           }
         ]
       },
       "metrics": {
-        "ranking_stability_pct": 29,
+        "ranking_stability_pct": 47,
         "avg_hits": "0.39",
         "hit_rate_gte_2": "4.8%",
         "hit_rate_gte_3": "0.4%",
-        "last_200_avg": "0.3950",
+        "last_200_avg": "0.3850",
         "std_hit": "0.5919"
       },
       "method": {
@@ -7950,38 +7950,6 @@
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
           {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 1,
-            "picks": [
-              {
-                "number": 85,
-                "hit": false
-              },
-              {
-                "number": 6,
-                "hit": true
-              },
-              {
-                "number": 49,
-                "hit": false
-              },
-              {
-                "number": 79,
-                "hit": false
-              },
-              {
-                "number": 86,
-                "hit": false
-              },
-              {
-                "number": 81,
-                "hit": false
-              }
-            ],
-            "moving_avg": 1.0
-          },
-          {
             "seq": "4189",
             "date": "02/05/2026",
             "hit": 2,
@@ -8011,7 +7979,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 1.5
+            "moving_avg": 2.0
           },
           {
             "seq": "4190",
@@ -8107,7 +8075,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.8
+            "moving_avg": 0.75
           },
           {
             "seq": "4193",
@@ -8139,7 +8107,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.6
           },
           {
             "seq": "4194",
@@ -8171,7 +8139,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5714
+            "moving_avg": 0.5
           },
           {
             "seq": "4195",
@@ -8203,7 +8171,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.4286
           },
           {
             "seq": "4196",
@@ -8235,7 +8203,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5556
+            "moving_avg": 0.5
           },
           {
             "seq": "4197",
@@ -8267,7 +8235,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.4444
           },
           {
             "seq": "4198",
@@ -9228,6 +9196,38 @@
               }
             ],
             "moving_avg": 0.9
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 1,
+            "picks": [
+              {
+                "number": 85,
+                "hit": false
+              },
+              {
+                "number": 6,
+                "hit": true
+              },
+              {
+                "number": 49,
+                "hit": false
+              },
+              {
+                "number": 79,
+                "hit": false
+              },
+              {
+                "number": 86,
+                "hit": false
+              },
+              {
+                "number": 55,
+                "hit": false
+              }
+            ],
+            "moving_avg": 1.0
           }
         ]
       },
@@ -9236,7 +9236,7 @@
         "avg_hits": "0.39",
         "hit_rate_gte_2": "5.1%",
         "hit_rate_gte_3": "0.3%",
-        "last_200_avg": "0.4200",
+        "last_200_avg": "0.4250",
         "std_hit": "0.5944"
       },
       "method": {
@@ -9271,38 +9271,6 @@
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
           {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 3,
-                "hit": false
-              },
-              {
-                "number": 86,
-                "hit": false
-              },
-              {
-                "number": 85,
-                "hit": false
-              },
-              {
-                "number": 90,
-                "hit": false
-              },
-              {
-                "number": 79,
-                "hit": false
-              },
-              {
-                "number": 12,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
-          {
             "seq": "4189",
             "date": "02/05/2026",
             "hit": 2,
@@ -9332,7 +9300,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 1.0
+            "moving_avg": 2.0
           },
           {
             "seq": "4190",
@@ -9364,7 +9332,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 1.0
+            "moving_avg": 1.5
           },
           {
             "seq": "4191",
@@ -9396,7 +9364,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.75
+            "moving_avg": 1.0
           },
           {
             "seq": "4192",
@@ -9428,7 +9396,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6
+            "moving_avg": 0.75
           },
           {
             "seq": "4193",
@@ -9460,7 +9428,7 @@
                 "hit": true
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.8
           },
           {
             "seq": "4194",
@@ -9492,7 +9460,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5714
+            "moving_avg": 0.6667
           },
           {
             "seq": "4195",
@@ -9524,7 +9492,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.5714
           },
           {
             "seq": "4196",
@@ -9556,7 +9524,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5556
+            "moving_avg": 0.625
           },
           {
             "seq": "4197",
@@ -9588,7 +9556,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6
+            "moving_avg": 0.6667
           },
           {
             "seq": "4198",
@@ -10521,6 +10489,38 @@
           {
             "seq": "4227",
             "date": "30/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 3,
+                "hit": false
+              },
+              {
+                "number": 86,
+                "hit": false
+              },
+              {
+                "number": 72,
+                "hit": false
+              },
+              {
+                "number": 90,
+                "hit": false
+              },
+              {
+                "number": 35,
+                "hit": false
+              },
+              {
+                "number": 12,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.6
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
             "hit": 0,
             "picks": [
               {
@@ -10558,7 +10558,7 @@
         "hit_rate_gte_2": "5.3%",
         "hit_rate_gte_3": "0.3%",
         "last_200_avg": "0.4800",
-        "std_hit": "0.5992"
+        "std_hit": "0.5991"
       },
       "method": {
         "intro": "Classic Ritardi Combinazioni estende il concetto di ritardo dai singoli numeri a coppie e terzine osservate nello storico.",
@@ -10592,38 +10592,6 @@
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
           {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 70,
-                "hit": false
-              },
-              {
-                "number": 73,
-                "hit": false
-              },
-              {
-                "number": 65,
-                "hit": false
-              },
-              {
-                "number": 86,
-                "hit": false
-              },
-              {
-                "number": 31,
-                "hit": false
-              },
-              {
-                "number": 75,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
-          {
             "seq": "4189",
             "date": "02/05/2026",
             "hit": 1,
@@ -10653,7 +10621,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 1.0
           },
           {
             "seq": "4190",
@@ -10685,7 +10653,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 1.0
           },
           {
             "seq": "4191",
@@ -10717,7 +10685,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.6667
           },
           {
             "seq": "4192",
@@ -10749,7 +10717,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6
+            "moving_avg": 0.75
           },
           {
             "seq": "4193",
@@ -10781,7 +10749,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.6
           },
           {
             "seq": "4194",
@@ -10813,7 +10781,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4286
+            "moving_avg": 0.5
           },
           {
             "seq": "4195",
@@ -10845,7 +10813,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.375
+            "moving_avg": 0.4286
           },
           {
             "seq": "4196",
@@ -10877,7 +10845,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.375
           },
           {
             "seq": "4197",
@@ -10909,7 +10877,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3
+            "moving_avg": 0.3333
           },
           {
             "seq": "4198",
@@ -11842,6 +11810,38 @@
           {
             "seq": "4227",
             "date": "30/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 65,
+                "hit": false
+              },
+              {
+                "number": 32,
+                "hit": false
+              },
+              {
+                "number": 50,
+                "hit": false
+              },
+              {
+                "number": 11,
+                "hit": false
+              },
+              {
+                "number": 77,
+                "hit": false
+              },
+              {
+                "number": 37,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.5
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
             "hit": 0,
             "picks": [
               {
@@ -11878,7 +11878,7 @@
         "avg_hits": "0.40",
         "hit_rate_gte_2": "5.2%",
         "hit_rate_gte_3": "0.4%",
-        "last_200_avg": "0.4400",
+        "last_200_avg": "0.4300",
         "std_hit": "0.6004"
       },
       "method": {
@@ -11903,47 +11903,15 @@
       "last_updated": "23/02/2026",
       "proposal": [
         1,
+        6,
         7,
         9,
         18,
-        28,
-        33
+        28
       ],
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 8,
-                "hit": false
-              },
-              {
-                "number": 11,
-                "hit": false
-              },
-              {
-                "number": 16,
-                "hit": false
-              },
-              {
-                "number": 17,
-                "hit": false
-              },
-              {
-                "number": 18,
-                "hit": false
-              },
-              {
-                "number": 40,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -12006,7 +11974,7 @@
                 "hit": true
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.5
           },
           {
             "seq": "4191",
@@ -12038,7 +12006,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.25
+            "moving_avg": 0.3333
           },
           {
             "seq": "4192",
@@ -12070,7 +12038,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2
+            "moving_avg": 0.25
           },
           {
             "seq": "4193",
@@ -12102,7 +12070,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.1667
+            "moving_avg": 0.2
           },
           {
             "seq": "4194",
@@ -12134,7 +12102,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.1429
+            "moving_avg": 0.1667
           },
           {
             "seq": "4195",
@@ -12166,7 +12134,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.125
+            "moving_avg": 0.1429
           },
           {
             "seq": "4196",
@@ -12198,7 +12166,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.1111
+            "moving_avg": 0.125
           },
           {
             "seq": "4197",
@@ -12230,7 +12198,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.1
+            "moving_avg": 0.1111
           },
           {
             "seq": "4198",
@@ -13191,6 +13159,38 @@
               }
             ],
             "moving_avg": 0.7
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 1,
+                "hit": false
+              },
+              {
+                "number": 7,
+                "hit": false
+              },
+              {
+                "number": 9,
+                "hit": false
+              },
+              {
+                "number": 18,
+                "hit": false
+              },
+              {
+                "number": 28,
+                "hit": false
+              },
+              {
+                "number": 33,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.6
           }
         ]
       },
@@ -13199,7 +13199,7 @@
         "avg_hits": "0.38",
         "hit_rate_gte_2": "4.7%",
         "hit_rate_gte_3": "0.3%",
-        "last_200_avg": "0.4250",
+        "last_200_avg": "0.4200",
         "std_hit": "0.5838"
       },
       "method": {
@@ -13234,38 +13234,6 @@
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
           {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 50,
-                "hit": false
-              },
-              {
-                "number": 36,
-                "hit": false
-              },
-              {
-                "number": 53,
-                "hit": false
-              },
-              {
-                "number": 18,
-                "hit": false
-              },
-              {
-                "number": 24,
-                "hit": false
-              },
-              {
-                "number": 60,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
-          {
             "seq": "4189",
             "date": "02/05/2026",
             "hit": 1,
@@ -13295,7 +13263,7 @@
                 "hit": true
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 1.0
           },
           {
             "seq": "4190",
@@ -13327,7 +13295,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.5
           },
           {
             "seq": "4191",
@@ -13359,7 +13327,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.6667
           },
           {
             "seq": "4192",
@@ -13391,7 +13359,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.5
           },
           {
             "seq": "4193",
@@ -13423,7 +13391,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.4
           },
           {
             "seq": "4194",
@@ -13455,7 +13423,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2857
+            "moving_avg": 0.3333
           },
           {
             "seq": "4195",
@@ -13487,7 +13455,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.25
+            "moving_avg": 0.2857
           },
           {
             "seq": "4196",
@@ -13519,7 +13487,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2222
+            "moving_avg": 0.25
           },
           {
             "seq": "4197",
@@ -13551,7 +13519,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2
+            "moving_avg": 0.2222
           },
           {
             "seq": "4198",
@@ -14484,6 +14452,38 @@
           {
             "seq": "4227",
             "date": "30/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 50,
+                "hit": false
+              },
+              {
+                "number": 36,
+                "hit": false
+              },
+              {
+                "number": 53,
+                "hit": false
+              },
+              {
+                "number": 24,
+                "hit": false
+              },
+              {
+                "number": 18,
+                "hit": false
+              },
+              {
+                "number": 60,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.2
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
             "hit": 0,
             "picks": [
               {
@@ -14518,7 +14518,7 @@
       "metrics": {
         "ranking_stability_pct": 88,
         "avg_hits": "0.40",
-        "hit_rate_gte_2": "4.9%",
+        "hit_rate_gte_2": "4.8%",
         "hit_rate_gte_3": "0.3%",
         "last_200_avg": "0.3750",
         "std_hit": "0.5894"
@@ -14546,46 +14546,14 @@
       "proposal": [
         11,
         32,
-        37,
         65,
         77,
-        50
+        50,
+        37
       ],
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 1,
-            "picks": [
-              {
-                "number": 18,
-                "hit": false
-              },
-              {
-                "number": 6,
-                "hit": true
-              },
-              {
-                "number": 11,
-                "hit": false
-              },
-              {
-                "number": 19,
-                "hit": false
-              },
-              {
-                "number": 33,
-                "hit": false
-              },
-              {
-                "number": 64,
-                "hit": false
-              }
-            ],
-            "moving_avg": 1.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -14648,7 +14616,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.5
           },
           {
             "seq": "4191",
@@ -14680,7 +14648,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.3333
           },
           {
             "seq": "4192",
@@ -14712,7 +14680,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.25
           },
           {
             "seq": "4193",
@@ -14744,7 +14712,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.2
           },
           {
             "seq": "4194",
@@ -14776,7 +14744,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2857
+            "moving_avg": 0.1667
           },
           {
             "seq": "4195",
@@ -14808,7 +14776,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.375
+            "moving_avg": 0.2857
           },
           {
             "seq": "4196",
@@ -14840,7 +14808,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.25
           },
           {
             "seq": "4197",
@@ -14872,7 +14840,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.3333
           },
           {
             "seq": "4198",
@@ -15833,6 +15801,38 @@
               }
             ],
             "moving_avg": 0.4
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 1,
+                "hit": false
+              },
+              {
+                "number": 7,
+                "hit": false
+              },
+              {
+                "number": 58,
+                "hit": false
+              },
+              {
+                "number": 57,
+                "hit": false
+              },
+              {
+                "number": 68,
+                "hit": false
+              },
+              {
+                "number": 18,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.3
           }
         ]
       },
@@ -15841,7 +15841,7 @@
         "avg_hits": "0.39",
         "hit_rate_gte_2": "4.6%",
         "hit_rate_gte_3": "0.4%",
-        "last_200_avg": "0.3550",
+        "last_200_avg": "0.3450",
         "std_hit": "0.5883"
       },
       "method": {
@@ -15851,7 +15851,7 @@
         "method": "Per ogni step costruisce feature frequenza ritardo e finestra recente | Calcola una fitness sui match hit della sestina proposta | Seleziona elite e genera nuova popolazione con crossover e mutazione | Procede in training progressivo sui nuovi concorsi",
         "output": "historical-db con hit marcati concorso per concorso | metrics-db con copertura hit 2..6, media e streak | analisi testuale tecnica e operativa | sestina proposta per il prossimo concorso",
         "limits": "E un modello evolutivo e non una rete neurale supervisionata classica con backpropagation | Non fornisce garanzia predittiva | Prestazioni sensibili a regime statistico e drift temporale",
-        "observed_results": "Concorsi valutati: 4.226\n- Media hit/sestina: 0.39\n- Hit >=1: 1454 su 4226 (34.4%)\n- Hit >=2: 194 su 4226 (4.6%)\n- Hit >=3: 15 su 4226 (0.4%)\n- Hit >=4: 1 su 4226 (0.0%)\n- Hit >=5: 0 su 4226 (0.0%)\n- Hit =6: 0 su 4226 (0.0%)\n- Best streak hit>=1: 7\n- Distribuzione esatta hit: 0:2772 1:1260 2:179 3:14 4:1 5:0 6:0"
+        "observed_results": "Concorsi valutati: 4.227\n- Media hit/sestina: 0.39\n- Hit >=1: 1454 su 4227 (34.4%)\n- Hit >=2: 194 su 4227 (4.6%)\n- Hit >=3: 15 su 4227 (0.4%)\n- Hit >=4: 1 su 4227 (0.0%)\n- Hit >=5: 0 su 4227 (0.0%)\n- Hit =6: 0 su 4227 (0.0%)\n- Best streak hit>=1: 7\n- Distribuzione esatta hit: 0:2773 1:1260 2:179 3:14 4:1 5:0 6:0"
       }
     },
     "hispa": {
@@ -15866,47 +15866,15 @@
       "last_updated": "15/03/2026",
       "proposal": [
         77,
-        14,
-        83,
-        46,
-        4,
-        85
+        81,
+        68,
+        51,
+        28,
+        13
       ],
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 80,
-                "hit": false
-              },
-              {
-                "number": 63,
-                "hit": false
-              },
-              {
-                "number": 86,
-                "hit": false
-              },
-              {
-                "number": 72,
-                "hit": false
-              },
-              {
-                "number": 49,
-                "hit": false
-              },
-              {
-                "number": 37,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -16001,7 +15969,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.25
+            "moving_avg": 0.3333
           },
           {
             "seq": "4192",
@@ -16033,7 +16001,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2
+            "moving_avg": 0.25
           },
           {
             "seq": "4193",
@@ -16065,7 +16033,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.4
           },
           {
             "seq": "4194",
@@ -16097,7 +16065,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2857
+            "moving_avg": 0.3333
           },
           {
             "seq": "4195",
@@ -16129,7 +16097,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.25
+            "moving_avg": 0.2857
           },
           {
             "seq": "4196",
@@ -16161,7 +16129,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4444
+            "moving_avg": 0.5
           },
           {
             "seq": "4197",
@@ -16193,7 +16161,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.4444
           },
           {
             "seq": "4198",
@@ -17154,6 +17122,38 @@
               }
             ],
             "moving_avg": 0.3
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 1,
+            "picks": [
+              {
+                "number": 77,
+                "hit": false
+              },
+              {
+                "number": 14,
+                "hit": false
+              },
+              {
+                "number": 83,
+                "hit": true
+              },
+              {
+                "number": 46,
+                "hit": false
+              },
+              {
+                "number": 4,
+                "hit": false
+              },
+              {
+                "number": 85,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.4
           }
         ]
       },
@@ -17162,7 +17162,7 @@
         "avg_hits": "0.41",
         "hit_rate_gte_2": "5.4%",
         "hit_rate_gte_3": "0.4%",
-        "last_200_avg": "0.3800",
+        "last_200_avg": "0.3850",
         "std_hit": "0.6027"
       },
       "method": {
@@ -17186,48 +17186,16 @@
       "access_tier": "free",
       "last_updated": "07/02/2026",
       "proposal": [
-        65,
-        77,
-        18,
         50,
-        85,
+        77,
+        11,
+        18,
+        65,
         86
       ],
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 0,
-            "picks": [
-              {
-                "number": 86,
-                "hit": false
-              },
-              {
-                "number": 18,
-                "hit": false
-              },
-              {
-                "number": 85,
-                "hit": false
-              },
-              {
-                "number": 79,
-                "hit": false
-              },
-              {
-                "number": 49,
-                "hit": false
-              },
-              {
-                "number": 65,
-                "hit": false
-              }
-            ],
-            "moving_avg": 0.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -17254,11 +17222,11 @@
                 "hit": false
               },
               {
-                "number": 75,
+                "number": 6,
                 "hit": false
               }
             ],
-            "moving_avg": 1.0
+            "moving_avg": 2.0
           },
           {
             "seq": "4190",
@@ -17286,11 +17254,11 @@
                 "hit": false
               },
               {
-                "number": 19,
+                "number": 75,
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 1.0
           },
           {
             "seq": "4191",
@@ -17322,7 +17290,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.6667
           },
           {
             "seq": "4192",
@@ -17354,7 +17322,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.5
           },
           {
             "seq": "4193",
@@ -17386,7 +17354,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.4
           },
           {
             "seq": "4194",
@@ -17418,7 +17386,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.2857
+            "moving_avg": 0.3333
           },
           {
             "seq": "4195",
@@ -17450,7 +17418,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.25
+            "moving_avg": 0.2857
           },
           {
             "seq": "4196",
@@ -17482,7 +17450,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.375
           },
           {
             "seq": "4197",
@@ -17514,7 +17482,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3
+            "moving_avg": 0.3333
           },
           {
             "seq": "4198",
@@ -17766,7 +17734,7 @@
                 "hit": false
               },
               {
-                "number": 23,
+                "number": 83,
                 "hit": false
               }
             ],
@@ -17982,16 +17950,16 @@
                 "hit": false
               },
               {
-                "number": 55,
-                "hit": false
-              },
-              {
                 "number": 76,
                 "hit": false
               },
               {
                 "number": 83,
                 "hit": true
+              },
+              {
+                "number": 55,
+                "hit": false
               }
             ],
             "moving_avg": 0.6
@@ -18022,7 +17990,7 @@
                 "hit": false
               },
               {
-                "number": 6,
+                "number": 65,
                 "hit": false
               }
             ],
@@ -18234,11 +18202,11 @@
                 "hit": false
               },
               {
-                "number": 28,
+                "number": 6,
                 "hit": false
               },
               {
-                "number": 6,
+                "number": 28,
                 "hit": false
               },
               {
@@ -18294,12 +18262,12 @@
                 "hit": false
               },
               {
-                "number": 6,
-                "hit": true
-              },
-              {
                 "number": 85,
                 "hit": false
+              },
+              {
+                "number": 6,
+                "hit": true
               },
               {
                 "number": 50,
@@ -18374,7 +18342,7 @@
                 "hit": false
               },
               {
-                "number": 50,
+                "number": 65,
                 "hit": false
               }
             ],
@@ -18450,10 +18418,6 @@
             "hit": 0,
             "picks": [
               {
-                "number": 86,
-                "hit": false
-              },
-              {
                 "number": 18,
                 "hit": false
               },
@@ -18462,29 +18426,65 @@
                 "hit": false
               },
               {
-                "number": 77,
+                "number": 49,
                 "hit": false
               },
               {
-                "number": 49,
+                "number": 28,
+                "hit": false
+              },
+              {
+                "number": 86,
+                "hit": false
+              },
+              {
+                "number": 77,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.5
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 18,
+                "hit": false
+              },
+              {
+                "number": 77,
                 "hit": false
               },
               {
                 "number": 85,
                 "hit": false
+              },
+              {
+                "number": 86,
+                "hit": false
+              },
+              {
+                "number": 65,
+                "hit": false
+              },
+              {
+                "number": 50,
+                "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.4
           }
         ]
       },
       "metrics": {
         "ranking_stability_pct": 76,
         "avg_hits": "0.39",
-        "hit_rate_gte_2": "4.9%",
+        "hit_rate_gte_2": "5.0%",
         "hit_rate_gte_3": "0.35%",
-        "last_200_avg": "0.4600",
-        "std_hit": "0.5915"
+        "last_200_avg": "0.4550",
+        "std_hit": "0.5937"
       },
       "method": {
         "intro": "Paradox e un meta-algoritmo ibrido che unisce segnali dagli algoritmi attivi per costruire una sestina ensemble robusta.",
@@ -18502,53 +18502,21 @@
       "title": "Super6 NN",
       "subtitle": "Walk-forward con training incrementale e sampling sestine",
       "family": "neurale",
-      "rank_position": 12,
+      "rank_position": 13,
       "is_active": true,
       "access_tier": "free",
       "last_updated": "11/02/2026",
       "proposal": [
+        7,
         15,
         16,
-        39,
         59,
-        68,
-        70
+        70,
+        86
       ],
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 1,
-            "picks": [
-              {
-                "number": 8,
-                "hit": false
-              },
-              {
-                "number": 11,
-                "hit": false
-              },
-              {
-                "number": 18,
-                "hit": false
-              },
-              {
-                "number": 52,
-                "hit": true
-              },
-              {
-                "number": 63,
-                "hit": false
-              },
-              {
-                "number": 80,
-                "hit": false
-              }
-            ],
-            "moving_avg": 1.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -18579,7 +18547,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.0
           },
           {
             "seq": "4190",
@@ -18611,7 +18579,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.5
           },
           {
             "seq": "4191",
@@ -18643,7 +18611,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.3333
           },
           {
             "seq": "4192",
@@ -18675,7 +18643,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.25
           },
           {
             "seq": "4193",
@@ -18707,7 +18675,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.4
           },
           {
             "seq": "4194",
@@ -18739,7 +18707,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4286
+            "moving_avg": 0.3333
           },
           {
             "seq": "4195",
@@ -18771,7 +18739,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.375
+            "moving_avg": 0.2857
           },
           {
             "seq": "4196",
@@ -18803,7 +18771,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.25
           },
           {
             "seq": "4197",
@@ -18835,7 +18803,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3
+            "moving_avg": 0.2222
           },
           {
             "seq": "4198",
@@ -19796,15 +19764,47 @@
               }
             ],
             "moving_avg": 0.6
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 7,
+                "hit": false
+              },
+              {
+                "number": 8,
+                "hit": false
+              },
+              {
+                "number": 18,
+                "hit": false
+              },
+              {
+                "number": 28,
+                "hit": false
+              },
+              {
+                "number": 33,
+                "hit": false
+              },
+              {
+                "number": 63,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.5
           }
         ]
       },
       "metrics": {
-        "ranking_stability_pct": 35,
-        "avg_hits": "0.3900",
+        "ranking_stability_pct": 29,
+        "avg_hits": "0.3899",
         "hit_rate_gte_2": "4.64%",
         "hit_rate_gte_3": "0.28%",
-        "last_200_avg": "0.3950",
+        "last_200_avg": "0.3900",
         "std_hit": "0.5848"
       },
       "method": {
@@ -19814,7 +19814,7 @@
         "method": "Encoding multi-hot delle estrazioni precedenti | Forward GRU su finestra storica | Selezione dei 6 numeri con logit piu alto a ogni step.",
         "output": "historical-db con hit marcati per concorso | metrics-db con copertura e stabilita | analysis tecnica | sestina proposta prossimo concorso.",
         "limits": "Modello sensibile a drift statistico e regime shift | Nessuna garanzia predittiva | Necessario monitoraggio continuo su rolling window.",
-        "observed_results": "- Media hit/sestina: 0.3900\n- Hit >=1: 1440/4226 (34.07%)\n- Hit >=2: 196/4226 (4.64%)\n- Hit >=3: 12/4226 (0.28%)\n- Hit >=4: 0/4226 (0.00%)\n- Hit >=5: 0/4226 (0.0000%)\n- Hit =6: 0/4226 (0.000000%)\n- Distribuzione hit esatta: 0:2786 1:1244 2:184 3:12 4:0 5:0 6:0"
+        "observed_results": "- Media hit/sestina: 0.3899\n- Hit >=1: 1440/4227 (34.07%)\n- Hit >=2: 196/4227 (4.64%)\n- Hit >=3: 12/4227 (0.28%)\n- Hit >=4: 0/4227 (0.00%)\n- Hit >=5: 0/4227 (0.0000%)\n- Hit =6: 0/4227 (0.000000%)\n- Distribuzione hit esatta: 0:2787 1:1244 2:184 3:12 4:0 5:0 6:0"
       }
     },
     "xeno-qdna-alpha": {
@@ -19828,48 +19828,16 @@
       "access_tier": "free",
       "last_updated": "13/06/2026",
       "proposal": [
-        16,
-        27,
-        51,
-        53,
-        64,
-        70
+        24,
+        40,
+        59,
+        61,
+        67,
+        72
       ],
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 1,
-            "picks": [
-              {
-                "number": 2,
-                "hit": false
-              },
-              {
-                "number": 6,
-                "hit": true
-              },
-              {
-                "number": 20,
-                "hit": false
-              },
-              {
-                "number": 21,
-                "hit": false
-              },
-              {
-                "number": 66,
-                "hit": false
-              },
-              {
-                "number": 68,
-                "hit": false
-              }
-            ],
-            "moving_avg": 1.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -19900,7 +19868,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.0
           },
           {
             "seq": "4190",
@@ -19932,7 +19900,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.0
           },
           {
             "seq": "4191",
@@ -19964,7 +19932,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.75
+            "moving_avg": 0.6667
           },
           {
             "seq": "4192",
@@ -19996,7 +19964,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.8
+            "moving_avg": 0.75
           },
           {
             "seq": "4193",
@@ -20028,7 +19996,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.6
           },
           {
             "seq": "4194",
@@ -20060,7 +20028,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.7143
+            "moving_avg": 0.6667
           },
           {
             "seq": "4195",
@@ -20092,7 +20060,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.625
+            "moving_avg": 0.5714
           },
           {
             "seq": "4196",
@@ -20124,7 +20092,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5556
+            "moving_avg": 0.5
           },
           {
             "seq": "4197",
@@ -20156,7 +20124,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.4444
           },
           {
             "seq": "4198",
@@ -21117,6 +21085,38 @@
               }
             ],
             "moving_avg": 0.2
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 0,
+            "picks": [
+              {
+                "number": 16,
+                "hit": false
+              },
+              {
+                "number": 27,
+                "hit": false
+              },
+              {
+                "number": 51,
+                "hit": false
+              },
+              {
+                "number": 53,
+                "hit": false
+              },
+              {
+                "number": 64,
+                "hit": false
+              },
+              {
+                "number": 70,
+                "hit": false
+              }
+            ],
+            "moving_avg": 0.1
           }
         ]
       },
@@ -21126,7 +21126,7 @@
         "hit_rate_gte_2": "5.8%",
         "hit_rate_gte_3": "0.2%",
         "last_200_avg": "0.3950",
-        "std_hit": "0.6083"
+        "std_hit": "0.6082"
       },
       "method": {
         "intro": "XENO-QDNA e un generatore sperimentale a collasso binario: ogni sestina diventa un DNA da 42 bit.",
@@ -21144,53 +21144,21 @@
       "title": "XENO-QDNA β",
       "subtitle": "G-Family - correzione autocritica del residuo α",
       "family": "generativi",
-      "rank_position": 10,
+      "rank_position": 11,
       "is_active": true,
       "access_tier": "free",
       "last_updated": "14/06/2026",
       "proposal": [
-        11,
-        48,
-        50,
+        29,
+        56,
         57,
-        64,
-        70
+        63,
+        76,
+        79
       ],
       "performance": {
         "label": "Performance - ultimi 40 concorsi",
         "rows": [
-          {
-            "seq": "4188",
-            "date": "30/04/2026",
-            "hit": 1,
-            "picks": [
-              {
-                "number": 7,
-                "hit": true
-              },
-              {
-                "number": 34,
-                "hit": false
-              },
-              {
-                "number": 38,
-                "hit": false
-              },
-              {
-                "number": 48,
-                "hit": false
-              },
-              {
-                "number": 84,
-                "hit": false
-              },
-              {
-                "number": 87,
-                "hit": false
-              }
-            ],
-            "moving_avg": 1.0
-          },
           {
             "seq": "4189",
             "date": "02/05/2026",
@@ -21253,7 +21221,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.6667
+            "moving_avg": 0.5
           },
           {
             "seq": "4191",
@@ -21285,7 +21253,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.5
+            "moving_avg": 0.3333
           },
           {
             "seq": "4192",
@@ -21317,7 +21285,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.25
           },
           {
             "seq": "4193",
@@ -21349,7 +21317,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.3333
+            "moving_avg": 0.2
           },
           {
             "seq": "4194",
@@ -21381,7 +21349,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4286
+            "moving_avg": 0.3333
           },
           {
             "seq": "4195",
@@ -21413,7 +21381,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.375
+            "moving_avg": 0.2857
           },
           {
             "seq": "4196",
@@ -21445,7 +21413,7 @@
                 "hit": true
               }
             ],
-            "moving_avg": 0.4444
+            "moving_avg": 0.375
           },
           {
             "seq": "4197",
@@ -21477,7 +21445,7 @@
                 "hit": false
               }
             ],
-            "moving_avg": 0.4
+            "moving_avg": 0.3333
           },
           {
             "seq": "4198",
@@ -22438,15 +22406,47 @@
               }
             ],
             "moving_avg": 0.5
+          },
+          {
+            "seq": "4228",
+            "date": "31/07/2026",
+            "hit": 1,
+            "picks": [
+              {
+                "number": 43,
+                "hit": false
+              },
+              {
+                "number": 45,
+                "hit": false
+              },
+              {
+                "number": 60,
+                "hit": false
+              },
+              {
+                "number": 70,
+                "hit": false
+              },
+              {
+                "number": 81,
+                "hit": false
+              },
+              {
+                "number": 83,
+                "hit": true
+              }
+            ],
+            "moving_avg": 0.5
           }
         ]
       },
       "metrics": {
-        "ranking_stability_pct": 47,
+        "ranking_stability_pct": 41,
         "avg_hits": "0.41",
         "hit_rate_gte_2": "5.7%",
         "hit_rate_gte_3": "0.4%",
-        "last_200_avg": "0.3900",
+        "last_200_avg": "0.3950",
         "std_hit": "0.6111"
       },
       "method": {
