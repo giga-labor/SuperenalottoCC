@@ -1,28 +1,28 @@
 {
-  "latest_local_contest_id": 4227,
-  "last_published_commit": "7aa07f437e8c4a75b545dfd64f051bba92ca768f",
+  "latest_local_contest_id": 4228,
+  "last_published_commit": "382ce120cdc37cfb8723b8c6cc455c01a6617f31",
   "per_algo_last_trained_contest_id": {
-    "astra-moon": 4227,
-    "classic-analisi-anomalie-pattern": 4227,
-    "classic-co-occorrenze": 4227,
-    "classic-coppie-terni-consecutivi": 4227,
-    "classic-coppie-terzine-frequenti": 4227,
-    "classic-distribuzioni-modelli-raggruppamento": 4227,
-    "classic-frequency": 4227,
-    "classic-ritardi": 4227,
-    "classic-ritardi-combinazioni": 4227,
-    "classic-statistiche-combinate-finestre-mobili": 4227,
-    "classic-tavole-probabilita-teorica-test-uniformita": 4227,
-    "genetic": 4227,
-    "hispa": 4227,
-    "paradox-logiche-decisionali-metriche": 4227,
-    "super6NN": 4227,
-    "xeno-qdna-alpha": 4227,
-    "xeno-qdna-beta": 4227
+    "astra-moon": 4228,
+    "classic-analisi-anomalie-pattern": 4228,
+    "classic-co-occorrenze": 4228,
+    "classic-coppie-terni-consecutivi": 4228,
+    "classic-coppie-terzine-frequenti": 4228,
+    "classic-distribuzioni-modelli-raggruppamento": 4228,
+    "classic-frequency": 4228,
+    "classic-ritardi": 4228,
+    "classic-ritardi-combinazioni": 4228,
+    "classic-statistiche-combinate-finestre-mobili": 4228,
+    "classic-tavole-probabilita-teorica-test-uniformita": 4228,
+    "genetic": 4228,
+    "hispa": 4228,
+    "paradox-logiche-decisionali-metriche": 4228,
+    "super6NN": 4228,
+    "xeno-qdna-alpha": 4228,
+    "xeno-qdna-beta": 4228
   },
-  "last_card_hits_build_at": "2026-07-30T21:46:00",
-  "last_card_hits_changed_cards": 7,
-  "last_successful_run_id": "20260730_214051",
+  "last_card_hits_build_at": "2026-07-31T21:00:20",
+  "last_card_hits_changed_cards": 5,
+  "last_successful_run_id": "20260731_205455",
   "last_email_status": "",
   "pending_publish": {},
   "consecutive_failures": 0,
@@ -97,6 +97,20 @@
       "ts": "2026-07-30T21:46:48",
       "event": "lock_released",
       "run_id": "20260730_214051",
+      "payload": {}
+    },
+    {
+      "ts": "2026-07-31T20:54:55",
+      "event": "lock_acquired",
+      "run_id": "20260731_205455",
+      "payload": {
+        "lease_until": "2026-07-31T20:56:55"
+      }
+    },
+    {
+      "ts": "2026-07-31T21:01:09",
+      "event": "lock_released",
+      "run_id": "20260731_205455",
       "payload": {}
     }
   ],
