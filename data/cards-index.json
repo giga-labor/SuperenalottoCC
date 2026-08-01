@@ -21,6 +21,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/astra-moon/",
+    "imageVersion": 1776446201,
     "rankingValue": 32.61,
     "rankingPosition": 7,
     "exactHits": {
@@ -47,6 +48,54 @@
     }
   },
   {
+    "id": "chimera-mix-adattivo",
+    "title": "CHIMERA-6",
+    "subtitle": "Ensemble adattivo a voti fra mix statistici, genetico e banco di seed",
+    "image": "img.webp",
+    "lastUpdated": "01/08/2026",
+    "hasNews": false,
+    "usesOutData": true,
+    "statusTag": "Scheda tecnica",
+    "narrativeSummary": "Algoritmo ibrido che fa competere tre mix statistici, un mix ottimizzato da algoritmo genetico e un banco di generatori deterministici, riclassificandoli periodicamente e componendo la sestina per voto pesato. La scheda pubblica anche la verifica su holdout, che non mostra vantaggio rispetto a una selezione uniforme.",
+    "page": "pages/algoritmi/algs/chimera-mix-adattivo/",
+    "macroGroup": "ibrido",
+    "isActive": true,
+    "view": true,
+    "no_data_show": true,
+    "accessTier": "free",
+    "hits": {
+      "enabled": false,
+      "count": 0
+    },
+    "type": "ALGORITMI",
+    "cardBase": "pages/algoritmi/algs/chimera-mix-adattivo/",
+    "imageVersion": 1785594171,
+    "rankingValue": 30.59,
+    "rankingPosition": 10,
+    "exactHits": {
+      "0": 2373,
+      "1": 1082,
+      "2": 161,
+      "3": 9,
+      "4": 3,
+      "5": 0,
+      "6": 0
+    },
+    "rankProfile": {
+      "edge": 100.0,
+      "edgePercent": 37.45,
+      "observedScore": 0.19,
+      "expectedScore": 0.1382,
+      "stability": 0.0,
+      "recentForm": 0.0,
+      "sampleConfidence": 99.93,
+      "windowCoherence": 33.79,
+      "riskPenalty": 22.78,
+      "risk": "alto",
+      "label": "Volatile"
+    }
+  },
+  {
     "id": "classic-analisi-anomalie-pattern",
     "title": "analisi-anomalie-pattern",
     "subtitle": "Analisi di anomalie e pattern",
@@ -70,8 +119,9 @@
     "featured": false,
     "news": [],
     "cardBase": "pages/algoritmi/algs/classic-analisi-anomalie-pattern/",
+    "imageVersion": 1773168664,
     "rankingValue": 30.45,
-    "rankingPosition": 9,
+    "rankingPosition": 11,
     "exactHits": {
       "0": 2782,
       "1": 1209,
@@ -117,8 +167,9 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-co-occorrenze/",
+    "imageVersion": 1773168663,
     "rankingValue": 25.67,
-    "rankingPosition": 15,
+    "rankingPosition": 17,
     "exactHits": {
       "0": 2782,
       "1": 1230,
@@ -164,8 +215,9 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-coppie-terni-consecutivi/",
+    "imageVersion": 1773168664,
     "rankingValue": 29.04,
-    "rankingPosition": 12,
+    "rankingPosition": 14,
     "exactHits": {
       "0": 2764,
       "1": 1259,
@@ -211,8 +263,9 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-coppie-terzine-frequenti/",
+    "imageVersion": 1771969283,
     "rankingValue": 28.14,
-    "rankingPosition": 14,
+    "rankingPosition": 16,
     "exactHits": {
       "0": 2809,
       "1": 1220,
@@ -258,8 +311,9 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-distribuzioni-modelli-raggruppamento/",
+    "imageVersion": 1773168665,
     "rankingValue": 29.93,
-    "rankingPosition": 10,
+    "rankingPosition": 12,
     "exactHits": {
       "0": 2793,
       "1": 1231,
@@ -305,6 +359,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-frequency/",
+    "imageVersion": 1770663727,
     "rankingValue": 48.09,
     "rankingPosition": 1,
     "exactHits": {
@@ -352,6 +407,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-ritardi-combinazioni/",
+    "imageVersion": 1773168665,
     "rankingValue": 41.43,
     "rankingPosition": 4,
     "exactHits": {
@@ -399,8 +455,9 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-ritardi/",
+    "imageVersion": 1773168662,
     "rankingValue": 23.39,
-    "rankingPosition": 16,
+    "rankingPosition": 18,
     "exactHits": {
       "0": 2776,
       "1": 1233,
@@ -446,6 +503,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-statistiche-combinate-finestre-mobili/",
+    "imageVersion": 1773168666,
     "rankingValue": 44.78,
     "rankingPosition": 2,
     "exactHits": {
@@ -495,6 +553,7 @@
     "featured": false,
     "news": [],
     "cardBase": "pages/algoritmi/algs/classic-tavole-probabilita-teorica-test-uniformita/",
+    "imageVersion": 1773168666,
     "rankingValue": 43.31,
     "rankingPosition": 3,
     "exactHits": {
@@ -542,8 +601,9 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/genetic/",
+    "imageVersion": 1770663729,
     "rankingValue": 9.91,
-    "rankingPosition": 17,
+    "rankingPosition": 19,
     "exactHits": {
       "0": 2773,
       "1": 1260,
@@ -589,6 +649,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/hispa/",
+    "imageVersion": 1773599476,
     "rankingValue": 35.54,
     "rankingPosition": 6,
     "exactHits": {
@@ -638,6 +699,7 @@
     "featured": false,
     "news": [],
     "cardBase": "pages/algoritmi/algs/paradox-logiche-decisionali-metriche/",
+    "imageVersion": 1773168662,
     "rankingValue": 38.53,
     "rankingPosition": 5,
     "exactHits": {
@@ -664,6 +726,54 @@
     }
   },
   {
+    "id": "solus90-anticrowd",
+    "title": "SOLUS-90",
+    "subtitle": "Sestine impopolari per massimizzare la vincita attesa, non la probabilita",
+    "image": "img.webp",
+    "lastUpdated": "01/08/2026",
+    "hasNews": false,
+    "usesOutData": true,
+    "statusTag": "Scheda tecnica",
+    "narrativeSummary": "Algoritmo anti-crowd: non prevede i numeri estratti, ma seleziona la sestina che il modello stima meno giocata dagli altri. La probabilita di vincita resta invariata, la vincita attesa condizionata alla vincita aumenta perche il montepremi si divide con meno persone.",
+    "page": "pages/algoritmi/algs/solus90-anticrowd/",
+    "macroGroup": "statistica",
+    "isActive": true,
+    "view": true,
+    "no_data_show": true,
+    "accessTier": "free",
+    "hits": {
+      "enabled": false,
+      "count": 0
+    },
+    "type": "ALGORITMI",
+    "cardBase": "pages/algoritmi/algs/solus90-anticrowd/",
+    "imageVersion": 1785594156,
+    "rankingValue": 31.64,
+    "rankingPosition": 9,
+    "exactHits": {
+      "0": 2753,
+      "1": 1263,
+      "2": 198,
+      "3": 13,
+      "4": 0,
+      "5": 0,
+      "6": 0
+    },
+    "rankProfile": {
+      "edge": 0.0,
+      "edgePercent": -5.09,
+      "observedScore": 0.1312,
+      "expectedScore": 0.1382,
+      "stability": 63.16,
+      "recentForm": 0.0,
+      "sampleConfidence": 99.98,
+      "windowCoherence": 68.95,
+      "riskPenalty": 1.04,
+      "risk": "basso",
+      "label": "Stabile"
+    }
+  },
+  {
     "id": "super6NN",
     "title": "Super6 NN",
     "subtitle": "Walk-forward con training incrementale e sampling sestine",
@@ -685,8 +795,9 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/super6NN/",
+    "imageVersion": 1771969284,
     "rankingValue": 28.99,
-    "rankingPosition": 13,
+    "rankingPosition": 15,
     "exactHits": {
       "0": 2787,
       "1": 1244,
@@ -785,7 +896,7 @@
     ],
     "cardBase": "pages/algoritmi/algs/xeno-qdna-beta/",
     "rankingValue": 29.79,
-    "rankingPosition": 11,
+    "rankingPosition": 13,
     "exactHits": {
       "0": 2712,
       "1": 1220,

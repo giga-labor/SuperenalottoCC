@@ -11,6 +11,7 @@ Con 4 hit,3,Concorsi con esattamente 4 numeri corretti
 Con 5 hit,0,Concorsi con esattamente 5 numeri corretti
 Con 6 hit,0,Concorsi con esattamente 6 numeri corretti
 Best streak,10,Massima sequenza di concorsi con almeno 1 hit
+Distribuzione hit 0-6,0: 2373 | 1: 1082 | 2: 161 | 3: 9 | 4: 3 | 5: 0 | 6: 0,"Conteggio concorsi con esattamente 0, 1, 2, 3, 4, 5 o 6 hit"
 Media hit ultimi 30,0.17,Media hit sugli ultimi 30 concorsi
 Media hit ultimi 90,0.24,Media hit sugli ultimi 90 concorsi
 Media hit ultimi 180,0.39,Media hit sugli ultimi 180 concorsi

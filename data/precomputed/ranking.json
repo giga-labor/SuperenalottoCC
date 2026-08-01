@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-01 16:34:12",
-  "active_algorithms_count": 17,
+  "generated_at": "2026-08-01 16:59:28",
+  "active_algorithms_count": 19,
   "rows": [
     {
       "title": "frequency",
@@ -229,6 +229,64 @@
         "2": 234,
         "3": 10,
         "4": 0,
+        "5": 0,
+        "6": 0
+      },
+      "image": "img.webp"
+    },
+    {
+      "title": "SOLUS-90",
+      "page": "pages/algoritmi/algs/solus90-anticrowd/",
+      "family": "statistica",
+      "ranking": 31.64,
+      "rankProfile": {
+        "edge": 0.0,
+        "edgePercent": -5.09,
+        "observedScore": 0.1312,
+        "expectedScore": 0.1382,
+        "stability": 63.16,
+        "recentForm": 0.0,
+        "sampleConfidence": 99.98,
+        "windowCoherence": 68.95,
+        "riskPenalty": 1.04,
+        "risk": "basso",
+        "label": "Stabile"
+      },
+      "hits": {
+        "0": 2753,
+        "1": 1263,
+        "2": 198,
+        "3": 13,
+        "4": 0,
+        "5": 0,
+        "6": 0
+      },
+      "image": "img.webp"
+    },
+    {
+      "title": "CHIMERA-6",
+      "page": "pages/algoritmi/algs/chimera-mix-adattivo/",
+      "family": "ibrido",
+      "ranking": 30.59,
+      "rankProfile": {
+        "edge": 100.0,
+        "edgePercent": 37.45,
+        "observedScore": 0.19,
+        "expectedScore": 0.1382,
+        "stability": 0.0,
+        "recentForm": 0.0,
+        "sampleConfidence": 99.93,
+        "windowCoherence": 33.79,
+        "riskPenalty": 22.78,
+        "risk": "alto",
+        "label": "Volatile"
+      },
+      "hits": {
+        "0": 2373,
+        "1": 1082,
+        "2": 161,
+        "3": 9,
+        "4": 3,
         "5": 0,
         "6": 0
       },
