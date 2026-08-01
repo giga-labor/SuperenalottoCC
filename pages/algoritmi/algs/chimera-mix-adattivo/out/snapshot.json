@@ -1,0 +1,53 @@
+{
+  "slug": "chimera-mix-adattivo",
+  "title": "CHIMERA-6",
+  "family": "ibrido",
+  "generated_at": "2026-08-01T16:34:13",
+  "last_seq": 4228,
+  "last_date": "31/07/2026",
+  "proposal": [
+    12,
+    34,
+    44,
+    50,
+    53,
+    67
+  ],
+  "metrics": {
+    "draws_covered": 3628,
+    "avg_hits": 0.4,
+    "hit_rate_gte_2": 4.8,
+    "hit_rate_gte_3": 0.3,
+    "best_streak": 10
+  },
+  "explanation": [
+    "CHIMERA-6 e' un ensemble adattivo: fa competere mix statistici, pesi ottimizzati da un algoritmo genetico e un banco di generatori deterministici, poi fa votare i migliori.",
+    "Riclassificare periodicamente i modelli candidati sulla finestra recente e comporre la sestina per voto pesato, senza mai usare informazioni successive al concorso da prevedere.",
+    "Sei canali-feature normalizzati (long_frequency, short_frequency, ewma, gap, pair_support, anti_crowd) | tre mix fissi piu' un mix genetico (popolazione 10, 3 generazioni) | banco di 80 seed deterministici | refit ogni 400 concorsi su finestra di validazione 120 | voto pesato dei primi 2 modelli e 4 seed, con bonus gap 0.6 e anti_crowd 0.8 | scoring convesso degli hit (un 4 vale 8, un 5 vale 80).",
+    "Verificato su holdout mai usato per la selezione, CHIMERA-6 non batte una selezione uniforme: la media hit resta allineata al valore atteso del random (0,40) e la correlazione fra ranking in selezione e risultato in holdout e' negativa (-0,57). E' la firma dell'overfitting su rumore, ed e' il comportamento atteso su estrazioni indipendenti e uniformi. La scheda pubblica questo risultato invece di nasconderlo."
+  ],
+  "windows": {
+    "30": {
+      "avg_hits": 0.17
+    },
+    "90": {
+      "avg_hits": 0.24
+    },
+    "180": {
+      "avg_hits": 0.39
+    }
+  },
+  "last_verified": {
+    "seq": 4228,
+    "date": "31/07/2026",
+    "proposal": [
+      12,
+      24,
+      26,
+      49,
+      53,
+      70
+    ],
+    "hits": 0
+  }
+}

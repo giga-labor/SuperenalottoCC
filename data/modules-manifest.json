@@ -1,5 +1,6 @@
 [
   "pages/algoritmi/algs/astra-moon/card.json",
+  "pages/algoritmi/algs/chimera-mix-adattivo/card.json",
   "pages/algoritmi/algs/classic-analisi-anomalie-pattern/card.json",
   "pages/algoritmi/algs/classic-co-occorrenze/card.json",
   "pages/algoritmi/algs/classic-coppie-terni-consecutivi/card.json",
@@ -13,6 +14,7 @@
   "pages/algoritmi/algs/genetic/card.json",
   "pages/algoritmi/algs/hispa/card.json",
   "pages/algoritmi/algs/paradox-logiche-decisionali-metriche/card.json",
+  "pages/algoritmi/algs/solus90-anticrowd/card.json",
   "pages/algoritmi/algs/super6NN/card.json",
   "pages/algoritmi/algs/xeno-qdna-alpha/card.json",
   "pages/algoritmi/algs/xeno-qdna-beta/card.json",

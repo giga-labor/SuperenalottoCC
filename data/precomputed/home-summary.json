@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T21:00:56",
+  "generated_at": "2026-08-01T16:34:13",
   "stale": false,
   "latest_draw": {
     "seq": 4228,
@@ -15,6 +15,31 @@
   },
   "consensus_top": [
     {
+      "number": 86,
+      "support": 7,
+      "algorithms": [
+        "classic-coppie-terzine-frequenti",
+        "classic-distribuzioni-modelli-raggruppamento",
+        "classic-frequency",
+        "classic-ritardi-combinazioni",
+        "paradox-logiche-decisionali-metriche",
+        "solus90-anticrowd",
+        "super6NN"
+      ]
+    },
+    {
+      "number": 50,
+      "support": 6,
+      "algorithms": [
+        "chimera-mix-adattivo",
+        "classic-analisi-anomalie-pattern",
+        "classic-ritardi",
+        "classic-tavole-probabilita-teorica-test-uniformita",
+        "genetic",
+        "paradox-logiche-decisionali-metriche"
+      ]
+    },
+    {
       "number": 77,
       "support": 6,
       "algorithms": [
@@ -27,18 +52,6 @@
       ]
     },
     {
-      "number": 86,
-      "support": 6,
-      "algorithms": [
-        "classic-coppie-terzine-frequenti",
-        "classic-distribuzioni-modelli-raggruppamento",
-        "classic-frequency",
-        "classic-ritardi-combinazioni",
-        "paradox-logiche-decisionali-metriche",
-        "super6NN"
-      ]
-    },
-    {
       "number": 18,
       "support": 5,
       "algorithms": [
@@ -46,17 +59,6 @@
         "classic-coppie-terzine-frequenti",
         "classic-statistiche-combinate-finestre-mobili",
         "classic-tavole-probabilita-teorica-test-uniformita",
-        "paradox-logiche-decisionali-metriche"
-      ]
-    },
-    {
-      "number": 50,
-      "support": 5,
-      "algorithms": [
-        "classic-analisi-anomalie-pattern",
-        "classic-ritardi",
-        "classic-tavole-probabilita-teorica-test-uniformita",
-        "genetic",
         "paradox-logiche-decisionali-metriche"
       ]
     },
@@ -83,11 +85,12 @@
     },
     {
       "number": 32,
-      "support": 3,
+      "support": 4,
       "algorithms": [
         "classic-analisi-anomalie-pattern",
         "classic-ritardi",
-        "genetic"
+        "genetic",
+        "solus90-anticrowd"
       ]
     },
     {
@@ -109,12 +112,12 @@
       ]
     },
     {
-      "number": 81,
+      "number": 57,
       "support": 3,
       "algorithms": [
-        "classic-co-occorrenze",
-        "classic-distribuzioni-modelli-raggruppamento",
-        "hispa"
+        "classic-coppie-terni-consecutivi",
+        "solus90-anticrowd",
+        "xeno-qdna-beta"
       ]
     }
   ],
@@ -242,5 +245,5 @@
     "note": "Valori estratti da HTML. In calibrazione — iARGOS aggiornerà questo file.",
     "updated_at": "2026-06-07 12:04:50"
   },
-  "total_active_algorithms": 17
+  "total_active_algorithms": 19
 }

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-31T21:00:56",
-  "count": 17,
+  "generated_at": "2026-08-01T16:34:13",
+  "count": 19,
   "algorithms": [
     {
       "slug": "astra-moon",
       "title": "ASTRA Moon",
       "family": "ibrido",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -44,10 +44,63 @@
       }
     },
     {
+      "slug": "chimera-mix-adattivo",
+      "title": "CHIMERA-6",
+      "family": "ibrido",
+      "generated_at": "2026-08-01T16:34:13",
+      "last_seq": 4228,
+      "last_date": "31/07/2026",
+      "proposal": [
+        12,
+        34,
+        44,
+        50,
+        53,
+        67
+      ],
+      "metrics": {
+        "draws_covered": 3628,
+        "avg_hits": 0.4,
+        "hit_rate_gte_2": 4.8,
+        "hit_rate_gte_3": 0.3,
+        "best_streak": 10
+      },
+      "explanation": [
+        "CHIMERA-6 e' un ensemble adattivo: fa competere mix statistici, pesi ottimizzati da un algoritmo genetico e un banco di generatori deterministici, poi fa votare i migliori.",
+        "Riclassificare periodicamente i modelli candidati sulla finestra recente e comporre la sestina per voto pesato, senza mai usare informazioni successive al concorso da prevedere.",
+        "Sei canali-feature normalizzati (long_frequency, short_frequency, ewma, gap, pair_support, anti_crowd) | tre mix fissi piu' un mix genetico (popolazione 10, 3 generazioni) | banco di 80 seed deterministici | refit ogni 400 concorsi su finestra di validazione 120 | voto pesato dei primi 2 modelli e 4 seed, con bonus gap 0.6 e anti_crowd 0.8 | scoring convesso degli hit (un 4 vale 8, un 5 vale 80).",
+        "Verificato su holdout mai usato per la selezione, CHIMERA-6 non batte una selezione uniforme: la media hit resta allineata al valore atteso del random (0,40) e la correlazione fra ranking in selezione e risultato in holdout e' negativa (-0,57). E' la firma dell'overfitting su rumore, ed e' il comportamento atteso su estrazioni indipendenti e uniformi. La scheda pubblica questo risultato invece di nasconderlo."
+      ],
+      "windows": {
+        "30": {
+          "avg_hits": 0.17
+        },
+        "90": {
+          "avg_hits": 0.24
+        },
+        "180": {
+          "avg_hits": 0.39
+        }
+      },
+      "last_verified": {
+        "seq": 4228,
+        "date": "31/07/2026",
+        "proposal": [
+          12,
+          24,
+          26,
+          49,
+          53,
+          70
+        ],
+        "hits": 0
+      }
+    },
+    {
       "slug": "classic-analisi-anomalie-pattern",
       "title": "analisi-anomalie-pattern",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -88,7 +141,7 @@
       "slug": "classic-co-occorrenze",
       "title": "co-occorrenze",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -128,7 +181,7 @@
       "slug": "classic-coppie-terni-consecutivi",
       "title": "coppie-terni-consecutivi",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -169,7 +222,7 @@
       "slug": "classic-coppie-terzine-frequenti",
       "title": "coppie-terzine-frequenti",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -210,7 +263,7 @@
       "slug": "classic-distribuzioni-modelli-raggruppamento",
       "title": "distribuzioni-modelli-raggruppamento",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -251,7 +304,7 @@
       "slug": "classic-frequency",
       "title": "frequency",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -292,7 +345,7 @@
       "slug": "classic-ritardi",
       "title": "ritardi",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -332,7 +385,7 @@
       "slug": "classic-ritardi-combinazioni",
       "title": "ritardi-combinazioni",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -373,7 +426,7 @@
       "slug": "classic-statistiche-combinate-finestre-mobili",
       "title": "statistiche-combinate-finestre-mobili",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -414,7 +467,7 @@
       "slug": "classic-tavole-probabilita-teorica-test-uniformita",
       "title": "tavole-probabilita-teorica-test-uniformita",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -455,7 +508,7 @@
       "slug": "genetic",
       "title": "GeneticSE",
       "family": "genetico",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -497,7 +550,7 @@
       "slug": "hispa",
       "title": "HiSPA",
       "family": "statistica",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -538,7 +591,7 @@
       "slug": "paradox-logiche-decisionali-metriche",
       "title": "Paradox Logiche Decisionali Metriche",
       "family": "ibrido",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -577,10 +630,63 @@
       }
     },
     {
+      "slug": "solus90-anticrowd",
+      "title": "SOLUS-90",
+      "family": "statistica",
+      "generated_at": "2026-08-01T16:34:13",
+      "last_seq": 4228,
+      "last_date": "31/07/2026",
+      "proposal": [
+        32,
+        41,
+        57,
+        62,
+        78,
+        86
+      ],
+      "metrics": {
+        "draws_covered": 4227,
+        "avg_hits": 0.4,
+        "hit_rate_gte_2": 5.0,
+        "hit_rate_gte_3": 0.3,
+        "best_streak": 6
+      },
+      "explanation": [
+        "SOLUS-90 non prevede i numeri estratti: sceglie la sestina statisticamente meno giocata dagli altri, per massimizzare la vincita attesa a parita' di probabilita' di vincita.",
+        "Ridurre il numero atteso di vincitori con cui dividere il montepremi, selezionando combinazioni lontane dai pattern di gioco umani (date, smorfia, sequenze, simmetrie di schedina).",
+        "Modello di popolarita' per numero (date 1-31. mesi 1-12. numeri tondi. smorfia. il 17 evitato) piu' penalita' di combinazione (progressioni. consecutivi. concentrazione per decina e colonna. somma centrale. combinazioni famose. ripetizione dell'ultima estrazione) | pool di 500 candidate minime campionate su 100.000 combinazioni con seed 20260728 | selezione a rotazione con penalita' di sovrapposizione.",
+        "Non aumenta in alcun modo la probabilita' di vincita, che resta 1 su 622.614.630 come per qualunque sestina. Agisce solo sulla vincita attesa condizionata alla vincita. Il modello di popolarita' e' una stima euristica del comportamento dei giocatori, non un dato ufficiale: Sisal non pubblica la distribuzione delle giocate."
+      ],
+      "windows": {
+        "30": {
+          "avg_hits": 0.3
+        },
+        "90": {
+          "avg_hits": 0.29
+        },
+        "180": {
+          "avg_hits": 0.32
+        }
+      },
+      "last_verified": {
+        "seq": 4228,
+        "date": "31/07/2026",
+        "proposal": [
+          32,
+          43,
+          57,
+          62,
+          74,
+          88
+        ],
+        "hits": 0
+      }
+    },
+    {
       "slug": "super6NN",
       "title": "Super6 NN",
       "family": "neurale",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -622,7 +728,7 @@
       "slug": "xeno-qdna-alpha",
       "title": "XENO-QDNA α",
       "family": "generativi",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
@@ -663,7 +769,7 @@
       "slug": "xeno-qdna-beta",
       "title": "XENO-QDNA β",
       "family": "generativi",
-      "generated_at": "2026-07-31T21:00:56",
+      "generated_at": "2026-08-01T16:34:13",
       "last_seq": 4228,
       "last_date": "",
       "proposal": [
