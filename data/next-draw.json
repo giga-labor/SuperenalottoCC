@@ -1,16 +1,16 @@
 {
-  "next_seq": 4229,
-  "next_date": "01/08/2026",
-  "next_date_iso": "2026-08-01",
-  "next_datetime_iso": "2026-08-01T20:00:00",
-  "next_weekday": "Sabato",
+  "next_seq": 4230,
+  "next_date": "06/08/2026",
+  "next_date_iso": "2026-08-06",
+  "next_datetime_iso": "2026-08-06T20:00:00",
+  "next_weekday": "Giovedi",
   "next_time": "20:00",
-  "last_seq": 4228,
-  "last_date": "31/07/2026",
+  "last_seq": 4229,
+  "last_date": "04/08/2026",
   "source": "online_calendar_fallback",
   "jackpot_str": "205.000.000",
   "jackpot_eur": "€ 205.000.000",
   "jackpot_raw": 205000000,
   "jackpot_source": "superenalotto_com",
-  "updated_at": "2026-08-05 19:04:01"
+  "updated_at": "2026-08-05 19:06:00"
 }

@@ -2,8 +2,8 @@
   "slug": "classic-co-occorrenze",
   "title": "co-occorrenze",
   "family": "statistica",
-  "generated_at": "2026-08-01T16:59:29",
-  "last_seq": 4228,
+  "generated_at": "2026-08-05T19:18:47",
+  "last_seq": 4229,
   "last_date": "",
   "proposal": [
     85,
@@ -14,7 +14,7 @@
     62
   ],
   "metrics": {
-    "draws_covered": 4228,
+    "draws_covered": 4229,
     "avg_hits": 0.4,
     "hit_rate_gte_2": 5.1
   },
@@ -25,8 +25,8 @@
     "Non produce garanzia di risultato futuro | Sensibile a cambi di regime statistico e indipendenza del processo | Da usare come strumento comparativo, non come promessa"
   ],
   "last_verified": {
-    "seq": 4228,
-    "date": "31/07/2026",
+    "seq": 4229,
+    "date": "04/08/2026",
     "proposal": [
       85,
       55,
@@ -35,6 +35,6 @@
       80,
       62
     ],
-    "hits": 0
+    "hits": 1
   }
 }

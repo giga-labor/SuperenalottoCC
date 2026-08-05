@@ -1,16 +1,16 @@
 METRICA,VALORE,NOTE
-Concorsi analizzati,4228,Conteggio archivio fino al concorso 4228
+Concorsi analizzati,4229,Conteggio archivio fino al concorso 4229
 Media hit/sestina,0.42,Media numeri corretti per concorso
 Hit rate >= 2,5.5%,Percentuale concorsi con almeno 2 hit
 Con 0 hit,2711,Numero concorsi con esattamente 0 hit
 Con 1 hit,1284,Numero concorsi con esattamente 1 hit
-Con 2 hit,220,Numero concorsi con esattamente 2 hit
+Con 2 hit,221,Numero concorsi con esattamente 2 hit
 Con 3 hit,12,Numero concorsi con esattamente 3 hit
 Con 4 hit,0,Numero concorsi con esattamente 4 hit
 Con 5 hit,0,Numero concorsi con esattamente 5 hit
 Con 6 hit,0,Numero concorsi con esattamente 6 hit
 Best streak,8,Massima sequenza di concorsi con almeno 1 hit
-Distribuzione hit 0-6,0: 2711 | 1: 1284 | 2: 220 | 3: 12 | 4: 0 | 5: 0 | 6: 0,"Conteggio concorsi con esattamente 0, 1, 2, 3, 4, 5 o 6 hit"
-Ultimo concorso calcolato,4228,Data estrazione: 31/07/2026
-Concorso successivo stimato,4229,Riferimento ASTRA Moon: 01/08/2026 20:30 CEST (01/08/2026 18:30 UTC)
-Sestina proposta (prossimo concorso),16 17 18 15 14 19,Ranking numeri da effemeridi lunari + storico incrementale
+Distribuzione hit 0-6,0: 2711 | 1: 1284 | 2: 221 | 3: 12 | 4: 0 | 5: 0 | 6: 0,"Conteggio concorsi con esattamente 0, 1, 2, 3, 4, 5 o 6 hit"
+Ultimo concorso calcolato,4229,Data estrazione: 04/08/2026
+Concorso successivo stimato,4230,Riferimento ASTRA Moon: 06/08/2026 20:30 CEST (06/08/2026 18:30 UTC)
+Sestina proposta (prossimo concorso),50 48 11 51 52 53,Ranking numeri da effemeridi lunari + storico incrementale
