@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05 19:19:33",
+  "updated_at": "2026-08-06 22:10:37",
   "version": "03.00.000",
   "enabled": true,
   "learning_mode": false,
@@ -38,10 +38,10 @@
   "runtime": {
     "state_level": "ok",
     "state_label": "operativo",
-    "last_push_at": "2026-08-05 19:19:17",
+    "last_push_at": "2026-08-05 19:21:45",
     "last_release_id": "overview-resolved-20260401020218-026ab2fab0",
     "last_release_at": "2026-04-01 02:02:18",
-    "boot_ts": 1785949425
+    "boot_ts": 1786047011
   },
   "feed": [
     {
@@ -127,14 +127,6 @@
     {
       "type": "draw",
       "ts": "2026-07-29T14:28:59",
-      "message": "Nuova estrazione importata e analizzata",
-      "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
-      "ok": true,
-      "source": "iargos"
-    },
-    {
-      "type": "draw",
-      "ts": "2026-07-27T12:50:40",
       "message": "Nuova estrazione importata e analizzata",
       "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
       "ok": true,
@@ -281,6 +273,14 @@
       "ts": "2026-03-10T00:51:56",
       "message": "Nuova versione del sito pubblicata (00.07.006 -> 00.08.000)",
       "detail": "469 file sincronizzati tra mirror e sito pubblico",
+      "ok": true,
+      "source": "versioning-audit"
+    },
+    {
+      "type": "versioning",
+      "ts": "2026-02-25T03:26:52",
+      "message": "Nuova versione del sito pubblicata (00.06.028 -> 00.07.000)",
+      "detail": "504 file sincronizzati tra mirror e sito pubblico",
       "ok": true,
       "source": "versioning-audit"
     }
