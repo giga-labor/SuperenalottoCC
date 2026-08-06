@@ -2,19 +2,19 @@
   "slug": "classic-analisi-anomalie-pattern",
   "title": "analisi-anomalie-pattern",
   "family": "statistica",
-  "generated_at": "2026-08-05T19:18:47",
-  "last_seq": 4229,
+  "generated_at": "2026-08-06T22:18:19",
+  "last_seq": 4230,
   "last_date": "",
   "proposal": [
     65,
     32,
     50,
     37,
-    11,
-    77
+    77,
+    48
   ],
   "metrics": {
-    "draws_covered": 4229,
+    "draws_covered": 4230,
     "avg_hits": 0.4,
     "hit_rate_gte_2": 5.6,
     "best_streak": 7
@@ -26,8 +26,8 @@
     "Modulo euristico descrittivo | Nessuna garanzia sul futuro | Sensibile alle scelte di scoring e alle finestre recenti"
   ],
   "last_verified": {
-    "seq": 4229,
-    "date": "04/08/2026",
+    "seq": 4230,
+    "date": "06/08/2026",
     "proposal": [
       65,
       32,
@@ -36,6 +36,6 @@
       11,
       77
     ],
-    "hits": 0
+    "hits": 1
   }
 }

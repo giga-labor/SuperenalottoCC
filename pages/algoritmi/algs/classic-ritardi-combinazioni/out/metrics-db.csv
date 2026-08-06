@@ -1,8 +1,8 @@
 METRICA,VALORE,NOTE
-Concorsi analizzati,4229,Conteggio archivio fino al concorso 4229
+Concorsi analizzati,4230,Conteggio archivio fino al concorso 4230
 Media hit/sestina,0.41,Media numeri corretti per concorso
-Hit rate >= 2,5.3%,Percentuale concorsi con almeno 2 hit
-Con 0 hit,2737,Numero concorsi con esattamente 0 hit
+Hit rate >= 2,5.2%,Percentuale concorsi con almeno 2 hit
+Con 0 hit,2738,Numero concorsi con esattamente 0 hit
 Con 1 hit,1269,Numero concorsi con esattamente 1 hit
 Con 2 hit,209,Numero concorsi con esattamente 2 hit
 Con 3 hit,13,Numero concorsi con esattamente 3 hit
@@ -10,15 +10,15 @@ Con 4 hit,0,Numero concorsi con esattamente 4 hit
 Con 5 hit,0,Numero concorsi con esattamente 5 hit
 Con 6 hit,0,Numero concorsi con esattamente 6 hit
 Best streak,7,Massima sequenza di concorsi con almeno 1 hit
-Distribuzione hit 0-6,0: 2737 | 1: 1269 | 2: 209 | 3: 13 | 4: 0 | 5: 0 | 6: 0,"Conteggio concorsi con esattamente 0, 1, 2, 3, 4, 5 o 6 hit"
-Media hit ultimi 100,0.47,Ultimi 100 concorsi o meno
-Ultimo concorso calcolato,4229,Data estrazione: 04/08/2026
-Concorso successivo stimato,4230,Sestina proposta: 03 86 72 90 35 12
+Distribuzione hit 0-6,0: 2738 | 1: 1269 | 2: 209 | 3: 13 | 4: 0 | 5: 0 | 6: 0,"Conteggio concorsi con esattamente 0, 1, 2, 3, 4, 5 o 6 hit"
+Media hit ultimi 100,0.46,Ultimi 100 concorsi o meno
+Ultimo concorso calcolato,4230,Data estrazione: 06/08/2026
+Concorso successivo stimato,4231,Sestina proposta: 03 86 72 90 35 12
 Sestina proposta (prossimo concorso),03 86 72 90 35 12,Pronostico prodotto con addestramento incrementale
 Coppie osservate,4005,Numero coppie distinte viste almeno una volta
-Terzine osservate,60156,Numero terzine distinte viste almeno una volta
+Terzine osservate,60164,Numero terzine distinte viste almeno una volta
 Ritardo massimo coppia,3122,Massimo ritardo storico registrato su una coppia
 Ritardo massimo terzina,4204,Massimo ritardo storico registrato su una terzina
-Coppia piu ritardataria,11-60,Ritardo corrente: 3015
-Terzina piu ritardataria,20-36-41,Ritardo corrente: 4228
-Score ritardi combo sestina,24453886,Indice sintetico interno basato su ritardi coppie/terzine
+Coppia piu ritardataria,11-60,Ritardo corrente: 3016
+Terzina piu ritardataria,20-36-41,Ritardo corrente: 4229
+Score ritardi combo sestina,24468711,Indice sintetico interno basato su ritardi coppie/terzine
