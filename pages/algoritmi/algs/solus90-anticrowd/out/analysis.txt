@@ -1,4 +1,4 @@
-SOLUS-90: archivio aggiornato al concorso 4230 su 4230 estrazioni (1 righe calcolate, 4228 riusate dal backtest precedente).
+SOLUS-90: archivio aggiornato al concorso 4231 su 4231 estrazioni (1 righe calcolate, 4229 riusate dal backtest precedente).
 
 Come leggere le metriche di questa scheda. La media hit e il tasso di hit >= 2 sono riportati per trasparenza, ma qui non misurano bravura: una selezione uniforme di sei numeri su novanta ha una media attesa di 0,40 numeri corretti per concorso, e SOLUS-90 resta su quel valore per costruzione. Non e' un difetto dell'algoritmo, e' il risultato atteso: le estrazioni del SuperEnalotto sono indipendenti e uniformi, quindi nessuna regola di selezione puo' spostare la probabilita' di vincita.
 

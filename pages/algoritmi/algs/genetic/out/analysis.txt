@@ -9,38 +9,38 @@ Il modello e adattivo e apprende in modo progressivo, quindi e spesso percepito 
 Tecnicamente pero non e una rete neurale classica supervisionata con layer e backpropagation: e un ottimizzatore genetico su feature statistiche.
 
 Risultati osservati sullo storico
-Concorsi valutati: 4.229
+Concorsi valutati: 4.230
 - Media hit/sestina: 0.39
-- Hit >=1: 1455 su 4229 (34.4%)
-- Hit >=2: 194 su 4229 (4.6%)
-- Hit >=3: 15 su 4229 (0.4%)
-- Hit >=4: 1 su 4229 (0.0%)
-- Hit >=5: 0 su 4229 (0.0%)
-- Hit =6: 0 su 4229 (0.0%)
+- Hit >=1: 1456 su 4230 (34.4%)
+- Hit >=2: 195 su 4230 (4.6%)
+- Hit >=3: 15 su 4230 (0.4%)
+- Hit >=4: 1 su 4230 (0.0%)
+- Hit >=5: 0 su 4230 (0.0%)
+- Hit =6: 0 su 4230 (0.0%)
 - Best streak hit>=1: 7
-- Distribuzione esatta hit: 0:2774 1:1261 2:179 3:14 4:1 5:0 6:0
+- Distribuzione esatta hit: 0:2774 1:1261 2:180 3:14 4:1 5:0 6:0
 
 Confronto con baseline casuale (6 su 90)
-- Media hit attesa random: 0.4000 | osservata: 0.3937
-- Hit>=2 atteso random: 4.96% | osservato: 4.59% | z-score: -1.13
+- Media hit attesa random: 0.4000 | osservata: 0.3941
+- Hit>=2 atteso random: 4.96% | osservato: 4.61% | z-score: -1.06
 - Hit>=3 atteso random: 0.315% | osservato: 0.355%
 - Hit>=4 atteso random: 0.0085% | osservato: 0.0236%
 - Hit>=5 atteso random: 0.000081% | osservato: 0.000000%
 - Hit=6 atteso random: 0.00000016% | osservato: 0.00000000%
 
 Stabilita temporale e drift
-- Media ultimi 200 concorsi: 0.3450 (delta vs storico: -0.0487)
-- Hit>=2 ultimi 200: 9/200 (4.50%)
-- Deviazione standard hit: 0.5883
-- Intervallo 95% media hit: [0.3760, 0.4114]
+- Media ultimi 200 concorsi: 0.3550 (delta vs storico: -0.0391)
+- Hit>=2 ultimi 200: 10/200 (5.00%)
+- Deviazione standard hit: 0.5887
+- Intervallo 95% media hit: [0.3763, 0.4118]
 
 Configurazione operativa
 - Fonte: training_history progressivo GeneticSE
 - Popolazione: 48 organismi
 - Finestra recente: 90 concorsi
-- Ultimo concorso: 4230 (06/08/2026)
-- Prossimo concorso stimato: 4231
-- Sestina proposta: 32 50 65 77 81 37
+- Ultimo concorso: 4231 (07/08/2026)
+- Prossimo concorso stimato: 4232
+- Sestina proposta: 37 50 65 77 81 48
 
 Lettura e limiti
 Le metriche sono coerenti con un modello adattivo che segue pattern storici, ma non dimostrano vantaggio matematico stabile fuori campione.
