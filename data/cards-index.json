@@ -21,6 +21,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/astra-moon/",
+    "imageVersion": 1776446201,
     "rankingValue": 32.95,
     "rankingPosition": 6,
     "exactHits": {
@@ -68,6 +69,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/chimera-mix-adattivo/",
+    "imageVersion": 1785594171,
     "rankingValue": 30.59,
     "rankingPosition": 12,
     "exactHits": {
@@ -117,6 +119,7 @@
     "featured": false,
     "news": [],
     "cardBase": "pages/algoritmi/algs/classic-analisi-anomalie-pattern/",
+    "imageVersion": 1773168664,
     "rankingValue": 30.44,
     "rankingPosition": 13,
     "exactHits": {
@@ -164,6 +167,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-co-occorrenze/",
+    "imageVersion": 1773168663,
     "rankingValue": 25.55,
     "rankingPosition": 17,
     "exactHits": {
@@ -211,6 +215,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-coppie-terni-consecutivi/",
+    "imageVersion": 1773168664,
     "rankingValue": 28.73,
     "rankingPosition": 15,
     "exactHits": {
@@ -258,6 +263,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-coppie-terzine-frequenti/",
+    "imageVersion": 1771969283,
     "rankingValue": 27.89,
     "rankingPosition": 16,
     "exactHits": {
@@ -305,6 +311,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-distribuzioni-modelli-raggruppamento/",
+    "imageVersion": 1773168665,
     "rankingValue": 32.58,
     "rankingPosition": 7,
     "exactHits": {
@@ -352,6 +359,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-frequency/",
+    "imageVersion": 1770663727,
     "rankingValue": 48.12,
     "rankingPosition": 1,
     "exactHits": {
@@ -399,6 +407,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-ritardi-combinazioni/",
+    "imageVersion": 1773168665,
     "rankingValue": 41.52,
     "rankingPosition": 4,
     "exactHits": {
@@ -446,6 +455,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-ritardi/",
+    "imageVersion": 1773168662,
     "rankingValue": 23.38,
     "rankingPosition": 18,
     "exactHits": {
@@ -493,6 +503,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/classic-statistiche-combinate-finestre-mobili/",
+    "imageVersion": 1773168666,
     "rankingValue": 44.67,
     "rankingPosition": 2,
     "exactHits": {
@@ -542,6 +553,7 @@
     "featured": false,
     "news": [],
     "cardBase": "pages/algoritmi/algs/classic-tavole-probabilita-teorica-test-uniformita/",
+    "imageVersion": 1773168666,
     "rankingValue": 43.29,
     "rankingPosition": 3,
     "exactHits": {
@@ -589,6 +601,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/genetic/",
+    "imageVersion": 1770663729,
     "rankingValue": 10.4,
     "rankingPosition": 19,
     "exactHits": {
@@ -636,6 +649,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/hispa/",
+    "imageVersion": 1773599476,
     "rankingValue": 37.32,
     "rankingPosition": 5,
     "exactHits": {
@@ -685,6 +699,7 @@
     "featured": false,
     "news": [],
     "cardBase": "pages/algoritmi/algs/paradox-logiche-decisionali-metriche/",
+    "imageVersion": 1773168662,
     "rankingValue": 32.49,
     "rankingPosition": 9,
     "exactHits": {
@@ -732,6 +747,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/solus90-anticrowd/",
+    "imageVersion": 1785594156,
     "rankingValue": 31.82,
     "rankingPosition": 10,
     "exactHits": {
@@ -779,6 +795,7 @@
     },
     "type": "ALGORITMI",
     "cardBase": "pages/algoritmi/algs/super6NN/",
+    "imageVersion": 1771969284,
     "rankingValue": 30.33,
     "rankingPosition": 14,
     "exactHits": {
