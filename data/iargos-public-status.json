@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-06 22:21:29",
+  "updated_at": "2026-08-07 22:22:27",
   "version": "03.00.000",
   "enabled": true,
   "learning_mode": false,
   "developing_mode": false,
-  "severity": "warning",
-  "summary": "Problemi attivi: p6_local_publish",
+  "severity": "ok",
+  "summary": "Problemi attivi: ",
   "overview_green": false,
   "alignment_priority": {
     "p0_new_contest_found": false,
@@ -15,19 +15,19 @@
     "p4_alignment_diff": false,
     "p5_training_gap": false,
     "p5_archive_stale": false,
-    "p6_local_publish": true,
+    "p6_local_publish": false,
     "p7_remote_force_align": false,
     "p8_backup_over_limit": false,
     "p9_smtp_broken": false
   },
   "alignment": {
-    "archive_update_state": "green",
+    "archive_update_state": "orange",
     "mirror_has_inconsistencies": false,
-    "flow_guard_ok": true,
+    "flow_guard_ok": false,
     "git_dirty": true,
     "remote_ahead": 0,
     "remote_behind": 0,
-    "alignment_diff_count": 0,
+    "alignment_diff_count": 84,
     "active_algorithms_count": 19,
     "active_algorithms_aligned_count": 19
   },
@@ -38,12 +38,36 @@
   "runtime": {
     "state_level": "ok",
     "state_label": "operativo",
-    "last_push_at": "2026-08-06 22:19:38",
+    "last_push_at": "2026-08-07 22:21:18",
     "last_release_id": "overview-resolved-20260401020218-026ab2fab0",
     "last_release_at": "2026-04-01 02:02:18",
-    "boot_ts": 1786047011
+    "boot_ts": 1786133454
   },
   "feed": [
+    {
+      "type": "alert",
+      "ts": "2026-08-07T22:20:00",
+      "message": "Rilevata una situazione anomala, intervento in corso",
+      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
+      "ok": false,
+      "source": "updates"
+    },
+    {
+      "type": "draw",
+      "ts": "2026-08-07T22:13:25",
+      "message": "Nuova estrazione importata e analizzata",
+      "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
+      "ok": true,
+      "source": "iargos"
+    },
+    {
+      "type": "training",
+      "ts": "2026-08-07T22:12:56",
+      "message": "Algoritmi aggiornati con i dati più recenti",
+      "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
+      "ok": true,
+      "source": "updates"
+    },
     {
       "type": "alert",
       "ts": "2026-08-06T22:17:38",
@@ -123,14 +147,6 @@
       "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
       "ok": true,
       "source": "iargos"
-    },
-    {
-      "type": "training",
-      "ts": "2026-07-31T20:55:04",
-      "message": "Algoritmi aggiornati con i dati più recenti",
-      "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
-      "ok": true,
-      "source": "updates"
     },
     {
       "type": "draw",
@@ -265,22 +281,6 @@
       "ts": "2026-03-14T23:02:33",
       "message": "Versione del sito aggiornata (00.09.010 -> 00.09.012)",
       "detail": "481 file sincronizzati tra mirror e sito pubblico",
-      "ok": true,
-      "source": "versioning-audit"
-    },
-    {
-      "type": "versioning",
-      "ts": "2026-03-14T23:01:41",
-      "message": "Versione precedente ripristinata (00.09.011 -> 00.09.010)",
-      "detail": "481 file sincronizzati tra mirror e sito pubblico",
-      "ok": true,
-      "source": "versioning-audit"
-    },
-    {
-      "type": "versioning",
-      "ts": "2026-03-10T23:31:55",
-      "message": "Nuova versione del sito pubblicata (00.08.002 -> 00.09.000)",
-      "detail": "480 file sincronizzati tra mirror e sito pubblico",
       "ok": true,
       "source": "versioning-audit"
     }
