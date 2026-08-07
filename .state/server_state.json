@@ -1,6 +1,6 @@
 {
   "latest_local_contest_id": 4231,
-  "last_published_commit": "bce7655a4eb8d4bccfdde685db276b7b9e4b0efc",
+  "last_published_commit": "5674392d6a6c2423d9bc66d23555480e342173e1",
   "per_algo_last_trained_contest_id": {
     "astra-moon": 4231,
     "chimera-mix-adattivo": 4231,
@@ -24,7 +24,7 @@
   },
   "last_card_hits_build_at": "2026-08-07T22:19:26",
   "last_card_hits_changed_cards": 8,
-  "last_successful_run_id": "20260807_221206",
+  "last_successful_run_id": "20260807_223504",
   "last_email_status": "",
   "pending_publish": {},
   "consecutive_failures": 52,
@@ -93,6 +93,20 @@
       "ts": "2026-08-07T22:21:31",
       "event": "lock_released",
       "run_id": "20260807_221206",
+      "payload": {}
+    },
+    {
+      "ts": "2026-08-07T22:35:04",
+      "event": "lock_acquired",
+      "run_id": "20260807_223504",
+      "payload": {
+        "lease_until": "2026-08-07T22:37:04"
+      }
+    },
+    {
+      "ts": "2026-08-07T22:36:36",
+      "event": "lock_released",
+      "run_id": "20260807_223504",
       "payload": {}
     }
   ],
