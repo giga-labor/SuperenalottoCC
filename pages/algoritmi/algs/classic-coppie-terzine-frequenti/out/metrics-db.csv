@@ -1,8 +1,8 @@
 METRICA,VALORE,NOTE
-Concorsi analizzati,4231,Conteggio archivio fino al concorso 4231
+Concorsi analizzati,4232,Conteggio archivio fino al concorso 4232
 Media hit/sestina,0.38,Media numeri corretti per concorso
 Hit rate >= 2,4.7%,Percentuale concorsi con almeno 2 hit
-Con 0 hit,2812,Numero concorsi con esattamente 0 hit
+Con 0 hit,2813,Numero concorsi con esattamente 0 hit
 Con 1 hit,1220,Numero concorsi con esattamente 1 hit
 Con 2 hit,193,Numero concorsi con esattamente 2 hit
 Con 3 hit,5,Numero concorsi con esattamente 3 hit
@@ -10,14 +10,14 @@ Con 4 hit,0,Numero concorsi con esattamente 4 hit
 Con 5 hit,0,Numero concorsi con esattamente 5 hit
 Con 6 hit,0,Numero concorsi con esattamente 6 hit
 Best streak,6,Massima sequenza di concorsi con almeno 1 hit
-Distribuzione hit 0-6,0: 2812 | 1: 1220 | 2: 193 | 3: 5 | 4: 0 | 5: 0 | 6: 0,"Conteggio concorsi con esattamente 0, 1, 2, 3, 4, 5 o 6 hit"
+Distribuzione hit 0-6,0: 2813 | 1: 1220 | 2: 193 | 3: 5 | 4: 0 | 5: 0 | 6: 0,"Conteggio concorsi con esattamente 0, 1, 2, 3, 4, 5 o 6 hit"
 Media hit ultimi 100,0.40,Ultimi 100 concorsi o meno
-Ultimo concorso calcolato,4231,Data estrazione: 07/08/2026
-Concorso successivo stimato,4232,Sestina proposta: 48 86 87 13 18 51
+Ultimo concorso calcolato,4232,Data estrazione: 08/08/2026
+Concorso successivo stimato,4233,Sestina proposta: 48 86 87 13 18 51
 Sestina proposta (prossimo concorso),48 86 87 13 18 51,Pronostico prodotto con addestramento incrementale
 Top coppia frequente,48-87,Occorrenze: 32
 Top terzina frequente,48-86-87,Occorrenze: 6
 Densita coppie sestina proposta,253,Somma frequenze storiche delle 15 coppie interne
 Densita terzine sestina proposta,25,Somma frequenze storiche delle 20 terzine interne
 Coppie distinte osservate,4005,Numero coppie comparse almeno una volta
-Terzine distinte osservate,60176,Numero terzine comparse almeno una volta
+Terzine distinte osservate,60183,Numero terzine comparse almeno una volta

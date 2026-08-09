@@ -2,8 +2,8 @@
   "slug": "classic-ritardi",
   "title": "ritardi",
   "family": "statistica",
-  "generated_at": "2026-08-07T22:36:22",
-  "last_seq": 4231,
+  "generated_at": "2026-08-09T22:10:37",
+  "last_seq": 4232,
   "last_date": "",
   "proposal": [
     65,
@@ -14,7 +14,7 @@
     27
   ],
   "metrics": {
-    "draws_covered": 4231,
+    "draws_covered": 4232,
     "avg_hits": 0.4,
     "hit_rate_gte_2": 5.2
   },
@@ -25,16 +25,16 @@
     "Non produce garanzia di risultato futuro | Sensibile a rumore statistico"
   ],
   "last_verified": {
-    "seq": 4231,
-    "date": "07/08/2026",
+    "seq": 4232,
+    "date": "08/08/2026",
     "proposal": [
       65,
-      32,
       50,
       77,
       37,
-      48
+      48,
+      27
     ],
-    "hits": 1
+    "hits": 0
   }
 }

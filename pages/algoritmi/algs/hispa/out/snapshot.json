@@ -2,19 +2,19 @@
   "slug": "hispa",
   "title": "HiSPA",
   "family": "statistica",
-  "generated_at": "2026-08-07T22:36:22",
-  "last_seq": 4231,
+  "generated_at": "2026-08-09T22:10:37",
+  "last_seq": 4232,
   "last_date": "",
   "proposal": [
-    80,
-    75,
-    84,
-    6,
-    52,
-    15
+    79,
+    1,
+    62,
+    68,
+    90,
+    33
   ],
   "metrics": {
-    "draws_covered": 4231,
+    "draws_covered": 4232,
     "avg_hits": 0.41,
     "hit_rate_gte_2": 5.4,
     "best_streak": 9
@@ -26,15 +26,15 @@
     "Metodo statistico condizionato non causale | sensibilita a densita storica pattern | nessuna garanzia predittiva futura."
   ],
   "last_verified": {
-    "seq": 4231,
-    "date": "07/08/2026",
+    "seq": 4232,
+    "date": "08/08/2026",
     "proposal": [
-      51,
-      73,
-      86,
-      77,
-      39,
-      71
+      80,
+      75,
+      84,
+      6,
+      52,
+      15
     ],
     "hits": 0
   }
