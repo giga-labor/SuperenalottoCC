@@ -1,7 +1,7 @@
-XENO-QDNA - Concorso 4232 del 08/08/2026
-Sestina proposta per il concorso 4233: 06 08 23 41 66 74
+XENO-QDNA - Concorso 4233 del 11/08/2026
+Sestina proposta per il concorso 4234: 07 08 25 61 74 80
 
-Maschera di collasso: 000111100110110111111111111111110110011111
+Maschera di collasso: 000111100110110111111111111111111110011111
 Tentativo: 1. Score decoerenza: 1. Membrana XENO-90: OK.
 
 Riflessioni applicate: 0 | Tunneling: 0

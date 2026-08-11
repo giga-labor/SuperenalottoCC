@@ -2,19 +2,19 @@
   "slug": "genetic",
   "title": "GeneticSE",
   "family": "genetico",
-  "generated_at": "2026-08-09T22:10:37",
-  "last_seq": 4232,
+  "generated_at": "2026-08-11T23:01:55",
+  "last_seq": 4233,
   "last_date": "",
   "proposal": [
-    37,
     50,
     65,
     77,
     81,
+    37,
     48
   ],
   "metrics": {
-    "draws_covered": 4232,
+    "draws_covered": 4233,
     "avg_hits": 0.39,
     "hit_rate_gte_2": 4.6,
     "hit_rate_gte_3": 0.4,
@@ -27,15 +27,15 @@
     "E un modello evolutivo e non una rete neurale supervisionata classica con backpropagation | Non fornisce garanzia predittiva | Prestazioni sensibili a regime statistico e drift temporale"
   ],
   "last_verified": {
-    "seq": 4232,
-    "date": "08/08/2026",
+    "seq": 4233,
+    "date": "11/08/2026",
     "proposal": [
-      1,
-      58,
       7,
+      1,
+      9,
       33,
-      57,
-      18
+      58,
+      89
     ],
     "hits": 0
   }
