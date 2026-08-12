@@ -48,16 +48,21 @@
 
   function startWormhole() {
     var script = document.createElement('script');
-    script.src = '../../assets/js/oracle-wormhole.js?v=02.00.010';
+    script.src = '../../assets/js/oracle-wormhole.js?v=02.00.011';
     script.defer = true;
     body.appendChild(script);
   }
 
   function render(reading) {
     body.innerHTML = '<div class="cca-app">' +
-      '<header class="cca-topbar"><a class="cca-icon-btn" href="/#/home" aria-label="Indietro">' + icons.back + '</a><div class="cca-titlebar">Chaos <span>Oracolo</span></div><button class="cca-icon-btn" type="button" data-theme aria-label="Cambia tema">' + icons.sun + '</button></header>' +
+      '<header class="cca-topbar"><button class="cca-icon-btn" type="button" data-back aria-label="Indietro">' + icons.back + '</button><div class="cca-titlebar">Chaos <span>Oracolo</span></div><button class="cca-icon-btn" type="button" data-theme aria-label="Cambia tema">' + icons.sun + '</button></header>' +
       '<main class="cco-page"><section class="cco-vision"><div class="cco-portal oracle-wormhole" aria-hidden="true"><canvas class="oracle-wormhole__canvas" data-wormhole-canvas width="1280" height="720"></canvas><div class="oracle-wormhole__vignette"></div></div><blockquote>' + highlightedSpeech(reading.oracle_speech, reading.promoted_numbers) + '</blockquote></section></main>' +
       navigation() + '</div>';
+    document.querySelector('[data-back]').addEventListener('click', function () {
+      setTheme();
+      if (history.length > 1) history.back();
+      else location.assign('/#/home');
+    });
     document.querySelector('[data-theme]').addEventListener('click', function () {
       var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
       document.documentElement.dataset.theme = next;

@@ -17,6 +17,22 @@
     ['Privacy', '/pages/privacy-policy/', 'privacy']
   ];
 
+  function storedTheme() {
+    var theme = '';
+    try { theme = localStorage.getItem('cc-app-theme') || localStorage.getItem('cc-theme') || ''; } catch (_) {}
+    return theme === 'light' || theme === 'dark' ? theme : '';
+  }
+
+  function restoreTheme() {
+    var theme = storedTheme();
+    if (!theme) return;
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem('cc-app-theme', theme);
+      localStorage.setItem('cc-theme', theme);
+    } catch (_) {}
+  }
+
   function activeItem() {
     var path = String(location.pathname || '').toLowerCase();
     var hash = String(location.hash || '').toLowerCase();
@@ -95,6 +111,7 @@
   }
 
   function start() {
+    restoreTheme();
     apply(document.body);
     new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
@@ -104,6 +121,7 @@
         });
       });
     }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('pageshow', restoreTheme);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
