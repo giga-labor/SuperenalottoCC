@@ -217,7 +217,7 @@
     if (!host || host.querySelector('.v8rank-card')) return;
     var rows = await buildRows();
     if (!rows.length) {
-      host.innerHTML = '<div class="cc-home-empty">Nessun algoritmo attivo con ranking disponibile.</div>';
+      host.innerHTML = '<div class="cc-home-empty">Nessun algoritmo attivo con classifica disponibile.</div>';
       return;
     }
     var podium = rows.slice(0, 3).map(function (row, idx) {
@@ -246,7 +246,7 @@
     booted = true;
     render().catch(function () {
       var host = document.querySelector('[data-ranking-cards]');
-      if (host) host.innerHTML = '<div class="cc-home-empty">Impossibile caricare il ranking algoritmi.</div>';
+      if (host) host.innerHTML = '<div class="cc-home-empty">Impossibile caricare la classifica degli algoritmi.</div>';
     });
   }
 

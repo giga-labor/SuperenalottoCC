@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 23:01:55",
+  "generated_at": "2026-08-13 00:35:37",
   "count": 19,
   "sheets": {
     "astra-moon": {
@@ -9253,7 +9253,7 @@
       "slug": "classic-frequency",
       "page": "pages/algoritmi/algs/classic-frequency/",
       "title": "frequency",
-      "subtitle": "Analisi frequenziale su storico estrazioni",
+      "subtitle": "Classifica i numeri per frequenza sul solo storico precedente e propone i sei con conteggio piu alto.",
       "family": "statistica",
       "rank_position": 1,
       "is_active": true,
@@ -17172,7 +17172,7 @@
         "method": "Per ogni step costruisce feature frequenza ritardo e finestra recente | Calcola una fitness sui match hit della sestina proposta | Seleziona elite e genera nuova popolazione con crossover e mutazione | Procede in training progressivo sui nuovi concorsi",
         "output": "historical-db con hit marcati concorso per concorso | metrics-db con copertura hit 2..6, media e streak | analisi testuale tecnica e operativa | sestina proposta per il prossimo concorso",
         "limits": "E un modello evolutivo e non una rete neurale supervisionata classica con backpropagation | Non fornisce garanzia predittiva | Prestazioni sensibili a regime statistico e drift temporale",
-        "observed_results": "Concorsi valutati: 4.232\n- Media hit/sestina: 0.39\n- Hit >=1: 1456 su 4232 (34.4%)\n- Hit >=2: 195 su 4232 (4.6%)\n- Hit >=3: 15 su 4232 (0.4%)\n- Hit >=4: 1 su 4232 (0.0%)\n- Hit >=5: 0 su 4232 (0.0%)\n- Hit =6: 0 su 4232 (0.0%)\n- Best streak hit>=1: 7\n- Distribuzione esatta hit: 0:2776 1:1261 2:180 3:14 4:1 5:0 6:0"
+        "observed_results": ""
       }
     },
     "hispa": {
@@ -22443,9 +22443,9 @@
       },
       "metrics": {
         "ranking_stability_pct": 32,
-        "avg_hits": "0.3904",
-        "hit_rate_gte_2": "4.66%",
-        "hit_rate_gte_3": "0.28%",
+        "avg_hits": "0.39",
+        "hit_rate_gte_2": "4.7%",
+        "hit_rate_gte_3": "0.3%",
         "last_200_avg": "0.4000",
         "std_hit": "0.5852"
       },
@@ -22456,7 +22456,7 @@
         "method": "Encoding multi-hot delle estrazioni precedenti | Forward GRU su finestra storica | Selezione dei 6 numeri con logit piu alto a ogni step.",
         "output": "historical-db con hit marcati per concorso | metrics-db con copertura e stabilita | analysis tecnica | sestina proposta prossimo concorso.",
         "limits": "Modello sensibile a drift statistico e regime shift | Nessuna garanzia predittiva | Necessario monitoraggio continuo su rolling window.",
-        "observed_results": "- Media hit/sestina: 0.3904\n- Hit >=1: 1443/4232 (34.10%)\n- Hit >=2: 197/4232 (4.66%)\n- Hit >=3: 12/4232 (0.28%)\n- Hit >=4: 0/4232 (0.00%)\n- Hit >=5: 0/4232 (0.0000%)\n- Hit =6: 0/4232 (0.000000%)\n- Distribuzione hit esatta: 0:2789 1:1246 2:185 3:12 4:0 5:0 6:0"
+        "observed_results": ""
       }
     },
     "xeno-qdna-alpha": {

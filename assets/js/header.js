@@ -834,11 +834,11 @@ const NAV_ITEMS = {
   home: { label: 'Home', href: 'index.html#home' },
   sestine: { label: 'Sestine', href: 'pages/sestine-proposte/index.html' },
   ranking: { label: 'Algoritmi', href: 'pages/algoritmi/index.html' },
-  laboratorio: { label: 'Laboratorio', href: 'pages/laboratorio-tecnico/index.html' },
+  laboratorio: { label: 'Laboratorio', href: '/#/laboratorio' },
   algoritmi: { label: 'Algoritmi', href: 'pages/algoritmi/index.html' },
   storico: { label: 'Storico', href: 'pages/storico-estrazioni/index.html' },
   community: { label: 'Community', href: 'pages/community/index.html' },
-  oracle: { label: 'Oracle', href: 'pages/oracle/index.html' },
+  oracle: { label: 'Oracolo', href: 'pages/oracle/index.html' },
   consenso: { label: 'Consenso', href: 'pages/consenso/index.html' },
   concorso: { label: 'Concorso', href: 'pages/concorso/index.html' },
   policy_consenso: { label: 'Policy e Consenso', href: 'pages/policy-consenso/index.html' }
@@ -1082,7 +1082,7 @@ const buildHeaderMarkup = () => `
             <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/algoritmi/index.html')}" aria-label="Algoritmi" data-tooltip="Algoritmi">
               <img class="home-badge__icon home-badge__icon--img" src="${resolveWithBaseHref('img/algoritm.webp')}" alt="" aria-hidden="true">
             </a>
-            <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/laboratorio-tecnico/')}" aria-label="Laboratorio Tecnico" data-tooltip="Laboratorio Tecnico">
+            <a class="home-badge home-badge--icon home-badge--home bg-neon/10 px-6 py-3 font-semibold text-neon transition" href="/#/laboratorio" aria-label="Laboratorio Tecnico" data-tooltip="Laboratorio Tecnico">
               <img class="home-badge__icon home-badge__icon--img" src="${resolveWithBaseHref('img/statistic.webp')}" alt="" aria-hidden="true">
             </a>
             <a class="home-badge home-badge--home bg-neon/10 px-4 py-3 font-semibold text-neon transition" href="${resolveWithBaseHref('pages/community/')}" aria-label="Community" data-tooltip="Community">
@@ -2347,8 +2347,4 @@ document.addEventListener('click', (event) => {
   if (supportsCrossDocumentTransitions()) return;
   markPageNavigating();
 });
-
-
-
-
 

@@ -1202,22 +1202,36 @@ html[data-ad-rail="bottom"] .mx-auto.max-w-5xl {
 }
 
 /* ════════════════════════════════════════════════════════════
-   Wide layout: il contenuto scorre in un proprio contenitore.
-   La scrollbar verticale appare tra il contenuto e l'ad rail
-   e il contenuto non finisce mai sotto il banner ads.
+   Wide layout: il documento mantiene un solo flusso di scorrimento.
+   L'ad rail resta separato senza bloccare le pagine che non usano
+   i contenitori content-width/content-fade.
    ════════════════════════════════════════════════════════════ */
-html[data-ad-rail="right"],
+html[data-ad-rail="right"] {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 100%;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  overscroll-behavior-y: auto;
+  scrollbar-gutter: stable;
+}
+
 html[data-ad-rail="right"] body {
-  height: 100vh;
-  overflow: hidden !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 100vh;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  overscroll-behavior-y: auto;
+  touch-action: pan-y;
 }
 
 html[data-ad-rail="right"] main.content-width,
 html[data-ad-rail="right"] main.content-fade {
-  height: 100vh !important;
-  overflow-y: auto !important;
+  height: auto !important;
+  max-height: none !important;
   overflow-x: hidden;
-  overscroll-behavior: contain;
-  scrollbar-gutter: stable;
+  overflow-y: visible !important;
+  overscroll-behavior: auto;
   box-sizing: border-box !important;
 }

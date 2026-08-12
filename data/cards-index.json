@@ -44,7 +44,12 @@
       "riskPenalty": 1.24,
       "risk": "basso",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 32.9,
+    "previousRankingPosition": 7,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "chimera-mix-adattivo",
@@ -91,7 +96,12 @@
       "riskPenalty": 22.78,
       "risk": "alto",
       "label": "Volatile"
-    }
+    },
+    "previousRankingValue": 30.6,
+    "previousRankingPosition": 12,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-analisi-anomalie-pattern",
@@ -140,7 +150,12 @@
       "riskPenalty": 20.85,
       "risk": "alto",
       "label": "Volatile"
-    }
+    },
+    "previousRankingValue": 30.28,
+    "previousRankingPosition": 13,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-co-occorrenze",
@@ -187,7 +202,12 @@
       "riskPenalty": 21.16,
       "risk": "alto",
       "label": "Esplosivo ma instabile"
-    }
+    },
+    "previousRankingValue": 25.92,
+    "previousRankingPosition": 17,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-coppie-terni-consecutivi",
@@ -234,7 +254,12 @@
       "riskPenalty": 4.38,
       "risk": "medio",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 28.73,
+    "previousRankingPosition": 15,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-coppie-terzine-frequenti",
@@ -281,7 +306,12 @@
       "riskPenalty": 4.83,
       "risk": "basso",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 27.48,
+    "previousRankingPosition": 16,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-distribuzioni-modelli-raggruppamento",
@@ -328,12 +358,17 @@
       "riskPenalty": 6.3,
       "risk": "medio",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 32.38,
+    "previousRankingPosition": 8,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-frequency",
     "title": "frequency",
-    "subtitle": "Analisi frequenziale su storico estrazioni",
+    "subtitle": "Classifica i numeri per frequenza sul solo storico precedente e propone i sei con conteggio piu alto.",
     "image": "img.webp",
     "lastUpdated": "07/02/2026",
     "hasNews": false,
@@ -375,7 +410,12 @@
       "riskPenalty": 0.93,
       "risk": "basso",
       "label": "Forte sul breve"
-    }
+    },
+    "previousRankingValue": 48.11,
+    "previousRankingPosition": 1,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-ritardi-combinazioni",
@@ -422,7 +462,12 @@
       "riskPenalty": 1.48,
       "risk": "basso",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 40.33,
+    "previousRankingPosition": 4,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-ritardi",
@@ -469,7 +514,12 @@
       "riskPenalty": 20.78,
       "risk": "alto",
       "label": "Volatile"
-    }
+    },
+    "previousRankingValue": 23.23,
+    "previousRankingPosition": 18,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-statistiche-combinate-finestre-mobili",
@@ -516,7 +566,12 @@
       "riskPenalty": 2.93,
       "risk": "basso",
       "label": "Forte sul breve"
-    }
+    },
+    "previousRankingValue": 44.74,
+    "previousRankingPosition": 2,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "classic-tavole-probabilita-teorica-test-uniformita",
@@ -565,7 +620,12 @@
       "riskPenalty": 3.06,
       "risk": "medio",
       "label": "Forte sul breve"
-    }
+    },
+    "previousRankingValue": 43.29,
+    "previousRankingPosition": 3,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "genetic-algorithm-evolutionary",
@@ -612,7 +672,12 @@
       "riskPenalty": 20.9,
       "risk": "alto",
       "label": "Volatile"
-    }
+    },
+    "previousRankingValue": 10.26,
+    "previousRankingPosition": 19,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "hispa",
@@ -659,7 +724,12 @@
       "riskPenalty": 0.81,
       "risk": "basso",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 36.12,
+    "previousRankingPosition": 5,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "paradox-logiche-decisionali-metriche",
@@ -708,7 +778,12 @@
       "riskPenalty": 5.25,
       "risk": "medio",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 30.99,
+    "previousRankingPosition": 10,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "solus90-anticrowd",
@@ -755,7 +830,12 @@
       "riskPenalty": 1.03,
       "risk": "basso",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 31.78,
+    "previousRankingPosition": 9,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "super6NN",
@@ -802,7 +882,12 @@
       "riskPenalty": 4.51,
       "risk": "basso",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 30.07,
+    "previousRankingPosition": 14,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "xeno-qdna-alpha",
@@ -850,7 +935,12 @@
       "riskPenalty": 1.28,
       "risk": "basso",
       "label": "Stabile"
-    }
+    },
+    "previousRankingValue": 33.27,
+    "previousRankingPosition": 6,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "xeno-qdna-beta",
@@ -901,7 +991,12 @@
       "riskPenalty": 21.5,
       "risk": "alto",
       "label": "Volatile"
-    }
+    },
+    "previousRankingValue": 30.76,
+    "previousRankingPosition": 11,
+    "rankingScoreDeltaPct": 0.0,
+    "rankingPositionDelta": 0,
+    "rankingComparisonContest": "4233"
   },
   {
     "id": "laboratorio-tecnico-legacy",

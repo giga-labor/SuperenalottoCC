@@ -1,0 +1,402 @@
+{
+  "classic-frequency": {
+    "summary": [
+      "Ogni numero parte da zero e guadagna un punto ogni volta che compare nelle estrazioni gia osservate. Un numero viene quindi promosso quando il suo conteggio storico e maggiore di quello degli altri.",
+      "Il confronto puo essere espresso anche in percentuale: la frequenza relativa dice quale parte di tutte le estrazioni contiene quel numero. Conteggio e percentuale producono lo stesso ordinamento."
+    ],
+    "factors": [
+      "Ogni presenza storica aumenta il punteggio di 1.",
+      "Un assenza non aggiunge punti, ma non applica penalita aggiuntive.",
+      "A parita di conteggio prevale il criterio stabile previsto dal modello."
+    ],
+    "calculation": [
+      "Se sono stati osservati T concorsi, per il numero n si conta quante volte e comparso. Per esempio, un numero apparso 290 volte supera un numero apparso 275 volte.",
+      "La frequenza relativa divide il conteggio per T e permette di leggere il valore come quota di concorsi, senza cambiare la classifica."
+    ],
+    "formulas": ["punteggio del numero = quante volte e uscito", "frequenza = presenze / concorsi osservati"],
+    "formulaHelp": "Presenze e il numero di volte in cui il numero e uscito. T e il totale dei concorsi osservati.",
+    "example": "Se il 12 e uscito 290 volte e il 40 e uscito 275 volte, il 12 riceve 290 punti e viene messo davanti al 40.",
+    "selection": "Ordina i 90 numeri dal conteggio piu alto al piu basso e prende i primi sei.",
+    "note": "Un numero frequente nel passato non diventa fisicamente piu probabile nella prossima estrazione; il punteggio descrive soltanto la preferenza frequenziale del modello."
+  },
+  "classic-ritardi": {
+    "summary": [
+      "Il punteggio misura da quanti concorsi un numero non compare. Piu lunga e l assenza, piu il numero sale nella graduatoria.",
+      "E come ordinare una fila in base al tempo di attesa: chi aspetta da piu tempo viene messo davanti, senza pero affermare che debba essere estratto."
+    ],
+    "factors": [
+      "Ogni nuovo concorso senza uscita aumenta il ritardo di 1.",
+      "Quando il numero esce, il suo ritardo torna a zero.",
+      "Non vengono premiate le frequenze complessive: conta soprattutto l attesa corrente."
+    ],
+    "calculation": [
+      "Per ogni numero si individua l ultimo concorso in cui e comparso. La distanza tra il concorso corrente e quell ultima presenza e il suo punteggio.",
+      "Un numero assente da 42 concorsi riceve quindi 42 punti e supera un numero assente da 18 concorsi."
+    ],
+    "formulas": ["punteggio = concorso di oggi - ultima uscita del numero"],
+    "formulaHelp": "La sottrazione conta quanti concorsi sono passati dall ultima volta che il numero e uscito.",
+    "example": "Se oggi siamo al concorso 500 e il 27 e uscito l ultima volta al 460, il suo punteggio e 500 - 460 = 40.",
+    "selection": "Ordina i numeri dal ritardo maggiore al minore e seleziona i primi sei.",
+    "note": "Il ritardo misura un fatto storico, non un debito dell estrazione: ogni numero conserva la stessa probabilita teorica degli altri."
+  },
+  "classic-co-occorrenze": {
+    "summary": [
+      "Questo modello premia i numeri che, nello storico, sono comparsi spesso insieme ad altri numeri gia forti nella sestina in costruzione.",
+      "Il punteggio non riguarda soltanto il singolo numero: misura quanto bene quel numero si collega al gruppo."
+    ],
+    "factors": [
+      "Ogni uscita congiunta aumenta di 1 la forza della coppia.",
+      "Le coppie osservate molte volte aumentano il punteggio del candidato.",
+      "Legami deboli o mai osservati aggiungono poco o nulla."
+    ],
+    "calculation": [
+      "Si costruisce una tabella in cui ogni cella M(a,b) conta quante volte a e b sono usciti insieme. Dopo aver scelto un primo numero, ogni nuovo candidato riceve la somma dei legami con i numeri gia selezionati.",
+      "Per esempio, se un candidato ha legami 12, 9 e 7 con tre numeri del gruppo, il suo contributo complessivo e 28."
+    ],
+    "formulas": ["legame tra due numeri = quante volte sono usciti insieme", "punteggio del candidato = somma dei suoi legami con il gruppo"],
+    "formulaHelp": "Candidato e il numero che stiamo pensando di aggiungere. Gruppo sono i numeri gia scelti.",
+    "example": "Se il 20 e uscito 12 volte con il 5, 9 volte con il 31 e 7 volte con il 44, riceve 12 + 9 + 7 = 28 punti.",
+    "selection": "Aggiunge un numero alla volta scegliendo quello che aumenta maggiormente la coesione totale della sestina.",
+    "note": "Una co-occorrenza elevata puo essere casuale; il punteggio misura compatibilita storica, non dipendenza reale tra le estrazioni."
+  },
+  "classic-coppie-terni-consecutivi": {
+    "summary": [
+      "Il modello cerca segmenti come 24-25 o 51-52-53 e premia i numeri appartenenti ai segmenti consecutivi comparsi piu spesso o piu recentemente.",
+      "Il numero non viene valutato da solo: sale se partecipa a una coppia o a un terzetto consecutivo con buona evidenza storica."
+    ],
+    "factors": [
+      "La frequenza del segmento aumenta il punteggio.",
+      "Una comparsa recente puo ricevere piu peso di una molto lontana.",
+      "I terzetti possono fornire un rinforzo maggiore rispetto alle sole coppie."
+    ],
+    "calculation": [
+      "Per ogni segmento consecutivo si combinano frequenza e recenza. Il punteggio di un numero e la somma dei punteggi dei segmenti a cui appartiene.",
+      "In forma semplice, un segmento frequente e recente trasferisce piu punti ai propri numeri di un segmento raro e lontano."
+    ],
+    "formulas": ["punti del segmento = peso della frequenza x frequenza + peso della recenza x recenza", "punti del numero = somma dei segmenti a cui appartiene"],
+    "formulaHelp": "Un peso e un moltiplicatore: dice quanto e importante una parte del calcolo. Recenza significa quanto recentemente il segmento e comparso.",
+    "example": "Se 24-25 vale 8 punti e 25-26 vale 6 punti, il 25 riceve 14 punti perche appartiene a entrambi i segmenti.",
+    "selection": "Parte dai segmenti con punteggio maggiore e completa la sestina con i numeri che ricevono il rinforzo complessivo piu alto.",
+    "note": "Le sequenze consecutive sono configurazioni possibili come tutte le altre; il punteggio descrive la loro presenza storica."
+  },
+  "classic-coppie-terzine-frequenti": {
+    "summary": [
+      "Ogni coppia e ogni terzina riceve un conteggio. Un numero sale quando appartiene a combinazioni che si sono ripetute piu spesso e, a parita, piu recentemente.",
+      "Una terzina forte funziona da nucleo; gli altri numeri vengono valutati in base a quanto rafforzano quel nucleo."
+    ],
+    "factors": [
+      "Una nuova comparsa della coppia o terzina aumenta il conteggio.",
+      "La recenza risolve o attenua le parita tra combinazioni.",
+      "La compatibilita con la terzina guida aumenta il punteggio dei numeri restanti."
+    ],
+    "calculation": [
+      "Il punteggio di un candidato somma le frequenze delle coppie che forma con il gruppo e le frequenze delle terzine che completa.",
+      "Il contributo delle terzine puo essere pesato piu delle coppie per valorizzare una relazione osservata tra tre numeri."
+    ],
+    "formulas": ["punteggio = peso coppie x totale coppie + peso terzine x totale terzine"],
+    "formulaHelp": "Il peso delle terzine puo essere piu grande perche una relazione tra tre numeri e piu specifica di una semplice coppia.",
+    "example": "Se un numero ottiene 10 punti dalle coppie e 6 dalle terzine, con pesi 1 e 2 riceve 10 + 2 x 6 = 22 punti.",
+    "selection": "Sceglie una terzina guida ad alto punteggio e aggiunge i tre numeri con il miglior rinforzo relazionale.",
+    "note": "Ripetizioni di coppie e terzine non implicano che la combinazione abbia memoria o maggiore probabilita futura."
+  },
+  "classic-distribuzioni-modelli-raggruppamento": {
+    "summary": [
+      "Prima valuta la forma complessiva delle sestine storiche, per esempio quante unita cadono nelle diverse decine o come si dividono tra valori bassi e alti. Poi promuove i numeri che permettono di costruire una forma simile a quelle piu ricorrenti.",
+      "Il punteggio individuale combina l interesse del numero con la sua utilita nel completare una sestina equilibrata."
+    ],
+    "factors": [
+      "Frequenza e ritardo danno il punteggio di base.",
+      "L appartenenza a una fascia ancora scoperta aggiunge un bonus.",
+      "La concentrazione eccessiva nella stessa decina applica una penalita."
+    ],
+    "calculation": [
+      "Ogni candidato riceve un punteggio riportato sulla stessa scala degli altri. Durante la costruzione si aggiunge un premio se migliora l equilibrio scelto e si sottraggono punti se sbilancia il gruppo.",
+      "In questo modo un numero con punteggio individuale leggermente minore puo superarne un altro se completa meglio la distribuzione."
+    ],
+    "formulas": ["punteggio finale = punti statistici + premio per l equilibrio - penalita per la concentrazione"],
+    "formulaHelp": "Una penalita e un numero che viene sottratto. Serve a evitare una sestina troppo raccolta nella stessa zona.",
+    "example": "Il 62 parte da 70 punti, guadagna 8 punti perche copre una decina vuota e perde 3 punti per un altro squilibrio: finisce a 75.",
+    "selection": "Aggiunge progressivamente i candidati con il miglior punteggio finale finche il profilo contiene sei numeri.",
+    "note": "Il modello cerca una forma storicamente comune; non rende quella forma piu probabile nella singola estrazione."
+  },
+  "classic-ritardi-combinazioni": {
+    "summary": [
+      "Estende il concetto di ritardo alle coppie e alle terzine. Un numero sale se puo formare molte combinazioni assenti da lungo tempo.",
+      "Il punteggio distingue quindi un numero semplicemente ritardatario da uno collegato a piu combinazioni ritardatarie."
+    ],
+    "factors": [
+      "Il ritardo delle coppie contenenti il numero aumenta il punteggio.",
+      "Il ritardo delle terzine puo aggiungere un rinforzo ulteriore.",
+      "Combinazioni appena uscite ricevono un contributo basso."
+    ],
+    "calculation": [
+      "Per ogni coppia e terzina si calcola la distanza dall ultima comparsa. Il punteggio di un candidato somma, con pesi diversi, i ritardi delle combinazioni che formerebbe con i numeri gia scelti.",
+      "I valori vengono riportati sulla stessa scala per evitare che poche combinazioni con ritardi enormi dominino tutto il confronto."
+    ],
+    "formulas": ["punteggio = peso coppie x ritardi delle coppie + peso terzine x ritardi delle terzine"],
+    "formulaHelp": "Il peso decide quanto contano coppie e terzine. Ritardo e il numero di concorsi trascorsi dall ultima comparsa.",
+    "example": "Se le coppie di un candidato sommano 80 punti e le terzine 30, con pesi 1 e 2 il totale e 80 + 60 = 140.",
+    "selection": "Costruisce la sestina un numero alla volta scegliendo il candidato con il maggior ritardo combinato rispetto al gruppo corrente.",
+    "note": "Anche una combinazione molto ritardata non e dovuta: il punteggio quantifica soltanto l attesa osservata."
+  },
+  "classic-statistiche-combinate-finestre-mobili": {
+    "summary": [
+      "Confronta lo stesso numero su tre orizzonti: breve, medio e lungo periodo. Viene promosso chi mostra un segnale favorevole in piu finestre, non soltanto in una.",
+      "Il confronto riduce l effetto di un picco isolato: un numero forte solo negli ultimi concorsi ma debole altrove riceve meno fiducia di uno coerente."
+    ],
+    "factors": [
+      "La frequenza negli ultimi 50 concorsi misura il segnale breve.",
+      "Le finestre da 100 e 200 concorsi misurano conferma e stabilita.",
+      "Il ritardo e l accordo tra finestre modificano il punteggio finale."
+    ],
+    "calculation": [
+      "Le frequenze delle tre finestre vengono trasformate nella stessa scala e sommate con pesi. Si aggiunge un premio quando le finestre concordano e un contributo legato al ritardo.",
+      "Prima del confronto, i conteggi vengono riportati sulla stessa scala perche 20 uscite su 50 concorsi non valgono come 20 uscite su 200."
+    ],
+    "formulas": ["punteggio = punti degli ultimi 50 + punti degli ultimi 100 + punti degli ultimi 200 + punti di ritardo + premio di accordo"],
+    "formulaHelp": "Ogni parte viene prima riportata sulla stessa scala. Il premio di accordo cresce quando le tre finestre raccontano una storia simile.",
+    "example": "Un numero riceve 30, 25 e 20 punti dalle tre finestre, piu 5 di ritardo e 4 di accordo: totale 84.",
+    "selection": "Ordina i 90 punteggi combinati e sceglie i sei numeri piu sostenuti dai diversi orizzonti.",
+    "note": "Le finestre descrivono persistenza o cambiamento storico; non trasformano una tendenza in certezza futura."
+  },
+  "classic-tavole-probabilita-teorica-test-uniformita": {
+    "summary": [
+      "Confronta quante volte ogni numero e realmente comparso con quante volte ci si aspetterebbe in un comportamento uniforme. Vengono promossi soprattutto i numeri sotto il valore atteso.",
+      "Il test complessivo segnala quanto la distribuzione osservata si discosta dall uniformita; il punteggio individuale misura la direzione e l ampiezza dello scarto."
+    ],
+    "factors": [
+      "Uno scarto negativo, cioe meno presenze dell atteso, aumenta il punteggio.",
+      "Uno scarto positivo lo riduce.",
+      "La divisione per la variabilita attesa rende confrontabili gli scarti."
+    ],
+    "calculation": [
+      "Dopo T concorsi, ogni numero ha un atteso E pari a T moltiplicato per 6/90. Si confronta il conteggio osservato O(n) con E.",
+      "Lo scarto standardizzato e maggiore quando il numero e molto sotto l atteso rispetto alle normali oscillazioni statistiche."
+    ],
+    "formulas": ["uscite attese = concorsi x 6 / 90", "punteggio = (uscite attese - uscite vere) / radice delle uscite attese"],
+    "formulaHelp": "Uscite attese e la media teorica. Uscite vere e il conteggio osservato. Dividere per la radice rende piu corretto il confronto.",
+    "example": "In 900 concorsi ci si aspettano circa 60 uscite per numero. Se il 18 e uscito 52 volte, lo scarto favorevole e 60 - 52 = 8.",
+    "selection": "Ordina i numeri dallo scarto negativo standardizzato maggiore al minore e prende i primi sei.",
+    "note": "Un test di uniformita descrive lo storico; uno scarto non obbliga il sistema casuale a compensarlo."
+  },
+  "classic-analisi-anomalie-pattern": {
+    "summary": [
+      "Assegna piu punti ai numeri che mostrano una combinazione insolita di frequenza, ritardo e comportamento recente. Nessuna singola misura decide da sola.",
+      "L anomalia e misurata rispetto al comportamento medio dei 90 numeri: piu un valore si allontana dalla norma nella direzione cercata, piu pesa."
+    ],
+    "factors": [
+      "Scarti di frequenza rispetto alla media.",
+      "Ritardo standardizzato rispetto agli altri numeri.",
+      "Segnali recenti e penalita per eccessiva concentrazione in finali o decine."
+    ],
+    "calculation": [
+      "Da ogni valore si sottrae la media e il risultato viene diviso per la variazione normale. Cosi frequenza e ritardo diventano confrontabili sulla stessa scala.",
+      "Gli scarti favorevoli vengono sommati; le sestine troppo concentrate nella stessa zona perdono punti."
+    ],
+    "formulas": ["scarto confrontabile = (valore - media) / variazione normale", "punteggio = punti di frequenza + punti di ritardo + punti degli schemi - penalita"],
+    "formulaHelp": "La variazione normale indica quanto i valori cambiano di solito. Questa divisione permette di confrontare misure diverse con la stessa unita.",
+    "example": "Se un ritardo e molto sopra la media ottiene punti positivi; se la frequenza e normale aggiunge quasi zero; una decina gia piena puo togliere punti.",
+    "selection": "Ordina il punteggio anomalo e sceglie i candidati migliori mantenendo una distribuzione minima tra finali e decine.",
+    "note": "Anomalo significa diverso dalla media storica, non necessariamente piu probabile nel concorso successivo."
+  },
+  "astra-moon": {
+    "summary": [
+      "Ogni numero riceve un punteggio confrontando le condizioni lunari del prossimo concorso con quelle dei concorsi passati. Le estrazioni avvenute in condizioni piu simili trasferiscono piu peso ai numeri che contenevano.",
+      "A questo voto di somiglianza vengono aggiunti contributi statistici di frequenza e recenza."
+    ],
+    "factors": [
+      "Somiglianza di fase, eta, elongazione, distanza, longitudine e declinazione lunare.",
+      "Presenza del numero nei concorsi lunari piu simili.",
+      "Frequenza e recenza storica come segnali di supporto."
+    ],
+    "calculation": [
+      "Per ogni vecchio concorso si misura una distanza tra il suo profilo lunare e quello futuro. Una distanza piccola produce un peso alto. Se il numero era presente, riceve quel peso.",
+      "La somma dei voti di somiglianza viene riportata sulla stessa scala degli altri segnali e poi combinata con frequenza e recenza."
+    ],
+    "formulas": ["somiglianza = 1 / (1 + differenza tra le condizioni lunari)", "punteggio = voto lunare + voto di frequenza + voto di recenza"],
+    "formulaHelp": "Quando la differenza e piccola, la somiglianza e vicina a 1 e vale di piu. Recenza significa quanto recentemente e uscito il numero.",
+    "example": "Un vecchio concorso molto simile vale 0,9 punti; uno poco simile vale 0,2. Se il 14 era presente nel primo, riceve il voto piu forte.",
+    "selection": "Ordina i numeri per punteggio combinato e seleziona i primi sei.",
+    "note": "La componente astronomica e una regola di confronto sperimentale; non implica un rapporto causale tra Luna ed estrazione."
+  },
+  "hispa": {
+    "summary": [
+      "Confronta l ultima sestina con tutte le estrazioni passate cercando somiglianze di uno, due o piu numeri. Poi osserva quali numeri sono usciti subito dopo quei casi simili.",
+      "Un precedente molto simile vale piu di uno con una sola corrispondenza, ma viene ridimensionato se quel tipo di corrispondenza e troppo comune."
+    ],
+    "factors": [
+      "Quanti numeri coincidono con la sestina di riferimento: piu coincidono, piu il caso e simile.",
+      "Quante volte si incontra quello schema: gli schemi troppo comuni vengono fatti pesare meno.",
+      "I numeri comparsi nel concorso successivo ai precedenti simili ricevono il voto."
+    ],
+    "calculation": [
+      "Per ogni caso simile si calcola un peso. Una somiglianza di quattro numeri vale piu di una somiglianza di uno solo, ma i casi troppo comuni vengono ridotti per non farli dominare.",
+      "Ogni numero somma i pesi dei precedenti in cui e comparso come esito successivo."
+    ],
+    "formulas": ["peso del caso simile = importanza della somiglianza x correzione della frequenza", "punteggio del numero = somma dei casi simili dopo i quali e uscito"],
+    "formulaHelp": "Una somiglianza di 4 numeri conta piu di una di 1 numero. La correzione evita che i casi molto comuni ricevano troppi punti solo perche sono numerosi.",
+    "example": "Se il 30 compare dopo tre casi simili che valgono 4, 2 e 1 punto, il suo punteggio diventa 7.",
+    "selection": "Ordina i numeri per voto storico successivo e prende i sei con il punteggio piu alto.",
+    "note": "La somiglianza tra concorsi organizza i precedenti, ma non dimostra che lo stesso seguito debba ripetersi."
+  },
+  "genetic-algorithm-evolutionary": {
+    "summary": [
+      "Ogni numero e descritto da indicatori come frequenza, ritardo e presenza recente. Una serie di pesi decide quanto conta ciascun indicatore; questi pesi vengono migliorati con un processo evolutivo.",
+      "Le combinazioni di pesi che in passato hanno ordinato meglio i numeri ricevono piu possibilita di essere conservate e combinate."
+    ],
+    "factors": [
+      "Misure del singolo numero, come frequenza e ritardo, riportate tutte sulla stessa scala.",
+      "Pesi appresi che possono premiare o penalizzare ciascun indicatore.",
+      "Qualita storica delle sestine prodotte da ogni combinazione di pesi."
+    ],
+    "calculation": [
+      "Una soluzione candidata e un vettore di pesi. Il punteggio del numero e il prodotto tra ogni indicatore e il relativo peso, seguito dalla somma.",
+      "Le combinazioni di pesi che ottengono risultati migliori vengono conservate. Poi il modello mescola due buone combinazioni e cambia leggermente qualche peso, per provare nuove possibilita."
+    ],
+    "formulas": ["punteggio del numero = somma di peso x indicatore", "qualita dei pesi = risultato medio ottenuto nelle prove storiche"],
+    "formulaHelp": "Un indicatore e una misura, per esempio frequenza o ritardo. Un peso e il moltiplicatore che decide quanto quella misura conta.",
+    "example": "Se frequenza vale 0,7 con peso 2 e ritardo vale 0,4 con peso 1, il punteggio e 2 x 0,7 + 1 x 0,4 = 1,8.",
+    "selection": "Usa i pesi della soluzione evolutiva migliore, calcola i 90 punteggi e sceglie i primi sei.",
+    "note": "L evoluzione ottimizza il comportamento sul passato; controlli temporali sono necessari per distinguere apprendimento da adattamento al rumore."
+  },
+  "super6NN": {
+    "summary": [
+      "La rete legge una sequenza di estrazioni e costruisce una memoria numerica del contesto recente. Da questa memoria produce 90 valori grezzi, uno per numero.",
+      "Un valore grezzo piu alto significa che, secondo cio che la rete ha imparato, quel numero assomiglia di piu agli schemi riconosciuti nelle estrazioni osservate."
+    ],
+    "factors": [
+      "Presenze e assenze dei 90 numeri nelle estrazioni della finestra.",
+      "Ordine delle estrazioni e collegamenti imparati dalla rete neurale con memoria.",
+      "Pesi neurali aggiornati per ridurre l errore tra punteggi prodotti e numeri realmente osservati nel passo successivo."
+    ],
+    "calculation": [
+      "La rete aggiorna la propria memoria dopo ogni estrazione. Alla fine combina questa memoria con i pesi imparati e assegna un voto grezzo a ciascun numero.",
+      "Una curva matematica trasforma il voto in un valore tra 0 e 1 senza cambiare l ordine: il voto piu alto resta il piu alto."
+    ],
+    "formulas": ["valore grezzo = memoria della rete x pesi imparati + correzione", "punteggio = 1 / (1 + e elevato a meno valore grezzo)"],
+    "formulaHelp": "La rete neurale e un calcolatore che impara i pesi dagli esempi passati. La sua memoria conserva le informazioni utili delle estrazioni precedenti.",
+    "example": "Se la rete assegna al 7 un valore grezzo maggiore di quello del 45, anche il punteggio finale del 7 sara maggiore e il 7 verra prima in classifica.",
+    "selection": "Ordina i 90 valori prodotti dalla rete e prende i sei maggiori.",
+    "note": "Il valore tra 0 e 1 e un punteggio del modello, non una probabilita certificata di estrazione."
+  },
+  "arc90-logico-algoritmica": {
+    "summary": [
+      "Produce per ogni numero un voto neurale e lo combina con i voti provenienti dalle memorie storiche considerate piu affidabili. Un numero sale quando piu componenti indipendenti lo sostengono con forza.",
+      "L affidabilita agisce come il peso di un giudice: un contributo storicamente piu stabile conta di piu nel consenso finale."
+    ],
+    "factors": [
+      "Valore neurale assegnato al numero.",
+      "Credibilita aggiornata delle memorie che votano quel numero.",
+      "Accordo tra piu segnali e penalita per contributi instabili."
+    ],
+    "calculation": [
+      "Ogni componente genera un vettore di 90 valori. Per il numero n, i valori vengono moltiplicati per la credibilita della rispettiva fonte e sommati.",
+      "La divisione per la somma delle credibilita mantiene il risultato su una scala confrontabile anche quando cambia il numero di contributi."
+    ],
+    "formulas": ["punteggio = somma dei voti pesati / somma dei pesi di fiducia"],
+    "formulaHelp": "Un voto pesato e un voto moltiplicato per la fiducia assegnata a chi lo ha dato. La divisione finale crea una media corretta.",
+    "example": "Due componenti danno al 22 voti 80 e 50 con fiducia 2 e 1: il risultato e (80 x 2 + 50 x 1) / 3 = 70.",
+    "selection": "Ordina il vettore di consenso e seleziona le sei posizioni con valore maggiore.",
+    "note": "La credibilita misura la stabilita interna dei contributi, non certifica una probabilita reale di uscita."
+  },
+  "chimera-mix-adattivo": {
+    "summary": [
+      "Calcola sei punteggi diversi per ogni numero: frequenza lunga, frequenza breve, media recente pesata, ritardo, sostegno delle coppie e tendenza a evitare scelte popolari. Poi prova diverse combinazioni di questi segnali.",
+      "I modelli e i generatori che si sono comportati meglio nella finestra di valutazione votano i numeri; il voto finale decide la graduatoria."
+    ],
+    "factors": [
+      "Sei misure riportate sulla stessa scala: alcune aggiungono punti e altre li tolgono.",
+      "Pesi genetici che stabiliscono quanto conta ogni indicatore.",
+      "Voti dei 2 modelli e dei 4 generatori meglio classificati."
+    ],
+    "calculation": [
+      "Prima ogni indicatore viene portato su una scala comune. Il mix genetico calcola una somma pesata; un peso positivo promuove il segnale, uno negativo lo contrasta.",
+      "Successivamente i candidati migliori esprimono un voto. Il numero guadagna punti quando compare nelle loro sestine, in proporzione alla qualita assegnata al votante."
+    ],
+    "formulas": ["voto misto = -0,96 x frequenza lunga -0,25 x frequenza breve +0,35 x media recente -0,61 x ritardo -0,95 x coppie -0,10 x popolarita", "punteggio finale = somma dei voti ricevuti"],
+    "formulaHelp": "Un segno piu aggiunge punti; un segno meno li toglie. Tutte le misure sono prima riportate sulla stessa scala per poterle sommare.",
+    "example": "Se tre modelli forti scelgono il 33 e soltanto uno sceglie il 70, il 33 riceve piu voti e sale, a meno che le penalita non siano molto grandi.",
+    "selection": "Ordina il voto finale, applica i piccoli correttivi previsti dal modello e prende i sei numeri piu votati.",
+    "note": "Il voto ensemble riduce la dipendenza da un solo criterio, ma una buona selezione storica puo comunque adattarsi al rumore."
+  },
+  "paradox-logiche-decisionali-metriche": {
+    "summary": [
+      "Raccoglie i punteggi e le proposte degli algoritmi attivi. Un numero sale quando riceve consenso da piu modelli, soprattutto da quelli a cui viene assegnato un peso maggiore.",
+      "Una piccola rete neurale corregge il voto osservando caratteristiche riassuntive del numero e del consenso."
+    ],
+    "factors": [
+      "Numero di algoritmi che propongono il candidato.",
+      "Peso e qualita relativa di ciascun algoritmo votante.",
+      "Correzione prodotta dalla rete sulle caratteristiche aggregate."
+    ],
+    "calculation": [
+      "Il voto di base somma i pesi dei modelli che includono il numero. Le caratteristiche del consenso entrano nella rete, che produce una correzione positiva o negativa.",
+      "Il punteggio finale unisce voto collettivo e correzione neurale, mantenendo confrontabili tutti i numeri."
+    ],
+    "formulas": ["voto = somma dei pesi degli algoritmi che scelgono il numero", "punteggio finale = voto + piccola correzione della rete"],
+    "formulaHelp": "La piccola rete e un secondo calcolatore che impara quando aumentare o ridurre il voto comune osservando i risultati passati.",
+    "example": "Se tre algoritmi con pesi 3, 2 e 1 scelgono il 9, il voto parte da 6. Una correzione di -0,5 lo porta a 5,5.",
+    "selection": "Ordina i punteggi finali e sceglie i sei numeri con il consenso corretto piu alto.",
+    "note": "Molti modelli possono condividere gli stessi segnali; piu voti non significano necessariamente prove indipendenti."
+  },
+  "solus90-anticrowd": {
+    "summary": [
+      "Non prova a rendere un numero piu probabile di uscire. Cerca invece numeri e sestine presumibilmente meno scelti dagli altri giocatori, per ridurre la probabilita di dividere un eventuale premio.",
+      "In questo caso il candidato migliore e quello con il costo di popolarita piu basso, quindi la graduatoria viene letta al contrario: meno punti di popolarita significa scelta preferita."
+    ],
+    "factors": [
+      "Date, mesi, numeri tondi e riferimenti culturali aumentano la popolarita stimata.",
+      "Progressioni, consecutivi, concentrazioni e combinazioni famose aggiungono penalita.",
+      "La sovrapposizione con sestine gia scelte riduce la diversita."
+    ],
+    "calculation": [
+      "Ogni numero riceve un costo di popolarita. I sei costi vengono sommati e si aggiungono le penalita della combinazione completa.",
+      "Tra molte candidate, vengono preferite quelle con costo totale minore; una penalita di sovrapposizione mantiene diverse le proposte successive."
+    ],
+    "formulas": ["costo della sestina = popolarita dei numeri + penalita dei disegni riconoscibili + 1,5 x numeri ripetuti", "preferenza = meno costo"],
+    "formulaHelp": "Qui vince il valore piu basso. Un disegno riconoscibile e, per esempio, una scala come 10-20-30 o molti numeri consecutivi.",
+    "example": "Una sestina costa 18 punti e un altra 27. Il modello preferisce quella da 18 perche la considera meno comune tra i giocatori.",
+    "selection": "Valuta un grande insieme di sestine e conserva quelle che sembrano meno popolari tra gli altri giocatori.",
+    "note": "La probabilita di estrazione resta identica a quella di qualsiasi altra sestina; cambia soltanto la stima di quanto potrebbe essere condiviso il premio."
+  },
+  "xeno-qdna-alpha": {
+    "summary": [
+      "Rappresenta ogni sestina con 42 caselle, chiamate bit, che possono valere soltanto 0 oppure 1. Poi controlla quali caselle cambiano tra una sestina e la successiva.",
+      "Un numero sale quando le sue 7 caselle assomigliano alle caselle che il modello considera piu attive."
+    ],
+    "factors": [
+      "Frequenza con cui ogni casella cambia tra due sestine.",
+      "Regolarita utile del cambiamento.",
+      "Perdita di punti per caselle sempre ferme o che cambiano in modo troppo regolare."
+    ],
+    "calculation": [
+      "Il confronto scrive 1 dove due sequenze sono diverse e 0 dove sono uguali. Per ogni casella si contano i cambiamenti utili e si tolgono punti se si ripetono in modo troppo regolare.",
+      "Il disegno di caselle ottenuto viene confrontato con quello di ogni numero. Piu caselle coincidono nelle posizioni forti, maggiore e il punteggio."
+    ],
+    "formulas": ["cambiamento = sequenza di oggi confrontata con quella prima", "punti di una posizione = cambiamenti utili - penalita per ripetizioni troppo regolari", "punti del numero = somma delle sue 7 posizioni"],
+    "formulaHelp": "Ogni numero viene scritto usando 7 caselle che possono valere 0 o 1. Il confronto controlla semplicemente quali caselle sono cambiate.",
+    "example": "Se le 7 caselle del numero 25 raccolgono 2, 1, 0, 3, 1, 2 e 1 punti, il totale del 25 e 10.",
+    "selection": "Ordina i numeri per compatibilita binaria, scarta duplicati o valori non validi e prende i primi sei.",
+    "note": "La codifica binaria e un modo sperimentale di ordinare i candidati; non crea informazione aggiuntiva nelle estrazioni."
+  },
+  "xeno-qdna-beta": {
+    "summary": [
+      "Parte dagli errori commessi dalla versione Alpha. Trasforma cio che resta dall errore in una fila di caselle e premia quelle che, negli errori recenti, hanno aiutato di piu a correggere la proposta.",
+      "Un numero sale quando le sue caselle assomigliano a quelle considerate piu affidabili. Il modello prova anche a spostare la fila in tre modi diversi e sceglie quello piu coerente."
+    ],
+    "factors": [
+      "Frequenza delle caselle nelle ultime 34 sequenze di errore.",
+      "Stabilita delle transizioni tra 0 e 1.",
+      "Capacita storica di ogni casella di correggere l errore di Alpha."
+    ],
+    "calculation": [
+      "Quello che resta dall errore di Alpha viene confrontato con il risultato vero e con il vecchio schema. Ogni casella riceve punti in base a quante volte appare, quanto cambia e quanto spesso aiuta a correggere.",
+      "La fila viene spostata in tre modi e vince quello che produce il disegno piu coerente. I numeri ricevono i punti delle caselle compatibili con il disegno vincente."
+    ],
+    "formulas": ["residuo = errore di Alpha confrontato con risultato e vecchio disegno", "punti di una casella = frequenza + stabilita + capacita di correggere", "punti del numero = somiglianza con il residuo migliore"],
+    "formulaHelp": "Residuo significa cio che resta dopo aver confrontato previsione ed esito. Una rotazione sposta le caselle per provare tre modi diversi di leggerle.",
+    "example": "Se una casella ha corretto spesso gli errori di Alpha riceve piu punti; i numeri che usano quella casella vengono quindi spinti verso l alto.",
+    "selection": "Sceglie la rotazione con coerenza maggiore, ordina i numeri compatibili e prende i primi sei validi.",
+    "note": "Correggere errori passati puo evidenziare struttura interna al modello, ma non garantisce che la correzione si trasferisca al futuro."
+  }
+}

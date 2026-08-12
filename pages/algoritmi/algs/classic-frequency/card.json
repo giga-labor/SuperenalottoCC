@@ -1,7 +1,7 @@
 {
   "id": "classic-frequency",
   "title": "frequency",
-  "subtitle": "Analisi frequenziale su storico estrazioni",
+  "subtitle": "Classifica i numeri per frequenza sul solo storico precedente e propone i sei con conteggio piu alto.",
   "image": "img.webp",
   "lastUpdated": "07/02/2026",
   "hasNews": false,

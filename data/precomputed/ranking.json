@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 23:01:53",
+  "generated_at": "2026-08-13 00:35:36",
   "active_algorithms_count": 19,
   "rows": [
     {
@@ -7,6 +7,7 @@
       "page": "pages/algoritmi/algs/classic-frequency/",
       "family": "statistica",
       "ranking": 48.11,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -5.68,
@@ -29,13 +30,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 48.11,
+      "previousRankingPosition": 1,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "statistiche-combinate-finestre-mobili",
       "page": "/pages/algoritmi/algs/classic-statistiche-combinate-finestre-mobili/",
       "family": "statistica",
       "ranking": 44.74,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -11.49,
@@ -58,13 +64,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 44.74,
+      "previousRankingPosition": 2,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "tavole-probabilita-teorica-test-uniformita",
       "page": "/pages/algoritmi/algs/classic-tavole-probabilita-teorica-test-uniformita/",
       "family": "statistica",
       "ranking": 43.29,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -7.84,
@@ -87,13 +98,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 43.29,
+      "previousRankingPosition": 3,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "ritardi-combinazioni",
       "page": "/pages/algoritmi/algs/classic-ritardi-combinazioni/",
       "family": "statistica",
       "ranking": 40.33,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -3.08,
@@ -116,13 +132,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 40.33,
+      "previousRankingPosition": 4,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "HiSPA",
       "page": "pages/algoritmi/algs/hispa/",
       "family": "statistica",
       "ranking": 36.12,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -0.01,
@@ -145,13 +166,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 36.12,
+      "previousRankingPosition": 5,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "XENO-QDNA α",
       "page": "pages/algoritmi/algs/xeno-qdna-alpha/",
       "family": "generativi",
       "ranking": 33.27,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -1.5,
@@ -174,13 +200,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 33.27,
+      "previousRankingPosition": 6,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "ASTRA Moon",
       "page": "pages/algoritmi/algs/astra-moon/",
       "family": "ibrido",
       "ranking": 32.9,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -1.89,
@@ -203,13 +234,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 32.9,
+      "previousRankingPosition": 7,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "distribuzioni-modelli-raggruppamento",
       "page": "/pages/algoritmi/algs/classic-distribuzioni-modelli-raggruppamento/",
       "family": "statistica",
       "ranking": 32.38,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -2.81,
@@ -232,13 +268,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 32.38,
+      "previousRankingPosition": 8,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "SOLUS-90",
       "page": "pages/algoritmi/algs/solus90-anticrowd/",
       "family": "statistica",
       "ranking": 31.78,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -5.1,
@@ -261,13 +302,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 31.78,
+      "previousRankingPosition": 9,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "Paradox Logiche Decisionali Metriche",
       "page": "pages/algoritmi/algs/paradox-logiche-decisionali-metriche/",
       "family": "ibrido",
       "ranking": 30.99,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -12.31,
@@ -290,13 +336,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 30.99,
+      "previousRankingPosition": 10,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "XENO-QDNA β",
       "page": "pages/algoritmi/algs/xeno-qdna-beta/",
       "family": "generativi",
       "ranking": 30.76,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 78.55,
         "edgePercent": 15.71,
@@ -319,13 +370,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 30.76,
+      "previousRankingPosition": 11,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "CHIMERA-6",
       "page": "pages/algoritmi/algs/chimera-mix-adattivo/",
       "family": "ibrido",
       "ranking": 30.6,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 100.0,
         "edgePercent": 37.31,
@@ -348,13 +404,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 30.6,
+      "previousRankingPosition": 12,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "analisi-anomalie-pattern",
       "page": "/pages/algoritmi/algs/classic-analisi-anomalie-pattern/",
       "family": "statistica",
       "ranking": 30.28,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 77.9,
         "edgePercent": 15.58,
@@ -377,13 +438,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 30.28,
+      "previousRankingPosition": 13,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "Super6 NN",
       "page": "pages/algoritmi/algs/super6NN/",
       "family": "neurale",
       "ranking": 30.07,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -9.37,
@@ -406,13 +472,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 30.07,
+      "previousRankingPosition": 14,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "coppie-terni-consecutivi",
       "page": "/pages/algoritmi/algs/classic-coppie-terni-consecutivi/",
       "family": "statistica",
       "ranking": 28.73,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -1.68,
@@ -435,13 +506,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 28.73,
+      "previousRankingPosition": 15,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "coppie-terzine-frequenti",
       "page": "/pages/algoritmi/algs/classic-coppie-terzine-frequenti/",
       "family": "statistica",
       "ranking": 27.48,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 0.0,
         "edgePercent": -18.47,
@@ -464,13 +540,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 27.48,
+      "previousRankingPosition": 16,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "co-occorrenze",
       "page": "pages/algoritmi/algs/classic-co-occorrenze/",
       "family": "statistica",
       "ranking": 25.92,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 40.3,
         "edgePercent": 8.06,
@@ -493,13 +574,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 25.92,
+      "previousRankingPosition": 17,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "ritardi",
       "page": "pages/algoritmi/algs/classic-ritardi/",
       "family": "statistica",
       "ranking": 23.23,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 60.64,
         "edgePercent": 12.13,
@@ -522,13 +608,18 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 23.23,
+      "previousRankingPosition": 18,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     },
     {
       "title": "GeneticSE",
       "page": "pages/algoritmi/algs/genetic/",
       "family": "genetico",
       "ranking": 10.26,
+      "rankingContest": "4233",
       "rankProfile": {
         "edge": 33.46,
         "edgePercent": 6.69,
@@ -551,7 +642,11 @@
         "5": 0,
         "6": 0
       },
-      "image": "img.webp"
+      "image": "img.webp",
+      "previousRankingValue": 10.26,
+      "previousRankingPosition": 19,
+      "rankingScoreDeltaPct": 0.0,
+      "rankingPositionDelta": 0
     }
   ]
 }

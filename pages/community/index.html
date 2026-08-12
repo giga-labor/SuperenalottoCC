@@ -1,8 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    (function () {
+      var theme = '';
+      try { theme = localStorage.getItem('cc-app-theme') || localStorage.getItem('cc-theme') || ''; } catch (_) {}
+      if (theme !== 'light' && theme !== 'dark') theme = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+      try { localStorage.setItem('cc-app-theme', theme); localStorage.setItem('cc-theme', theme); } catch (_) {}
+    })();
+  </script>
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="google-adsense-account" content="ca-pub-4257836243471373">
   <script>
@@ -95,6 +104,10 @@
 </script>
 <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <script src="../../assets/js/v8-inner-chrome.js?v=01.05.000" defer></script>
+  <link rel="stylesheet" href="../../assets/css/cc-algorithms.css?v=02.00.010">
+  <link rel="stylesheet" href="../../assets/css/cc-workbench.css?v=02.00.001">
+  <link rel="stylesheet" href="/assets/css/cc-site-shell.css?v=02.00.010">
+  <script src="/assets/js/cc-site-shell.js?v=02.00.010" defer></script>
 </head>
 <body class="min-h-screen bg-midnight text-white theme-cosmic motion-balanced cc-final-look cc-redesign cc-neo" id="top" data-page-id="community" data-style-lock="final">
   <main class="content-fade mx-auto max-w-5xl content-width cc-operational-shell px-6 py-2">
@@ -232,4 +245,7 @@
   <script src="../../assets/js/runtime-bootstrap.js?v=01.05.000" defer></script>
   <script src="../../assets/js/community.js?v=01.05.000" defer></script>
   <script src="../../assets/js/scroll-hint.js?v=01.05.000" defer></script>
-  <script src="../../assets/js/ads.js?v=01.05.000" defer></scr
+  <script src="../../assets/js/ads.js?v=01.05.000" defer></script>
+  <script src="../../assets/js/cc-workbench.js?v=02.00.010" defer></script>
+</body>
+</html>

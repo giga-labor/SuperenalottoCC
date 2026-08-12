@@ -1,7 +1,7 @@
 /* ════════════════════════════════════════════════════════════════
    V8CATALOG — griglia algoritmi in stile V8+ (pages/algoritmi)
    Legge /data/cards-index.json e renderizza card 3D con filtri
-   per famiglia, ricerca live e metriche reali di ranking.
+   per famiglia, ricerca live e metriche reali di classifica.
    ════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';

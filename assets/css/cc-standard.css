@@ -1,0 +1,246 @@
+:root {
+  --cc-bg-app: #020806;
+  --cc-bg-deep: #000403;
+  --cc-surface: rgba(5, 26, 21, .84);
+  --cc-surface-strong: rgba(8, 39, 29, .96);
+  --cc-surface-soft: rgba(255, 255, 255, .06);
+  --cc-text-main: #f7fff4;
+  --cc-text-muted: rgba(232, 255, 235, .68);
+  --cc-text-faint: rgba(232, 255, 235, .45);
+  --cc-border: rgba(92, 255, 139, .24);
+  --cc-border-gold: rgba(255, 195, 45, .42);
+  --cc-green: #2ee86f;
+  --cc-green-2: #91ff9a;
+  --cc-gold: #ffc327;
+  --cc-cyan: #26d8ff;
+  --cc-purple: #b65cff;
+  --cc-danger: #ff4f3f;
+  --cc-shadow-card: 0 18px 42px rgba(0, 0, 0, .34);
+  --cc-glow-green: 0 0 24px rgba(46, 232, 111, .30);
+  --cc-glow-gold: 0 0 26px rgba(255, 195, 39, .28);
+  --cc-radius-lg: 18px;
+  --cc-radius-md: 14px;
+  --cc-app-max: 1180px;
+}
+
+:root[data-theme="light"] {
+  --cc-bg-app: #f7faf6;
+  --cc-bg-deep: #ffffff;
+  --cc-surface: rgba(255, 255, 255, .94);
+  --cc-surface-strong: rgba(255, 255, 255, .98);
+  --cc-surface-soft: rgba(9, 92, 45, .055);
+  --cc-text-main: #0b1913;
+  --cc-text-muted: rgba(12, 32, 23, .68);
+  --cc-text-faint: rgba(12, 32, 23, .48);
+  --cc-border: rgba(10, 122, 56, .18);
+  --cc-border-gold: rgba(229, 165, 18, .36);
+  --cc-shadow-card: 0 18px 42px rgba(13, 63, 36, .12);
+  --cc-glow-green: 0 0 24px rgba(46, 232, 111, .16);
+  --cc-glow-gold: 0 0 26px rgba(255, 195, 39, .16);
+}
+
+html.cc-standardized {
+  min-height: 100%;
+  background: var(--cc-bg-app);
+  color-scheme: dark;
+}
+
+html.cc-standardized[data-theme="light"] {
+  color-scheme: light;
+}
+
+html.cc-standardized body {
+  min-height: 100vh;
+  color: var(--cc-text-main);
+  background:
+    radial-gradient(circle at 50% 12%, rgba(46, 232, 111, .18), transparent 28rem),
+    radial-gradient(circle at 16% 62%, rgba(38, 216, 255, .10), transparent 22rem),
+    radial-gradient(circle at 86% 20%, rgba(255, 195, 39, .12), transparent 24rem),
+    var(--cc-bg-app);
+  overflow-x: hidden;
+}
+
+html.cc-standardized body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(46, 232, 111, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 232, 111, .03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 50% 35%, black, transparent 72%);
+}
+
+html.cc-standardized body > main,
+html.cc-standardized .cc-operational-shell,
+html.cc-standardized .content-width,
+html.cc-standardized .mx-auto.max-w-5xl {
+  width: min(var(--cc-app-max), calc(100% - 28px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html.cc-standardized h1,
+html.cc-standardized h2,
+html.cc-standardized h3,
+html.cc-standardized h4 {
+  color: var(--cc-text-main);
+  letter-spacing: 0;
+}
+
+html.cc-standardized p,
+html.cc-standardized li,
+html.cc-standardized td,
+html.cc-standardized th {
+  color: var(--cc-text-muted);
+}
+
+html.cc-standardized a {
+  color: inherit;
+}
+
+html.cc-standardized .text-ash,
+html.cc-standardized .text-white\/70,
+html.cc-standardized .text-white\/60,
+html.cc-standardized .text-white\/50 {
+  color: var(--cc-text-muted);
+}
+
+html.cc-standardized .text-neon,
+html.cc-standardized [data-page-kicker],
+html.cc-standardized .cc-rank-filter.is-active {
+  color: var(--cc-green-2);
+}
+
+html.cc-standardized .content-box,
+html.cc-standardized .tabs-sheet,
+html.cc-standardized .cc-module-note,
+html.cc-standardized .cc-bridge-box,
+html.cc-standardized .card,
+html.cc-standardized .panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .045), transparent 32%),
+    var(--cc-surface);
+  border-color: var(--cc-border);
+  box-shadow: var(--cc-shadow-card);
+}
+
+html.cc-standardized .content-box,
+html.cc-standardized .tabs-sheet,
+html.cc-standardized .cc-module-note,
+html.cc-standardized .cc-bridge-box {
+  border-radius: var(--cc-radius-lg);
+}
+
+html.cc-standardized .folder-tabs,
+html.cc-standardized .cc-filter-row,
+html.cc-standardized #ranking-filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 12px;
+  scrollbar-width: none;
+}
+
+html.cc-standardized .tab-btn,
+html.cc-standardized .cc-rank-filter {
+  border-color: var(--cc-border);
+  border-radius: 999px;
+  background: var(--cc-surface-soft);
+  color: var(--cc-text-muted);
+  font-weight: 850;
+}
+
+html.cc-standardized .tab-btn.is-active,
+html.cc-standardized .cc-rank-filter.is-active {
+  color: #02200d;
+  background: linear-gradient(180deg, #86ff91, #19be52);
+  box-shadow: var(--cc-glow-green);
+}
+
+html.cc-standardized .bg-neon\/10,
+html.cc-standardized .bg-white\/5,
+html.cc-standardized .bg-midnight\/60 {
+  background: var(--cc-surface-soft);
+}
+
+html.cc-standardized .border-neon\/50,
+html.cc-standardized .border-neon\/60,
+html.cc-standardized .border-white\/10,
+html.cc-standardized .border-white\/15,
+html.cc-standardized .border-white\/20 {
+  border-color: var(--cc-border);
+}
+
+html.cc-standardized input,
+html.cc-standardized textarea,
+html.cc-standardized select {
+  color: var(--cc-text-main);
+  background: var(--cc-surface-soft);
+  border-color: var(--cc-border);
+}
+
+html.cc-standardized th {
+  color: var(--cc-green-2);
+  background: color-mix(in srgb, var(--cc-green) 10%, transparent);
+}
+
+html.cc-standardized [data-metric-card] {
+  color: var(--cc-green-2);
+  text-shadow: 0 0 16px rgba(46, 232, 111, .22);
+}
+
+html.cc-standardized .cc-home-empty,
+html.cc-standardized .cc-empty {
+  color: var(--cc-text-muted);
+  background: var(--cc-surface-soft);
+  border: 1px solid var(--cc-border);
+  border-radius: var(--cc-radius-md);
+}
+
+html.cc-standardized .ball,
+html.cc-standardized .number-ball,
+html.cc-standardized .draw-ball,
+html.cc-standardized [data-number-ball] {
+  border-radius: 50%;
+  color: var(--cc-text-main);
+  background:
+    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, .86), transparent 16%),
+    radial-gradient(circle at 50% 65%, color-mix(in srgb, var(--cc-green) 82%, #0a2718), color-mix(in srgb, var(--cc-bg-deep) 80%, var(--cc-green)));
+  border-color: color-mix(in srgb, var(--cc-green) 72%, #fff);
+  box-shadow: var(--cc-glow-green), inset 0 -10px 20px rgba(0, 0, 0, .25);
+}
+
+html.cc-standardized .jolly,
+html.cc-standardized .superstar {
+  background:
+    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, .86), transparent 16%),
+    radial-gradient(circle at 50% 65%, var(--cc-gold), #5f3600);
+  border-color: color-mix(in srgb, var(--cc-gold) 76%, #fff);
+  box-shadow: var(--cc-glow-gold), inset 0 -10px 20px rgba(0, 0, 0, .25);
+}
+
+html.cc-standardized[data-page-kind="legal-info"] main,
+html.cc-standardized[data-page-kind="secondary-tool"] main {
+  max-width: 940px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.cc-standardized .content-box,
+  html.cc-standardized .tabs-sheet,
+  html.cc-standardized .cc-module-note,
+  html.cc-standardized .cc-bridge-box {
+    transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+}
+
+@media (max-width: 520px) {
+  html.cc-standardized body > main,
+  html.cc-standardized .cc-operational-shell,
+  html.cc-standardized .content-width,
+  html.cc-standardized .mx-auto.max-w-5xl {
+    width: min(100% - 20px, var(--cc-app-max));
+  }
+}

@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    (function () {
+      var theme = '';
+      try { theme = localStorage.getItem('cc-app-theme') || localStorage.getItem('cc-theme') || ''; } catch (_) {}
+      if (theme !== 'light' && theme !== 'dark') theme = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+      try { localStorage.setItem('cc-app-theme', theme); localStorage.setItem('cc-theme', theme); } catch (_) {}
+    })();
+  </script>
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="google-adsense-account" content="ca-pub-4257836243471373">
   <script>
@@ -20,7 +29,7 @@
     })();
   </script>
   <title>Mercati CAX/CNX — SuperEnalotto Control Chaos</title>
-  <meta name="description" content="Dashboard dei mercati interni CAX (algoritmi) e CNX (numeri 1–90). Indici di performance, ranking e fasi di mercato in tempo reale.">
+  <meta name="description" content="Dashboard dei mercati interni CAX (algoritmi) e CNX (numeri 1–90). Indici di performance, classifica e fasi di mercato in tempo reale.">
   <link rel="canonical" href="https://www.superenalottocc.it/pages/mercati/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +55,7 @@
     "@type": "WebPage",
     "name": "Mercati CAX/CNX - SuperEnalotto Control Chaos",
     "url": "https://www.superenalottocc.it/pages/mercati/",
-    "description": "Dashboard dei mercati interni CAX (algoritmi) e CNX (numeri 1-90). Indici di performance, ranking e fasi di mercato in tempo reale.",
+    "description": "Dashboard dei mercati interni CAX (algoritmi) e CNX (numeri 1-90). Indici di performance, classifica e fasi di mercato in tempo reale.",
     "inLanguage": "it-IT",
     "isPartOf": {
       "@type": "WebSite",
@@ -85,6 +94,10 @@
     .num-pill { background: rgba(34,197,94,.18); color: #22C55E; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; }
     .empty-state { text-align: center; padding: 3rem 1rem; opacity: .45; font-size: .9rem; }
   </style>
+  <link rel="stylesheet" href="../../assets/css/cc-algorithms.css?v=02.00.010">
+  <link rel="stylesheet" href="../../assets/css/cc-workbench.css?v=02.00.001">
+  <link rel="stylesheet" href="/assets/css/cc-site-shell.css?v=02.00.010">
+  <script src="/assets/js/cc-site-shell.js?v=02.00.010" defer></script>
 </head>
 <body class="min-h-screen bg-midnight text-white theme-cosmic motion-balanced cc-final-look cc-redesign cc-neo" data-page-id="mercati" data-style-lock="final">
 <main class="content-fade mx-auto max-w-5xl content-width px-6 py-2">
@@ -197,5 +210,6 @@
   }
 })();
 </script>
+  <script src="../../assets/js/cc-workbench.js?v=02.00.010" defer></script>
 </body>
 </html>

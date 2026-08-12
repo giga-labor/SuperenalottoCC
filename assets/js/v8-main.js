@@ -652,7 +652,7 @@ function _dashBodyRanking(){
       <div class="rank-row"><span>${String(a.r).padStart(2,'0')}</span><strong>${a.n}</strong></div>`).join(''):
       '<div class="p-sec" style="color:rgba(237,232,223,.3)">Classifica in caricamento...</div>'}
     <div class="hub-links">
-      ${dashLink('Apri ranking completo','pages/ranking/')}
+      ${dashLink('Apri classifica completa','/pages/algoritmi/')}
     </div>`;
 }
 
@@ -687,7 +687,7 @@ function _dashBodyLab(){
   const st=_iargosStatus;
   return `
     <div class="p-sec">Strumenti per l'esperto</div>
-    <div class="dash-prose">Formule, metriche di ranking, bias cognitivi e limiti metodologici dell'analisi statistica sul SuperEnalotto. Documentazione tecnica completa di ogni modulo.</div>
+    <div class="dash-prose">Formule, metriche di classifica, bias cognitivi e limiti metodologici dell'analisi statistica sul SuperEnalotto. Documentazione tecnica completa di ogni modulo.</div>
     <div class="p-sec">iARGOS &mdash; supervisore autonomo</div>
     <div class="dash-prose dash-prose--sm">Motore di monitoraggio continuo: verifica l'allineamento mirror/locale, esegue auto-healing e registra ogni intervento nel diario operativo.</div>
     ${dashMetric('Stato', st?(st.overview_green?'Operativo':(st.severity||'warning')):'--', st?(st.overview_green?'g':'r'):'')}
@@ -706,7 +706,7 @@ function _dashBodyOra(){
     ${dashMetric('Numeri freddi', cold, 'v')}
     ${dashMetric('Prossima estrazione', nextDrawDayLabel(), 'v')}
     <div class="hub-links">
-      ${dashLink('Apri Oracle','pages/oracle/')}
+      ${dashLink('Apri Oracolo','pages/oracle/')}
     </div>
     <div class="hub-disclaimer">Sintesi visuale &mdash; metafora di analisi, non previsione.</div>`;
 }

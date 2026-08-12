@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    (function () {
+      var theme = '';
+      try { theme = localStorage.getItem('cc-app-theme') || localStorage.getItem('cc-theme') || ''; } catch (_) {}
+      if (theme !== 'light' && theme !== 'dark') theme = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+      try { localStorage.setItem('cc-app-theme', theme); localStorage.setItem('cc-theme', theme); } catch (_) {}
+    })();
+  </script>
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="google-adsense-account" content="ca-pub-4257836243471373">
   <script>
@@ -96,6 +105,10 @@
     .f-btn { padding: .3rem .75rem; border-radius: 6px; font-size: .75rem; border: 1px solid rgba(255,255,255,.12); background: transparent; color: rgba(255,255,255,.6); cursor: pointer; }
     .f-btn.active, .f-btn:hover { background: rgba(34,197,94,.15); color: #22C55E; border-color: rgba(34,197,94,.3); }
   </style>
+  <link rel="stylesheet" href="../../assets/css/cc-algorithms.css?v=02.00.010">
+  <link rel="stylesheet" href="../../assets/css/cc-workbench.css?v=02.00.001">
+  <link rel="stylesheet" href="/assets/css/cc-site-shell.css?v=02.00.010">
+  <script src="/assets/js/cc-site-shell.js?v=02.00.010" defer></script>
 </head>
 <body class="min-h-screen bg-midnight text-white theme-cosmic motion-balanced cc-final-look cc-redesign cc-neo" data-page-id="cnx" data-style-lock="final">
 <main class="content-fade mx-auto max-w-5xl content-width px-6 py-2">
@@ -301,5 +314,6 @@
   }
 })();
 </script>
+  <script src="../../assets/js/cc-workbench.js?v=02.00.010" defer></script>
 </body>
 </html>

@@ -20,9 +20,9 @@ var brief=eng.score>=20;
 
 var COL=['#C8391A','#F59E0B','#8B5CF6','#10B981','#3B82F6','#EC4899','#EDE8DF','#F97316'];
 var WEL=eng.visits<=1?'Benvenuto':'Bentornato';
-var PH=[WEL,'30+ algoritmi di analisi','Ranking in tempo reale','Storico completo estrazioni',
+var PH=[WEL,'30+ algoritmi di analisi','Classifica in tempo reale','Storico completo estrazioni',
 'Sestine proposte per ogni modello','Consenso numerico','Analisi statistiche avanzate','Reti neurali e modelli ibridi',
-'Frequenze e ritardi','Laboratorio tecnico','Community e aggiornamenti','Oracle · Segnali visuali',
+'Frequenze e ritardi','Laboratorio tecnico','Community e aggiornamenti','Oracolo · Segnali visuali',
 'Pattern e anomalie','4000+ estrazioni analizzate','Distribuzione e raggruppamento','Co-occorrenze e correlazioni',
 'Tavole di probabilità','Nessuna promessa · Solo dati','90 numeri · Infinite combinazioni'];
 var FF=["'BioRhyme',serif","'DM Mono',monospace","system-ui,sans-serif","Impact,sans-serif"];

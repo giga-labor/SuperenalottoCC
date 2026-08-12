@@ -728,9 +728,9 @@
   function pageLabel(pid) {
     var cleanTitle = document.title.replace(/\s*-\s*SuperEnalotto.*$/i, '');
     var map = {
-      algoritmi: ['Algoritmi', 'Algoritmi in ranking', 'modelli statistici, logici, neurali e ibridi ordinati per punteggio'],
+      algoritmi: ['Algoritmi', 'Algoritmi in classifica', 'modelli statistici, logici, neurali e ibridi ordinati per punteggio'],
       storico: ['Archivio storico', 'Storico estrazioni', '90 numeri letti come una mappa viva'],
-      ranking: ['Algoritmi', 'Algoritmi in ranking', 'confronto continuo tra segnali indipendenti'],
+      ranking: ['Algoritmi', 'Algoritmi in classifica', 'confronto continuo tra segnali indipendenti'],
       proposte: ['Sestine', 'Sestine proposte', 'campioni generati dagli algoritmi attivi'],
       laboratorio: ['Laboratorio tecnico', 'Lab Control Chaos', 'dataset, pipeline e trasparenza operativa'],
       community: ['Community', 'Osservatorio condiviso', 'lettura collettiva dei segnali statistici'],
@@ -996,7 +996,7 @@
       var signal = m.ranking_stability_pct || fallbackMetrics.signal || 12;
       if (metrics) {
         metrics.innerHTML =
-          '<div class="v8sheet-mc"><b>' + signal + '%</b><span>Stabilita ranking</span><i style="--w:' + signal + '%"></i></div>' +
+          '<div class="v8sheet-mc"><b>' + signal + '%</b><span>Stabilita classifica</span><i style="--w:' + signal + '%"></i></div>' +
           '<div class="v8sheet-mc amber"><b>' + (hit2 || (fallbackMetrics.coverage || '--') + '%') + '</b><span>Hit rate >=2</span><i style="--w:' + Math.max(8, Math.min(96, parseFloat(hit2) || fallbackMetrics.coverage || 12)) + '%"></i></div>' +
           '<div class="v8sheet-mc red"><b>' + (hit3 || '--') + '</b><span>Hit rate >=3</span><i style="--w:' + Math.max(8, Math.min(96, (parseFloat(hit3) || 0) * 12 + 8)) + '%"></i></div>' +
           '<div class="v8sheet-mc cyan"><b>' + (avgHit || fallbackMetrics.media || 'N/D') + '</b><span>Hit medi</span><i style="--w:' + Math.max(10, Math.min(96, (parseFloat(avgHit) || parseFloat(fallbackMetrics.media) || 0) * 42)) + '%"></i></div>' +
@@ -1012,7 +1012,7 @@
         metodo.innerHTML =
           '<p class="drop">' + v8Escape(intro) + '</p>' +
           (method ? '<blockquote>' + v8Escape(method) + '</blockquote>' : '') +
-          '<p>' + v8Escape(methodData.scope || 'La lettura corretta e comparativa: confronta questa scheda con storico, ranking e altri modelli.') + '</p>' +
+          '<p>' + v8Escape(methodData.scope || 'La lettura corretta e comparativa: confronta questa scheda con storico, classifica e altri modelli.') + '</p>' +
           (observed ? '<pre class="v8sheet-analysis">' + v8Escape(observed.trim()) + '</pre>' : '') +
           '<p>' + v8Escape(limits) + '</p>';
       }
@@ -1143,7 +1143,7 @@
         '<div class="v8sheet-prose" data-v8sheet-metodo></div>' +
       '</section>' +
       '<section class="v8sheet-sec v8sheet-actions">' +
-        '<a class="v8sheet-btn primary" href="/pages/algoritmi/">Algoritmi in ranking</a>' +
+        '<a class="v8sheet-btn primary" href="/pages/algoritmi/">Algoritmi in classifica</a>' +
         '<a class="v8sheet-btn" href="/pages/algoritmi/">Tutti gli algoritmi</a>' +
         '<a class="v8sheet-btn" href="/pages/storico-estrazioni/">Apri storico</a>' +
       '</section>';
@@ -1478,7 +1478,7 @@
             '<section class="v8sheet-sec" id="v8sheet-metriche">' +
               '<div class="v8sheet-k">Metriche di affidabilita</div>' +
               '<div class="v8sheet-mgrid" data-v8sheet-metrics>' +
-                '<div class="v8sheet-mc"><b>' + signal + '%</b><span>Stabilita ranking</span><i style="--w:' + signal + '%"></i></div>' +
+                '<div class="v8sheet-mc"><b>' + signal + '%</b><span>Stabilita classifica</span><i style="--w:' + signal + '%"></i></div>' +
                 '<div class="v8sheet-mc amber"><b>' + coverage + '%</b><span>Copertura storica</span><i style="--w:' + coverage + '%"></i></div>' +
                 '<div class="v8sheet-mc red"><b>' + stability + '%</b><span>Anti-rumore</span><i style="--w:' + stability + '%"></i></div>' +
                 '<div class="v8sheet-mc cyan"><b>' + (media || 'N/D') + '</b><span>Hit medi</span><i style="--w:' + Math.max(12, Math.min(96, Number(media || 0) * 42)) + '%"></i></div>' +
@@ -1489,11 +1489,11 @@
               '<div class="v8sheet-prose" data-v8sheet-metodo>' +
                 '<p class="drop">' + (card.narrativeSummary || card.subtitle || 'Scheda tecnica del modulo: input, metriche, limiti e interpretazione statistica dello storico disponibile.') + '</p>' +
                 '<blockquote>Non dice cosa uscira sicuramente. Ordina scenari e segnali in base alla coerenza osservata sul dataset storico.</blockquote>' +
-                '<p>La lettura corretta e comparativa: confronta questa scheda con storico, ranking e altri modelli. Nessun sistema garantisce vincite e il gioco comporta rischi.</p>' +
+                '<p>La lettura corretta e comparativa: confronta questa scheda con storico, classifica e altri modelli. Nessun sistema garantisce vincite e il gioco comporta rischi.</p>' +
               '</div>' +
             '</section>' +
             '<section class="v8sheet-sec v8sheet-actions">' +
-              '<a class="v8sheet-btn primary" href="/pages/algoritmi/">Algoritmi in ranking</a>' +
+              '<a class="v8sheet-btn primary" href="/pages/algoritmi/">Algoritmi in classifica</a>' +
               '<a class="v8sheet-btn" href="/pages/algoritmi/">Tutti gli algoritmi</a>' +
               '<a class="v8sheet-btn" href="/pages/storico-estrazioni/">Apri storico</a>' +
             '</section>';
