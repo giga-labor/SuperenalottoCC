@@ -48,7 +48,7 @@
 
   function startWormhole() {
     var script = document.createElement('script');
-    script.src = '../../assets/js/oracle-wormhole.js?v=02.00.011';
+    script.src = '../../assets/js/oracle-wormhole.js?v=02.00.012';
     script.defer = true;
     body.appendChild(script);
   }
@@ -60,16 +60,8 @@
       navigation() + '</div>';
     document.querySelector('[data-back]').addEventListener('click', function () {
       setTheme();
-      var previous = document.referrer || '';
-      try {
-        var target = new URL(previous, location.href);
-        if (target.origin === location.origin && target.pathname.indexOf('/pages/oracle/') < 0) {
-          target.searchParams.set('ccTheme', document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
-          location.replace(target.href);
-          return;
-        }
-      } catch (_) {}
-      location.replace('/#/home');
+      if (history.length > 1) history.back();
+      else location.replace('/#/home');
     });
     document.querySelector('[data-theme]').addEventListener('click', function () {
       var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';

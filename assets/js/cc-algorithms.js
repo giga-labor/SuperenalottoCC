@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var PAGE_VERSION = '02.00.011';
+  var PAGE_VERSION = '02.00.012';
 
   var body = document.body;
   if (!body) return;
