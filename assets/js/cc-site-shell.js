@@ -24,13 +24,22 @@
   }
 
   function restoreTheme() {
-    var theme = storedTheme();
+    var requested = '';
+    try { requested = new URL(location.href).searchParams.get('ccTheme') || ''; } catch (_) {}
+    var theme = requested === 'light' || requested === 'dark' ? requested : storedTheme();
     if (!theme) return;
     document.documentElement.dataset.theme = theme;
     try {
       localStorage.setItem('cc-app-theme', theme);
       localStorage.setItem('cc-theme', theme);
     } catch (_) {}
+    if (requested) {
+      try {
+        var clean = new URL(location.href);
+        clean.searchParams.delete('ccTheme');
+        history.replaceState(history.state, '', clean.pathname + clean.search + clean.hash);
+      } catch (_) {}
+    }
   }
 
   function activeItem() {

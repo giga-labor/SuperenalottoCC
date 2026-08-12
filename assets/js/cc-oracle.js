@@ -60,8 +60,16 @@
       navigation() + '</div>';
     document.querySelector('[data-back]').addEventListener('click', function () {
       setTheme();
-      if (history.length > 1) history.back();
-      else location.assign('/#/home');
+      var previous = document.referrer || '';
+      try {
+        var target = new URL(previous, location.href);
+        if (target.origin === location.origin && target.pathname.indexOf('/pages/oracle/') < 0) {
+          target.searchParams.set('ccTheme', document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+          location.replace(target.href);
+          return;
+        }
+      } catch (_) {}
+      location.replace('/#/home');
     });
     document.querySelector('[data-theme]').addEventListener('click', function () {
       var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
