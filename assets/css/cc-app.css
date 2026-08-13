@@ -469,6 +469,11 @@ button { border: 0; cursor: pointer; }
 }
 .cc-grid-2 { grid-template-columns: 1fr; }
 
+/* Mobile a 1 colonna: priorita "I 6 numeri piu segnalati" prima di Consenso reale / Ultima estrazione */
+.cc-grid-desktop-3 > :nth-child(1) { order: 2; }
+.cc-grid-desktop-3 > :nth-child(2) { order: 1; }
+.cc-grid-desktop-3 > :nth-child(3) { order: 3; }
+
 .cc-contest {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -830,6 +835,9 @@ button { border: 0; cursor: pointer; }
   .cc-nav-item { min-height: 64px; }
   .cc-topbar { padding-left: 112px; }
   .cc-grid-desktop-3 { grid-template-columns: 1.25fr .9fr .9fr; }
+  .cc-grid-desktop-3 > :nth-child(1) { order: 1; }
+  .cc-grid-desktop-3 > :nth-child(2) { order: 2; }
+  .cc-grid-desktop-3 > :nth-child(3) { order: 3; }
 }
 
 @media (prefers-reduced-motion: no-preference) {

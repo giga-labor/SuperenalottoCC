@@ -345,6 +345,7 @@
         <section class="cc-card cc-card-pad">
           <div class="cc-kicker">I 6 numeri piu segnalati</div>
           <div class="cc-chip-row" style="margin-top:14px">${topNumbers.map((x, i) => chip(x.number, i, { caption: x.support, captionLabel: "Presenze" })).join("")}</div>
+          <p style="margin:12px 0 0"><a class="cc-link" href="pages/sestine-proposte/">Vai alle sestine proposte &rarr;</a></p>
         </section>
         <section class="cc-card cc-card-pad">
           <div class="cc-kicker">Ultima estrazione</div>
