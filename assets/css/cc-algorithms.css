@@ -3,32 +3,35 @@
   --cca-bg-2: #061510;
   --cca-panel: rgba(4, 22, 17, .94);
   --cca-panel-2: rgba(7, 31, 23, .88);
-  --cca-line: rgba(54, 226, 113, .25);
+  --cca-line: rgba(33, 177, 136, .25);
   --cca-line-soft: rgba(255, 255, 255, .1);
-  --cca-text: #f4f8f5;
+  --cca-text: #f4f6f2;
   --cca-muted: #9eb3a8;
-  --cca-green: #35e36f;
-  --cca-green-deep: #078a3c;
-  --cca-gold: #ffbd22;
-  --cca-cyan: #2ad8f2;
-  --cca-violet: #b56cff;
-  --cca-red: #ff5c4d;
+  --cca-green: #21b188;
+  --cca-green-deep: #08513b;
+  --cca-gold: #e8b928;
+  --cca-cyan: #4ad0dc;
+  --cca-violet: #8c5ac0;
+  --cca-red: #d8493a;
   --cca-radius: 14px;
   color-scheme: dark;
 }
 
 :root[data-theme="light"] {
-  --cca-bg: #f7faf8;
+  --cca-bg: #f9f9f8;
   --cca-bg-2: #eef5f0;
   --cca-panel: rgba(255, 255, 255, .96);
   --cca-panel-2: rgba(244, 249, 246, .96);
-  --cca-line: rgba(8, 139, 61, .25);
+  --cca-line: rgba(11, 106, 46, .25);
   --cca-line-soft: rgba(5, 35, 19, .11);
-  --cca-text: #081c12;
+  --cca-text: #0c2b2c;
   --cca-muted: #52675b;
-  --cca-green: #07933d;
-  --cca-green-deep: #05672d;
-  --cca-gold: #eda914;
+  --cca-green: #107531;
+  --cca-green-deep: #0b4c26;
+  --cca-gold: #e9a70f;
+  --cca-cyan: #086f90;
+  --cca-violet: #767188;
+  --cca-red: #bb2616;
   color-scheme: light;
 }
 
@@ -125,6 +128,8 @@ html.cc-algorithm-migrated body[data-page-id] {
 .cca-icon-btn:hover, .cca-icon-btn:focus-visible { border-color: var(--cca-line); outline: none; }
 .cca-icon-btn svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 .cca-icon-btn.is-favorite { color: var(--cca-gold); }
+.cca-icon-btn.is-theme-disabled { color: color-mix(in srgb, var(--cca-text) 30%, transparent); opacity: 0.55; cursor: not-allowed; }
+.cca-icon-btn.is-theme-disabled:hover, .cca-icon-btn.is-theme-disabled:focus-visible { border-color: transparent; }
 
 .cca-titlebar {
   min-width: 0;
@@ -175,19 +180,16 @@ html.cc-algorithm-migrated body[data-page-id] {
 .cca-catalog-hero h1 strong { color: var(--cca-green); }
 .cca-catalog-hero p { max-width: 34ch; margin: 12px 0 0; color: var(--cca-muted); font-size: .85rem; line-height: 1.5; }
 .cca-cube {
-  width: 108px;
+  width: 126px;
   aspect-ratio: 1;
   display: grid;
   place-items: center;
   justify-self: end;
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   font-weight: 950;
   color: #dffff0;
-  border: 1px solid rgba(42, 216, 242, .7);
-  border-radius: 20px;
-  background: linear-gradient(145deg, rgba(42,216,242,.25), rgba(53,227,111,.16) 55%, rgba(181,108,255,.24));
-  box-shadow: 0 0 30px rgba(42,216,242,.28), inset 0 0 24px rgba(255,255,255,.06);
-  transform: perspective(500px) rotateX(9deg) rotateY(-14deg);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .55);
+  background: url("../img/hero-icosaedro-algoritmi.webp") center / contain no-repeat;
 }
 
 .cca-filters {
@@ -259,10 +261,14 @@ html.cc-algorithm-migrated body[data-page-id] {
 .cca-detail-identity h1 { margin: 0; font-size: clamp(1rem, 4.7vw, 1.35rem); line-height: 1.15; }
 .cca-family { display: inline-flex; margin: 6px 0 0; padding: 3px 7px; border: 1px solid var(--cca-line); border-radius: 999px; color: var(--cca-green); font-size: .59rem; font-weight: 850; text-transform: uppercase; }
 .cca-detail-copy { margin: 12px 0 0; color: var(--cca-muted); font-size: .78rem; line-height: 1.45; }
-.cca-detail-visual { position: relative; min-height: 140px; display: grid; place-items: center; }
-.cca-detail-visual::before, .cca-detail-visual::after { content: ""; position: absolute; width: 132px; height: 40px; border: 1px solid rgba(53,227,111,.52); border-radius: 50%; transform: perspective(340px) rotateX(68deg); box-shadow: 0 0 18px rgba(53,227,111,.28); }
-.cca-detail-visual::after { width: 86px; height: 25px; border-color: rgba(255,189,34,.44); }
-.cca-beacon { z-index: 1; width: 20px; height: 92px; border-radius: 50%; background: linear-gradient(transparent, var(--cca-green), #fff); filter: blur(2px); box-shadow: 0 0 22px var(--cca-green); }
+.cca-detail-visual {
+  position: relative;
+  min-height: 140px;
+  display: grid;
+  place-items: center;
+  background: url("../img/hero-piattaforma-dettaglio.webp") center / contain no-repeat;
+}
+.cca-beacon { display: none; }
 
 .cca-section-label { margin: 0 0 10px; color: var(--cca-text); font-size: .72rem; font-weight: 850; text-transform: uppercase; }
 .cca-metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); }
@@ -271,7 +277,7 @@ html.cc-algorithm-migrated body[data-page-id] {
 .cca-metric small { color: var(--cca-muted); font-size: .56rem; text-transform: uppercase; }
 .cca-metric strong { color: var(--cca-green); font-size: 1.55rem; line-height: 1; }
 .cca-stars { display: inline-flex; justify-content: center; gap: 2px; letter-spacing: 1px; font-size: 1.15rem !important; }
-.cca-stars-full { color: #ffb800; text-shadow: 0 0 8px rgba(255, 184, 0, .48); }
+.cca-stars-full { color: var(--cca-gold); text-shadow: 0 0 8px color-mix(in srgb, var(--cca-gold) 48%, transparent); }
 .cca-stars-empty { color: color-mix(in srgb, var(--cca-muted) 48%, transparent); text-shadow: none; }
 
 .cca-proposal { display: flex; flex-wrap: wrap; gap: 9px; }
@@ -280,11 +286,11 @@ html.cc-algorithm-migrated body[data-page-id] {
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  border: 1px solid var(--cca-green);
+  border: 1px solid transparent;
   border-radius: 50%;
-  color: var(--cca-text);
-  background: radial-gradient(circle at 34% 24%, rgba(255,255,255,.22), transparent 18%), var(--cca-panel-2);
-  box-shadow: inset 0 -8px 14px rgba(0,0,0,.18), 0 0 12px rgba(53,227,111,.13);
+  color: #fff;
+  background: radial-gradient(circle at 34% 24%, rgba(255,255,255,.32), transparent 30%), var(--cca-green);
+  box-shadow: inset 0 -8px 14px rgba(0,0,0,.22), 0 0 12px color-mix(in srgb, var(--cca-green) 35%, transparent);
   font-weight: 850;
 }
 .cca-proposal-empty { color: var(--cca-muted); font-size: .8rem; }

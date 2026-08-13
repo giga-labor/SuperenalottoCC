@@ -60,8 +60,27 @@
     return `<span class="cc-number-ball ${kind || ""}">${escapeHtml(n)}</span>`;
   }
 
+  function chip(n, index, opts) {
+    const o = opts || {};
+    const colorClass = "cc-chip-c" + (((index % 5) + 5) % 5 + 1);
+    const filled = o.filled ? " filled" : "";
+    const caption = o.caption
+      ? `<span class="cc-chip-caption">${escapeHtml(o.captionLabel || "")}<strong>${escapeHtml(o.caption)}</strong></span>`
+      : "";
+    return `
+      <span class="cc-chip-stack">
+        <span class="cc-number-chip ${colorClass}${filled}">${escapeHtml(n)}</span>
+        ${caption}
+      </span>
+    `;
+  }
+
+  // Tema chiaro temporaneamente disabilitato: logica lasciata intatta, solo forzata su "dark".
+  // Per riabilitare: THEME_LIGHT_DISABLED = false.
+  const THEME_LIGHT_DISABLED = true;
+
   function setTheme(theme) {
-    const next = theme === "light" ? "light" : "dark";
+    const next = THEME_LIGHT_DISABLED ? "dark" : (theme === "light" ? "light" : "dark");
     document.documentElement.dataset.theme = next;
     try {
       localStorage.setItem("cc-app-theme", next);
@@ -98,7 +117,7 @@
           CONTROL <b>CHAOS</b>
           <span class="cc-logo-sub">SuperEnalotto</span>
         </a>
-        <button class="cc-icon-btn" id="theme-toggle" type="button">${svg("M12 3v2m0 14v2M4.2 4.2l1.4 1.4m12.8 12.8 1.4 1.4M3 12h2m14 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0z")}</button>
+        <button class="cc-icon-btn${THEME_LIGHT_DISABLED ? " is-theme-disabled" : ""}" id="theme-toggle" type="button"${THEME_LIGHT_DISABLED ? " disabled aria-label=\"Cambio tema (temporaneamente disabilitato)\"" : ""}>${svg("M12 3v2m0 14v2M4.2 4.2l1.4 1.4m12.8 12.8 1.4 1.4M3 12h2m14 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0z")}</button>
       </header>
     `;
   }
@@ -150,34 +169,147 @@
     state.route = "welcome";
     root.innerHTML = `
       <main class="cc-welcome">
-        <section class="cc-phone-stage" aria-labelledby="welcome-title">
-          <div>
-            <div class="cc-brand-mark">CC</div>
-            <h1 class="cc-welcome-title" id="welcome-title">Control<br><span>Chaos</span></h1>
-            <div class="cc-super">SuperEnalotto</div>
-            <p class="cc-tagline">Algoritmi e statistiche per leggere il caos dei numeri</p>
-          </div>
-          <div class="cc-energy-orbit" aria-label="Numeri in evidenza">
-            <div class="cc-core-ball">${escapeHtml(state.home?.consensus_top?.[0]?.number || 72)}</div>
-            <div class="cc-float-ball cc-ball-gold">45</div>
-            <div class="cc-float-ball cc-ball-cyan">13</div>
-            <div class="cc-float-ball cc-ball-purple">26</div>
-            <div class="cc-float-ball cc-ball-green">33</div>
-            <div class="cc-float-ball cc-ball-red">81</div>
-          </div>
-          <div class="cc-benefits">
-            <div class="cc-benefit"><strong>${state.algorithms.length || "--"}</strong>Algoritmi avanzati</div>
-            <div class="cc-benefit"><strong>${state.home?.latest_draw?.seq || "--"}</strong>Ultimo concorso</div>
-            <div class="cc-benefit"><strong>90</strong>Numeri analizzati</div>
-          </div>
-          <div style="width:100%">
-            <button class="cc-primary-cta" type="button" data-enter>Entra nel caos</button>
-            <p style="text-align:center;margin:14px 0 0"><a class="cc-link" href="#/info">Scopri come funziona</a></p>
-          </div>
-        </section>
+        <div class="cc-welcome-art" role="img" aria-label="Control Chaos - Algoritmi e statistiche per SuperEnalotto"></div>
+        <div class="cc-welcome-cta">
+          <button class="cc-primary-cta" type="button" data-enter>Entra nel caos</button>
+          <p style="text-align:center;margin:14px 0 0"><a class="cc-link" href="#/info">Scopri come funziona</a></p>
+        </div>
       </main>
     `;
     $("[data-enter]").addEventListener("click", () => go("home"));
+  }
+
+  function jackpotConstellation(container) {
+    if (!container || container.querySelector(".cc-jackpot-sky")) return;
+    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canvas = document.createElement("canvas");
+    canvas.className = "cc-jackpot-sky";
+    canvas.setAttribute("aria-hidden", "true");
+    container.insertBefore(canvas, container.firstChild);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let width = 0, height = 0, points = [], pointer = null, rafId = null, running = true;
+
+    function pointCount(w, h) {
+      const area = w * h;
+      return Math.round(Math.min(110, Math.max(36, area / 9000)));
+    }
+    function makePoint(w, h) {
+      return {
+        n: 1 + Math.floor(Math.random() * 90),
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35
+      };
+    }
+    function resize() {
+      const rect = container.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const target = pointCount(width, height);
+      if (points.length > target) points.length = target;
+      else while (points.length < target) points.push(makePoint(width, height));
+      points.forEach(p => {
+        if (p.x > width) p.x = width;
+        if (p.y > height) p.y = height;
+      });
+    }
+    let resizeTimer = null;
+    function onResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
+    }
+    function setPointerFromEvent(clientX, clientY) {
+      const rect = container.getBoundingClientRect();
+      pointer = { x: clientX - rect.left, y: clientY - rect.top };
+    }
+    function clearPointer() { pointer = null; }
+    function onMouseMove(e) { setPointerFromEvent(e.clientX, e.clientY); }
+    function onTouchMove(e) {
+      if (!e.touches || !e.touches.length) return;
+      setPointerFromEvent(e.touches[0].clientX, e.touches[0].clientY);
+    }
+    function step() {
+      points.forEach(p => {
+        if (pointer) {
+          const dx = p.x - pointer.x, dy = p.y - pointer.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 110 * 110 && d2 > 0.01) {
+            const d = Math.sqrt(d2);
+            const force = (110 - d) / 110 * 0.6;
+            p.vx += (dx / d) * force * 0.06;
+            p.vy += (dy / d) * force * 0.06;
+          }
+        }
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vx *= 0.98;
+        p.vy *= 0.98;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+        p.x = Math.max(0, Math.min(width, p.x));
+        p.y = Math.max(0, Math.min(height, p.y));
+      });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      const link = 130, link2 = link * link;
+      for (let i = 0; i < points.length; i += 1) {
+        for (let j = i + 1; j < points.length; j += 1) {
+          const a = points[i], b = points[j];
+          const dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+          if (d2 < link2) {
+            const alpha = (1 - d2 / link2) * 0.16;
+            ctx.strokeStyle = `rgba(242,193,78,${alpha.toFixed(3)})`;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      points.forEach(p => {
+        ctx.fillStyle = "rgba(255,216,124,.55)";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+        ctx.fill();
+        if (pointer) {
+          const dx = p.x - pointer.x, dy = p.y - pointer.y;
+          if (dx * dx + dy * dy < 130 * 130) {
+            ctx.fillStyle = "rgba(255,226,155,.85)";
+            ctx.font = "11px Inter, ui-sans-serif, system-ui, sans-serif";
+            ctx.fillText(String(p.n), p.x + 6, p.y - 6);
+          }
+        }
+      });
+    }
+    function frame() {
+      if (!running) return;
+      step();
+      draw();
+      rafId = requestAnimationFrame(frame);
+    }
+    resize();
+    if (reduceMotion) { draw(); return; }
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("mouseleave", clearPointer, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchend", clearPointer, { passive: true });
+    window.addEventListener("touchcancel", clearPointer, { passive: true });
+    window.addEventListener("resize", onResize);
+    document.addEventListener("visibilitychange", () => {
+      running = document.visibilityState === "visible";
+      if (running && !rafId) frame();
+      else if (!running && rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    });
+    frame();
   }
 
   function renderHome() {
@@ -187,7 +319,7 @@
     shell(`
       <section class="cc-card cc-jackpot">
         <div class="cc-kicker">Jackpot attuale</div>
-        <div class="cc-jackpot-value">${formatJackpot()}<small>milioni EUR</small></div>
+        <div class="cc-jackpot-value">${formatJackpot()}<small>Milioni &euro;</small></div>
       </section>
 
       <section class="cc-card cc-card-pad cc-contest">
@@ -212,11 +344,11 @@
         </section>
         <section class="cc-card cc-card-pad">
           <div class="cc-kicker">I 6 numeri piu segnalati</div>
-          <div class="cc-number-row" style="margin-top:14px">${topNumbers.map((x, i) => ball(x.number, i % 2 ? "gold" : "")).join("")}</div>
+          <div class="cc-chip-row" style="margin-top:14px">${topNumbers.map((x, i) => chip(x.number, i, { caption: x.support, captionLabel: "Presenze" })).join("")}</div>
         </section>
         <section class="cc-card cc-card-pad">
           <div class="cc-kicker">Ultima estrazione</div>
-          <div class="cc-number-row" style="margin-top:14px">${latestNums.map((n, i) => ball(n, i === latestNums.length - 1 ? "gold" : "")).join("") || "<span>N/D</span>"}</div>
+          <div class="cc-chip-row" style="margin-top:14px">${latestNums.map((n, i) => chip(n, i, {})).join("") || "<span>N/D</span>"}</div>
         </section>
       </div>
 
@@ -230,6 +362,7 @@
         ${quick("Analisi statistiche", "Frequenze, ritardi e pattern", "pages/analisi-statistiche/")}
       </div>
     `, "Home");
+    jackpotConstellation(root.querySelector(".cc-jackpot"));
   }
 
   function quick(title, text, href) {

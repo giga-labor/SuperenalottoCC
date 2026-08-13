@@ -28,6 +28,7 @@
     try { requested = new URL(location.href).searchParams.get('ccTheme') || ''; } catch (_) {}
     var historical = history.state && (history.state.ccTheme === 'light' || history.state.ccTheme === 'dark') ? history.state.ccTheme : '';
     var theme = requested === 'light' || requested === 'dark' ? requested : historical || storedTheme();
+    if (theme === 'light') theme = 'dark'; // tema chiaro temporaneamente disabilitato (logica di restore lasciata intatta)
     if (!theme) return;
     document.documentElement.dataset.theme = theme;
     try {
@@ -137,9 +138,19 @@
     normalizeTerms(root || document.body);
   }
 
+  function loadConstellation() {
+    if (document.getElementById('v8-sky') || document.getElementById('cc-constellation')) return;
+    if (document.querySelector('script[src*="cc-constellation.js"]')) return;
+    var script = document.createElement('script');
+    script.src = '/assets/js/cc-constellation.js';
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
   function start() {
     restoreTheme();
     apply(document.body);
+    loadConstellation();
     new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
         if (mutation.type === 'characterData') normalizeTerms(mutation.target);

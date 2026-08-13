@@ -1,5 +1,5 @@
-const canvas = document.querySelector('[data-wormhole-canvas]');
-if (!(canvas instanceof HTMLCanvasElement)) {
+const canvases = Array.from(document.querySelectorAll('[data-wormhole-canvas]')).filter(el => el instanceof HTMLCanvasElement);
+if (!canvases.length) {
   // no-op
 } else {
   const TEXT_CYCLE_MS = 18000;
@@ -133,8 +133,28 @@ if (!(canvas instanceof HTMLCanvasElement)) {
 
   const TAU = Math.PI * 2;
 
+  // ── SGUARDO CONDIVISO: entrambi gli occhi ricevono lo stesso vettore, quindi restano
+  // sempre paralleli (nessun effetto strabismo) — segue mouse su tutta la pagina o ultimo touch.
+  const eyesWrap = canvases[0].closest('.cco-eyes') || canvases[0].parentElement;
+  const sharedMouse = { x: 0, y: 0 };
+  const EYE_RANGE_PX = 320;
+  const clamp1 = v => Math.max(-1, Math.min(1, v));
+  const trackPointer = (clientX, clientY) => {
+    const rect = (eyesWrap || canvases[0]).getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const cx = rect.left + rect.width * 0.5;
+    const cy = rect.top + rect.height * 0.5;
+    sharedMouse.x = clamp1((clientX - cx) / EYE_RANGE_PX);
+    sharedMouse.y = clamp1(-(clientY - cy) / EYE_RANGE_PX);
+  };
+  window.addEventListener('pointermove', ev => trackPointer(ev.clientX, ev.clientY), { passive: true });
+  window.addEventListener('touchmove', ev => {
+    const t = ev.touches[0];
+    if (t) trackPointer(t.clientX, t.clientY);
+  }, { passive: true });
+
   // ── FALLBACK 2D ──────────────────────────────────────────────────────
-  const bootFallback2D = () => {
+  const bootFallback2D = (canvas) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     const particles = [];
@@ -191,9 +211,13 @@ if (!(canvas instanceof HTMLCanvasElement)) {
     });
   };
 
-  // ── THREE.JS – WORMHOLE FOTOGRAFICO ─────────────────────────────────
-  (async () => {
+  // ── THREE.JS – WORMHOLE FOTOGRAFICO (un'istanza per occhio) ──────────
+  const bootWormhole3D = async (canvas, eyeIndex) => {
     try {
+      // Seme unico per occhio: micro-moto indipendente (tremore/saccadi naturali),
+      // niente sincronismo perfetto al 100% ma sempre ancorato allo stesso bersaglio (no strabismo).
+      const eyeSeed = eyeIndex * 91.7 + 13.1;
+      const eyeLerp = 0.032 + (Math.sin(eyeSeed) * 0.5 + 0.5) * 0.022;
       const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js');
 
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
@@ -354,6 +378,10 @@ if (!(canvas instanceof HTMLCanvasElement)) {
           void main(){
             vec2 uv = vUv * 2.0 - 1.0;
             uv.x *= uAspect;
+
+            // Pupilla: il centro del buco nero segue mouse/ultimo touch.
+            vec2 holeCenter = vec2(uMouse.x * uAspect * 0.42, uMouse.y * 0.34);
+            uv -= holeCenter;
 
             // Parallasse mouse + lento drift
             vec2 drift = uMouse * 0.04 + vec2(sin(uTime*0.08)*0.02, cos(uTime*0.06)*0.015);
@@ -551,15 +579,7 @@ if (!(canvas instanceof HTMLCanvasElement)) {
       setSize();
       window.addEventListener('resize', setSize, { passive: true });
 
-      // ── MOUSE ──────────────────────────────────────────────────────────
-      const mouse = { x: 0, y: 0 };
       const mouseVec = new THREE.Vector2(0, 0);
-      canvas.addEventListener('pointermove', ev => {
-        const rect = canvas.getBoundingClientRect();
-        if (!rect.width || !rect.height) return;
-        mouse.x =  (ev.clientX - rect.left) / rect.width  * 2 - 1;
-        mouse.y = -(ev.clientY - rect.top)  / rect.height * 2 + 1;
-      }, { passive: true });
 
       // ── LOOP ───────────────────────────────────────────────────────────
       let raf = 0;
@@ -589,8 +609,11 @@ if (!(canvas instanceof HTMLCanvasElement)) {
         wormholeMat.uniforms.uSpeed.value = speedFactor;
         wormholeMat.uniforms.uFlow.value += dt * 0.72 * speedFactor;
         wormholeMat.uniforms.uStarFlow.value += dt * 1.05 * speedFactor;
-        mouseVec.set(mouse.x, mouse.y);
-        wormholeMat.uniforms.uMouse.value.lerp(mouseVec, 0.04);
+        const microT = now * 0.00035;
+        const microX = Math.sin(microT * 1.7 + eyeSeed) * 0.022 + Math.sin(microT * 4.3 + eyeSeed * 1.3) * 0.010;
+        const microY = Math.cos(microT * 1.3 + eyeSeed * 0.7) * 0.016 + Math.sin(microT * 3.1 + eyeSeed * 2.1) * 0.008;
+        mouseVec.set(sharedMouse.x + microX, sharedMouse.y + microY);
+        wormholeMat.uniforms.uMouse.value.lerp(mouseVec, eyeLerp);
 
         renderer.render(scene, camera);
         if (!firstFrameRendered) {
@@ -618,9 +641,10 @@ if (!(canvas instanceof HTMLCanvasElement)) {
       });
 
     } catch (_) {
-      bootFallback2D();
+      bootFallback2D(canvas);
     }
-  })();
+  };
+  canvases.forEach((canvas, i) => bootWormhole3D(canvas, i));
 }
 
 

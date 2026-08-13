@@ -36,7 +36,7 @@
     return lines.map(function(line){var vals=line.split(','),row={};head.forEach(function(h,i){row[h]=vals[i]||'';});return row;});
   }
   function chrome() {
-    return '<header class="cca-topbar"><button class="cca-icon-btn" data-back aria-label="Indietro">'+icons.back+'</button><div class="cca-titlebar">'+titleMap[page]+'</div><button class="cca-icon-btn" data-theme aria-label="Cambia tema">'+icons.sun+'</button></header>'+
+    return '<header class="cca-topbar"><button class="cca-icon-btn" data-back aria-label="Indietro">'+icons.back+'</button><div class="cca-titlebar">'+titleMap[page]+'</div><button class="cca-icon-btn is-theme-disabled" data-theme disabled aria-label="Cambio tema (temporaneamente disabilitato)">'+icons.sun+'</button></header>'+
       '<nav class="cca-bottom-nav" aria-label="Navigazione principale">'+[
         ['Home','/#/home','home'],['Algoritmi','/pages/algoritmi/','dots'],['Laboratorio','/#/laboratorio','flask'],['Oracolo','/pages/oracle/','oracle'],['Privacy','/pages/privacy-policy/','privacy']
       ].map(function(i){return '<a class="cca-nav-item'+(i[2]==='flask'?' is-active':'')+'" href="'+i[1]+'">'+icons[i[2]]+'<span>'+i[0]+'</span></a>';}).join('')+'</nav>';
@@ -45,7 +45,7 @@
     body.innerHTML='<div class="cca-app">'+chrome()+'<main class="cca-page cca-primary-page">'+content+'</main></div>';
     var back=body.querySelector('[data-back]'); back.addEventListener('click',function(){history.length>1?history.back():location.assign('/');});
     body.querySelector('[data-theme]').addEventListener('click',function(){var n=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=n;try{localStorage.setItem('cc-app-theme',n);localStorage.setItem('cc-theme',n);}catch(_){}});
-    try{document.documentElement.dataset.theme=localStorage.getItem('cc-app-theme')||localStorage.getItem('cc-theme')||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(_){document.documentElement.dataset.theme='dark';}
+    document.documentElement.dataset.theme='dark'; // tema chiaro temporaneamente disabilitato
     document.documentElement.classList.add('cc-ui-ready');
   }
   function filters() { return '<div class="cca-filters" data-filters><button class="cca-filter is-active" data-family="all">Tutti</button><button class="cca-filter" data-family="statistica">Statistici</button><button class="cca-filter" data-family="neurale">AI & ML</button><button class="cca-filter" data-family="ibrido">Ibridi</button><button class="cca-filter" data-family="generativi">Generativi</button></div>'; }

@@ -55,7 +55,7 @@
       '<div class="cca-titlebar">' + escapeHtml(title) + '</div>' +
       '<div class="cca-topbar-actions">' +
         (detail ? '<button class="cca-icon-btn is-favorite" type="button" data-cca-favorite aria-label="Preferito">' + icons.star + '</button>' : '') +
-        '<button class="cca-icon-btn" type="button" data-cca-theme aria-label="Cambia tema">' + icons.sun + '</button>' +
+        '<button class="cca-icon-btn is-theme-disabled" type="button" data-cca-theme disabled aria-label="Cambio tema (temporaneamente disabilitato)">' + icons.sun + '</button>' +
       '</div>' +
     '</header>';
   }
@@ -87,7 +87,8 @@
     var selected = '';
     try { selected = localStorage.getItem('cc-app-theme') || localStorage.getItem('cc-theme') || ''; } catch (_) {}
     if (!selected) selected = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    document.documentElement.dataset.theme = selected;
+    // Tema chiaro temporaneamente disabilitato: logica lasciata intatta, forzato "dark".
+    document.documentElement.dataset.theme = 'dark';
   }
 
   function buildCatalog() {

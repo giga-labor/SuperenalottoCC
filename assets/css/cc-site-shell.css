@@ -1,3 +1,13 @@
+#cc-constellation {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .55;
+}
+html[data-theme="light"] #cc-constellation { opacity: .3; }
+.cc-app, .cca-app { position: relative; z-index: 1; }
+
 .cc-site-topbar {
   position: fixed !important;
   top: 0 !important;
@@ -41,12 +51,12 @@
   white-space: nowrap;
 }
 
-.cc-trend-badge.is-up { color: #35e36f; background: rgba(53, 227, 111, .1); }
-.cc-trend-badge.is-down { color: #ff665b; background: rgba(255, 102, 91, .1); }
+.cc-trend-badge.is-up { color: #21b188; background: rgba(33, 177, 136, .1); }
+.cc-trend-badge.is-down { color: #d8493a; background: rgba(216, 73, 58, .1); }
 .cc-trend-badge.is-flat { color: #9eb3a8; background: rgba(158, 179, 168, .08); }
 
-html[data-theme="light"] .cc-trend-badge.is-up { color: #087d36; background: rgba(8, 125, 54, .09); }
-html[data-theme="light"] .cc-trend-badge.is-down { color: #bd3028; background: rgba(189, 48, 40, .08); }
+html[data-theme="light"] .cc-trend-badge.is-up { color: #107531; background: rgba(16, 117, 49, .09); }
+html[data-theme="light"] .cc-trend-badge.is-down { color: #bb2616; background: rgba(187, 38, 22, .08); }
 html[data-theme="light"] .cc-trend-badge.is-flat { color: #52675b; background: rgba(82, 103, 91, .08); }
 
 .cc-site-nav {
@@ -96,14 +106,14 @@ html[data-theme="light"] .cc-trend-badge.is-flat { color: #52675b; background: r
 .cc-site-nav__item:hover,
 .cc-site-nav__item:focus-visible {
   color: #effff5;
-  border-color: rgba(53, 227, 111, .32);
+  border-color: rgba(33, 177, 136, .32);
   outline: none;
 }
 
 .cc-site-nav__item.is-active {
-  color: #35e36f;
-  border-color: rgba(53, 227, 111, .36);
-  background: rgba(53, 227, 111, .1);
+  color: #21b188;
+  border-color: rgba(33, 177, 136, .36);
+  background: rgba(33, 177, 136, .1);
 }
 
 html[data-theme="light"] .cc-site-nav {
@@ -116,9 +126,9 @@ html[data-theme="light"] .cc-site-nav__item { color: rgba(19, 51, 34, .66); }
 html[data-theme="light"] .cc-site-nav__item:hover,
 html[data-theme="light"] .cc-site-nav__item:focus-visible { color: #0b4726; }
 html[data-theme="light"] .cc-site-nav__item.is-active {
-  color: #087d36;
-  border-color: rgba(8, 125, 54, .26);
-  background: rgba(8, 125, 54, .09);
+  color: #107531;
+  border-color: rgba(16, 117, 49, .26);
+  background: rgba(16, 117, 49, .09);
 }
 
 @media (min-width: 1020px) {

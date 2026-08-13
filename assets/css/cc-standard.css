@@ -4,39 +4,45 @@
   --cc-surface: rgba(5, 26, 21, .84);
   --cc-surface-strong: rgba(8, 39, 29, .96);
   --cc-surface-soft: rgba(255, 255, 255, .06);
-  --cc-text-main: #f7fff4;
-  --cc-text-muted: rgba(232, 255, 235, .68);
-  --cc-text-faint: rgba(232, 255, 235, .45);
-  --cc-border: rgba(92, 255, 139, .24);
-  --cc-border-gold: rgba(255, 195, 45, .42);
-  --cc-green: #2ee86f;
-  --cc-green-2: #91ff9a;
-  --cc-gold: #ffc327;
-  --cc-cyan: #26d8ff;
-  --cc-purple: #b65cff;
-  --cc-danger: #ff4f3f;
+  --cc-text-main: #f4f6f2;
+  --cc-text-muted: rgba(238, 246, 242, .68);
+  --cc-text-faint: rgba(238, 246, 242, .45);
+  --cc-border: rgba(33, 177, 136, .24);
+  --cc-border-gold: rgba(232, 185, 40, .42);
+  --cc-green: #21b188;
+  --cc-green-2: #63ddb2;
+  --cc-gold: #e8b928;
+  --cc-cyan: #4ad0dc;
+  --cc-purple: #8c5ac0;
+  --cc-danger: #d8493a;
   --cc-shadow-card: 0 18px 42px rgba(0, 0, 0, .34);
-  --cc-glow-green: 0 0 24px rgba(46, 232, 111, .30);
-  --cc-glow-gold: 0 0 26px rgba(255, 195, 39, .28);
+  --cc-glow-green: 0 0 24px rgba(33, 177, 136, .30);
+  --cc-glow-gold: 0 0 26px rgba(232, 185, 40, .28);
   --cc-radius-lg: 18px;
   --cc-radius-md: 14px;
   --cc-app-max: 1180px;
 }
 
 :root[data-theme="light"] {
-  --cc-bg-app: #f7faf6;
+  --cc-bg-app: #f9f9f8;
   --cc-bg-deep: #ffffff;
   --cc-surface: rgba(255, 255, 255, .94);
   --cc-surface-strong: rgba(255, 255, 255, .98);
   --cc-surface-soft: rgba(9, 92, 45, .055);
-  --cc-text-main: #0b1913;
-  --cc-text-muted: rgba(12, 32, 23, .68);
-  --cc-text-faint: rgba(12, 32, 23, .48);
-  --cc-border: rgba(10, 122, 56, .18);
-  --cc-border-gold: rgba(229, 165, 18, .36);
+  --cc-text-main: #0c2b2c;
+  --cc-text-muted: rgba(12, 43, 44, .68);
+  --cc-text-faint: rgba(12, 43, 44, .48);
+  --cc-border: rgba(11, 106, 46, .18);
+  --cc-border-gold: rgba(233, 167, 15, .36);
   --cc-shadow-card: 0 18px 42px rgba(13, 63, 36, .12);
-  --cc-glow-green: 0 0 24px rgba(46, 232, 111, .16);
-  --cc-glow-gold: 0 0 26px rgba(255, 195, 39, .16);
+  --cc-glow-green: 0 0 24px rgba(11, 106, 46, .16);
+  --cc-glow-gold: 0 0 26px rgba(233, 167, 15, .16);
+  --cc-green: #107531;
+  --cc-green-2: #21943a;
+  --cc-gold: #e9a70f;
+  --cc-cyan: #086f90;
+  --cc-purple: #767188;
+  --cc-danger: #bb2616;
 }
 
 html.cc-standardized {

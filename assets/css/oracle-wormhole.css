@@ -18,28 +18,16 @@
   border: 0;
   box-shadow: none;
   background: transparent;
-  -webkit-mask-image: radial-gradient(
-    ellipse 110% 98% at 50% 52%,
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 0.99) 34%,
-    rgba(0, 0, 0, 0.94) 48%,
-    rgba(0, 0, 0, 0.8) 60%,
-    rgba(0, 0, 0, 0.58) 72%,
-    rgba(0, 0, 0, 0.3) 84%,
-    rgba(0, 0, 0, 0.14) 92%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 110% 98% at 50% 52%,
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 0.99) 34%,
-    rgba(0, 0, 0, 0.94) 48%,
-    rgba(0, 0, 0, 0.8) 60%,
-    rgba(0, 0, 0, 0.58) 72%,
-    rgba(0, 0, 0, 0.3) 84%,
-    rgba(0, 0, 0, 0.14) 92%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  /* Maschera a forma d'occhio (vesica) con bordo sfumato via blur SVG interno: nessun taglio netto. */
+  --eye-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3Cfilter id='b' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M40 90C120 50 200 50 280 90C200 130 120 130 40 90Z' fill='white' filter='url(%23b)'/%3E%3C/svg%3E");
+  -webkit-mask-image: var(--eye-mask);
+  mask-image: var(--eye-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
 }
 
 .oracle-wormhole__canvas {
@@ -335,9 +323,11 @@
   pointer-events: none;
   z-index: 3;
   border: 0;
+  /* Alone interno proporzionale a --eye-w (non px fissi): su occhi piccoli il vecchio
+     alone fisso mangiava quasi tutto il riquadro, allargando otticamente il distacco. */
   box-shadow:
-    inset 0 0 120px 42px rgba(2, 4, 10, 0.36),
-    inset 0 0 240px 110px rgba(2, 4, 10, 0.3);
+    inset 0 0 calc(var(--eye-w, 269px) * 0.286) calc(var(--eye-w, 269px) * 0.1) rgba(2, 4, 10, 0.36),
+    inset 0 0 calc(var(--eye-w, 269px) * 0.571) calc(var(--eye-w, 269px) * 0.262) rgba(2, 4, 10, 0.3);
   opacity: 0.94;
 }
 

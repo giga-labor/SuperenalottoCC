@@ -37,7 +37,7 @@
   };
   var header = document.createElement('header');
   header.className = 'cca-topbar';
-  header.innerHTML = '<button class="cca-icon-btn" type="button" aria-label="Indietro" data-cc-back>' + icons.back + '</button><div class="cca-titlebar">' + titles[page] + '</div><button class="cca-icon-btn" type="button" aria-label="Cambia tema" data-cca-theme>' + icons.sun + '</button>';
+  header.innerHTML = '<button class="cca-icon-btn" type="button" aria-label="Indietro" data-cc-back>' + icons.back + '</button><div class="cca-titlebar">' + titles[page] + '</div><button class="cca-icon-btn is-theme-disabled" type="button" aria-label="Cambio tema (temporaneamente disabilitato)" data-cca-theme disabled>' + icons.sun + '</button>';
   body.prepend(header);
   var items = [['Home','/#/home','home'],['Algoritmi','/pages/algoritmi/','dots'],['Laboratorio','/#/laboratorio','flask'],['Oracolo','/pages/oracle/','oracle'],['Privacy','/pages/privacy-policy/','privacy']];
   var nav = document.createElement('nav');
@@ -73,5 +73,5 @@
   window.addEventListener('load', function () { finalizeWorkbenchLayout(); });
   header.querySelector('[data-cc-back]').addEventListener('click', function () { if (history.length > 1) history.back(); else location.href = '/'; });
   header.querySelector('[data-cca-theme]').addEventListener('click', function () { var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'; document.documentElement.dataset.theme = next; try { localStorage.setItem('cc-app-theme', next); localStorage.setItem('cc-theme', next); } catch (_) {} });
-  try { document.documentElement.dataset.theme = localStorage.getItem('cc-app-theme') || localStorage.getItem('cc-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (_) { document.documentElement.dataset.theme = 'dark'; }
+  document.documentElement.dataset.theme = 'dark'; // tema chiaro temporaneamente disabilitato
 })();

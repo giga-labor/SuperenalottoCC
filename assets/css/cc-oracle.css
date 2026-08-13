@@ -1,12 +1,16 @@
-.cco-page { width: min(100% - 24px, 900px); min-height: calc(100vh - 68px); display: grid; place-items: center; margin: 0 auto; padding: 28px 0 110px; }
+/* Pagina Oracolo: sfondo, occhi e testo restano sempre dark, indipendentemente dal tema
+   (che invece continua a cambiare solo header in alto e nav in basso). */
+body[data-page-id="oracle-new"] { background: #020a08 !important; color: #f4f6f2 !important; }
+.cco-page { width: min(100% - 24px, 900px); min-height: calc(100vh - 68px); display: grid; place-items: center; margin: 0 auto; padding: 28px 0 110px; background: #020a08; }
 .cco-vision { width: 100%; display: grid; place-items: center; gap: 28px; }
-.cco-portal.oracle-wormhole { width: min(100%, 420px); height: auto; min-height: 0; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid color-mix(in srgb, var(--cca-gold) 48%, var(--cca-line)); border-radius: 8px; background: #02040b; box-shadow: 0 0 30px color-mix(in srgb, var(--cca-gold) 18%, transparent); }
-.cco-vision blockquote { max-width: 760px; margin: 0; padding: 24px; color: var(--cca-text); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.16rem, 4vw, 1.62rem); line-height: 1.82; text-align: center; }
-.cco-vision blockquote strong { color: var(--cca-gold); font: inherit; text-shadow: 0 0 11px color-mix(in srgb, var(--cca-gold) 45%, transparent); }
+.cco-eyes { --eye-w: min(38vw, 269px); width: 100%; display: flex; align-items: center; justify-content: center; gap: calc(var(--eye-w) * 0.2); touch-action: none; overflow: hidden; }
+.cco-portal.oracle-wormhole { width: var(--eye-w); height: auto; min-height: 0; aspect-ratio: 16 / 9; overflow: hidden; border: 0; border-radius: 0; background: #02040b; box-shadow: none; margin: 0 calc(var(--eye-w) * -0.125); }
+.cco-vision blockquote { max-width: 760px; margin: 0; padding: 24px; color: #f4f6f2; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.16rem, 4vw, 1.62rem); line-height: 1.82; text-align: center; }
+.cco-vision blockquote strong { color: #e8b928; font: inherit; text-shadow: 0 0 11px rgba(232, 185, 40, 0.45); }
 .cco-error { min-height: 100vh; display: grid; place-items: center; margin: 0; background: var(--cca-bg); color: var(--cca-text); font-family: Georgia, "Times New Roman", serif; }
 @media (max-width: 560px) {
   .cco-page { align-items: start; padding-top: 38px; }
   .cco-vision { gap: 16px; }
-  .cco-portal.oracle-wormhole { width: 100%; }
+  .cco-eyes { --eye-w: min(34vw, 190px); }
   .cco-vision blockquote { padding: 12px 6px; text-align: left; }
 }

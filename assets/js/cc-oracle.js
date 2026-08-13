@@ -41,33 +41,32 @@
   }
 
   function setTheme() {
-    var saved = '';
-    try { saved = localStorage.getItem('cc-app-theme') || localStorage.getItem('cc-theme') || ''; } catch (_) {}
-    document.documentElement.dataset.theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    // Tema chiaro temporaneamente disabilitato: forzato "dark" (rilevamento saved/system
+    // lasciato in cc-app.js/cc-algorithms.js per la riattivazione futura).
+    document.documentElement.dataset.theme = 'dark';
   }
 
   function startWormhole() {
     var script = document.createElement('script');
-    script.src = '../../assets/js/oracle-wormhole.js?v=02.00.012';
+    script.src = '../../assets/js/oracle-wormhole.js?v=02.00.014';
     script.defer = true;
     body.appendChild(script);
   }
 
   function render(reading) {
     body.innerHTML = '<div class="cca-app">' +
-      '<header class="cca-topbar"><button class="cca-icon-btn" type="button" data-back aria-label="Indietro">' + icons.back + '</button><div class="cca-titlebar">Chaos <span>Oracolo</span></div><button class="cca-icon-btn" type="button" data-theme aria-label="Cambia tema">' + icons.sun + '</button></header>' +
-      '<main class="cco-page"><section class="cco-vision"><div class="cco-portal oracle-wormhole" aria-hidden="true"><canvas class="oracle-wormhole__canvas" data-wormhole-canvas width="1280" height="720"></canvas><div class="oracle-wormhole__vignette"></div></div><blockquote>' + highlightedSpeech(reading.oracle_speech, reading.promoted_numbers) + '</blockquote></section></main>' +
+      '<header class="cca-topbar"><button class="cca-icon-btn" type="button" data-back aria-label="Indietro">' + icons.back + '</button><div class="cca-titlebar">Chaos <span>Oracolo</span></div><button class="cca-icon-btn is-theme-disabled" type="button" data-theme disabled aria-label="Cambio tema (temporaneamente disabilitato)">' + icons.sun + '</button></header>' +
+      '<main class="cco-page"><section class="cco-vision"><div class="cco-eyes" aria-hidden="true">' +
+      '<div class="cco-portal oracle-wormhole"><canvas class="oracle-wormhole__canvas" data-wormhole-canvas width="1280" height="720"></canvas><div class="oracle-wormhole__vignette"></div></div>' +
+      '<div class="cco-portal oracle-wormhole"><canvas class="oracle-wormhole__canvas" data-wormhole-canvas width="1280" height="720"></canvas><div class="oracle-wormhole__vignette"></div></div>' +
+      '</div><blockquote>' + highlightedSpeech(reading.oracle_speech, reading.promoted_numbers) + '</blockquote></section></main>' +
       navigation() + '</div>';
     document.querySelector('[data-back]').addEventListener('click', function () {
       setTheme();
       if (history.length > 1) history.back();
       else location.replace('/#/home');
     });
-    document.querySelector('[data-theme]').addEventListener('click', function () {
-      var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-      document.documentElement.dataset.theme = next;
-      try { localStorage.setItem('cc-app-theme', next); localStorage.setItem('cc-theme', next); } catch (_) {}
-    });
+    // Toggle tema disabilitato temporaneamente (bottone visibile ma inattivo, vedi is-theme-disabled).
     startWormhole();
     document.documentElement.classList.add('cc-ui-ready');
   }
