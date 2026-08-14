@@ -1,6 +1,6 @@
 {
   "latest_local_contest_id": 4234,
-  "last_published_commit": "ea151766ddc55c56f57b442943a60d05110c4560",
+  "last_published_commit": "e799475ecc4a238e1667473fa6a7476c49ac39a9",
   "per_algo_last_trained_contest_id": {
     "astra-moon": 4234,
     "chimera-mix-adattivo": 4234,
@@ -22,9 +22,9 @@
     "xeno-qdna-alpha": 4234,
     "xeno-qdna-beta": 4234
   },
-  "last_card_hits_build_at": "2026-08-14T06:56:55",
-  "last_card_hits_changed_cards": 11,
-  "last_successful_run_id": "20260814_065045",
+  "last_card_hits_build_at": "2026-08-14T06:59:29",
+  "last_card_hits_changed_cards": 0,
+  "last_successful_run_id": "20260814_065915",
   "last_email_status": "",
   "pending_publish": {},
   "consecutive_failures": 0,
@@ -32,17 +32,17 @@
   "last_failure_reason": "",
   "run_journal": [
     {
-      "ts": "2026-08-14T06:50:45",
+      "ts": "2026-08-14T06:59:15",
       "event": "lock_acquired",
-      "run_id": "20260814_065045",
+      "run_id": "20260814_065915",
       "payload": {
-        "lease_until": "2026-08-14T06:52:45"
+        "lease_until": "2026-08-14T07:01:15"
       }
     },
     {
-      "ts": "2026-08-14T06:58:02",
+      "ts": "2026-08-14T07:00:28",
       "event": "lock_released",
-      "run_id": "20260814_065045",
+      "run_id": "20260814_065915",
       "payload": {}
     }
   ],
