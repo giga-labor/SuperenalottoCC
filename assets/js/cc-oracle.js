@@ -12,7 +12,8 @@
     dots: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="1.5"/><circle cx="12" cy="6" r="1.5"/><circle cx="18" cy="6" r="1.5"/><circle cx="6" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="18" cy="12" r="1.5"/><circle cx="6" cy="18" r="1.5"/><circle cx="12" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/></svg>',
     flask: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3M8 15h8"/></svg>',
     oracle: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m8 9 4-2 4 2-4 2Zm0 0v5l4 2 4-2V9"/></svg>',
-    privacy: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.7 2.8 8.3 7 10 4.2-1.7 7-5.3 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-5"/></svg>'
+    privacy: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.7 2.8 8.3 7 10 4.2-1.7 7-5.3 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-5"/></svg>',
+    archive: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v4H4z"/><path d="M6 8v11a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8"/><path d="M10 13h4"/></svg>'
   };
 
   function esc(value) {
@@ -60,6 +61,7 @@
       '<div class="cco-portal oracle-wormhole"><canvas class="oracle-wormhole__canvas" data-wormhole-canvas width="1280" height="720"></canvas><div class="oracle-wormhole__vignette"></div></div>' +
       '<div class="cco-portal oracle-wormhole"><canvas class="oracle-wormhole__canvas" data-wormhole-canvas width="1280" height="720"></canvas><div class="oracle-wormhole__vignette"></div></div>' +
       '</div><blockquote>' + highlightedSpeech(reading.oracle_speech, reading.promoted_numbers) + '</blockquote></section></main>' +
+      '<a class="cco-archive-badge" href="/pages/oracle/archivio/" aria-label="Archivio delle previsioni dell\'oracolo" title="Archivio previsioni">' + icons.archive + '</a>' +
       navigation() + '</div>';
     document.querySelector('[data-back]').addEventListener('click', function () {
       setTheme();
