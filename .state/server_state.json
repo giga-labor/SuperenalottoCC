@@ -1,30 +1,30 @@
 {
-  "latest_local_contest_id": 4234,
-  "last_published_commit": "e799475ecc4a238e1667473fa6a7476c49ac39a9",
+  "latest_local_contest_id": 4235,
+  "last_published_commit": "a571893a12bfac4526e0f77b30375d411bfa467d",
   "per_algo_last_trained_contest_id": {
-    "astra-moon": 4234,
-    "chimera-mix-adattivo": 4234,
-    "classic-analisi-anomalie-pattern": 4234,
-    "classic-co-occorrenze": 4234,
-    "classic-coppie-terni-consecutivi": 4234,
-    "classic-coppie-terzine-frequenti": 4234,
-    "classic-distribuzioni-modelli-raggruppamento": 4234,
-    "classic-frequency": 4234,
-    "classic-ritardi": 4234,
-    "classic-ritardi-combinazioni": 4234,
-    "classic-statistiche-combinate-finestre-mobili": 4234,
-    "classic-tavole-probabilita-teorica-test-uniformita": 4234,
-    "genetic": 4234,
-    "hispa": 4234,
-    "paradox-logiche-decisionali-metriche": 4234,
-    "solus90-anticrowd": 4234,
-    "super6NN": 4234,
-    "xeno-qdna-alpha": 4234,
-    "xeno-qdna-beta": 4234
+    "astra-moon": 4235,
+    "chimera-mix-adattivo": 4235,
+    "classic-analisi-anomalie-pattern": 4235,
+    "classic-co-occorrenze": 4235,
+    "classic-coppie-terni-consecutivi": 4235,
+    "classic-coppie-terzine-frequenti": 4235,
+    "classic-distribuzioni-modelli-raggruppamento": 4235,
+    "classic-frequency": 4235,
+    "classic-ritardi": 4235,
+    "classic-ritardi-combinazioni": 4235,
+    "classic-statistiche-combinate-finestre-mobili": 4235,
+    "classic-tavole-probabilita-teorica-test-uniformita": 4235,
+    "genetic": 4235,
+    "hispa": 4235,
+    "paradox-logiche-decisionali-metriche": 4235,
+    "solus90-anticrowd": 4235,
+    "super6NN": 4235,
+    "xeno-qdna-alpha": 4235,
+    "xeno-qdna-beta": 4235
   },
-  "last_card_hits_build_at": "2026-08-14T06:59:29",
-  "last_card_hits_changed_cards": 0,
-  "last_successful_run_id": "20260814_065915",
+  "last_card_hits_build_at": "2026-08-14T22:07:27",
+  "last_card_hits_changed_cards": 9,
+  "last_successful_run_id": "20260814_220120",
   "last_email_status": "",
   "pending_publish": {},
   "consecutive_failures": 0,
@@ -32,17 +32,17 @@
   "last_failure_reason": "",
   "run_journal": [
     {
-      "ts": "2026-08-14T06:59:15",
+      "ts": "2026-08-14T22:01:20",
       "event": "lock_acquired",
-      "run_id": "20260814_065915",
+      "run_id": "20260814_220120",
       "payload": {
-        "lease_until": "2026-08-14T07:01:15"
+        "lease_until": "2026-08-14T22:03:20"
       }
     },
     {
-      "ts": "2026-08-14T07:00:28",
+      "ts": "2026-08-14T22:08:45",
       "event": "lock_released",
-      "run_id": "20260814_065915",
+      "run_id": "20260814_220120",
       "payload": {}
     }
   ],

@@ -1,0 +1,15 @@
+[22:08:21] Fase OK: apply_stage_to_repo
+[22:08:23] AI nulla osta OK su git_add_commit_push_once
+[22:08:23] Avvio fase: git_add_commit_push_once
+[22:08:29] Fase OK: git_add_commit_push_once
+[22:08:31] AI nulla osta OK su post_push_verify
+[22:08:31] Avvio fase: post_push_verify
+[22:08:31] Fase OK: post_push_verify
+[22:08:32] AI nulla osta OK su email_final_report
+[22:08:32] Avvio fase: email_final_report
+[22:08:45] Fase KO: email_final_report -> Email non inviata: Invio email fallito: Connection unexpectedly closed
+[22:08:45] AI nulla osta OK su lock_release
+[22:08:45] Avvio fase: lock_release
+[22:08:45] Fase OK: lock_release
+[22:08:45] Pipeline completata con errori:
+email_final_report: Email non inviata: Invio email fallito: Connection unexpectedly closed
