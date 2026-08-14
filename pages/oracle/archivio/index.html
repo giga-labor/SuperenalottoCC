@@ -6,6 +6,7 @@
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#020a08">
   <title>Archivio previsioni — Oracolo del Chaos</title>
+  <link rel="stylesheet" href="/assets/css/cc-site-shell.css?v=02.00.012">
   <style>
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
@@ -14,7 +15,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       padding: 24px 16px 64px;
     }
-    .oa-wrap { max-width: 880px; margin: 0 auto; }
+    .oa-wrap { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
     .oa-back {
       display: inline-flex; align-items: center; gap: 6px; color: #e8b928; text-decoration: none;
       font-size: 0.92rem; margin-bottom: 18px;
@@ -25,23 +26,45 @@
       margin: 0 0 6px;
     }
     .oa-sub { color: #9aa39c; font-size: 0.95rem; margin: 0 0 28px; line-height: 1.5; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
-    thead th {
-      text-align: left; padding: 10px 12px; color: #e8b928; border-bottom: 1px solid rgba(232, 185, 40, 0.35);
-      font-weight: 600; white-space: nowrap;
+    .oa-list { display: grid; gap: 10px; }
+    .oa-row {
+      display: grid; grid-template-columns: minmax(132px, 0.8fr) minmax(260px, 1.35fr) minmax(112px, 0.55fr);
+      align-items: center; gap: 14px; min-height: 72px; padding: 14px 16px;
+      border: 1px solid rgba(232, 185, 40, 0.24); border-radius: 8px;
+      background: linear-gradient(135deg, rgba(232, 185, 40, 0.08), rgba(244, 246, 242, 0.025));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
-    tbody td { padding: 12px; border-bottom: 1px solid rgba(244, 246, 242, 0.08); vertical-align: top; }
-    tbody tr:hover { background: rgba(232, 185, 40, 0.05); }
-    .oa-numbers { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
-    .oa-hits { color: #e8b928; font-weight: 600; }
+    .oa-row:hover { border-color: rgba(232, 185, 40, 0.42); background: rgba(232, 185, 40, 0.075); }
+    .oa-meta { min-width: 0; }
+    .oa-contest { display: block; color: #f4f6f2; font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .oa-date { display: block; margin-top: 4px; color: #9aa39c; font-size: 0.84rem; line-height: 1.2; }
+    .oa-balls { display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; gap: clamp(5px, 1.1vw, 9px); min-width: 0; }
+    .oa-ball {
+      width: clamp(34px, 5.6vw, 44px); aspect-ratio: 1; display: inline-grid; place-items: center;
+      border-radius: 50%; color: #1f1601; font-weight: 800; font-size: clamp(0.82rem, 2vw, 1rem);
+      font-variant-numeric: tabular-nums;
+      background: radial-gradient(circle at 32% 24%, #fff1a8 0 16%, #ffd967 34%, #d89a18 68%, #8f5e08 100%);
+      border: 1px solid rgba(255, 230, 138, 0.78);
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -5px 8px rgba(74, 42, 0, 0.32), 0 0 10px rgba(232, 185, 40, 0.22);
+    }
+    .oa-ball.is-hit {
+      color: #fff8d6; background: radial-gradient(circle at 32% 24%, #fffbe6 0 14%, #ffdf5f 30%, #f2a51f 58%, #a54e05 100%);
+      border: 2px solid #fff0a6;
+      box-shadow: 0 0 0 3px rgba(232, 185, 40, 0.22), 0 0 22px rgba(255, 217, 103, 0.76), inset 0 2px 5px rgba(255, 255, 255, 0.55);
+      transform: translateY(-1px) scale(1.08);
+    }
+    .oa-hit-total { justify-self: end; text-align: right; color: #9aa39c; line-height: 1.15; }
+    .oa-hit-total strong { display: block; color: #e8b928; font-size: 1.28rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .oa-hit-total span { display: block; margin-top: 3px; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; }
     .oa-empty { text-align: center; padding: 60px 20px; color: #9aa39c; font-family: Georgia, serif; font-size: 1.05rem; }
     .oa-error { text-align: center; padding: 60px 20px; color: #c98a8a; }
-    @media (max-width: 560px) {
-      table, thead, tbody, tr, td { display: block; width: 100%; }
-      thead { display: none; }
-      tbody tr { border-bottom: 1px solid rgba(244, 246, 242, 0.12); padding: 12px 0; }
-      tbody td { border: 0; padding: 4px 0; }
-      tbody td::before { content: attr(data-label); display: block; font-size: 0.75rem; color: #9aa39c; margin-bottom: 2px; }
+    @media (max-width: 680px) {
+      body { padding-inline: 12px; }
+      .oa-row { grid-template-columns: 1fr auto; grid-template-areas: "meta hits" "balls balls"; gap: 10px 12px; padding: 13px; }
+      .oa-meta { grid-area: meta; }
+      .oa-balls { grid-area: balls; justify-content: space-between; gap: 4px; }
+      .oa-hit-total { grid-area: hits; }
+      .oa-ball { width: clamp(31px, 13.4vw, 42px); }
     }
   </style>
 </head>
@@ -64,8 +87,10 @@
         });
       }
 
-      function fmtArr(arr) {
-        return '[' + (arr || []).join(', ') + ']';
+      function renderBall(value, hits) {
+        var num = Number(String(value).replace(/[\[\]]/g, ''));
+        var isHit = hits.indexOf(num) >= 0;
+        return '<span class="oa-ball' + (isHit ? ' is-hit' : '') + '" aria-label="Numero ' + esc(num) + (isHit ? ', indovinato' : '') + '">' + esc(num) + '</span>';
       }
 
       function render(entries) {
@@ -77,20 +102,17 @@
         var rows = entries.map(function (item) {
           var concorso = esc(item.concorso);
           var data = esc(item.data);
-          var proposte = fmtArr(item.proposte_marcate || item.proposte);
-          var indovinati = fmtArr(item.indovinati);
-          var hitClass = (item.indovinati && item.indovinati.length > 0) ? ' oa-hits' : '';
-          return '<tr>' +
-            '<td data-label="Concorso">' + concorso + '</td>' +
-            '<td data-label="Data">' + data + '</td>' +
-            '<td data-label="Proposte" class="oa-numbers">' + esc(proposte) + '</td>' +
-            '<td data-label="Indovinati" class="oa-numbers' + hitClass + '">' + esc(indovinati) + '</td>' +
-            '</tr>';
+          var proposte = item.proposte || [];
+          var indovinati = item.indovinati || [];
+          var balls = proposte.map(function (num) { return renderBall(num, indovinati); }).join('');
+          var hitLabel = indovinati.length === 1 ? 'indovinato' : 'indovinati';
+          return '<article class="oa-row">' +
+            '<div class="oa-meta"><span class="oa-contest">Concorso ' + concorso + '</span><span class="oa-date">' + data + '</span></div>' +
+            '<div class="oa-balls" aria-label="Numeri proposti">' + balls + '</div>' +
+            '<div class="oa-hit-total"><strong>' + esc(indovinati.length) + '/6</strong><span>' + hitLabel + '</span></div>' +
+            '</article>';
         }).join('');
-        mount.innerHTML =
-          '<table><thead><tr>' +
-          '<th>Concorso</th><th>Data</th><th>Proposte</th><th>Indovinati</th>' +
-          '</tr></thead><tbody>' + rows + '</tbody></table>';
+        mount.innerHTML = '<div class="oa-list">' + rows + '</div>';
       }
 
       fetch('../../../data/oracle-predictions-archive.json', { cache: 'no-store' })
@@ -102,5 +124,6 @@
         });
     })();
   </script>
+  <script src="/assets/js/cc-site-shell.js?v=02.00.012" defer></script>
 </body>
 </html>

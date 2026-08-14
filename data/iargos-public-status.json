@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14 23:16:29",
+  "updated_at": "2026-08-14 23:23:17",
   "version": "03.00.000",
   "enabled": true,
   "learning_mode": false,
@@ -25,7 +25,7 @@
     "mirror_has_inconsistencies": false,
     "flow_guard_ok": true,
     "git_dirty": true,
-    "remote_ahead": 1,
+    "remote_ahead": 0,
     "remote_behind": 0,
     "alignment_diff_count": 0,
     "active_algorithms_count": 19,
@@ -38,7 +38,7 @@
   "runtime": {
     "state_level": "ok",
     "state_label": "operativo",
-    "last_push_at": "2026-08-14 23:05:59",
+    "last_push_at": "2026-08-14 23:17:26",
     "last_release_id": "overview-resolved-20260401020218-026ab2fab0",
     "last_release_at": "2026-04-01 02:02:18",
     "boot_ts": 1786737604
@@ -46,7 +46,7 @@
   "feed": [
     {
       "type": "alert",
-      "ts": "2026-08-14T23:16:24",
+      "ts": "2026-08-14T23:19:24",
       "message": "Rilevata una situazione anomala, intervento in corso",
       "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
       "ok": true,
