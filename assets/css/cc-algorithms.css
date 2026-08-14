@@ -286,12 +286,15 @@ html.cc-algorithm-migrated body[data-page-id] {
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255,255,255,.45);
   border-radius: 50%;
   color: #fff;
-  background: radial-gradient(circle at 34% 24%, rgba(255,255,255,.32), transparent 30%), var(--cca-green);
-  box-shadow: inset 0 -8px 14px rgba(0,0,0,.22), 0 0 12px color-mix(in srgb, var(--cca-green) 35%, transparent);
   font-weight: 850;
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255,255,255,.95) 0%, rgba(255,255,255,.55) 10%, rgba(255,255,255,0) 32%),
+    radial-gradient(circle at 68% 78%, rgba(255,255,255,.45) 0%, rgba(255,255,255,0) 20%),
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--cca-green) 25%, transparent) 0%, color-mix(in srgb, var(--cca-green) 55%, transparent) 55%, color-mix(in srgb, var(--cca-green) 82%, black) 100%);
+  box-shadow: inset 0 2px 3px rgba(255,255,255,.55), inset 0 -6px 10px color-mix(in srgb, var(--cca-green) 55%, transparent), inset 0 0 0 1px rgba(255,255,255,.18), 0 0 12px color-mix(in srgb, var(--cca-green) 35%, transparent);
 }
 .cca-proposal-empty { color: var(--cca-muted); font-size: .8rem; }
 
@@ -371,19 +374,23 @@ html.cc-algorithm-migrated body[data-page-id] {
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  border: 1px solid var(--cca-green);
+  border: 1px solid rgba(255,255,255,.4);
   border-radius: 50%;
   color: var(--cca-text);
-  background: radial-gradient(circle at 34% 24%, rgba(255,255,255,.18), transparent 19%), var(--cca-panel-2);
-  box-shadow: inset 0 -5px 9px rgba(0,0,0,.2), 0 0 8px rgba(53,227,111,.12);
   font-size: .69rem;
   font-weight: 850;
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255,255,255,.9) 0%, rgba(255,255,255,.5) 10%, rgba(255,255,255,0) 30%),
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--cca-green) 20%, var(--cca-panel-2)) 0%, color-mix(in srgb, var(--cca-green) 45%, var(--cca-panel-2)) 60%, color-mix(in srgb, var(--cca-green) 65%, black) 100%);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.5), inset 0 -4px 7px color-mix(in srgb, var(--cca-green) 45%, transparent), 0 0 8px rgba(53,227,111,.12);
 }
 .cca-history-ball.is-hit {
-  border-color: var(--cca-gold);
-  color: #fff5cf;
-  background: radial-gradient(circle at 34% 24%, rgba(255,255,255,.34), transparent 19%), #8a5c00;
-  box-shadow: inset 0 -5px 9px rgba(54,31,0,.35), 0 0 11px rgba(255,189,34,.42);
+  border-color: rgba(255,224,140,.8);
+  color: #2a1c00;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,.65) 10%, rgba(255,255,255,0) 32%),
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--cca-gold) 25%, transparent) 0%, color-mix(in srgb, var(--cca-gold) 58%, transparent) 55%, color-mix(in srgb, var(--cca-gold) 85%, #3c2400) 100%);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.7), inset 0 -4px 7px color-mix(in srgb, var(--cca-gold) 45%, #3c2400), 0 0 11px rgba(255,189,34,.42);
 }
 :root[data-theme="light"] .cca-history-ball.is-hit { color: #3c2700; background-color: #ffd55e; }
 .cca-history-hit-heading,
@@ -435,7 +442,7 @@ html.cc-algorithm-migrated body[data-page-id] {
 .cca-frequency-list { display: grid; gap: 7px; }
 .cca-frequency-row { display: grid; grid-template-columns: 20px 31px minmax(70px,1fr) 48px; gap: 7px; align-items: center; }
 .cca-frequency-rank { color: var(--cca-muted); font-size: .57rem; text-align: center; }
-.cca-frequency-ball { width: 30px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--cca-cyan); border-radius: 50%; color: var(--cca-text); background: radial-gradient(circle at 35% 25%,rgba(255,255,255,.2),transparent 20%),var(--cca-panel-2); box-shadow: 0 0 9px rgba(42,216,242,.2); font-size: .68rem; font-weight: 850; }
+.cca-frequency-ball { width: 30px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; color: var(--cca-text); font-size: .68rem; font-weight: 850; background: radial-gradient(circle at 30% 22%, rgba(255,255,255,.9) 0%, rgba(255,255,255,.5) 10%, rgba(255,255,255,0) 30%), radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--cca-cyan) 20%, var(--cca-panel-2)) 0%, color-mix(in srgb, var(--cca-cyan) 45%, var(--cca-panel-2)) 60%, color-mix(in srgb, var(--cca-cyan) 65%, black) 100%); box-shadow: inset 0 1px 2px rgba(255,255,255,.5), inset 0 -4px 7px color-mix(in srgb, var(--cca-cyan) 45%, transparent), 0 0 9px rgba(42,216,242,.2); }
 .cca-frequency-track { height: 7px; overflow: hidden; border-radius: 999px; background: color-mix(in srgb, var(--cca-cyan) 9%, var(--cca-panel-2)); }
 .cca-frequency-track i { height: 100%; display: block; border-radius: inherit; background: linear-gradient(90deg, var(--cca-cyan), var(--cca-violet)); }
 .cca-frequency-row strong { color: var(--cca-cyan); font-size: .68rem; text-align: right; }

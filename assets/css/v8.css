@@ -405,12 +405,43 @@ background-size:180px;}
   width:72px;height:72px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   font-family:'BioRhyme',serif;font-size:2.3rem;font-weight:700;
-  border:1px solid rgba(237,232,223,.12);color:#EDE8DF;
-  transition:all .3s;background:rgba(237,232,223,.03);
+  color:#EDE8DF;
+  transition:all .3s;
+  border:1px solid rgba(255,255,255,.22);
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255,255,255,.4) 0%, rgba(255,255,255,.12) 14%, rgba(255,255,255,0) 34%),
+    radial-gradient(circle at 68% 78%, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 20%),
+    rgba(237,232,223,.045);
+  box-shadow: inset 0 2px 3px rgba(255,255,255,.15), inset 0 -8px 12px rgba(0,0,0,.18);
 }
-.pball.hot{border-color:rgba(200,57,26,.6);color:#C8391A;background:rgba(200,57,26,.07);box-shadow:0 0 14px rgba(200,57,26,.12);}
-.pball.cold{border-color:rgba(139,92,246,.5);color:#8B5CF6;background:rgba(139,92,246,.07);}
-.pball.jolly{border-color:rgba(245,158,11,.4);color:#F59E0B;border-style:dashed;background:rgba(245,158,11,.04);}
+.pball.hot{
+  border-color: rgba(200,57,26,.55);
+  color:#ff8a63;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255,255,255,.55) 0%, rgba(255,255,255,.2) 12%, rgba(255,255,255,0) 32%),
+    radial-gradient(circle at 66% 78%, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 20%),
+    radial-gradient(circle at 50% 46%, rgba(200,57,26,.18) 0%, rgba(200,57,26,.4) 55%, rgba(120,30,10,.6) 100%);
+  box-shadow: inset 0 2px 3px rgba(255,255,255,.25), inset 0 -8px 12px rgba(120,30,10,.35), 0 0 14px rgba(200,57,26,.22);
+}
+.pball.cold{
+  border-color: rgba(139,92,246,.5);
+  color:#c4b2ff;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255,255,255,.55) 0%, rgba(255,255,255,.2) 12%, rgba(255,255,255,0) 32%),
+    radial-gradient(circle at 66% 78%, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 20%),
+    radial-gradient(circle at 50% 46%, rgba(139,92,246,.16) 0%, rgba(139,92,246,.36) 55%, rgba(60,30,120,.55) 100%);
+  box-shadow: inset 0 2px 3px rgba(255,255,255,.22), inset 0 -8px 12px rgba(60,30,120,.32), 0 0 12px rgba(139,92,246,.2);
+}
+.pball.jolly{
+  border-color: rgba(245,158,11,.55);
+  color:#ffd27a;
+  border-style:dashed;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255,255,255,.55) 0%, rgba(255,255,255,.2) 12%, rgba(255,255,255,0) 32%),
+    radial-gradient(circle at 66% 78%, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 20%),
+    radial-gradient(circle at 50% 46%, rgba(245,158,11,.16) 0%, rgba(245,158,11,.36) 55%, rgba(110,60,0,.55) 100%);
+  box-shadow: inset 0 2px 3px rgba(255,255,255,.22), inset 0 -8px 12px rgba(110,60,0,.3), 0 0 12px rgba(245,158,11,.18);
+}
 
 /* Stat rows - piu respiro */
 .sr{

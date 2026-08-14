@@ -475,10 +475,49 @@ button { border: 0; cursor: pointer; }
 .cc-grid-desktop-3 > :nth-child(3) { order: 3; }
 
 .cc-contest {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cc-contest-title {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+.cc-contest-title small {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: .78rem;
+  font-weight: 600;
+}
+.cc-hit-badges {
+  display: flex;
+  gap: 6px;
+}
+.cc-hit-badge {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  box-sizing: border-box;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--chip-c, var(--brand-green)) 20%, transparent);
+}
+.cc-hit-badge strong {
+  font-size: 1rem;
+  line-height: 1.1;
+  color: var(--chip-c, var(--text-main));
+}
+.cc-hit-badge span {
+  margin-top: 2px;
+  font-size: .58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 .cc-countdown {
   display: flex;
@@ -537,18 +576,20 @@ button { border: 0; cursor: pointer; }
   border-radius: 50%;
   color: var(--text-main);
   font-weight: 950;
+  border: 1px solid rgba(255, 255, 255, .5);
   background:
-    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, .82), transparent 16%),
-    radial-gradient(circle at 50% 65%, color-mix(in srgb, var(--brand-green) 80%, #0a2718), color-mix(in srgb, var(--bg-deep) 80%, var(--brand-green)));
-  border: 1px solid color-mix(in srgb, var(--brand-green) 72%, #fff);
-  box-shadow: var(--glow-green), inset 0 -10px 20px rgba(0, 0, 0, .25);
+    radial-gradient(circle at 28% 20%, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .6) 10%, rgba(255, 255, 255, 0) 32%),
+    radial-gradient(circle at 68% 78%, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 20%),
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--brand-green) 25%, transparent) 0%, color-mix(in srgb, var(--brand-green) 55%, transparent) 55%, color-mix(in srgb, var(--brand-green) 82%, black) 100%);
+  box-shadow: var(--glow-green), inset 0 2px 3px rgba(255, 255, 255, .6), inset 0 -6px 10px color-mix(in srgb, var(--brand-green) 55%, transparent), inset 0 0 0 1px rgba(255, 255, 255, .2);
 }
 .cc-number-ball.gold {
+  border-color: rgba(255, 224, 140, .85);
   background:
-    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, .85), transparent 16%),
-    radial-gradient(circle at 50% 65%, var(--brand-gold), #5f3600);
-  border-color: color-mix(in srgb, var(--brand-gold) 76%, #fff);
-  box-shadow: var(--glow-gold), inset 0 -10px 20px rgba(0, 0, 0, .25);
+    radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, .65) 10%, rgba(255, 255, 255, 0) 34%),
+    radial-gradient(circle at 66% 76%, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, 0) 20%),
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--brand-gold) 25%, transparent) 0%, color-mix(in srgb, var(--brand-gold) 58%, transparent) 55%, color-mix(in srgb, var(--brand-gold) 85%, #3c2400) 100%);
+  box-shadow: var(--glow-gold), inset 0 2px 3px rgba(255, 255, 255, .75), inset 0 -6px 9px color-mix(in srgb, var(--brand-gold) 55%, #3c2400), inset 0 0 0 1px rgba(255, 255, 255, .3);
 }
 
 .cc-chip-row {

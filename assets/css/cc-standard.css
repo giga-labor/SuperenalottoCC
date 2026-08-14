@@ -212,20 +212,22 @@ html.cc-standardized .draw-ball,
 html.cc-standardized [data-number-ball] {
   border-radius: 50%;
   color: var(--cc-text-main);
+  border: 1px solid rgba(255, 255, 255, .5);
   background:
-    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, .86), transparent 16%),
-    radial-gradient(circle at 50% 65%, color-mix(in srgb, var(--cc-green) 82%, #0a2718), color-mix(in srgb, var(--cc-bg-deep) 80%, var(--cc-green)));
-  border-color: color-mix(in srgb, var(--cc-green) 72%, #fff);
-  box-shadow: var(--cc-glow-green), inset 0 -10px 20px rgba(0, 0, 0, .25);
+    radial-gradient(circle at 28% 20%, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .6) 10%, rgba(255, 255, 255, 0) 32%),
+    radial-gradient(circle at 68% 78%, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 20%),
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--cc-green) 25%, transparent) 0%, color-mix(in srgb, var(--cc-green) 55%, transparent) 55%, color-mix(in srgb, var(--cc-green) 82%, black) 100%);
+  box-shadow: var(--cc-glow-green), inset 0 2px 3px rgba(255, 255, 255, .6), inset 0 -6px 10px color-mix(in srgb, var(--cc-green) 55%, transparent), inset 0 0 0 1px rgba(255, 255, 255, .2);
 }
 
 html.cc-standardized .jolly,
 html.cc-standardized .superstar {
+  border-color: rgba(255, 224, 140, .85);
   background:
-    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, .86), transparent 16%),
-    radial-gradient(circle at 50% 65%, var(--cc-gold), #5f3600);
-  border-color: color-mix(in srgb, var(--cc-gold) 76%, #fff);
-  box-shadow: var(--cc-glow-gold), inset 0 -10px 20px rgba(0, 0, 0, .25);
+    radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, .65) 10%, rgba(255, 255, 255, 0) 34%),
+    radial-gradient(circle at 66% 76%, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, 0) 20%),
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--cc-gold) 25%, transparent) 0%, color-mix(in srgb, var(--cc-gold) 58%, transparent) 55%, color-mix(in srgb, var(--cc-gold) 85%, #3c2400) 100%);
+  box-shadow: var(--cc-glow-gold), inset 0 2px 3px rgba(255, 255, 255, .75), inset 0 -6px 9px color-mix(in srgb, var(--cc-gold) 55%, #3c2400), inset 0 0 0 1px rgba(255, 255, 255, .3);
 }
 
 html.cc-standardized[data-page-kind="legal-info"] main,

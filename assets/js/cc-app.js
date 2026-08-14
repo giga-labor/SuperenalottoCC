@@ -316,31 +316,33 @@
     const latest = state.latest || state.home?.latest_draw || {};
     const topNumbers = (state.home?.consensus_top || []).slice(0, 6);
     const latestNums = latest.nums || [];
+    const hitsBreakdown = state.home?.hits_breakdown_last_contest || {};
+    const hitBadge = (tier, colorIndex) => `<span class="cc-hit-badge cc-chip-c${colorIndex}"><strong>${hitsBreakdown[tier] ?? 0}</strong><span>hit ${tier}</span></span>`;
     shell(`
       <section class="cc-card cc-jackpot">
         <div class="cc-kicker">Jackpot attuale</div>
         <div class="cc-jackpot-value">${formatJackpot()}<small>Milioni &euro;</small></div>
       </section>
 
-      <section class="cc-card cc-card-pad cc-contest">
-        <div>
-          <div class="cc-kicker">Prossimo concorso</div>
-          <h2 style="margin:.3rem 0 0">Dataset aggiornato</h2>
-          <p style="margin:.3rem 0 0;color:var(--text-muted)">Ultimo concorso n. ${escapeHtml(latest.seq || "--")} - ${escapeHtml(latest.date || "--")}</p>
-        </div>
-        <div class="cc-countdown" aria-label="Sintesi dati">
-          <div class="cc-count-unit"><strong>${state.algorithms.length || "--"}</strong><span>alg</span></div>
-          <div class="cc-count-unit"><strong>${topNumbers.length || "--"}</strong><span>segnali</span></div>
-        </div>
-      </section>
+      <div class="cc-grid cc-grid-2" style="margin-top:14px">
+        <section class="cc-card cc-card-pad cc-contest">
+          <div class="cc-kicker">Aggiornato al concorso</div>
+          <h2 class="cc-contest-title">n.${escapeHtml(latest.seq || "--")}<small>${escapeHtml(latest.date || "--")}</small></h2>
+          <div class="cc-chip-row cc-contest-balls" aria-label="Numeri estratti">${latestNums.map((n, i) => chip(n, i, {})).join("") || "<span>N/D</span>"}</div>
+        </section>
+        <section class="cc-card cc-card-pad cc-contest">
+          <div class="cc-kicker">Algoritmi bravi</div>
+          <div class="cc-hit-badges">${[2, 3, 4, 5, 6].map((tier, i) => hitBadge(tier, i + 1)).join("")}</div>
+        </section>
+      </div>
 
       <div class="cc-grid cc-grid-2 cc-grid-desktop-3" style="margin-top:14px">
         <section class="cc-card cc-card-pad">
           <div class="cc-section-head" style="margin-top:0">
-            <div><div class="cc-kicker">Convergenza degli algoritmi</div><h2>Consenso reale</h2></div>
-            <div class="cc-metric-ring" style="--value:${Math.min(100, (topNumbers[0]?.support || 0) * 14)}"><strong>${topNumbers[0]?.support || "--"}</strong></div>
+            <div><div class="cc-kicker">Hit medio ultimo concorso</div><h2>Resa reale</h2></div>
+            <div class="cc-metric-ring" style="--value:${Math.min(100, ((state.home?.avg_hits_last_contest ?? 0) / 6) * 100)}"><strong>${state.home?.avg_hits_last_contest ?? "--"}</strong></div>
           </div>
-          <p style="color:var(--text-muted)">Supporto massimo tra gli algoritmi disponibili. Non e una probabilita di vincita.</p>
+          <p style="color:var(--text-muted)">Media numeri indovinati da ${state.home?.coverage_last_contest ?? "--"} algoritmi sull'ultimo concorso verificato. Non e una probabilita di vincita.</p>
         </section>
         <section class="cc-card cc-card-pad">
           <div class="cc-kicker">I 6 numeri piu segnalati</div>
@@ -359,6 +361,7 @@
       <div class="cc-grid cc-grid-2">
         ${quick("Storico estrazioni", "Archivio completo dei concorsi", "pages/storico-estrazioni/")}
         ${quick("Classifica", "Classifiche e confronto modelli", "/pages/algoritmi/")}
+        ${quick("Backtest ROI", "Spesa e vincita stimata su tutti gli algoritmi", "pages/backtest-roi/")}
         ${quick("Proposte / Sestine", "Output aggregati dagli algoritmi", "pages/sestine-proposte/")}
         ${quick("Analisi statistiche", "Frequenze, ritardi e pattern", "pages/analisi-statistiche/")}
       </div>

@@ -3,7 +3,7 @@
   var body = document.body;
   if (!body) return;
   var page = String(body.dataset.pageId || '');
-  if (['proposte', 'storico', 'laboratorio-tecnico'].indexOf(page) < 0) return;
+  if (['proposte', 'storico', 'laboratorio-tecnico', 'backtest-roi'].indexOf(page) < 0) return;
   document.documentElement.classList.add('cc-algorithm-migrated', 'cc-primary-migrated');
 
   var icons = {
@@ -15,7 +15,7 @@
     oracle: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9Zm-4 6 4-2 4 2-4 2Zm0 0v5l4 2 4-2V9"/></svg>',
     privacy: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.7 2.8 8.3 7 10 4.2-1.7 7-5.3 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-5"/></svg>'
   };
-  var titleMap = { proposte: 'Sestine consigliate', storico: 'Storico estrazioni', 'laboratorio-tecnico': 'Laboratorio tecnico' };
+  var titleMap = { proposte: 'Sestine consigliate', storico: 'Storico estrazioni', 'laboratorio-tecnico': 'Laboratorio tecnico', 'backtest-roi': 'Backtest ROI' };
 
   function esc(value) { return String(value == null ? '' : value).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function fetchJson(url, fallback) { return fetch(url, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : fallback; }).catch(function () { return fallback; }); }
@@ -78,5 +78,18 @@
       mount(content);bindFilters('.cca-lab-card');body.querySelectorAll('[data-lab-toggle]').forEach(function(btn){btn.addEventListener('click',function(){var detail=btn.nextElementSibling;detail.hidden=!detail.hidden;});});
     });
   }
-  if(page==='proposte')proposalsPage(); else if(page==='storico')historicPage(); else laboratoryPage();
+  function roiBacktestPage() {
+    fetchJson('../../data/precomputed/roi-backtest.json', {}).then(function (data) {
+      var rows = data.rows || [], cat = data.category_counts || {}, jackpot = data.jackpot_events || [];
+      var content =
+        '<section class="cca-card cca-primary-hero"><div><span class="cca-eyebrow">Ultimi ' + Math.round((data.period_days || 365) / 30) + ' mesi</span><h1>Backtest ROI</h1><p>Simulazione: 1 colonna (1&euro;) a concorso per ogni algoritmo attivo.</p></div><div class="cca-orbit-mark" aria-hidden="true">' + esc(data.contests_covered || '--') + '</div></section>' +
+        '<section class="cca-lab-kpis"><div class="cca-card"><strong>&euro;' + Number(data.total_cost_eur || 0).toLocaleString('it-IT', {maximumFractionDigits: 2}) + '</strong><span>Speso stimato</span></div><div class="cca-card"><strong>&euro;' + Number(data.total_estimated_prize_eur || 0).toLocaleString('it-IT', {maximumFractionDigits: 2}) + '</strong><span>Vinto stimato</span></div><div class="cca-card"><strong>' + Number(data.roi_pct || 0).toLocaleString('it-IT', {maximumFractionDigits: 1}) + '%</strong><span>ROI</span></div></section>' +
+        '<section class="cca-card cca-pad"><h2 class="cca-section-label">Distribuzione punti (&ge;2)</h2><div class="cca-ranked-balls">' + [2, 3, 4, 5, 6].map(function (k) { return '<div><span class="cca-ball">' + k + '</span><small>' + (cat[k] || 0) + ' volte</small></div>'; }).join('') + '</div>' +
+        (jackpot.length ? '<p style="margin-top:12px;color:var(--text-muted)">Attenzione: ' + jackpot.length + ' evento/i a 6 punti nel periodo, escluso/i dal vinto stimato (jackpot troppo variabile per una media).</p>' : '') +
+        '<p style="margin-top:12px;color:var(--text-muted)">' + esc(data.prize_table_note || '') + '</p></section>' +
+        '<section class="cca-history-list">' + rows.slice().reverse().slice(0, 60).map(function (r) { return '<article class="cca-card cca-history-row"><div><strong>#' + esc(r.seq) + '</strong><small>' + esc(r.date) + '</small></div><div><span>hit medio ' + esc(r.avg_hits) + '</span> &middot; <span>speso &euro;' + esc(r.cost) + '</span> &middot; <span>vinto &euro;' + esc(r.estimated_prize) + '</span></div></article>'; }).join('') + '</section>';
+      mount(content);
+    });
+  }
+  if(page==='proposte')proposalsPage(); else if(page==='storico')historicPage(); else if(page==='backtest-roi')roiBacktestPage(); else laboratoryPage();
 })();

@@ -2,19 +2,19 @@
   "slug": "chimera-mix-adattivo",
   "title": "CHIMERA-6",
   "family": "ibrido",
-  "generated_at": "2026-08-14T07:00:12",
-  "last_seq": 4234,
-  "last_date": "13/08/2026",
+  "generated_at": "2026-08-14T22:08:18",
+  "last_seq": 4235,
+  "last_date": "14/08/2026",
   "proposal": [
-    12,
-    26,
+    29,
     50,
     55,
-    67,
-    70
+    60,
+    70,
+    80
   ],
   "metrics": {
-    "draws_covered": 3634,
+    "draws_covered": 3635,
     "avg_hits": 0.4,
     "hit_rate_gte_2": 4.8,
     "hit_rate_gte_3": 0.3,
@@ -28,7 +28,7 @@
   ],
   "windows": {
     "30": {
-      "avg_hits": 0.2
+      "avg_hits": 0.17
     },
     "90": {
       "avg_hits": 0.23
@@ -38,15 +38,15 @@
     }
   },
   "last_verified": {
-    "seq": 4234,
-    "date": "13/08/2026",
+    "seq": 4235,
+    "date": "14/08/2026",
     "proposal": [
-      24,
+      12,
+      26,
       50,
-      59,
+      55,
       67,
-      70,
-      76
+      70
     ],
     "hits": 0
   }
