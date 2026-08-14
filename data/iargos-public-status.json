@@ -1,29 +1,29 @@
 {
-  "updated_at": "2026-08-14 23:41:06",
+  "updated_at": "2026-08-15 00:28:28",
   "version": "03.00.000",
   "enabled": true,
   "learning_mode": false,
   "developing_mode": false,
-  "severity": "critical",
-  "summary": "Problemi attivi: p1_mirror_map",
+  "severity": "warning",
+  "summary": "Problemi attivi: p6_local_publish, p8_backup_over_limit",
   "overview_green": false,
   "alignment_priority": {
     "p0_new_contest_found": false,
-    "p1_mirror_map": true,
+    "p1_mirror_map": false,
     "p2_flow_guard": false,
     "p3_pending_publish": false,
     "p4_alignment_diff": false,
     "p5_training_gap": false,
     "p5_archive_stale": false,
-    "p6_local_publish": false,
+    "p6_local_publish": true,
     "p7_remote_force_align": false,
-    "p8_backup_over_limit": false,
+    "p8_backup_over_limit": true,
     "p9_smtp_broken": false
   },
   "alignment": {
     "archive_update_state": "green",
-    "mirror_has_inconsistencies": true,
-    "flow_guard_ok": false,
+    "mirror_has_inconsistencies": false,
+    "flow_guard_ok": true,
     "git_dirty": true,
     "remote_ahead": 0,
     "remote_behind": 0,
@@ -36,9 +36,9 @@
     "consecutive_failures": 0
   },
   "runtime": {
-    "state_level": "warn",
-    "state_label": "monitoraggio",
-    "last_push_at": "2026-08-14 23:24:13",
+    "state_level": "ok",
+    "state_label": "operativo",
+    "last_push_at": "2026-08-14 23:41:56",
     "last_release_id": "overview-resolved-20260401020218-026ab2fab0",
     "last_release_at": "2026-04-01 02:02:18",
     "boot_ts": 1786737604
@@ -151,14 +151,6 @@
     {
       "type": "draw",
       "ts": "2026-08-05T19:19:13",
-      "message": "Nuova estrazione importata e analizzata",
-      "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
-      "ok": true,
-      "source": "iargos"
-    },
-    {
-      "type": "draw",
-      "ts": "2026-07-31T21:01:38",
       "message": "Nuova estrazione importata e analizzata",
       "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
       "ok": true,
@@ -280,6 +272,14 @@
       "type": "versioning",
       "ts": "2026-03-14T23:02:33",
       "message": "Versione del sito aggiornata (00.09.010 -> 00.09.012)",
+      "detail": "481 file sincronizzati tra mirror e sito pubblico",
+      "ok": true,
+      "source": "versioning-audit"
+    },
+    {
+      "type": "versioning",
+      "ts": "2026-03-14T23:01:41",
+      "message": "Versione precedente ripristinata (00.09.011 -> 00.09.010)",
       "detail": "481 file sincronizzati tra mirror e sito pubblico",
       "ok": true,
       "source": "versioning-audit"
