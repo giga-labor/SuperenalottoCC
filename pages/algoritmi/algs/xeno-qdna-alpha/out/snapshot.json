@@ -1,0 +1,41 @@
+{
+  "slug": "xeno-qdna-alpha",
+  "title": "XENO-QDNA α",
+  "family": "generativi",
+  "generated_at": "2026-08-14T07:00:13",
+  "last_seq": 4234,
+  "last_date": "",
+  "proposal": [
+    2,
+    50,
+    60,
+    61,
+    69,
+    79
+  ],
+  "metrics": {
+    "draws_covered": 4212,
+    "avg_hits": 0.43,
+    "hit_rate_gte_2": 5.8,
+    "best_streak": 8
+  },
+  "explanation": [
+    "XENO-QDNA e un generatore sperimentale a collasso binario: ogni sestina diventa un DNA da 42 bit.",
+    "Generare sestine laterali non basate su frequenza, ritardo, rete neurale, genetica o consenso diretto.",
+    "Codifica 6 numeri in 42 bit, calcola fratture XOR, seleziona bit vivi ma non periodici, applica maschera all'ultimo DNA.",
+    "Modello esplorativo; non aumenta in modo dimostrato la probabilita reale di vincita; utile per test comparativi."
+  ],
+  "last_verified": {
+    "seq": 4234,
+    "date": "13/08/2026",
+    "proposal": [
+      7,
+      8,
+      25,
+      61,
+      74,
+      80
+    ],
+    "hits": 1
+  }
+}
