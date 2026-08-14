@@ -60,8 +60,9 @@
       '<main class="cco-page"><section class="cco-vision"><div class="cco-eyes" aria-hidden="true">' +
       '<div class="cco-portal oracle-wormhole"><canvas class="oracle-wormhole__canvas" data-wormhole-canvas width="1280" height="720"></canvas><div class="oracle-wormhole__vignette"></div></div>' +
       '<div class="cco-portal oracle-wormhole"><canvas class="oracle-wormhole__canvas" data-wormhole-canvas width="1280" height="720"></canvas><div class="oracle-wormhole__vignette"></div></div>' +
-      '</div><blockquote>' + highlightedSpeech(reading.oracle_speech, reading.promoted_numbers) + '</blockquote></section></main>' +
-      '<a class="cco-archive-badge" href="/pages/oracle/archivio/" aria-label="Archivio delle previsioni dell\'oracolo" title="Archivio previsioni">' + icons.archive + '</a>' +
+      '</div><blockquote>' + highlightedSpeech(reading.oracle_speech, reading.promoted_numbers) + '</blockquote>' +
+      '<a class="cco-archive-link" href="/pages/oracle/archivio/" aria-label="Archivio delle previsioni dell\'oracolo">' +
+      icons.archive + '<span>Consulta le rivelazioni passate</span></a></section></main>' +
       navigation() + '</div>';
     document.querySelector('[data-back]').addEventListener('click', function () {
       setTheme();

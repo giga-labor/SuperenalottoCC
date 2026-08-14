@@ -8,14 +8,13 @@ body[data-page-id="oracle-new"] { background: #020a08 !important; color: #f4f6f2
 .cco-vision blockquote { max-width: 760px; margin: 0; padding: 24px; color: #f4f6f2; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.16rem, 4vw, 1.62rem); line-height: 1.82; text-align: center; }
 .cco-vision blockquote strong { color: #e8b928; font: inherit; text-shadow: 0 0 11px rgba(232, 185, 40, 0.45); }
 .cco-error { min-height: 100vh; display: grid; place-items: center; margin: 0; background: var(--cca-bg); color: var(--cca-text); font-family: Georgia, "Times New Roman", serif; }
-.cco-archive-badge { position: fixed; top: 50%; right: 14px; transform: translateY(-50%); z-index: 40; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(232, 185, 40, 0.22), rgba(2, 10, 8, 0.9)); border: 1px solid rgba(232, 185, 40, 0.55); box-shadow: 0 0 14px rgba(232, 185, 40, 0.35); color: #e8b928; text-decoration: none; transition: box-shadow 0.2s ease, transform 0.2s ease; }
-.cco-archive-badge:hover, .cco-archive-badge:focus-visible { box-shadow: 0 0 22px rgba(232, 185, 40, 0.6); transform: translateY(-50%) scale(1.06); }
-.cco-archive-badge svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.cco-archive-link { display: inline-flex; align-items: center; justify-content: center; gap: 9px; margin: 2px auto 22px; color: #e8b928; font-size: 0.95rem; font-weight: 600; line-height: 1.25; text-align: center; text-decoration: none; text-shadow: 0 0 14px rgba(232, 185, 40, 0.35); transition: color 0.2s ease, text-shadow 0.2s ease; }
+.cco-archive-link:hover, .cco-archive-link:focus-visible { color: #ffd967; text-shadow: 0 0 20px rgba(232, 185, 40, 0.62); }
+.cco-archive-link svg { width: 18px; height: 18px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 @media (max-width: 560px) {
   .cco-page { align-items: start; padding-top: 38px; }
   .cco-vision { gap: 16px; }
   .cco-eyes { --eye-w: min(34vw, 190px); }
   .cco-vision blockquote { padding: 12px 6px; text-align: left; }
-  .cco-archive-badge { width: 38px; height: 38px; right: 8px; }
-  .cco-archive-badge svg { width: 18px; height: 18px; }
+  .cco-archive-link { width: min(100%, 19rem); margin-bottom: 18px; font-size: 0.9rem; }
 }
