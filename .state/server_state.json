@@ -1,10 +1,30 @@
 {
   "latest_local_contest_id": 4234,
-  "last_published_commit": "",
-  "per_algo_last_trained_contest_id": {},
-  "last_card_hits_build_at": "",
-  "last_card_hits_changed_cards": 0,
-  "last_successful_run_id": "",
+  "last_published_commit": "ea151766ddc55c56f57b442943a60d05110c4560",
+  "per_algo_last_trained_contest_id": {
+    "astra-moon": 4234,
+    "chimera-mix-adattivo": 4234,
+    "classic-analisi-anomalie-pattern": 4234,
+    "classic-co-occorrenze": 4234,
+    "classic-coppie-terni-consecutivi": 4234,
+    "classic-coppie-terzine-frequenti": 4234,
+    "classic-distribuzioni-modelli-raggruppamento": 4234,
+    "classic-frequency": 4234,
+    "classic-ritardi": 4234,
+    "classic-ritardi-combinazioni": 4234,
+    "classic-statistiche-combinate-finestre-mobili": 4234,
+    "classic-tavole-probabilita-teorica-test-uniformita": 4234,
+    "genetic": 4234,
+    "hispa": 4234,
+    "paradox-logiche-decisionali-metriche": 4234,
+    "solus90-anticrowd": 4234,
+    "super6NN": 4234,
+    "xeno-qdna-alpha": 4234,
+    "xeno-qdna-beta": 4234
+  },
+  "last_card_hits_build_at": "2026-08-14T06:56:55",
+  "last_card_hits_changed_cards": 11,
+  "last_successful_run_id": "20260814_065045",
   "last_email_status": "",
   "pending_publish": {},
   "consecutive_failures": 0,
@@ -18,6 +38,12 @@
       "payload": {
         "lease_until": "2026-08-14T06:52:45"
       }
+    },
+    {
+      "ts": "2026-08-14T06:58:02",
+      "event": "lock_released",
+      "run_id": "20260814_065045",
+      "payload": {}
     }
   ],
   "last_quorum_policy": {

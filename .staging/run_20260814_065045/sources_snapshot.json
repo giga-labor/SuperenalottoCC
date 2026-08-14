@@ -1,9 +1,0 @@
-{
-  "confirmations": 1,
-  "required": 1,
-  "best_date": "13/08/2026",
-  "latest_external_contest_id": 129,
-  "raw": "CHECK ONLINE CONCORSI (solo verifica, nessun salvataggio)\nLocale corrente: seq=4233 data=11/08/2026\n\n[superenalotto.it] ONLINE PIU AGGIORNATO\n  locale: seq=4233 data=11/08/2026 sestina=08 19 38 53 66 79\n  online: seq=129 data=13/08/2026 sestina=02 07 16 29 57 84\n  nuova_sestina_online: 02 07 16 29 57 84\n  ref: https://www.superenalotto.it/archivio-estrazioni/concorso-129/13-agosto-2026\n\n\nERRORI FONTI:\n- [parse_superenalotto_com] errore: Nessuna estrazione trovata su superenalotto.com | Jackpot aggiornato: € 209.100.000 [superenalotto_com] | next-draw aggiornato: 17/08/2026 20:00 [official_postponement]",
-  "status": "healthy",
-  "step_title": "CHECK_SOURCES_QUORUM_PHASE1"
-}

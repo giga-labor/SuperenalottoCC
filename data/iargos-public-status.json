@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14 06:48:51",
+  "updated_at": "2026-08-14 06:58:12",
   "version": "03.00.000",
   "enabled": true,
   "learning_mode": false,
@@ -38,12 +38,36 @@
   "runtime": {
     "state_level": "ok",
     "state_label": "operativo",
-    "last_push_at": "2026-08-14 06:47:36",
+    "last_push_at": "2026-08-14 06:57:56",
     "last_release_id": "overview-resolved-20260401020218-026ab2fab0",
     "last_release_at": "2026-04-01 02:02:18",
     "boot_ts": 1786682322
   },
   "feed": [
+    {
+      "type": "draw",
+      "ts": "2026-08-14T06:58:09",
+      "message": "Nuova estrazione importata e analizzata",
+      "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
+      "ok": true,
+      "source": "iargos"
+    },
+    {
+      "type": "alert",
+      "ts": "2026-08-14T06:57:07",
+      "message": "Rilevata una situazione anomala, intervento in corso",
+      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
+      "ok": false,
+      "source": "updates"
+    },
+    {
+      "type": "training",
+      "ts": "2026-08-14T06:50:54",
+      "message": "Algoritmi aggiornati con i dati più recenti",
+      "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
+      "ok": true,
+      "source": "updates"
+    },
     {
       "type": "alert",
       "ts": "2026-08-14T06:39:11",
@@ -115,14 +139,6 @@
       "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
       "ok": true,
       "source": "iargos"
-    },
-    {
-      "type": "training",
-      "ts": "2026-08-07T22:12:56",
-      "message": "Algoritmi aggiornati con i dati più recenti",
-      "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
-      "ok": true,
-      "source": "updates"
     },
     {
       "type": "draw",
@@ -265,22 +281,6 @@
       "ts": "2026-03-14T23:02:33",
       "message": "Versione del sito aggiornata (00.09.010 -> 00.09.012)",
       "detail": "481 file sincronizzati tra mirror e sito pubblico",
-      "ok": true,
-      "source": "versioning-audit"
-    },
-    {
-      "type": "versioning",
-      "ts": "2026-03-14T23:01:41",
-      "message": "Versione precedente ripristinata (00.09.011 -> 00.09.010)",
-      "detail": "481 file sincronizzati tra mirror e sito pubblico",
-      "ok": true,
-      "source": "versioning-audit"
-    },
-    {
-      "type": "versioning",
-      "ts": "2026-03-10T23:31:55",
-      "message": "Nuova versione del sito pubblicata (00.08.002 -> 00.09.000)",
-      "detail": "480 file sincronizzati tra mirror e sito pubblico",
       "ok": true,
       "source": "versioning-audit"
     }
