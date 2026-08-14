@@ -1,0 +1,41 @@
+[06:50:45] Fase OK: lock_acquire
+[06:50:46] AI nulla osta OK su check_sources_quorum_phase1
+[06:50:46] Avvio fase: check_sources_quorum_phase1
+[06:50:52] Fase OK: check_sources_quorum_phase1
+[06:50:52] AI nulla osta OK su update_local_draws_stage
+[06:50:52] Avvio fase: update_local_draws_stage
+[06:50:54] Fase OK: update_local_draws_stage
+[06:50:54] AI nulla osta OK su verify_draws_stage
+[06:50:54] Avvio fase: verify_draws_stage
+[06:50:54] Fase OK: verify_draws_stage
+[06:50:54] AI nulla osta OK su apply_draws_local_atomic
+[06:50:54] Avvio fase: apply_draws_local_atomic
+[06:50:54] Fase OK: apply_draws_local_atomic
+[06:50:54] AI nulla osta OK su train_incremental_stage_all_active
+[06:50:54] Avvio fase: train_incremental_stage_all_active
+[06:50:54] TRAIN start: target_seq=4234 | algoritmi_attivi=19
+[06:50:54] TRAIN progress: 0/19 (0%) -> avvio astra-moon
+[06:50:56] TRAIN progress: 1/19 (5%) -> astra-moon OK
+[06:50:56] TRAIN progress: 1/19 (5%) -> avvio chimera-mix-adattivo
+[06:50:58] TRAIN progress: 2/19 (10%) -> chimera-mix-adattivo OK
+[06:50:58] TRAIN progress: 2/19 (10%) -> avvio classic-analisi-anomalie-pattern
+[06:50:58] TRAIN progress: 3/19 (15%) -> classic-analisi-anomalie-pattern OK
+[06:50:58] TRAIN progress: 3/19 (15%) -> avvio classic-co-occorrenze
+[06:50:59] TRAIN progress: 4/19 (21%) -> classic-co-occorrenze OK
+[06:50:59] TRAIN progress: 4/19 (21%) -> avvio classic-coppie-terni-consecutivi
+[06:50:59] TRAIN progress: 5/19 (26%) -> classic-coppie-terni-consecutivi OK
+[06:50:59] TRAIN progress: 5/19 (26%) -> avvio classic-coppie-terzine-frequenti
+[06:51:00] TRAIN progress: 6/19 (31%) -> classic-coppie-terzine-frequenti OK
+[06:51:00] TRAIN progress: 6/19 (31%) -> avvio classic-distribuzioni-modelli-raggruppamento
+[06:51:00] TRAIN progress: 7/19 (36%) -> classic-distribuzioni-modelli-raggruppamento OK
+[06:51:00] TRAIN progress: 7/19 (36%) -> avvio classic-frequency
+[06:51:01] TRAIN progress: 8/19 (42%) -> classic-frequency OK
+[06:51:01] TRAIN progress: 8/19 (42%) -> avvio classic-ritardi
+[06:51:01] TRAIN progress: 9/19 (47%) -> classic-ritardi OK
+[06:51:01] TRAIN progress: 9/19 (47%) -> avvio classic-ritardi-combinazioni
+[06:51:02] TRAIN progress: 10/19 (52%) -> classic-ritardi-combinazioni OK
+[06:51:02] TRAIN progress: 10/19 (52%) -> avvio classic-statistiche-combinate-finestre-mobili
+[06:51:02] TRAIN progress: 11/19 (57%) -> classic-statistiche-combinate-finestre-mobili OK
+[06:51:02] TRAIN progress: 11/19 (57%) -> avvio classic-tavole-probabilita-teorica-test-uniformita
+[06:51:03] TRAIN progress: 12/19 (63%) -> classic-tavole-probabilita-teorica-test-uniformita OK
+[06:51:03] TRAIN progress: 12/19 (63%) -> avvio genetic
