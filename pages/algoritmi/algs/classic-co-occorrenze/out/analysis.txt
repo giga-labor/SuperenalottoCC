@@ -1,1 +1,18 @@
-Co-occorrenze è stato verificato su 4.232 concorsi. In media ha indovinato 0,40 numeri per sestina e ha ottenuto almeno due numeri nel 5,1% dei casi, circa 5 volte ogni 100 proposte. Il valore generale è molto vicino alla media attesa da una normale sestina. Anche l’andamento recente è stabile: negli ultimi gruppi completi di 100 concorsi la media è 0,38, quasi identica al periodo precedente. Le scelte sono però concentrate: il numero più usato compare nel 45,6% delle proposte. Questo indica una preferenza forte e ripetuta. L’algoritmo è regolare, ma la concentrazione va osservata perché riduce la varietà delle sestine.
+Contesto e definizioni
+Ho analizzato 4,234 concorsi disponibili, con validazione storica progressiva fino al concorso 4234.
+In ogni passo il modello propone una sestina costruita solo con informazioni disponibili prima dell'estrazione target.
+
+Che cosa misura davvero la co-occorrenza
+La logica non guarda solo ai numeri piu presenti singolarmente, ma alla loro capacita di muoversi insieme nel tempo.
+In pratica, il modello favorisce sestine in cui i legami a coppie risultano densi, coerenti e ripetuti nello storico.
+Questa scelta rende la proposta leggibile: non un elenco casuale di numeri forti isolati, ma un piccolo cluster con struttura interna.
+
+Perche questo approccio puo essere interessante da leggere
+Quando osservi la scheda, puoi seguire tre livelli: frequenza del singolo numero, forza della rete di coppie e tenuta metrica nel tempo.
+Questa stratificazione allunga naturalmente il tempo di lettura perche ogni livello aggiunge un pezzo di senso: prima il dato, poi la relazione, poi la sintesi operativa.
+Il risultato e una narrazione tecnica piu ricca ma ancora concreta, adatta sia a chi vuole un colpo d'occhio sia a chi cerca approfondimento.
+
+Limiti e disciplina interpretativa
+Anche una rete di co-occorrenze molto ordinata non trasforma un processo aleatorio in un processo deterministico.
+Le metriche sono descrittive: aiutano a confrontare modelli, monitorare stabilita e capire quando una regola perde efficacia.
+Usa quindi il modello come strumento di analisi strutturale e supporto decisionale, mantenendo sempre controllo del rischio e aspettative realistiche.

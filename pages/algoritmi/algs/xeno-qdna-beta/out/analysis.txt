@@ -1,1 +1,9 @@
-XENO-QDNA Beta è stato controllato su 4.176 concorsi. Ha indovinato in media 0,41 numeri per proposta e ha raggiunto almeno due numeri nel 5,7% dei casi, quasi 6 volte ogni 100. Il risultato complessivo è leggermente sopra la media di 0,40 attesa da una normale sestina, ma il vantaggio è piccolo. Negli ultimi gruppi completi di 100 concorsi la media è scesa da 0,43 a 0,38, mostrando un calo recente. Le scelte restano ben distribuite e il numero più usato compare nel 12,2% delle proposte. XENO-QDNA Beta mantiene un buon risultato generale, ma la fase più recente è meno brillante e va osservata nei prossimi aggiornamenti.
+XENO-QDNA β - Concorso 4234 del 13/08/2026
+Sestina β proposta per il concorso 4235: 09 45 56 70 82 83
+Sestina α di riferimento: 07 08 25 61 74 80
+
+Maschera B*: 000101101111110111101111111111111110000111
+Bit corretti selezionati: 31/42. IFC score: 11.0. Tentativo: 1.
+Membrana XENO-90: OK.
+
+Riflessioni: 1 | Tunneling: 0

@@ -1,1 +1,38 @@
-Super6 NN è stato controllato su 4.232 concorsi. Ha indovinato in media 0,39 numeri per proposta e ha raggiunto almeno due numeri nel 4,7% dei casi, poco meno di 5 volte ogni 100. Il risultato generale è vicino alla media attesa da una normale sestina. Negli ultimi gruppi completi di 100 concorsi la media è salita da 0,37 a 0,40, mostrando un lieve miglioramento. Le scelte sono ben distribuite e il numero più usato compare nel 15,0% delle proposte. Super6 NN sta recuperando nel periodo recente e mantiene una buona varietà, ma i risultati disponibili non mostrano ancora un vantaggio stabile rispetto a una scelta casuale.
+Descrizione tecnica algoritmo
+Super6NN usa una rete GRU con output multi-label su 90 classi, una per ogni numero possibile.
+Ogni concorso viene codificato in multi-hot e letto in sequenza temporale per estrarre struttura ricorrente.
+La stima per ogni step usa solo lo storico precedente al concorso target, in ottica walk-forward.
+
+Impostazione di questo export SICC
+Analisi eseguita su 4234 concorsi del draws admin, con 4233 step di validazione storica.
+Per ogni step viene proposta una sestina deterministica dai 6 logit piu alti del modello.
+Ogni proposta e generata dallo stato appreso fino a quel passo, poi verificata sul concorso successivo.
+
+Risultati osservati sullo storico
+- Media hit/sestina: 0.3905
+- Hit >=1: 1444/4233 (34.11%)
+- Hit >=2: 197/4233 (4.65%)
+- Hit >=3: 12/4233 (0.28%)
+- Hit >=4: 0/4233 (0.00%)
+- Hit >=5: 0/4233 (0.0000%)
+- Hit =6: 0/4233 (0.000000%)
+- Distribuzione hit esatta: 0:2789 1:1247 2:185 3:12 4:0 5:0 6:0
+
+Confronto con baseline casuale (6 su 90)
+- Media hit attesa random: 0.4000 | osservata: 0.3905
+- Hit>=2 atteso random: 4.963% | osservato: 4.654% | z-score: -0.93
+- Hit>=3 atteso random: 0.315%
+- Hit>=4 atteso random: 0.00848%
+
+Stabilita temporale
+- Media ultimi 200 step: 0.4050
+- Deviazione standard hit: 0.5852
+
+Configurazione operativa
+- Ultimo concorso disponibile: 4234 (13/08/2026)
+- Prossimo concorso stimato: 4235
+- Sestina proposta: 21 24 55 64 65 88
+
+Lettura e limiti
+Le metriche descrivono comportamento storico del modello ma non costituiscono garanzia predittiva futura.
+Il run va rieseguito a ogni aggiornamento draws per mantenere coerenza tra storico, metriche e proposta operativa.

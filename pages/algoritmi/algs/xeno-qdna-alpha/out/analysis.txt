@@ -1,1 +1,7 @@
-XENO-QDNA Alpha è stato verificato su 4.211 concorsi. In media ha indovinato 0,43 numeri per sestina e almeno due numeri nel 5,8% dei casi, quasi 6 volte ogni 100 proposte. Il risultato generale è leggermente sopra la media di 0,40 attesa da una normale sestina, anche se la differenza resta piccola. Negli ultimi gruppi completi di 100 concorsi la media è rimasta intorno a 0,42, senza cambiamenti importanti. Le scelte sono ben distribuite tra i numeri e il più usato compare nel 12,6% delle proposte. XENO-QDNA Alpha appare regolare e conserva uno dei migliori risultati complessivi, ma non può prevedere con certezza la prossima estrazione.
+XENO-QDNA - Concorso 4234 del 13/08/2026
+Sestina proposta per il concorso 4235: 02 50 60 61 69 79
+
+Maschera di collasso: 011111111111111111111001111100010110011011
+Tentativo: 3. Score decoerenza: 2. Membrana XENO-90: accettata in modalita forzata.
+
+Riflessioni applicate: 2 | Tunneling: 0

@@ -2,19 +2,19 @@
   "slug": "solus90-anticrowd",
   "title": "SOLUS-90",
   "family": "statistica",
-  "generated_at": "2026-08-14T06:46:10",
-  "last_seq": 4233,
-  "last_date": "11/08/2026",
+  "generated_at": "2026-08-14T06:57:45",
+  "last_seq": 4234,
+  "last_date": "13/08/2026",
   "proposal": [
     32,
-    41,
-    57,
+    46,
+    59,
     62,
-    78,
-    86
+    79,
+    87
   ],
   "metrics": {
-    "draws_covered": 4232,
+    "draws_covered": 4233,
     "avg_hits": 0.4,
     "hit_rate_gte_2": 5.0,
     "hit_rate_gte_3": 0.3,
@@ -31,15 +31,15 @@
       "avg_hits": 0.23
     },
     "90": {
-      "avg_hits": 0.3
+      "avg_hits": 0.31
     },
     "180": {
-      "avg_hits": 0.32
+      "avg_hits": 0.33
     }
   },
   "last_verified": {
-    "seq": 4233,
-    "date": "11/08/2026",
+    "seq": 4234,
+    "date": "13/08/2026",
     "proposal": [
       32,
       41,
@@ -48,6 +48,6 @@
       78,
       86
     ],
-    "hits": 0
+    "hits": 1
   }
 }
