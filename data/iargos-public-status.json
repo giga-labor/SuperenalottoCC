@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14 22:08:59",
+  "updated_at": "2026-08-14 22:29:15",
   "version": "03.00.000",
   "enabled": true,
   "learning_mode": false,
@@ -38,12 +38,28 @@
   "runtime": {
     "state_level": "ok",
     "state_label": "operativo",
-    "last_push_at": "2026-08-14 22:08:31",
+    "last_push_at": "2026-08-14 22:29:02",
     "last_release_id": "overview-resolved-20260401020218-026ab2fab0",
     "last_release_at": "2026-04-01 02:02:18",
     "boot_ts": 1786737604
   },
   "feed": [
+    {
+      "type": "alert",
+      "ts": "2026-08-14T22:27:56",
+      "message": "Rilevata una situazione anomala, intervento in corso",
+      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
+      "ok": false,
+      "source": "updates"
+    },
+    {
+      "type": "training",
+      "ts": "2026-08-14T22:27:33",
+      "message": "Algoritmi aggiornati con i dati più recenti",
+      "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
+      "ok": true,
+      "source": "updates"
+    },
     {
       "type": "draw",
       "ts": "2026-08-14T22:08:54",
@@ -119,22 +135,6 @@
     {
       "type": "training",
       "ts": "2026-08-11T22:53:36",
-      "message": "Algoritmi aggiornati con i dati più recenti",
-      "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
-      "ok": true,
-      "source": "updates"
-    },
-    {
-      "type": "alert",
-      "ts": "2026-08-09T22:10:39",
-      "message": "Rilevata una situazione anomala, intervento in corso",
-      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
-      "ok": true,
-      "source": "iargos"
-    },
-    {
-      "type": "training",
-      "ts": "2026-08-09T22:09:41",
       "message": "Algoritmi aggiornati con i dati più recenti",
       "detail": "Completato l'aggiornamento degli algoritmi predittivi con le ultime estrazioni disponibili.",
       "ok": true,
