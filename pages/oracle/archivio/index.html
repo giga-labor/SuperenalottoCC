@@ -77,7 +77,7 @@
         var rows = entries.map(function (item) {
           var concorso = esc(item.concorso);
           var data = esc(item.data);
-          var proposte = fmtArr(item.proposte);
+          var proposte = fmtArr(item.proposte_marcate || item.proposte);
           var indovinati = fmtArr(item.indovinati);
           var hitClass = (item.indovinati && item.indovinati.length > 0) ? ' oa-hits' : '';
           return '<tr>' +
