@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14 23:07:01",
+  "updated_at": "2026-08-14 23:16:29",
   "version": "03.00.000",
   "enabled": true,
   "learning_mode": false,
@@ -25,7 +25,7 @@
     "mirror_has_inconsistencies": false,
     "flow_guard_ok": true,
     "git_dirty": true,
-    "remote_ahead": 0,
+    "remote_ahead": 1,
     "remote_behind": 0,
     "alignment_diff_count": 0,
     "active_algorithms_count": 19,
@@ -44,6 +44,14 @@
     "boot_ts": 1786737604
   },
   "feed": [
+    {
+      "type": "alert",
+      "ts": "2026-08-14T23:16:24",
+      "message": "Rilevata una situazione anomala, intervento in corso",
+      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
+      "ok": true,
+      "source": "iargos"
+    },
     {
       "type": "alert",
       "ts": "2026-08-14T22:27:56",
@@ -85,14 +93,6 @@
       "source": "updates"
     },
     {
-      "type": "alert",
-      "ts": "2026-08-14T06:59:37",
-      "message": "Rilevata una situazione anomala, intervento in corso",
-      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
-      "ok": false,
-      "source": "updates"
-    },
-    {
       "type": "training",
       "ts": "2026-08-14T06:59:26",
       "message": "Algoritmi aggiornati con i dati più recenti",
@@ -109,28 +109,12 @@
       "source": "iargos"
     },
     {
-      "type": "alert",
-      "ts": "2026-08-14T06:39:11",
-      "message": "Rilevata una situazione anomala, intervento in corso",
-      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
-      "ok": true,
-      "source": "iargos"
-    },
-    {
       "type": "draw",
       "ts": "2026-08-11T23:03:04",
       "message": "Nuova estrazione importata e analizzata",
       "detail": "Rilevato un nuovo concorso: archivio aggiornato e analisi avviate automaticamente.",
       "ok": true,
       "source": "iargos"
-    },
-    {
-      "type": "alert",
-      "ts": "2026-08-11T23:00:18",
-      "message": "Rilevata una situazione anomala, intervento in corso",
-      "detail": "iARGOS ha rilevato un'anomalia e ha avviato le procedure di ripristino automatico.",
-      "ok": false,
-      "source": "updates"
     },
     {
       "type": "training",
@@ -281,6 +265,22 @@
       "ts": "2026-04-17T19:46:22",
       "message": "Nuova versione del sito pubblicata (00.10.033 -> 00.11.000)",
       "detail": "617 file sincronizzati tra mirror e sito pubblico",
+      "ok": true,
+      "source": "versioning-audit"
+    },
+    {
+      "type": "versioning",
+      "ts": "2026-03-25T12:56:04",
+      "message": "Nuova versione del sito pubblicata (00.09.022 -> 00.10.000)",
+      "detail": "501 file sincronizzati tra mirror e sito pubblico",
+      "ok": true,
+      "source": "versioning-audit"
+    },
+    {
+      "type": "versioning",
+      "ts": "2026-03-14T23:02:33",
+      "message": "Versione del sito aggiornata (00.09.010 -> 00.09.012)",
+      "detail": "481 file sincronizzati tra mirror e sito pubblico",
       "ok": true,
       "source": "versioning-audit"
     }
