@@ -56,13 +56,19 @@
     return (state.jackpot?.jackpot_str || "--").replace(/\./g, ",");
   }
 
+  function decinaOf(n) {
+    const v = parseInt(n, 10);
+    if (!Number.isFinite(v) || v < 1) return 1;
+    return Math.min(9, Math.ceil(v / 10));
+  }
+
   function ball(n, kind) {
-    return `<span class="cc-number-ball ${kind || ""}">${escapeHtml(n)}</span>`;
+    return `<span class="cc-number-ball cc-decina-${decinaOf(n)} ${kind || ""}">${escapeHtml(n)}</span>`;
   }
 
   function chip(n, index, opts) {
     const o = opts || {};
-    const colorClass = "cc-chip-c" + (((index % 5) + 5) % 5 + 1);
+    const colorClass = "cc-decina-" + decinaOf(n);
     const filled = o.filled ? " filled" : "";
     const caption = o.caption
       ? `<span class="cc-chip-caption">${escapeHtml(o.captionLabel || "")}<strong>${escapeHtml(o.caption)}</strong></span>`
@@ -453,7 +459,7 @@
       </section>
       <section class="cc-card cc-card-pad">
         <div class="cc-kicker">Numeri evidenziati da consenso</div>
-        <div class="cc-number-row" style="margin-top:14px">${top.map((x, i) => ball(x.number, i % 2 ? "gold" : "")).join("") || "<p style='color:var(--text-muted)'>Nessun numero aggregato disponibile per questo algoritmo.</p>"}</div>
+        <div class="cc-number-row" style="margin-top:14px">${top.map((x) => ball(x.number, "")).join("") || "<p style='color:var(--text-muted)'>Nessun numero aggregato disponibile per questo algoritmo.</p>"}</div>
       </section>
       <section class="cc-card cc-card-pad">
         <div class="cc-kicker">Riscontri storici</div>

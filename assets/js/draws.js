@@ -179,7 +179,8 @@ function renderNumeriCell(cellValue) {
   if (!nums.length) return `<td class="px-3 py-2 text-ash">—</td>`;
   const balls = nums.map(n => {
     const safe = escapeHtml(n);
-    return `<span class="cc-ball cc-ball--draw" style="--cc-ball-size:1.48rem;font-size:.69rem">${safe}</span>`;
+    const decina = Math.min(9, Math.max(1, Math.ceil((parseInt(n, 10) || 1) / 10)));
+    return `<span class="cc-ball cc-ball--draw" data-decina="${decina}" style="--cc-ball-size:1.48rem;font-size:.69rem">${safe}</span>`;
   }).join('');
   return `<td class="px-3 py-2"><div class="cc-ball-row" style="gap:.18rem;flex-wrap:nowrap">${balls}</div></td>`;
 }

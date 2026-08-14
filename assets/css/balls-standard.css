@@ -1,5 +1,5 @@
 /* Global balls standard — glass marble effect
-   default: colored translucent glass (6-color cycle) + white text
+   default: colored translucent glass, colore fisso per decina di appartenenza (1-10 ... 81-90) + white text
    hit: gold translucent glass + dark text + slightly larger
    Dimensioni invariate rispetto alla versione precedente. */
 
@@ -69,13 +69,16 @@
   transform: rotate(-22deg);
 }
 
-/* Ciclo 6 colori vetro assortiti (per riga di palline) */
-.cc-ball:nth-of-type(6n + 1), .ball-3d:nth-of-type(6n + 1), .cc-proposal-ball:nth-of-type(6n + 1), .historical-pick:nth-of-type(6n + 1) { --glass-tint: 70, 130, 255; }   /* zaffiro */
-.cc-ball:nth-of-type(6n + 2), .ball-3d:nth-of-type(6n + 2), .cc-proposal-ball:nth-of-type(6n + 2), .historical-pick:nth-of-type(6n + 2) { --glass-tint: 255, 70, 95; }   /* rubino */
-.cc-ball:nth-of-type(6n + 3), .ball-3d:nth-of-type(6n + 3), .cc-proposal-ball:nth-of-type(6n + 3), .historical-pick:nth-of-type(6n + 3) { --glass-tint: 60, 200, 140; }  /* smeraldo */
-.cc-ball:nth-of-type(6n + 4), .ball-3d:nth-of-type(6n + 4), .cc-proposal-ball:nth-of-type(6n + 4), .historical-pick:nth-of-type(6n + 4) { --glass-tint: 170, 100, 255; } /* ametista */
-.cc-ball:nth-of-type(6n + 5), .ball-3d:nth-of-type(6n + 5), .cc-proposal-ball:nth-of-type(6n + 5), .historical-pick:nth-of-type(6n + 5) { --glass-tint: 60, 210, 225; }  /* acquamarina */
-.cc-ball:nth-of-type(6n), .ball-3d:nth-of-type(6n), .cc-proposal-ball:nth-of-type(6n), .historical-pick:nth-of-type(6n) { --glass-tint: 255, 165, 60; }               /* ambra */
+/* Colore per decina di appartenenza (1-10 ... 81-90), impostato via [data-decina] dal JS */
+.cc-ball[data-decina="1"], .ball-3d[data-decina="1"], .cc-proposal-ball[data-decina="1"], .historical-pick[data-decina="1"] { --glass-tint: 70, 130, 255; }   /* zaffiro 1-10 */
+.cc-ball[data-decina="2"], .ball-3d[data-decina="2"], .cc-proposal-ball[data-decina="2"], .historical-pick[data-decina="2"] { --glass-tint: 255, 70, 95; }   /* rubino 11-20 */
+.cc-ball[data-decina="3"], .ball-3d[data-decina="3"], .cc-proposal-ball[data-decina="3"], .historical-pick[data-decina="3"] { --glass-tint: 60, 200, 140; }  /* smeraldo 21-30 */
+.cc-ball[data-decina="4"], .ball-3d[data-decina="4"], .cc-proposal-ball[data-decina="4"], .historical-pick[data-decina="4"] { --glass-tint: 170, 100, 255; } /* ametista 31-40 */
+.cc-ball[data-decina="5"], .ball-3d[data-decina="5"], .cc-proposal-ball[data-decina="5"], .historical-pick[data-decina="5"] { --glass-tint: 60, 210, 225; }  /* acquamarina 41-50 */
+.cc-ball[data-decina="6"], .ball-3d[data-decina="6"], .cc-proposal-ball[data-decina="6"], .historical-pick[data-decina="6"] { --glass-tint: 255, 165, 60; }  /* ambra 51-60 */
+.cc-ball[data-decina="7"], .ball-3d[data-decina="7"], .cc-proposal-ball[data-decina="7"], .historical-pick[data-decina="7"] { --glass-tint: 255, 110, 180; } /* rosa 61-70 */
+.cc-ball[data-decina="8"], .ball-3d[data-decina="8"], .cc-proposal-ball[data-decina="8"], .historical-pick[data-decina="8"] { --glass-tint: 150, 210, 60; }  /* lime 71-80 */
+.cc-ball[data-decina="9"], .ball-3d[data-decina="9"], .cc-proposal-ball[data-decina="9"], .historical-pick[data-decina="9"] { --glass-tint: 170, 190, 210; } /* argento 81-90 */
 
 .cc-ball.cc-ball--hit,
 .cc-ball--hit,

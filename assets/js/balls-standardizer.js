@@ -42,9 +42,16 @@
     return out;
   }
 
+  function decinaOf(value) {
+    var n = parseInt(value, 10);
+    if (!Number.isFinite(n) || n < 1) return 1;
+    return Math.min(9, Math.ceil(n / 10));
+  }
+
   function buildBall(token) {
     var span = document.createElement("span");
     span.className = "cc-ball" + (token.hit ? " cc-ball--hit" : "");
+    span.setAttribute("data-decina", String(decinaOf(token.value)));
     span.textContent = token.value;
     return span;
   }

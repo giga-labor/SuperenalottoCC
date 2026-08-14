@@ -165,7 +165,8 @@
               body.innerHTML = pageRows.map((row) => {
                 const picksHtml = row.picks.map((pick) => {
                   const cls = pick.hit ? 'historical-pick is-hit' : 'historical-pick';
-                  return `<span class="${cls}">${esc(pick.value)}</span>`;
+                  const decina = Math.min(9, Math.max(1, Math.ceil((parseInt(pick.value, 10) || 1) / 10)));
+                  return `<span class="${cls}" data-decina="${decina}">${esc(pick.value)}</span>`;
                 }).join('');
                 const label = row.date ? `#${esc(row.draw)}<span class="block text-[0.68rem] text-ash/70">${esc(row.date)}</span>` : `#${esc(row.draw)}`;
                 return `
@@ -468,9 +469,10 @@
           if (sect) sect.style.display = 'none';
           return;
         }
-        ballsHost.innerHTML = proposal.map(v =>
-          `<span class="cc-ball" style="--cc-ball-size:1.9rem;font-size:.8rem">${escapeHtml(String(v ?? ''))}</span>`
-        ).join('');
+        ballsHost.innerHTML = proposal.map(v => {
+          const decina = Math.min(9, Math.max(1, Math.ceil((parseInt(v, 10) || 1) / 10)));
+          return `<span class="cc-ball" data-decina="${decina}" style="--cc-ball-size:1.9rem;font-size:.8rem">${escapeHtml(String(v ?? ''))}</span>`;
+        }).join('');
         const note = sect ? sect.querySelector('p.italic') : null;
         if (note) note.remove();
       };
@@ -711,7 +713,8 @@
         const historicalRowsHtml = pageRows.map(({ draw, picks }) => {
           const picksHtml = picks.map((pick) => {
             const cls = pick.hit ? 'historical-pick is-hit' : 'historical-pick';
-            return `<span class="${cls}">${escapeHtml(String(pick.value ?? ''))}</span>`;
+            const decina = Math.min(9, Math.max(1, Math.ceil((parseInt(pick.value, 10) || 1) / 10)));
+            return `<span class="${cls}" data-decina="${decina}">${escapeHtml(String(pick.value ?? ''))}</span>`;
           }).join('');
           return `
             <tr>
@@ -726,7 +729,10 @@
         let proposalRowHtml = '';
         if (historicalState.page === 1 && Array.isArray(nextContestProposal) && nextContestProposal.length === 6) {
           const proposalBalls = nextContestProposal
-            .map((value) => `<span class="historical-pick is-proposal">${escapeHtml(String(value ?? ''))}</span>`)
+            .map((value) => {
+              const decina = Math.min(9, Math.max(1, Math.ceil((parseInt(value, 10) || 1) / 10)));
+              return `<span class="historical-pick is-proposal" data-decina="${decina}">${escapeHtml(String(value ?? ''))}</span>`;
+            })
             .join('');
           proposalRowHtml = `
             <tr class="bg-neon/10">
